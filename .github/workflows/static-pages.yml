@@ -34,8 +34,11 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         with:
           cache-disabled: true
+
       - name: Generate HTML for the static site
         run: ./gradlew :static-pages:run
+      - name: Copy over the icon to the artifact
+        run: cp static-pages/images/favicon.ico static-pages/build/html/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
