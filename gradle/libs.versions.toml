@@ -1,0 +1,32 @@
+[versions]
+java-version = "17"
+
+compile-sdk = "34"
+target-sdk = "34"
+min-sdk = "26"
+
+agp = "8.2.0"
+kotlin = "1.9.21"
+spotless = "6.23.3"
+ktlint = "1.0.1"
+
+kotlinx-html = "0.10.1"
+okio = "3.7.0"
+
+[libraries]
+# Core dependencies
+kotlinx-html = { group = "org.jetbrains.kotlinx", name = "kotlinx-html-jvm", version.ref = "kotlinx-html" }
+okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+spotless-gradlePlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

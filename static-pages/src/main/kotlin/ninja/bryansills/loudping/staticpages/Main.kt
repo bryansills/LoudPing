@@ -9,15 +9,19 @@ import okio.Path.Companion.toPath
 import okio.buffer
 
 fun main() {
-    FileSystem.SYSTEM.createDirectories("build/html".toPath())
+    val fs = FileSystem.SYSTEM
+
+    fs.createDirectories("build/html".toPath())
+    fs.createDirectories("build/html/callback".toPath())
+    fs.createDirectories("build/html/start".toPath())
 
     val callbackText = CallbackPage()
-    FileSystem.SYSTEM.sink("build/html/callback.html".toPath()).buffer().use { sink ->
+    fs.sink("build/html/callback/index.html".toPath()).buffer().use { sink ->
         sink.writeUtf8(callbackText)
     }
 
     val redirectText = RedirectPage()
-    FileSystem.SYSTEM.sink("build/html/start.html".toPath()).buffer().use { sink ->
+    fs.sink("build/html/start/index.html".toPath()).buffer().use { sink ->
         sink.writeUtf8(redirectText)
     }
 }

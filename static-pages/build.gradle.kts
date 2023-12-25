@@ -8,6 +8,6 @@ application {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.10.1")
-    implementation("com.squareup.okio:okio:3.7.0")
+    implementation(libs.kotlinx.html)
+    implementation(libs.okio)
 }

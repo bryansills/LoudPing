@@ -2,6 +2,7 @@ package ninja.bryansills.loudping.staticpages
 
 import kotlinx.html.body
 import kotlinx.html.head
+import kotlinx.html.script
 import kotlinx.html.style
 import kotlinx.html.svg
 import kotlinx.html.title
@@ -36,6 +37,20 @@ fun CallbackPage(): String = buildHtml {
 </path>
                                 """.trimIndent()
                 )
+            }
+        }
+        script {
+            unsafe {
+                raw("""
+async () => {
+    let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+    let response = await fetch(url);
+
+    let commits = await response.json(); // read response body and parse as JSON
+
+    alert(commits[0].author.login);
+}()
+                """.trimIndent())
             }
         }
     }
