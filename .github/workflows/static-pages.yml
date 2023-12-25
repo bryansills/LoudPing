@@ -37,6 +37,9 @@ jobs:
 
       - name: Generate HTML for the static site
         run: ./gradlew :static-pages:run
+        env:
+          SNEAK_SALT: ${{ secrets.SNEAK_SALT }}
+          CALLBACK_URL: ${{ secrets.CALLBACK_URL }}
       - name: Copy over the icon to the artifact
         run: cp static-pages/images/cricket.ico static-pages/build/html/favicon.ico
 
