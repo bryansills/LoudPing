@@ -12,11 +12,13 @@ ktlint = "1.0.1"
 
 kotlinx-html = "0.10.1"
 okio = "3.7.0"
+androidDesugarJdkLibs = "2.0.4"
 
 [libraries]
 # Core dependencies
 kotlinx-html = { group = "org.jetbrains.kotlinx", name = "kotlinx-html-jvm", version.ref = "kotlinx-html" }
 okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }

@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "Loud Ping"
 include(":app")
 include(":static-pages")
+include(":sneak")
