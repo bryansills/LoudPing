@@ -42,6 +42,37 @@ fun CallbackPage(): String = buildHtml {
         script {
             unsafe {
                 raw("""
+const saltText = "haha butts 1234 this is long enough";
+
+const encoder = new TextEncoder();
+const decoder = new TextDecoder();
+
+const saltBytes = encoder.encode(saltText);
+
+const encode = (saltBytes, rawText) => {
+  const rawBytes = encoder.encode(rawText);
+  return rawBytes.map((item, index) => {
+    const saltBit = saltBytes[index % saltBytes.length];
+    return item ^ saltBit;
+  })
+}
+
+const decode = (saltBytes, rawBytes) => {
+  const deciphered = rawBytes.map((item, index) => {
+    const saltBit = saltBytes[index % saltBytes.length];
+    return item ^ saltBit;
+  })
+  return decoder.decode(deciphered);
+}
+
+const testText = "this is the test 123";
+const encodedText = encode(saltBytes, testText);
+const decodedText = decode(saltBytes, encodedText);
+
+console.log(testText);
+console.log(encodedText);
+console.log(decodedText);
+
 async function doWork() {
     let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
     let response = await fetch(url);
