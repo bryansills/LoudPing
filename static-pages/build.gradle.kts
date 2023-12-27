@@ -39,8 +39,20 @@ fun BuildConfigExtension.loadSecrets() {
     val saltString = properties.getSecret("sneak.salt")
     buildConfigField("String", "Salt", """"$saltString"""")
 
-    val callbackUrl = properties.getSecret("callback.url")
-    buildConfigField("String", "CallbackUrl", """"$callbackUrl"""")
+    val tokenUrl = properties.getSecret("token.url")
+    buildConfigField("String", "AuthUrl", """"$tokenUrl"""")
+
+    val clientId = properties.getSecret("client.id")
+    buildConfigField("String", "ClientId", """"$clientId"""")
+
+    val clientOther = properties.getSecret("client.other")
+    buildConfigField("String", "ClientOther", """"$clientOther"""")
+
+    val redirectUrl = properties.getSecret("redirect.url")
+    buildConfigField("String", "CallbackUrl", """"$redirectUrl"""")
+
+    val startUrl = properties.getSecret("start.url")
+    buildConfigField("String", "StartUrl", """"$startUrl"""")
 }
 
 fun Properties.getSecret(

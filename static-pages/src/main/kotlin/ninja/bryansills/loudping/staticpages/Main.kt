@@ -13,24 +13,29 @@ import okio.buffer
 fun main() {
     val fs = FileSystem.SYSTEM
 
-    val sneak = Sneak(BuildConfig.Salt.toByteArray())
-
     fs.createDirectories("build/html".toPath())
     fs.createDirectories("build/html/callback".toPath())
     fs.createDirectories("build/html/start".toPath())
 
+    val sneak = Sneak(BuildConfig.Salt.toByteArray())
+
     val callbackText = CallbackPage(
         sneak = sneak,
         saltText = BuildConfig.Salt,
-        callbackUrl = BuildConfig.CallbackUrl,
+        tokenUrl = BuildConfig.TokenUrl,
+        clientId = BuildConfig.ClientId,
+        clientOther = BuildConfig.ClientOther,
+        redirectUrl = BuildConfig.RedirectUrl
     )
     fs.sink("build/html/callback/index.html".toPath()).buffer().use { sink ->
         sink.writeUtf8(callbackText)
     }
 
-    val redirectText = RedirectPage()
+    val startText = StartPage(
+        startUrl = BuildConfig.StartUrl
+    )
     fs.sink("build/html/start/index.html".toPath()).buffer().use { sink ->
-        sink.writeUtf8(redirectText)
+        sink.writeUtf8(startText)
     }
 }
 
