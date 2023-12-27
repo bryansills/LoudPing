@@ -114,7 +114,7 @@ async function doWork() {
 
     const responseJson = await response.json();
 
-    alert(responseJson);
+    console.log(responseJson);
 }
 doWork();
                 """.trimIndent()
