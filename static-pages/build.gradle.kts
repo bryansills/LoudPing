@@ -40,7 +40,7 @@ fun BuildConfigExtension.loadSecrets() {
     buildConfigField("String", "Salt", """"$saltString"""")
 
     val tokenUrl = properties.getSecret("token.url")
-    buildConfigField("String", "AuthUrl", """"$tokenUrl"""")
+    buildConfigField("String", "TokenUrl", """"$tokenUrl"""")
 
     val clientId = properties.getSecret("client.id")
     buildConfigField("String", "ClientId", """"$clientId"""")
@@ -49,7 +49,7 @@ fun BuildConfigExtension.loadSecrets() {
     buildConfigField("String", "ClientOther", """"$clientOther"""")
 
     val redirectUrl = properties.getSecret("redirect.url")
-    buildConfigField("String", "CallbackUrl", """"$redirectUrl"""")
+    buildConfigField("String", "RedirectUrl", """"$redirectUrl"""")
 
     val startUrl = properties.getSecret("start.url")
     buildConfigField("String", "StartUrl", """"$startUrl"""")
