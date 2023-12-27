@@ -112,9 +112,9 @@ async function doWork() {
       }
     );
 
-    const response = await response.json();
+    const responseJson = await response.json();
 
-    alert(response);
+    alert(responseJson);
 }
 doWork();
                 """.trimIndent()
