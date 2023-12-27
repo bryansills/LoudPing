@@ -39,7 +39,11 @@ jobs:
         run: ./gradlew :static-pages:run
         env:
           SNEAK_SALT: ${{ secrets.SNEAK_SALT }}
-          CALLBACK_URL: ${{ secrets.CALLBACK_URL }}
+          TOKEN_URL: ${{ secrets.TOKEN_URL }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_OTHER: ${{ secrets.CLIENT_OTHER }}
+          REDIRECT_URL: ${{ secrets.REDIRECT_URL }}
+          START_URL: ${{ secrets.START_URL }}
       - name: Copy over the icon to the artifact
         run: cp static-pages/images/cricket.ico static-pages/build/html/favicon.ico
 
