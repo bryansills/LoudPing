@@ -15,3 +15,7 @@ val VersionCatalog.javaVersion
 fun VersionCatalog.findVersionNumber(alias: String): Int {
     return findVersion(alias).get().requiredVersion.toInt()
 }
+
+fun VersionCatalog.findVersionString(alias: String): String {
+    return findVersion(alias).get().requiredVersion
+}
