@@ -1,26 +1,22 @@
 import org.gradle.accessors.dm.LibrariesForLibs
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val LibrariesForLibs.javaVersion
     get(): JavaVersion = JavaVersion.toVersion(versions.java.version.get())
 
 plugins {
     `kotlin-dsl`
-}
-
-java {
-    sourceCompatibility = libs.javaVersion
-    targetCompatibility = libs.javaVersion
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = libs.javaVersion.toString()
-    }
+    `kotlin-dsl-precompiled-script-plugins`
 }
 
 dependencies {
-    implementation(libs.android.gradlePlugin)
-    implementation(libs.kotlin.gradlePlugin)
-    implementation(libs.spotless.gradlePlugin)
+    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+
+    implementation(plugin(libs.plugins.kotlin.android))
+    implementation(plugin(libs.plugins.android.application))
+    implementation(plugin(libs.plugins.android.library))
+    implementation(plugin(libs.plugins.spotless))
+}
+
+fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {
+    "$pluginId:$pluginId.gradle.plugin:$version"
 }

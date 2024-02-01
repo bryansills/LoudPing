@@ -55,6 +55,9 @@ fun BuildConfigExtension.loadSecrets() {
     buildConfigField("String", "StartUrl", """"$startUrl"""")
 }
 
+/**
+ * Copied in a few places...
+ */
 fun Properties.getSecret(
     propertyName: String,
     environmentName: String = propertyName.replace(".", "_").toUpperCaseAsciiOnly(),

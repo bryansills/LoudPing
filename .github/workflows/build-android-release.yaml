@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      ORG_GRADLE_PROJECT_FAKE_KEY: ${{ secrets.FAKE_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set version name
+        run: echo "ORG_GRADLE_PROJECT_VERSION_NAME=${GITHUB_REF:10}" >> $GITHUB_ENV
+
+      - name: Decrypt keystore
+        run: ./.github/scripts/decrypt_keystore.sh
+        env:
+          KEYSTORE_GPG_PASSPHRASE: ${{ secrets.KEYSTORE_GPG_PASSPHRASE }}
+
+      - name: Setup app signing configuration
+        run: 'echo "$KEYSTORE_PROPERTIES" > release/keystore.properties'
+        env:
+          KEYSTORE_PROPERTIES: ${{ secrets.KEYSTORE_PROPERTIES }}
+
+      - name: set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - uses: gradle/gradle-build-action@v2
+        with:
+          cache-disabled: true
+
+      - name: Build and check
+        run: ./gradlew :app:bundleRelease --stacktrace
+
+      - name: Upload build outputs
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-outputs
+          path: 'app/build/outputs'
