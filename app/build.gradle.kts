@@ -14,7 +14,7 @@ android {
         applicationId = "ninja.bryansills.loudping"
 
         val rootLocalProperties = rootProject.rootProperties("local.properties")
-        val appVersionName = rootLocalProperties.getSecret("app.version.name")
+        val appVersionName = rootLocalProperties.getSecret("version.name")
         val appVersionParts = appVersionName.split(".").map { it.toInt() }
         val appVersionCode = (10_000 * appVersionParts[0]) + (100 * appVersionParts[1]) + appVersionParts[2]
 
@@ -71,8 +71,10 @@ dependencies {
 fun Project.rootProperties(propertiesPath: String): Properties {
     val result = Properties()
     val keystorePropertiesFile = this.rootProject.file(propertiesPath)
-    InputStreamReader(FileInputStream(keystorePropertiesFile), Charsets.UTF_8).use { reader ->
-        result.load(reader)
+    if (keystorePropertiesFile.isFile) {
+        InputStreamReader(FileInputStream(keystorePropertiesFile), Charsets.UTF_8).use { reader ->
+            result.load(reader)
+        }
     }
     return result
 }
