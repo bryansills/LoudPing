@@ -14,7 +14,10 @@ android {
         applicationId = "ninja.bryansills.loudping"
 
         val rootLocalProperties = rootProject.rootProperties("local.properties")
-        val appVersionName = rootLocalProperties.getSecret("version.name")
+        val appVersionName = rootLocalProperties.getSecret(
+            "version.name",
+            fallback = "0.0.69"
+        )
         val appVersionParts = appVersionName.split(".").map { it.toInt() }
         val appVersionCode = (10_000 * appVersionParts[0]) + (100 * appVersionParts[1]) + appVersionParts[2]
 
