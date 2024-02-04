@@ -35,7 +35,6 @@ android {
 
         create("release") {
             if (rootProject.file("release/loudping-upload.jks").exists()) {
-                println("hey we have the release keystore")
                 storeFile = rootProject.file("release/loudping-upload.jks")
 
                 val keystoreProperties = rootProject.rootProperties("release/keystore.properties")
@@ -43,8 +42,6 @@ android {
                 storePassword = keystoreProperties.getSecret("release.store.password")
                 keyAlias = keystoreProperties.getSecret("release.key.alias")
                 keyPassword = keystoreProperties.getSecret("release.key.password")
-            } else {
-                println("BAD BAD no release keystore")
             }
         }
     }
