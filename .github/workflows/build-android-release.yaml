@@ -1,4 +1,4 @@
-name: CI
+name: Build the app for releasing to Google Play
 
 on:
   push:
@@ -15,9 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set version name
-        run: |
-          echo "version.name=${GITHUB_REF:10}" >> local.properties
-          cat local.properties
+        run: echo "version.name=${GITHUB_REF:10}" >> local.properties
 
       - name: Decrypt keystore
         run: ./.github/scripts/decrypt_keystore.sh
@@ -39,10 +37,8 @@ jobs:
         with:
           cache-disabled: true
 
-      - name: Build and check
-        run: |
-          cat local.properties
-          ./gradlew :app:bundleRelease --stacktrace
+      - name: Make the bundle
+        run: ./gradlew :app:bundleRelease --stacktrace
 
       - name: Upload build outputs
         uses: actions/upload-artifact@v2
