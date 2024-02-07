@@ -23,6 +23,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
@@ -31,7 +32,8 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
-      - uses: gradle/gradle-build-action@v2
+
+      - uses: gradle/actions/setup-gradle@v3
         with:
           cache-disabled: true
 
@@ -44,13 +46,15 @@ jobs:
           CLIENT_OTHER: ${{ secrets.CLIENT_OTHER }}
           REDIRECT_URL: ${{ secrets.REDIRECT_URL }}
           START_URL: ${{ secrets.START_URL }}
+
       - name: Copy over the icon to the artifact
         run: cp static-pages/images/cricket.ico static-pages/build/html/favicon.ico
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'static-pages/build/html'
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4

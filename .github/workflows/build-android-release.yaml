@@ -32,7 +32,7 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
-      - uses: gradle/gradle-build-action@v2
+      - uses: gradle/actions/setup-gradle@v3
         with:
           cache-disabled: true
 
@@ -40,7 +40,7 @@ jobs:
         run: ./gradlew :app:bundleRelease --stacktrace
 
       - name: Upload build outputs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: build-outputs
           path: 'app/build/outputs'
