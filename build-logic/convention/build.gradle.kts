@@ -15,6 +15,8 @@ dependencies {
     implementation(plugin(libs.plugins.android.application))
     implementation(plugin(libs.plugins.android.library))
     implementation(plugin(libs.plugins.spotless))
+    implementation(plugin(libs.plugins.ksp))
+    implementation(plugin(libs.plugins.hilt.plugin))
 }
 
 fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {

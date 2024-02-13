@@ -8,6 +8,8 @@ plugins {
     id("ninja-bryansills-spotless")
     id("org.jetbrains.kotlin.android")
     id("com.android.application")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -45,4 +47,7 @@ dependencies {
     add("implementation", libs.findLibrary("androidx-compose-material3").get())
     add("implementation", libs.findLibrary("androidx-compose-preview").get())
     add("debugImplementation", libs.findLibrary("androidx-compose-ui-tooling").get())
+
+    add("implementation", libs.findLibrary("hilt-android").get())
+    add("ksp", libs.findLibrary("hilt-compiler").get())
 }

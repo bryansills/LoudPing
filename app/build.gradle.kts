@@ -1,7 +1,7 @@
-import org.jetbrains.kotlin.util.capitalizeDecapitalize.toUpperCaseAsciiOnly
 import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.util.Properties
+import org.jetbrains.kotlin.util.capitalizeDecapitalize.toUpperCaseAsciiOnly
 
 plugins {
     id("ninja-bryansills-compose-android-app")
@@ -14,10 +14,11 @@ android {
         applicationId = "ninja.bryansills.loudping"
 
         val rootLocalProperties = rootProject.rootProperties("local.properties")
-        val appVersionName = rootLocalProperties.getSecret(
-            "version.name",
-            fallback = "0.0.69"
-        )
+        val appVersionName =
+            rootLocalProperties.getSecret(
+                "version.name",
+                fallback = "0.0.69",
+            )
         val appVersionParts = appVersionName.split(".").map { it.toInt() }
         val appVersionCode = (10_000 * appVersionParts[0]) + (100 * appVersionParts[1]) + appVersionParts[2]
 
@@ -47,11 +48,12 @@ android {
     }
 
     buildTypes {
-        val release = getByName("release") {
-            signingConfig = signingConfigs.findByName("release")
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            isMinifyEnabled = true
-        }
+        val release =
+            getByName("release") {
+                signingConfig = signingConfigs.findByName("release")
+                proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+                isMinifyEnabled = true
+            }
 
         create("benchmark") {
             initWith(release)
@@ -87,7 +89,7 @@ fun Project.rootProperties(propertiesPath: String): Properties {
 fun Properties.getSecret(
     propertyName: String,
     environmentName: String = propertyName.replace(".", "_").toUpperCaseAsciiOnly(),
-    fallback: String = "INVALID $propertyName"
+    fallback: String = "INVALID $propertyName",
 ): String {
     val propertyValue: String? = this.getProperty(propertyName)
     val environmentValue: String? = System.getenv(environmentName)

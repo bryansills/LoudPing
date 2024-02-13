@@ -1,5 +1,7 @@
 package ninja.bryansills.loudping.staticpages
 
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlinx.html.body
 import kotlinx.html.head
 import kotlinx.html.script
@@ -8,10 +10,8 @@ import kotlinx.html.svg
 import kotlinx.html.title
 import kotlinx.html.unsafe
 import ninja.bryansills.sneak.Sneak
-import kotlin.io.encoding.Base64
-import kotlin.io.encoding.ExperimentalEncodingApi
 
-fun CallbackPage(
+fun callbackPage(
     sneak: Sneak,
     saltText: String,
     tokenUrl: String,
@@ -52,7 +52,7 @@ fun CallbackPage(
         dur="0.8s"
         repeatCount="indefinite"/>
 </path>
-                                """.trimIndent()
+                        """.trimIndent(),
                     )
                 }
             }
@@ -117,7 +117,7 @@ async function doWork() {
     console.log(responseJson);
 }
 doWork();
-                """.trimIndent()
+                        """.trimIndent(),
                     )
                 }
             }

@@ -19,20 +19,20 @@ fun main() {
 
     val sneak = Sneak(BuildConfig.Salt.toByteArray())
 
-    val callbackText = CallbackPage(
+    val callbackText = callbackPage(
         sneak = sneak,
         saltText = BuildConfig.Salt,
         tokenUrl = BuildConfig.TokenUrl,
         clientId = BuildConfig.ClientId,
         clientOther = BuildConfig.ClientOther,
-        redirectUrl = BuildConfig.RedirectUrl
+        redirectUrl = BuildConfig.RedirectUrl,
     )
     fs.sink("build/html/callback/index.html".toPath()).buffer().use { sink ->
         sink.writeUtf8(callbackText)
     }
 
-    val startText = StartPage(
-        startUrl = BuildConfig.StartUrl
+    val startText = startPage(
+        startUrl = BuildConfig.StartUrl,
     )
     fs.sink("build/html/start/index.html".toPath()).buffer().use { sink ->
         sink.writeUtf8(startText)
