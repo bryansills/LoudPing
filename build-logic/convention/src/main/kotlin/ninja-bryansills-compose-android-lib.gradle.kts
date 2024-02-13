@@ -1,4 +1,3 @@
-
 import ninja.bryansills.findVersionNumber
 import ninja.bryansills.findVersionString
 import ninja.bryansills.javaVersion
@@ -7,14 +6,13 @@ import ninja.bryansills.libs
 plugins {
     id("ninja-bryansills-spotless")
     id("org.jetbrains.kotlin.android")
-    id("com.android.application")
+    id("com.android.library")
 }
 
 android {
     compileSdk = libs.findVersionNumber("compile-sdk")
     defaultConfig {
         minSdk = libs.findVersionNumber("min-sdk")
-        targetSdk = libs.findVersionNumber("target-sdk")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

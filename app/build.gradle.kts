@@ -65,9 +65,9 @@ android {
 }
 
 dependencies {
-//    implementation(project(":app-core"))
-    implementation(libs.core.ktx)
+    implementation(project(":app-core"))
     implementation(libs.androidx.compose.activity)
+    implementation(libs.activity.ktx)
 }
 
 /**

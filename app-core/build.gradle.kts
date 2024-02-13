@@ -1,5 +1,5 @@
 plugins {
-    id("ninja-bryansills-kmp")
+    id("ninja-bryansills-compose-android-lib")
 }
 
 android {
