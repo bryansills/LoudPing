@@ -6,6 +6,6 @@ import ninja.bryansills.loudping.storage.SimpleEntry
 object Stored {
     val RefreshToken = SimpleEntry(
         stringPreferencesKey("refresh-token"),
-        ""
+        "",
     )
 }
