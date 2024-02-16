@@ -21,6 +21,7 @@ kotlin {
     sourceSets {
         commonTest.dependencies {
             implementation(kotlin("test"))
+            implementation(libs.findLibrary("coroutines").get())
         }
     }
 }

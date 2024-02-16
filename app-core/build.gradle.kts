@@ -7,5 +7,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":session"))
+
     implementation(libs.androidx.compose.navigation)
 }

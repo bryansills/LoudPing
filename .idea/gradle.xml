@@ -25,8 +25,11 @@
             <option value="$PROJECT_DIR$/app-core" />
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/convention" />
+            <option value="$PROJECT_DIR$/di" />
+            <option value="$PROJECT_DIR$/session" />
             <option value="$PROJECT_DIR$/sneak" />
             <option value="$PROJECT_DIR$/static-pages" />
+            <option value="$PROJECT_DIR$/storage" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

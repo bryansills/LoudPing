@@ -36,6 +36,9 @@ dependencies {
     add("coreLibraryDesugaring", libs.findLibrary("android-desugarJdkLibs").get())
     add("implementation", libs.findLibrary("core-ktx").get())
 
+    add("implementation", libs.findLibrary("coroutines").get())
+    add("implementation", libs.findLibrary("coroutines-android").get())
+
     val composeBom = libs.findLibrary("androidx-compose-bom").get()
     add("implementation", platform(composeBom))
     add("androidTestImplementation", platform(composeBom))
