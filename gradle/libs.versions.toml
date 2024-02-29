@@ -29,6 +29,11 @@ navigation-compose = "2.7.7"
 hilt-navigation-compose = "1.2.0-rc01"
 viewmodel = "2.7.0"
 datastore = "1.1.0-beta01"
+retrofit = "2.9.0"
+kotlinx-retrofit = "1.0.0"
+kotlinx-serialization-runtime = "1.6.3"
+okhttp = "4.12.0"
+datetime = "0.5.0"
 
 kotlinx-html = "0.10.1"
 okio = "3.7.0"
@@ -60,6 +65,11 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.r
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "viewmodel" }
 datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore"}
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
+retrofit-kotlinx-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kotlinx-retrofit"}
+kotlinx-serialization-runtime = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-runtime"}
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "datetime"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -71,3 +81,4 @@ spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

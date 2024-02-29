@@ -24,6 +24,42 @@ android {
 
         versionCode = appVersionCode
         versionName = appVersionName
+
+        buildConfigField(
+            "String",
+            "SneakSalt",
+            rootLocalProperties.getSecret("sneak.salt").toBuildConfig()
+        )
+        buildConfigField(
+            "String",
+            "SneakClientId",
+            rootLocalProperties.getSecret("sneak.clientid").toBuildConfig()
+        )
+        buildConfigField(
+            "String",
+            "SneakClientSecret",
+            rootLocalProperties.getSecret("sneak.clientsecret").toBuildConfig()
+        )
+        buildConfigField(
+            "String",
+            "SneakRedirectUrl",
+            rootLocalProperties.getSecret("sneak.redirecturl").toBuildConfig()
+        )
+        buildConfigField(
+            "String",
+            "SneakBaseApiUrl",
+            rootLocalProperties.getSecret("sneak.baseapiurl").toBuildConfig()
+        )
+        buildConfigField(
+            "String",
+            "SneakBaseAuthApiUrl",
+            rootLocalProperties.getSecret("sneak.baseauthapiurl").toBuildConfig()
+        )
+        buildConfigField(
+            "String",
+            "SneakAuthorizeUrl",
+            rootLocalProperties.getSecret("sneak.authorizeurl").toBuildConfig()
+        )
     }
 
     signingConfigs {
@@ -64,10 +100,16 @@ android {
             isMinifyEnabled = true
         }
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
     implementation(project(":app-core"))
+    implementation(project(":app-sneak"))
+    implementation(project(":sneak"))
     implementation(libs.androidx.compose.activity)
     implementation(libs.activity.ktx)
 }
@@ -95,4 +137,8 @@ fun Properties.getSecret(
     val environmentValue: String? = System.getenv(environmentName)
 
     return propertyValue ?: environmentValue ?: fallback
+}
+
+fun String.toBuildConfig(): String {
+    return "\"$this\""
 }

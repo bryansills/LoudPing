@@ -8,4 +8,12 @@ object Stored {
         stringPreferencesKey("refresh-token"),
         "",
     )
+    val AccessToken = SimpleEntry(
+        stringPreferencesKey("access-token"),
+        "",
+    )
+    val AccessTokenExpiresAt = SimpleEntry(
+        stringPreferencesKey("access-token-expires-at"),
+        "2000-01-01T09:00:00Z",
+    )
 }
