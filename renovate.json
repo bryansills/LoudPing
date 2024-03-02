@@ -1,6 +1,24 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:recommended"
+        "config:base"
+    ],
+    "packageRules": [
+        {
+            "description": "Auto-merge most dependency updates.",
+            "matchUpdateTypes": ["minor", "patch"],
+            "matchCurrentVersion": "!/^0/",
+            "automerge": true
+        },
+        {
+            "description": "Compose compiler is tightly coupled to Kotlin version.",
+            "groupName": "Kotlin and Compose",
+            "matchPackagePrefixes": [
+                "androidx.compose.compiler",
+                "org.jetbrains.kotlin:kotlin",
+                "com.google.devtools.ksp"
+            ],
+            "automerge": false
+        }
     ]
 }
