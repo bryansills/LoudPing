@@ -15,7 +15,7 @@ buildconfig = "5.1.0"
 ksp = "1.9.22-1.0.17"
 dagger = "2.50"
 
-coroutines = "1.7.3"
+coroutines = "1.8.0"
 compose-bom = "2024.02.01"
 activity = "1.8.2"
 activity-compose = "1.8.2"
