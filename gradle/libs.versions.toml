@@ -34,6 +34,7 @@ kotlinx-retrofit = "1.0.0"
 kotlinx-serialization-runtime = "1.6.3"
 okhttp = "4.12.0"
 datetime = "0.5.0"
+navigation-compose-typed = "0.10.0"
 
 kotlinx-html = "0.10.1"
 okio = "3.7.0"
@@ -68,8 +69,10 @@ datastore = { group = "androidx.datastore", name = "datastore-preferences", vers
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-kotlinx-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kotlinx-retrofit"}
 kotlinx-serialization-runtime = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-runtime"}
+kotlinx-serialization-runtime-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization-runtime"}
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "datetime"}
+navigation-compose-typed = { group = "com.kiwi.navigation-compose.typed", name = "core", version.ref = "navigation-compose-typed"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

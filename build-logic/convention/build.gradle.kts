@@ -17,6 +17,7 @@ dependencies {
     implementation(plugin(libs.plugins.spotless))
     implementation(plugin(libs.plugins.ksp))
     implementation(plugin(libs.plugins.hilt.plugin))
+    implementation(plugin(libs.plugins.kotlinx.serialization))
 }
 
 fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {

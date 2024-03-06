@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.app.core
+package ninja.bryansills.loudping.app.core.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

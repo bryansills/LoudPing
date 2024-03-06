@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import ninja.bryansills.loudping.app.core.splash.SplashScreen
 import ninja.bryansills.loudping.app.core.theme.LoudPingTheme
 
 @Composable

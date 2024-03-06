@@ -10,4 +10,6 @@ dependencies {
     implementation(project(":session"))
 
     implementation(libs.androidx.compose.navigation)
+    implementation(libs.kotlinx.serialization.runtime.core)
+    implementation(libs.navigation.compose.typed)
 }
