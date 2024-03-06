@@ -1,0 +1,33 @@
+name: Build the app for releasing to Google Play
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: set up JDK
+        uses: actions/setup-java@v4
+        with:
+            distribution: 'zulu'
+            java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v3
+        with:
+            cache-disabled: true
+
+      - name: Build and run tests
+        run: ./gradlew check connectedCheck --continue --quiet
+
+      - name: (Fail-only) Upload build reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+            name: reports
+            path: |
+                **/build/reports/*

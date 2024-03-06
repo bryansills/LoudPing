@@ -5,17 +5,17 @@ compile-sdk = "34"
 target-sdk = "34"
 min-sdk = "26"
 
-agp = "8.2.2"
+agp = "8.3.0"
 kotlin = "1.9.22"
-spotless = "6.23.3"
+spotless = "6.25.0"
 compose-compiler = "1.5.9"
 ktlint = "1.0.1"
-buildconfig = "5.1.0"
+buildconfig = "5.3.5"
 
-ksp = "1.9.22-1.0.17"
-dagger = "2.50"
+ksp = "1.9.22-1.0.18"
+dagger = "2.51"
 
-coroutines = "1.7.3"
+coroutines = "1.8.0"
 compose-bom = "2024.02.01"
 activity = "1.8.2"
 activity-compose = "1.8.2"
@@ -34,9 +34,10 @@ kotlinx-retrofit = "1.0.0"
 kotlinx-serialization-runtime = "1.6.3"
 okhttp = "4.12.0"
 datetime = "0.5.0"
+navigation-compose-typed = "0.10.0"
 
 kotlinx-html = "0.11.0"
-okio = "3.7.0"
+okio = "3.8.0"
 androidDesugarJdkLibs = "2.0.4"
 
 [libraries]
@@ -68,8 +69,10 @@ datastore = { group = "androidx.datastore", name = "datastore-preferences", vers
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-kotlinx-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kotlinx-retrofit"}
 kotlinx-serialization-runtime = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-runtime"}
+kotlinx-serialization-runtime-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization-runtime"}
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "datetime"}
+navigation-compose-typed = { group = "com.kiwi.navigation-compose.typed", name = "core", version.ref = "navigation-compose-typed"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

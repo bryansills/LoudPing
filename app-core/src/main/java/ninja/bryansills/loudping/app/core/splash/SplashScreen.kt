@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.app.core
+package ninja.bryansills.loudping.app.core.splash
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
@@ -23,6 +23,6 @@ fun SplashScreen(
     }
 
     Box(modifier = modifier.padding(64.dp)) {
-        Text("Hey we out here!")
+        Text("Starting up...")
     }
 }
