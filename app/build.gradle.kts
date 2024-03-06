@@ -28,37 +28,37 @@ android {
         buildConfigField(
             "String",
             "SneakSalt",
-            rootLocalProperties.getSecret("sneak.salt").toBuildConfig()
+            rootLocalProperties.getSecret("sneak.salt").toBuildConfig(),
         )
         buildConfigField(
             "String",
             "SneakClientId",
-            rootLocalProperties.getSecret("sneak.clientid").toBuildConfig()
+            rootLocalProperties.getSecret("sneak.clientid").toBuildConfig(),
         )
         buildConfigField(
             "String",
             "SneakClientSecret",
-            rootLocalProperties.getSecret("sneak.clientsecret").toBuildConfig()
+            rootLocalProperties.getSecret("sneak.clientsecret").toBuildConfig(),
         )
         buildConfigField(
             "String",
             "SneakRedirectUrl",
-            rootLocalProperties.getSecret("sneak.redirecturl").toBuildConfig()
+            rootLocalProperties.getSecret("sneak.redirecturl").toBuildConfig(),
         )
         buildConfigField(
             "String",
             "SneakBaseApiUrl",
-            rootLocalProperties.getSecret("sneak.baseapiurl").toBuildConfig()
+            rootLocalProperties.getSecret("sneak.baseapiurl").toBuildConfig(),
         )
         buildConfigField(
             "String",
             "SneakBaseAuthApiUrl",
-            rootLocalProperties.getSecret("sneak.baseauthapiurl").toBuildConfig()
+            rootLocalProperties.getSecret("sneak.baseauthapiurl").toBuildConfig(),
         )
         buildConfigField(
             "String",
             "SneakAuthorizeUrl",
-            rootLocalProperties.getSecret("sneak.authorizeurl").toBuildConfig()
+            rootLocalProperties.getSecret("sneak.authorizeurl").toBuildConfig(),
         )
     }
 
