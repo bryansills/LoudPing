@@ -13,7 +13,7 @@ ktlint = "1.0.1"
 buildconfig = "5.1.0"
 
 ksp = "1.9.22-1.0.17"
-dagger = "2.50"
+dagger = "2.51"
 
 coroutines = "1.7.3"
 compose-bom = "2024.02.01"
