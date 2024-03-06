@@ -29,7 +29,7 @@ interface NetworkAuthModule {
                 .addInterceptor(authorizationHeaderInterceptor)
                 .build()
             val converterFactory = Json.asConverterFactory(
-                "application/json; charset=UTF8".toMediaType()
+                "application/json; charset=UTF8".toMediaType(),
             )
 
             val retrofit = Retrofit.Builder()

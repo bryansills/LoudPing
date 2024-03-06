@@ -7,5 +7,5 @@ import ninja.bryansills.loudping.network.model.recent.RecentlyPlayedCursors
 data class RecentlyPlayedResponse(
     val next: String,
     val cursors: RecentlyPlayedCursors,
-    val limit: Int
+    val limit: Int,
 )

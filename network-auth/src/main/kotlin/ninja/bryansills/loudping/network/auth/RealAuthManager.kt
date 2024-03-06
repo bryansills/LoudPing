@@ -41,7 +41,7 @@ class RealAuthManager @Inject constructor(
     override suspend fun getAccessToken(): String {
         val currentAccessToken = simpleStorage.first(Stored.AccessToken)
         val currentAccessTokenExpiresAt = Instant.parse(
-            simpleStorage.first(Stored.AccessTokenExpiresAt)
+            simpleStorage.first(Stored.AccessTokenExpiresAt),
         )
 
         if (timeProvider.now < currentAccessTokenExpiresAt) {

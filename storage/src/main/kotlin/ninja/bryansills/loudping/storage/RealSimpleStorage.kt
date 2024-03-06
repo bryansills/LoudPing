@@ -48,7 +48,7 @@ class RealSimpleStorage @Inject constructor(
     }
 
     override suspend fun edit(
-        transform: suspend (mutablePreferences: MutablePreferences) -> Unit
+        transform: suspend (mutablePreferences: MutablePreferences) -> Unit,
     ): Preferences {
         return dataStore.edit(transform)
     }

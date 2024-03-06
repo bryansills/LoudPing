@@ -27,7 +27,6 @@ class RealBuildSneak @Inject constructor(
     override val baseAuthApiUrl: String
         get() = sneak.deobfuscate(obfuscatedBaseAuthApiUrl)
 
-
     override val authorizeUrl: String
         get() = sneak.deobfuscate(obfuscatedAuthorizeUrl)
 }

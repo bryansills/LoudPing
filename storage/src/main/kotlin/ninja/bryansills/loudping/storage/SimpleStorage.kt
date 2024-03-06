@@ -13,7 +13,7 @@ interface SimpleStorage {
     suspend fun <Data> clear(key: SimpleEntry<Data>): Boolean
 
     suspend fun edit(
-        transform: suspend (mutablePreferences: MutablePreferences) -> Unit
+        transform: suspend (mutablePreferences: MutablePreferences) -> Unit,
     ): Preferences
 }
 

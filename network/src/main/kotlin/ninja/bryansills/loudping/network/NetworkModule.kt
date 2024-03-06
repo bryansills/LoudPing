@@ -19,13 +19,13 @@ object NetworkModule {
     @Provides
     fun provideSpotifyService(
         interceptor: AccessTokenInterceptor,
-        buildSneak: BuildSneak
+        buildSneak: BuildSneak,
     ): SpotifyService {
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
         val converterFactory = Json.asConverterFactory(
-            "application/json; charset=UTF8".toMediaType()
+            "application/json; charset=UTF8".toMediaType(),
         )
 
         val retrofit = Retrofit.Builder()
