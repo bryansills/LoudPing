@@ -22,7 +22,24 @@ jobs:
             cache-disabled: true
 
       - name: Build and run tests
-        run: ./gradlew check connectedCheck --continue --quiet
+        run: ./gradlew check --continue
+
+      - name: Enable KVM group perms (for Android emulator)
+        run: |
+            echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+            sudo udevadm control --reload-rules
+            sudo udevadm trigger --name-match=kvm
+            ls /dev/kvm
+
+      - name: Run instrumentation tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+            api-level: 30
+            arch: x86_64
+            disable-animations: true
+            disk-size: 6000M
+            heap-size: 600M
+            script: ./gradlew connectedCheck --daemon
 
       - name: (Fail-only) Upload build reports
         if: failure()
