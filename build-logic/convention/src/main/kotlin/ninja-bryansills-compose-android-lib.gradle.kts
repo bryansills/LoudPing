@@ -46,4 +46,8 @@ dependencies {
     add("implementation", libs.findLibrary("androidx-compose-material3").get())
     add("implementation", libs.findLibrary("androidx-compose-preview").get())
     add("debugImplementation", libs.findLibrary("androidx-compose-ui-tooling").get())
+
+    add("testImplementation", libs.findLibrary("junit").get())
+    add("androidTestImplementation", libs.findLibrary("androidx-test-junit").get())
+    add("androidTestImplementation", libs.findLibrary("androidx-test-runner").get())
 }
