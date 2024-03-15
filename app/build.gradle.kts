@@ -1,3 +1,5 @@
+
+import com.android.build.api.dsl.VariantDimension
 import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.util.Properties
@@ -25,40 +27,33 @@ android {
         versionCode = appVersionCode
         versionName = appVersionName
 
-        buildConfigField(
-            "String",
+        buildConfigString(
             "SneakSalt",
-            rootLocalProperties.getSecret("sneak.salt").toBuildConfig(),
+            rootLocalProperties.getSecret("sneak.salt"),
         )
-        buildConfigField(
-            "String",
+        buildConfigString(
             "SneakClientId",
-            rootLocalProperties.getSecret("sneak.clientid").toBuildConfig(),
+            rootLocalProperties.getSecret("sneak.clientid"),
         )
-        buildConfigField(
-            "String",
+        buildConfigString(
             "SneakClientSecret",
-            rootLocalProperties.getSecret("sneak.clientsecret").toBuildConfig(),
+            rootLocalProperties.getSecret("sneak.clientsecret"),
         )
-        buildConfigField(
-            "String",
+        buildConfigString(
             "SneakRedirectUrl",
-            rootLocalProperties.getSecret("sneak.redirecturl").toBuildConfig(),
+            rootLocalProperties.getSecret("sneak.redirecturl"),
         )
-        buildConfigField(
-            "String",
+        buildConfigString(
             "SneakBaseApiUrl",
-            rootLocalProperties.getSecret("sneak.baseapiurl").toBuildConfig(),
+            rootLocalProperties.getSecret("sneak.baseapiurl"),
         )
-        buildConfigField(
-            "String",
+        buildConfigString(
             "SneakBaseAuthApiUrl",
-            rootLocalProperties.getSecret("sneak.baseauthapiurl").toBuildConfig(),
+            rootLocalProperties.getSecret("sneak.baseauthapiurl"),
         )
-        buildConfigField(
-            "String",
+        buildConfigString(
             "SneakAuthorizeUrl",
-            rootLocalProperties.getSecret("sneak.authorizeurl").toBuildConfig(),
+            rootLocalProperties.getSecret("sneak.authorizeurl"),
         )
     }
 
@@ -139,6 +134,6 @@ fun Properties.getSecret(
     return propertyValue ?: environmentValue ?: fallback
 }
 
-fun String.toBuildConfig(): String {
-    return "\"$this\""
+fun VariantDimension.buildConfigString(key: String, value: String) {
+    this.buildConfigField("String", key, "\"$value\"")
 }

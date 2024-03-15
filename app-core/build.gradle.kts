@@ -8,6 +8,8 @@ android {
 
 dependencies {
     implementation(project(":session"))
+    implementation(project(":network-auth"))
+    implementation(project(":time"))
 
     implementation(libs.androidx.compose.navigation)
     implementation(libs.kotlinx.serialization.runtime.core)

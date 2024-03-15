@@ -38,6 +38,7 @@ dependencies {
 
     add("implementation", libs.findLibrary("coroutines").get())
     add("implementation", libs.findLibrary("coroutines-android").get())
+    add("implementation", libs.findLibrary("kotlinx-datetime").get())
 
     val composeBom = libs.findLibrary("androidx-compose-bom").get()
     add("implementation", platform(composeBom))
