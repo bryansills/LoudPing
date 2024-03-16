@@ -1,7 +1,5 @@
 package ninja.bryansills.loudping.staticpages
 
-import kotlin.io.encoding.Base64
-import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlinx.html.body
 import kotlinx.html.head
 import kotlinx.html.script
@@ -9,21 +7,8 @@ import kotlinx.html.style
 import kotlinx.html.svg
 import kotlinx.html.title
 import kotlinx.html.unsafe
-import ninja.bryansills.sneak.Sneak
 
-fun callbackPage(
-    sneak: Sneak,
-    saltText: String,
-    tokenUrl: String,
-    clientId: String,
-    clientOther: String,
-    redirectUrl: String,
-): String {
-    val tokenUrlBytes = sneak.obfuscate(tokenUrl)
-    val authHeaderValue = toHeaderValue(clientId, clientOther)
-    val authHeaderBytes = sneak.obfuscate(authHeaderValue)
-    val redirectUrlBytes = sneak.obfuscate(redirectUrl)
-
+fun callbackPage(): String {
     return buildHtml {
         style = "height: 100%"
         head {
@@ -60,81 +45,14 @@ fun callbackPage(
                 unsafe {
                     raw(
                         """
-const encoder = new TextEncoder();
-const decoder = new TextDecoder();
-
-const encode = (saltBytes, rawText) => {
-  const rawBytes = encoder.encode(rawText);
-  return rawBytes.map((item, index) => {
-    const saltBit = saltBytes[index % saltBytes.length];
-    return item ^ saltBit;
-  })
-};
-
-const decode = (saltBytes, rawBytes) => {
-  const deciphered = rawBytes.map((item, index) => {
-    const saltBit = saltBytes[index % saltBytes.length];
-    return item ^ saltBit;
-  })
-  return decoder.decode(deciphered);
-};
-
-const saltBytes = ${saltText.toJsByteArray()}
-const tokenUrlBytes = ${tokenUrlBytes.toJsByteArray()}
-const authHeaderBytes = ${authHeaderBytes.toJsByteArray()}
-const redirectUrlBytes = ${redirectUrlBytes.toJsByteArray()}
-
 const params = (new URL(document.location)).searchParams;
-const authorizationCode = params.get("code");
-
-const url = decode(saltBytes, tokenUrlBytes);
-const requestHeaders = {
-  "content-type": "application/x-www-form-urlencoded",
-  "Authorization": decode(saltBytes, authHeaderBytes)
-};
-const jsonBody = {
-  "grant_type": "authorization_code",
-  "code": authorizationCode,
-  "redirect_uri": decode(saltBytes, redirectUrlBytes)
-};
-
-console.log(url);
-console.log(requestHeaders);
-console.log(jsonBody);
-
-async function doWork() {
-    const response = await fetch(
-      url,
-      {
-        method: "POST",
-        headers: requestHeaders,
-        body: new URLSearchParams(jsonBody)
-      }
-    );
-
-    const responseJson = await response.json();
-
-    console.log(responseJson);
-}
-doWork();
+const state = params.get("state");
+const code = params.get("code");
+LoudPing.onSuccess(state, code);
                         """.trimIndent(),
                     )
                 }
             }
         }
     }
-}
-
-private fun String.toJsByteArray(): String {
-    return this.toByteArray().toJsByteArray()
-}
-
-private fun ByteArray.toJsByteArray(): String {
-    return "new Uint8Array([${this.joinToString()}]);"
-}
-
-@OptIn(ExperimentalEncodingApi::class)
-private fun toHeaderValue(clientId: String, clientOther: String): String {
-    val based = Base64.encode("$clientId:$clientOther".toByteArray())
-    return "Basic $based"
 }

@@ -15,16 +15,17 @@ object SneakModule {
     @Provides
     fun provideSneak(): Sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
 
+    @OptIn(ExperimentalStdlibApi::class)
     @Provides
     fun provideBuildSneak(sneak: Sneak): BuildSneak {
         return RealBuildSneak(
             sneak = sneak,
-            obfuscatedClientId = BuildConfig.SneakClientId.toByteArray(),
-            obfuscatedClientSecret = BuildConfig.SneakClientSecret.toByteArray(),
-            obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.toByteArray(),
-            obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.toByteArray(),
-            obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.toByteArray(),
-            obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.toByteArray(),
+            obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
+            obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
+            obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
+            obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
+            obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
+            obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
         )
     }
 }

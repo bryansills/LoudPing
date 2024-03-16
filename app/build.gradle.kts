@@ -27,33 +27,34 @@ android {
         versionCode = appVersionCode
         versionName = appVersionName
 
+        val rootSecrets = rootProject.rootProperties("secrets.properties")
         buildConfigString(
             "SneakSalt",
-            rootLocalProperties.getSecret("sneak.salt"),
+            rootSecrets.getSecret("sneak.salt"),
         )
         buildConfigString(
             "SneakClientId",
-            rootLocalProperties.getSecret("sneak.clientid"),
+            rootSecrets.getSecret("sneak.clientid"),
         )
         buildConfigString(
             "SneakClientSecret",
-            rootLocalProperties.getSecret("sneak.clientsecret"),
+            rootSecrets.getSecret("sneak.clientsecret"),
         )
         buildConfigString(
             "SneakRedirectUrl",
-            rootLocalProperties.getSecret("sneak.redirecturl"),
+            rootSecrets.getSecret("sneak.redirecturl"),
         )
         buildConfigString(
             "SneakBaseApiUrl",
-            rootLocalProperties.getSecret("sneak.baseapiurl"),
+            rootSecrets.getSecret("sneak.baseapiurl"),
         )
         buildConfigString(
             "SneakBaseAuthApiUrl",
-            rootLocalProperties.getSecret("sneak.baseauthapiurl"),
+            rootSecrets.getSecret("sneak.baseauthapiurl"),
         )
         buildConfigString(
             "SneakAuthorizeUrl",
-            rootLocalProperties.getSecret("sneak.authorizeurl"),
+            rootSecrets.getSecret("sneak.authorizeurl"),
         )
     }
 
