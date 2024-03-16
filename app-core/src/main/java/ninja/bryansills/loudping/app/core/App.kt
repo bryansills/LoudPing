@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.app.core
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,6 +19,7 @@ fun App() {
         NavHost(navController = navController, startDestination = "splash") {
             composable("splash") {
                 SplashScreen { session ->
+                    Log.d("BLARG", session.toString())
                     when (session) {
                         is Session.LoggedIn -> navController.navigate("home")
                         Session.LoggedOut -> navController.navigate("login")
@@ -25,7 +27,13 @@ fun App() {
                 }
             }
             composable("login") {
-                LoginScreen()
+                LoginScreen { session ->
+                    Log.d("BLARG", session.toString())
+                    when (session) {
+                        is Session.LoggedIn -> navController.navigate("home")
+                        Session.LoggedOut -> navController.navigate("login")
+                    }
+                }
             }
             composable("home") {
                 HomeScreen()

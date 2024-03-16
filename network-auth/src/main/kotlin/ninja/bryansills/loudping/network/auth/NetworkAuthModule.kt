@@ -28,7 +28,10 @@ interface NetworkAuthModule {
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(authorizationHeaderInterceptor)
                 .build()
-            val converterFactory = Json.asConverterFactory(
+            val json = Json {
+                ignoreUnknownKeys = true
+            }
+            val converterFactory = json.asConverterFactory(
                 "application/json; charset=UTF8".toMediaType(),
             )
 

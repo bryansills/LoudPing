@@ -3,6 +3,9 @@ package ninja.bryansills.loudping.app.core.login
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.network.auth.AuthManager
 import ninja.bryansills.loudping.time.TimeProvider
@@ -12,14 +15,16 @@ class LoginViewModel @Inject constructor(
     private val authManager: AuthManager,
     private val timeProvider: TimeProvider,
 ) : ViewModel() {
-    val now: Instant
-        get() = timeProvider.now
+    private val startTime: Instant = timeProvider.now
 
-    fun getLoginUrl(startTime: Instant) = authManager.getAuthorizeUrl(startTime)
+    val loginUrl: String = authManager.getAuthorizeUrl(startTime)
 
     suspend fun setAuthorizationCode(
         state: String,
         code: String,
-        startTime: Instant,
-    ) = authManager.setAuthorizationCode(state, code, startTime)
+    ): String = coroutineScope {
+        withContext(Dispatchers.Main) {
+            authManager.setAuthorizationCode(state, code, startTime)
+        }
+    }
 }

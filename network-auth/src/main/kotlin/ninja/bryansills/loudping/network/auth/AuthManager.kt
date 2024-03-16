@@ -18,6 +18,8 @@ interface AuthManager {
      * @param state Provided by the service
      * @param code Provided by the service
      * @param startTime The same value that as used in `getAuthorizeUrl()`
+     *
+     * @return The access token for the now logged-in user
      */
     suspend fun setAuthorizationCode(state: String, code: String, startTime: Instant): String
 }

@@ -3,7 +3,6 @@ package ninja.bryansills.loudping.session
 import java.util.UUID
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
@@ -16,9 +15,12 @@ class RealSessionManager @Inject constructor(
     @ApplicationScope private val coroutineScope: CoroutineScope,
 ) : SessionManager {
     override val currentSession: SharedFlow<Session> = simpleStorage[Stored.RefreshToken]
-        .map {
-            delay(2000)
-            Session.LoggedIn(UUID.randomUUID())
+        .map { refreshToken ->
+            if (refreshToken.isNotBlank()) {
+                Session.LoggedIn(UUID.randomUUID())
+            } else {
+                Session.LoggedOut
+            }
         }
         .shareIn(
             scope = coroutineScope,
