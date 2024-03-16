@@ -36,6 +36,17 @@ jobs:
         with:
           cache-disabled: true
 
+      - name: Generate app secrets
+        run: ./gradlew :generate-app-secrets:run
+        env:
+            RAW_SNEAK_SALT: ${{ secrets.RAW_SNEAK_SALT }}
+            RAW_CLIENTID: ${{ secrets.RAW_CLIENTID }}
+            RAW_CLIENTSECRET: ${{ secrets.RAW_CLIENTSECRET }}
+            RAW_REDIRECTURL: ${{ secrets.RAW_REDIRECTURL }}
+            RAW_BASEAPIURL: ${{ secrets.RAW_BASEAPIURL }}
+            RAW_BASEAUTHAPIURL: ${{ secrets.RAW_BASEAUTHAPIURL }}
+            RAW_AUTHORIZEURL: ${{ secrets.RAW_AUTHORIZEURL }}
+
       - name: Make the bundle
         run: ./gradlew :app:bundleRelease --stacktrace
 
