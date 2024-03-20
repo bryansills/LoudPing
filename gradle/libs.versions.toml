@@ -8,11 +8,11 @@ min-sdk = "26"
 agp = "8.3.0"
 kotlin = "1.9.22"
 spotless = "6.25.0"
-compose-compiler = "1.5.9"
+compose-compiler = "1.5.11"
 ktlint = "1.0.1"
 buildconfig = "5.3.5"
 
-ksp = "1.9.22-1.0.18"
+ksp = "1.9.23-1.0.19"
 dagger = "2.51"
 
 coroutines = "1.8.0"
