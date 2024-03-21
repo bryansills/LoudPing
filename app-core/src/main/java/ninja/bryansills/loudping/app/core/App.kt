@@ -31,8 +31,8 @@ fun App() {
             composable(
                 route = "login",
                 arguments = listOf(
-                    navArgument(DarkModeStatusBarNavArg) { defaultValue = true }
-                )
+                    navArgument(DarkModeStatusBarNavArg) { defaultValue = true },
+                ),
             ) {
                 LoginScreen { session ->
                     when (session) {

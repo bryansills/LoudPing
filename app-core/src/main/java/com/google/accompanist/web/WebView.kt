@@ -85,7 +85,7 @@ import kotlinx.coroutines.withContext
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 @Composable
 public fun WebView(
@@ -104,19 +104,21 @@ public fun WebView(
         // it's layoutParams. We convert from Compose Modifier to
         // layout params here.
         val width =
-            if (constraints.hasFixedWidth)
+            if (constraints.hasFixedWidth) {
                 LayoutParams.MATCH_PARENT
-            else
+            } else {
                 LayoutParams.WRAP_CONTENT
+            }
         val height =
-            if (constraints.hasFixedHeight)
+            if (constraints.hasFixedHeight) {
                 LayoutParams.MATCH_PARENT
-            else
+            } else {
                 LayoutParams.WRAP_CONTENT
+            }
 
         val layoutParams = FrameLayout.LayoutParams(
             width,
-            height
+            height,
         )
 
         WebView(
@@ -129,7 +131,7 @@ public fun WebView(
             onDispose,
             client,
             chromeClient,
-            factory
+            factory,
         )
     }
 }
@@ -164,7 +166,7 @@ public fun WebView(
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 @Composable
 public fun WebView(
@@ -205,14 +207,14 @@ public fun WebView(
                             content.data,
                             content.mimeType,
                             content.encoding,
-                            content.historyUrl
+                            content.historyUrl,
                         )
                     }
 
                     is WebContent.Post -> {
                         wv.postUrl(
                             content.url,
-                            content.postData
+                            content.postData,
                         )
                     }
 
@@ -249,7 +251,7 @@ public fun WebView(
         modifier = modifier,
         onRelease = {
             onDispose(it)
-        }
+        },
     )
 }
 
@@ -266,7 +268,7 @@ public fun WebView(
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public open class AccompanistWebViewClient : WebViewClient() {
     public open lateinit var state: WebViewState
@@ -299,7 +301,7 @@ public open class AccompanistWebViewClient : WebViewClient() {
     override fun onReceivedError(
         view: WebView,
         request: WebResourceRequest?,
-        error: WebResourceError?
+        error: WebResourceError?,
     ) {
         super.onReceivedError(view, request, error)
 
@@ -322,7 +324,7 @@ public open class AccompanistWebViewClient : WebViewClient() {
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public open class AccompanistWebChromeClient : WebChromeClient() {
     public open lateinit var state: WebViewState
@@ -350,7 +352,7 @@ public open class AccompanistWebChromeClient : WebChromeClient() {
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public sealed class WebContent {
     public data class Url(
@@ -363,12 +365,12 @@ public sealed class WebContent {
         val baseUrl: String? = null,
         val encoding: String = "utf-8",
         val mimeType: String? = null,
-        val historyUrl: String? = null
+        val historyUrl: String? = null,
     ) : WebContent()
 
     public data class Post(
         val url: String,
-        val postData: ByteArray
+        val postData: ByteArray,
     ) : WebContent() {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -416,7 +418,7 @@ internal fun WebContent.withUrl(url: String) = when (this) {
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public sealed class LoadingState {
     /**
@@ -445,7 +447,7 @@ public sealed class LoadingState {
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 @Stable
 public class WebViewState(webContent: WebContent) {
@@ -514,7 +516,7 @@ public class WebViewState(webContent: WebContent) {
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public class WebViewNavigator(private val coroutineScope: CoroutineScope) {
     private sealed interface NavigationEvent {
@@ -525,7 +527,7 @@ public class WebViewNavigator(private val coroutineScope: CoroutineScope) {
 
         data class LoadUrl(
             val url: String,
-            val additionalHttpHeaders: Map<String, String> = emptyMap()
+            val additionalHttpHeaders: Map<String, String> = emptyMap(),
         ) : NavigationEvent
 
         data class LoadHtml(
@@ -533,12 +535,12 @@ public class WebViewNavigator(private val coroutineScope: CoroutineScope) {
             val baseUrl: String? = null,
             val mimeType: String? = null,
             val encoding: String? = "utf-8",
-            val historyUrl: String? = null
+            val historyUrl: String? = null,
         ) : NavigationEvent
 
         data class PostUrl(
             val url: String,
-            val postData: ByteArray
+            val postData: ByteArray,
         ) : NavigationEvent {
             override fun equals(other: Any?): Boolean {
                 if (this === other) return true
@@ -575,7 +577,7 @@ public class WebViewNavigator(private val coroutineScope: CoroutineScope) {
                     event.html,
                     event.mimeType,
                     event.encoding,
-                    event.historyUrl
+                    event.historyUrl,
                 )
 
                 is NavigationEvent.LoadUrl -> {
@@ -606,8 +608,8 @@ public class WebViewNavigator(private val coroutineScope: CoroutineScope) {
             navigationEvents.emit(
                 NavigationEvent.LoadUrl(
                     url,
-                    additionalHttpHeaders
-                )
+                    additionalHttpHeaders,
+                ),
             )
         }
     }
@@ -617,7 +619,7 @@ public class WebViewNavigator(private val coroutineScope: CoroutineScope) {
         baseUrl: String? = null,
         mimeType: String? = null,
         encoding: String? = "utf-8",
-        historyUrl: String? = null
+        historyUrl: String? = null,
     ) {
         coroutineScope.launch {
             navigationEvents.emit(
@@ -626,22 +628,22 @@ public class WebViewNavigator(private val coroutineScope: CoroutineScope) {
                     baseUrl,
                     mimeType,
                     encoding,
-                    historyUrl
-                )
+                    historyUrl,
+                ),
             )
         }
     }
 
     public fun postUrl(
         url: String,
-        postData: ByteArray
+        postData: ByteArray,
     ) {
         coroutineScope.launch {
             navigationEvents.emit(
                 NavigationEvent.PostUrl(
                     url,
-                    postData
-                )
+                    postData,
+                ),
             )
         }
     }
@@ -685,10 +687,10 @@ public class WebViewNavigator(private val coroutineScope: CoroutineScope) {
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public fun rememberWebViewNavigator(
-    coroutineScope: CoroutineScope = rememberCoroutineScope()
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
 ): WebViewNavigator = remember(coroutineScope) { WebViewNavigator(coroutineScope) }
 
 /**
@@ -700,7 +702,7 @@ public fun rememberWebViewNavigator(
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public data class WebViewError(
     /**
@@ -710,7 +712,7 @@ public data class WebViewError(
     /**
      * The error that was reported.
      */
-    val error: WebResourceError
+    val error: WebResourceError,
 )
 
 /**
@@ -726,11 +728,11 @@ public data class WebViewError(
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public fun rememberWebViewState(
     url: String,
-    additionalHttpHeaders: Map<String, String> = emptyMap()
+    additionalHttpHeaders: Map<String, String> = emptyMap(),
 ): WebViewState =
 // Rather than using .apply {} here we will recreate the state, this prevents
     // a recomposition loop when the webview updates the url itself.
@@ -738,13 +740,13 @@ public fun rememberWebViewState(
         WebViewState(
             WebContent.Url(
                 url = url,
-                additionalHttpHeaders = additionalHttpHeaders
-            )
+                additionalHttpHeaders = additionalHttpHeaders,
+            ),
         )
     }.apply {
         this.content = WebContent.Url(
             url = url,
-            additionalHttpHeaders = additionalHttpHeaders
+            additionalHttpHeaders = additionalHttpHeaders,
         )
     }
 
@@ -759,20 +761,20 @@ public fun rememberWebViewState(
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public fun rememberWebViewStateWithHTMLData(
     data: String,
     baseUrl: String? = null,
     encoding: String = "utf-8",
     mimeType: String? = null,
-    historyUrl: String? = null
+    historyUrl: String? = null,
 ): WebViewState =
     remember {
         WebViewState(WebContent.Data(data, baseUrl, encoding, mimeType, historyUrl))
     }.apply {
         this.content = WebContent.Data(
-            data, baseUrl, encoding, mimeType, historyUrl
+            data, baseUrl, encoding, mimeType, historyUrl,
         )
     }
 
@@ -788,11 +790,11 @@ public fun rememberWebViewStateWithHTMLData(
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public fun rememberWebViewState(
     url: String,
-    postData: ByteArray
+    postData: ByteArray,
 ): WebViewState =
 // Rather than using .apply {} here we will recreate the state, this prevents
     // a recomposition loop when the webview updates the url itself.
@@ -800,13 +802,13 @@ public fun rememberWebViewState(
         WebViewState(
             WebContent.Post(
                 url = url,
-                postData = postData
-            )
+                postData = postData,
+            ),
         )
     }.apply {
         this.content = WebContent.Post(
             url = url,
-            postData = postData
+            postData = postData,
         )
     }
 
@@ -825,7 +827,7 @@ public fun rememberWebViewState(
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public fun rememberSaveableWebViewState(): WebViewState =
     rememberSaveable(saver = WebStateSaver) {
@@ -837,7 +839,7 @@ public fun rememberSaveableWebViewState(): WebViewState =
 accompanist/web is deprecated and the API is no longer maintained.
 We recommend forking the implementation and customising it to your needs.
 For more information please visit https://google.github.io/accompanist/web
-"""
+""",
 )
 public val WebStateSaver: Saver<WebViewState, Any> = run {
     val pageTitleKey = "pagetitle"
@@ -850,7 +852,7 @@ public val WebStateSaver: Saver<WebViewState, Any> = run {
             mapOf(
                 pageTitleKey to it.pageTitle,
                 lastLoadedUrlKey to it.lastLoadedUrl,
-                stateBundle to viewState
+                stateBundle to viewState,
             )
         },
         restore = {
@@ -859,6 +861,6 @@ public val WebStateSaver: Saver<WebViewState, Any> = run {
                 this.lastLoadedUrl = it[lastLoadedUrlKey] as String?
                 this.viewState = it[stateBundle] as Bundle?
             }
-        }
+        },
     )
 }

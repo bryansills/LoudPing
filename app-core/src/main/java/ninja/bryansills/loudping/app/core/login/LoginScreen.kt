@@ -54,7 +54,7 @@ fun LoginScreen(
         javascriptCallback = callback,
         modifier = modifier
             .background(Color.Yellow)
-            .fillMaxSize()
+            .fillMaxSize(),
     )
 }
 
@@ -78,7 +78,6 @@ fun LightStatusBarForDarkBackgroundDisposableEffect(tag: String) {
 
     if (isOriginallyLightStatusBar) {
         DisposableEffect(Unit) {
-
             onDispose {
                 Log.d("BLARG", "$tag: setting back to $isOriginallyLightStatusBar")
                 insetsController.isAppearanceLightStatusBars = true
@@ -91,7 +90,7 @@ fun LightStatusBarForDarkBackgroundDisposableEffect(tag: String) {
 fun SpotifyWebView(
     loginUrl: String,
     javascriptCallback: JavascriptCallback,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val navigator = rememberWebViewNavigator()
     val webViewState = rememberSaveableWebViewState()
@@ -107,6 +106,6 @@ fun SpotifyWebView(
             webView.settings.javaScriptEnabled = true
             webView.addJavascriptInterface(javascriptCallback, "LoudPing")
         },
-        modifier = modifier
+        modifier = modifier,
     )
 }

@@ -23,7 +23,7 @@ import ninja.bryansills.loudping.session.Session
 fun SplashScreen(
     modifier: Modifier = Modifier,
     splashViewModel: SplashViewModel = hiltViewModel(),
-    navigate: (Session) -> Unit
+    navigate: (Session) -> Unit,
 ) {
     val invokeNavigate by rememberUpdatedState(navigate)
     LaunchedEffect(Unit) {
@@ -36,14 +36,14 @@ fun SplashScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(
                 16.dp,
-                alignment = Alignment.CenterVertically
+                alignment = Alignment.CenterVertically,
             ),
-            modifier = Modifier.consumeWindowInsets(paddingValues).fillMaxSize()
+            modifier = Modifier.consumeWindowInsets(paddingValues).fillMaxSize(),
         ) {
             CircularProgressIndicator(modifier = Modifier.size(48.dp))
             Text(
                 text = "Starting up...",
-                style = LoudPingTheme.typography.labelLarge
+                style = LoudPingTheme.typography.labelLarge,
             )
         }
     }

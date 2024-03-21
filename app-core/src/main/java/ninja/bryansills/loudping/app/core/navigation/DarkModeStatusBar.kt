@@ -28,7 +28,6 @@ fun DarkModeStatusBarDisposableEffect(
             if (!hasLightStatusBar && !shouldHaveDarkStatusBar) {
                 insetsController.isAppearanceLightStatusBars = true
             }
-
         }
         navController.addOnDestinationChangedListener(listener)
 
