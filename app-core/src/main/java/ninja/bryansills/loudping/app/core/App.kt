@@ -9,6 +9,7 @@ import ninja.bryansills.loudping.app.core.home.HomeScreen
 import ninja.bryansills.loudping.app.core.login.LoginScreen
 import ninja.bryansills.loudping.app.core.navigation.DarkModeStatusBarDisposableEffect
 import ninja.bryansills.loudping.app.core.navigation.DarkModeStatusBarNavArg
+import ninja.bryansills.loudping.app.core.settings.SettingsScreen
 import ninja.bryansills.loudping.app.core.splash.SplashScreen
 import ninja.bryansills.loudping.app.core.theme.LoudPingTheme
 import ninja.bryansills.loudping.session.Session
@@ -42,7 +43,10 @@ fun App() {
                 }
             }
             composable("home") {
-                HomeScreen()
+                HomeScreen { navController.navigate("settings") }
+            }
+            composable("settings") {
+                SettingsScreen()
             }
         }
     }

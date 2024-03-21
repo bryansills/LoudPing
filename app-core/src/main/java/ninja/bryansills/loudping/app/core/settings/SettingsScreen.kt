@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.app.core.home
+package ninja.bryansills.loudping.app.core.settings
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -11,10 +11,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import ninja.bryansills.loudping.app.core.theme.LoudPingTheme
 
 @Composable
-fun HomeScreen(
+fun SettingsScreen(
     modifier: Modifier = Modifier,
-    homeViewModel: HomeViewModel = hiltViewModel(),
-    onNavigateToSettings: () -> Unit,
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
 ) {
     Scaffold(modifier = modifier) { paddingValues ->
         Column(

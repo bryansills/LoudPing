@@ -3,6 +3,8 @@ package ninja.bryansills.loudping.network.auth
 import javax.inject.Inject
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.app.sneak.BuildSneak
 import ninja.bryansills.loudping.network.auth.model.TokenResponse
@@ -38,7 +40,7 @@ class RealAuthManager @Inject constructor(
             .toString()
     }
 
-    override suspend fun getAccessToken(): String {
+    override suspend fun getValidAccessToken(): String {
         val currentAccessToken = simpleStorage.first(Stored.AccessToken)
         val currentAccessTokenExpiresAt = Instant.parse(
             simpleStorage.first(Stored.AccessTokenExpiresAt),
@@ -82,6 +84,14 @@ class RealAuthManager @Inject constructor(
         simpleStorage.update(response)
 
         return response.refresh_token
+    }
+
+    override val rawValues: Flow<RawAuthValues> = combine(
+        simpleStorage[Stored.AccessToken],
+        simpleStorage[Stored.AccessTokenExpiresAt],
+        simpleStorage[Stored.RefreshToken],
+    ) { accessToken, accessTokenExpiresAt, refreshToken ->
+        RawAuthValues(accessToken, Instant.parse(accessTokenExpiresAt), refreshToken)
     }
 
     private suspend fun SimpleStorage.update(response: TokenResponse) {

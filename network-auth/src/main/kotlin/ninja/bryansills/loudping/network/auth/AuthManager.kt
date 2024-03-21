@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.network.auth
 
+import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Instant
 
 interface AuthManager {
@@ -10,7 +11,7 @@ interface AuthManager {
      */
     fun getAuthorizeUrl(startTime: Instant): String
 
-    suspend fun getAccessToken(): String
+    suspend fun getValidAccessToken(): String
 
     /**
      * The website gives us an authorization code and we give back a refresh token
@@ -22,4 +23,12 @@ interface AuthManager {
      * @return The access token for the now logged-in user
      */
     suspend fun setAuthorizationCode(state: String, code: String, startTime: Instant): String
+
+    val rawValues: Flow<RawAuthValues>
 }
+
+data class RawAuthValues(
+    val accessToken: String,
+    val accessTokenExpiresAt: Instant,
+    val refreshToken: String,
+)
