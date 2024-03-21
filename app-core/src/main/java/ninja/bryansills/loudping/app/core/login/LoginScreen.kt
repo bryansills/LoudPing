@@ -1,16 +1,23 @@
 package ninja.bryansills.loudping.app.core.login
 
+import android.app.Activity
 import android.util.Log
+import android.view.View
+import android.view.Window
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberSaveableWebViewState
@@ -40,6 +47,8 @@ fun LoginScreen(
         }
     }
 
+//    LightStatusBarForDarkBackgroundDisposableEffect("login")
+
     SpotifyWebView(
         loginUrl = loginViewModel.loginUrl,
         javascriptCallback = callback,
@@ -47,6 +56,35 @@ fun LoginScreen(
             .background(Color.Yellow)
             .fillMaxSize()
     )
+}
+
+@Composable
+fun LightStatusBarForDarkBackgroundDisposableEffect(tag: String) {
+    val view: View = LocalView.current
+    val insetsController = remember {
+        val window: Window = (view.context as Activity).window
+        WindowCompat
+            .getInsetsController(window, view)
+    }
+
+    val isOriginallyLightStatusBar = remember {
+        insetsController.isAppearanceLightStatusBars
+    }
+
+    SideEffect {
+        Log.d("BLARG", "$tag: originally $isOriginallyLightStatusBar")
+        insetsController.isAppearanceLightStatusBars = false
+    }
+
+    if (isOriginallyLightStatusBar) {
+        DisposableEffect(Unit) {
+
+            onDispose {
+                Log.d("BLARG", "$tag: setting back to $isOriginallyLightStatusBar")
+                insetsController.isAppearanceLightStatusBars = true
+            }
+        }
+    }
 }
 
 @Composable
@@ -59,7 +97,6 @@ fun SpotifyWebView(
     val webViewState = rememberSaveableWebViewState()
 
     LaunchedEffect(navigator, loginUrl) {
-        Log.d("BLARG", loginUrl)
         navigator.loadUrl(loginUrl)
     }
 
