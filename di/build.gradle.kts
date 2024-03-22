@@ -3,5 +3,5 @@ plugins {
 }
 
 android {
-    namespace = "ninja.bryansills.loudchirp.di"
+    namespace = "ninja.bryansills.loudping.di"
 }

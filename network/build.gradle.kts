@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "ninja.bryansills.loudchirp.network"
+    namespace = "ninja.bryansills.louping.network"
 }
 
 dependencies {

@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "ninja.bryansills.loudchirp.storage"
+    namespace = "ninja.bryansills.loudping.storage"
 }
 
 dependencies {

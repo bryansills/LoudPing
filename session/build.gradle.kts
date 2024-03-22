@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "ninja.bryansills.loudchirp.session"
+    namespace = "ninja.bryansills.loudping.session"
 }
 
 dependencies {

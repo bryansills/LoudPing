@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "ninja.bryansills.loudchirp.app.sneak"
+    namespace = "ninja.bryansills.loudping.app.sneak"
 }
 
 dependencies {
