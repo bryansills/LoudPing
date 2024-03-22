@@ -13,7 +13,7 @@ import ninja.bryansills.loudping.network.auth.RawAuthValues
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val authManager: AuthManager,
-): ViewModel() {
+) : ViewModel() {
     val uiState = authManager
         .rawValues
         .stateIn(

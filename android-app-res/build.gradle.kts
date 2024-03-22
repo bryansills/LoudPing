@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "ninja.bryansills.loudchirp.res"
+    namespace = "ninja.bryansills.loudping.res"
 
     buildFeatures {
         resValues = true

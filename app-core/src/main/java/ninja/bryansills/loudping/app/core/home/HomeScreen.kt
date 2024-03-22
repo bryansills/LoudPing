@@ -1,6 +1,5 @@
 package ninja.bryansills.loudping.app.core.home
 
-import ninja.bryansills.loudchirp.res.R as AppR
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ninja.bryansills.loudping.res.R as AppR
 
 @Composable
 fun HomeScreen(
@@ -32,11 +32,11 @@ fun HomeScreen(
         ) {
             IconButton(
                 onClick = onNavigateToSettings,
-                modifier = Modifier.align(Alignment.BottomEnd)
+                modifier = Modifier.align(Alignment.BottomEnd),
             ) {
                 Icon(
                     imageVector = Icons.Default.Settings,
-                    contentDescription = stringResource(AppR.string.settings)
+                    contentDescription = stringResource(AppR.string.settings),
                 )
             }
         }
