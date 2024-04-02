@@ -36,7 +36,6 @@ kotlinx-serialization-runtime = "1.6.3"
 okhttp = "4.12.0"
 datetime = "0.6.0-RC.2"
 navigation-compose-typed = "0.10.0"
-haze = "0.6.2"
 coil = "2.6.0"
 
 kotlinx-html = "0.11.0"
@@ -78,7 +77,6 @@ kotlinx-serialization-runtime-core = { group = "org.jetbrains.kotlinx", name = "
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "datetime"}
 navigation-compose-typed = { group = "com.kiwi.navigation-compose.typed", name = "core", version.ref = "navigation-compose-typed"}
-haze = { group = "dev.chrisbanes.haze", name = "haze", version.ref = "haze"}
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil"}
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
 

@@ -15,7 +15,6 @@ dependencies {
     implementation(libs.androidx.compose.navigation)
     implementation(libs.kotlinx.serialization.runtime.core)
     implementation(libs.navigation.compose.typed)
-    implementation(libs.haze)
     implementation(libs.coil)
     implementation(libs.coil.compose)
 }
