@@ -1,5 +1,6 @@
 # Loud Ping
-chirp chirp
+chirp chirp!
+It's an Android app.
 
 ## Development
 Lotta environment secrets.
