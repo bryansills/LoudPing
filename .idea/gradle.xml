@@ -24,15 +24,16 @@
             <option value="$PROJECT_DIR$/android-app-res" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app-core" />
-            <option value="$PROJECT_DIR$/app-sneak" />
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/convention" />
             <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/generate-app-secrets" />
+            <option value="$PROJECT_DIR$/jvm-network-runner" />
             <option value="$PROJECT_DIR$/network" />
             <option value="$PROJECT_DIR$/network-auth" />
             <option value="$PROJECT_DIR$/session" />
             <option value="$PROJECT_DIR$/sneak" />
+            <option value="$PROJECT_DIR$/sneak-network" />
             <option value="$PROJECT_DIR$/static-pages" />
             <option value="$PROJECT_DIR$/storage" />
             <option value="$PROJECT_DIR$/time" />

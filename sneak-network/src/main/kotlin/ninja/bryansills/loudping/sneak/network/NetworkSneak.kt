@@ -1,6 +1,6 @@
-package ninja.bryansills.loudping.app.sneak
+package ninja.bryansills.loudping.sneak.network
 
-interface BuildSneak {
+interface NetworkSneak {
     val clientId: String
 
     val clientSecret: String

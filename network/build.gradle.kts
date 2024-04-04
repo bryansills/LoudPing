@@ -9,7 +9,7 @@ android {
 
 dependencies {
     implementation(project(":network-auth"))
-    implementation(project(":app-sneak"))
+    implementation(project(":sneak-network"))
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlinx.serialization)

@@ -10,7 +10,7 @@ android {
 dependencies {
     implementation(project(":storage"))
     implementation(project(":time"))
-    implementation(project(":app-sneak"))
+    implementation(project(":sneak-network"))
     implementation(project(":session"))
 
     implementation(libs.retrofit)

@@ -1,40 +1,39 @@
 package ninja.bryansills.loudping.network.auth
 
-import javax.inject.Inject
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.datetime.Instant
-import ninja.bryansills.loudping.app.sneak.BuildSneak
 import ninja.bryansills.loudping.network.auth.model.TokenResponse
 import ninja.bryansills.loudping.session.Stored
+import ninja.bryansills.loudping.sneak.network.NetworkSneak
 import ninja.bryansills.loudping.storage.SimpleStorage
 import ninja.bryansills.loudping.storage.first
 import ninja.bryansills.loudping.time.TimeProvider
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 
-class RealAuthManager @Inject constructor(
+class RealAuthManager(
     private val simpleStorage: SimpleStorage,
     private val spotifyAuthService: SpotifyAuthService,
     private val timeProvider: TimeProvider,
-    private val buildSneak: BuildSneak,
+    private val networkSneak: NetworkSneak,
 ) : AuthManager {
-    private val authorizeUrlSalt = buildSneak.redirectUrl.toRandomString()
+    private val authorizeUrlSalt = networkSneak.redirectUrl.toRandomString()
 
     private fun getFullState(timestamp: Instant): String {
         return "$timestamp$authorizeUrlSalt".toRandomString()
     }
 
     override fun getAuthorizeUrl(startTime: Instant): String {
-        return buildSneak
+        return networkSneak
             .authorizeUrl
             .httpUrlBuilder {
                 addQueryParameter("response_type", "code")
-                addQueryParameter("client_id", buildSneak.clientId)
+                addQueryParameter("client_id", networkSneak.clientId)
                 addQueryParameter("scope", "user-read-recently-played user-library-read user-read-private")
-                addQueryParameter("redirect_uri", buildSneak.redirectUrl)
+                addQueryParameter("redirect_uri", networkSneak.redirectUrl)
                 addQueryParameter("state", getFullState(startTime))
             }
             .toString()
@@ -58,7 +57,7 @@ class RealAuthManager @Inject constructor(
         val response = spotifyAuthService.refreshTokens(
             grantType = "refresh_token",
             refreshToken = simpleStorage.first(Stored.RefreshToken),
-            clientId = buildSneak.clientId,
+            clientId = networkSneak.clientId,
         )
 
         simpleStorage.update(response)
@@ -78,7 +77,7 @@ class RealAuthManager @Inject constructor(
         val response = spotifyAuthService.requestTokens(
             grantType = "authorization_code",
             code = code,
-            redirectUri = buildSneak.redirectUrl,
+            redirectUri = networkSneak.redirectUrl,
         )
 
         simpleStorage.update(response)

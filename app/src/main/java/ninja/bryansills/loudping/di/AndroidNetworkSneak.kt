@@ -1,9 +1,10 @@
-package ninja.bryansills.loudping.app.sneak
+package ninja.bryansills.loudping.di
 
 import javax.inject.Inject
+import ninja.bryansills.loudping.sneak.network.NetworkSneak
 import ninja.bryansills.sneak.Sneak
 
-class RealBuildSneak @Inject constructor(
+class AndroidNetworkSneak @Inject constructor(
     private val sneak: Sneak,
     private val obfuscatedClientId: ByteArray,
     private val obfuscatedClientSecret: ByteArray,
@@ -11,7 +12,7 @@ class RealBuildSneak @Inject constructor(
     private val obfuscatedBaseApiUrl: ByteArray,
     private val obfuscatedBaseAuthApiUrl: ByteArray,
     private val obfuscatedAuthorizeUrl: ByteArray,
-) : BuildSneak {
+) : NetworkSneak {
     override val clientId: String
         get() = sneak.deobfuscate(obfuscatedClientId)
 

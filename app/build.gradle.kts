@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.util.capitalizeDecapitalize.toUpperCaseAsciiOnly
 
 plugins {
     id("ninja-bryansills-compose-android-app")
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -104,10 +105,20 @@ android {
 
 dependencies {
     implementation(project(":app-core"))
-    implementation(project(":app-sneak"))
+    implementation(project(":network"))
+    implementation(project(":network-auth"))
+    implementation(project(":sneak-network"))
     implementation(project(":sneak"))
+    implementation(project(":storage"))
+    implementation(project(":time"))
+
     implementation(libs.androidx.compose.activity)
     implementation(libs.activity.ktx)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization)
+    implementation(libs.kotlinx.serialization.runtime)
+    implementation(libs.okhttp)
 }
 
 /**

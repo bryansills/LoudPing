@@ -1,10 +1,9 @@
 package ninja.bryansills.loudping.network
 
-import javax.inject.Inject
 import ninja.bryansills.loudping.network.model.PrivateUserResponse
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 
-class RealNetworkService @Inject constructor(
+class RealNetworkService(
     private val spotifyService: SpotifyService,
 ) : NetworkService {
     override suspend fun getMe(): PrivateUserResponse {
