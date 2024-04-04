@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="network-auth-jvm">
+    <output-path>$PROJECT_DIR$/network-auth/build/libs</output-path>
+    <root id="archive" name="network-auth-jvm.jar">
+      <element id="module-output" name="Loud_Ping.network-auth.jvmMain" />
+    </root>
+  </artifact>
+</component>

@@ -105,8 +105,10 @@ android {
 
 dependencies {
     implementation(project(":app-core"))
+    implementation(project(":di"))
     implementation(project(":network"))
     implementation(project(":network-auth"))
+    implementation(project(":session"))
     implementation(project(":sneak-network"))
     implementation(project(":sneak"))
     implementation(project(":storage"))

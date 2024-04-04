@@ -1,12 +1,17 @@
 plugins {
-    id("ninja-bryansills-compose-dagger-android-lib")
+    id("ninja-bryansills-kmp")
+}
+
+kotlin {
+    jvm()
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation(project(":storage"))
+        }
+    }
 }
 
 android {
     namespace = "ninja.bryansills.loudping.session"
-}
-
-dependencies {
-    implementation(project(":storage"))
-    implementation(project(":di"))
 }
