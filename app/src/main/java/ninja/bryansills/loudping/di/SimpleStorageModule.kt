@@ -1,23 +1,22 @@
-package ninja.bryansills.loudping.storage
+package ninja.bryansills.loudping.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import ninja.bryansills.loudping.storage.RealSimpleStorage
+import ninja.bryansills.loudping.storage.SimpleStorage
 
 @InstallIn(SingletonComponent::class)
 @Module
-abstract class SimpleStorageModule {
-    @Binds abstract fun bindRealSimpleStorage(real: RealSimpleStorage): SimpleStorage
-
+interface SimpleStorageModule {
     companion object {
         @Provides
         @Singleton
@@ -25,6 +24,12 @@ abstract class SimpleStorageModule {
             return PreferenceDataStoreFactory.create {
                 context.preferencesDataStoreFile("loud-ping-storage")
             }
+        }
+
+        @Provides
+        @Singleton
+        fun providesSimpleStorage(dataStore: DataStore<Preferences>): SimpleStorage {
+            return RealSimpleStorage(dataStore)
         }
     }
 }
