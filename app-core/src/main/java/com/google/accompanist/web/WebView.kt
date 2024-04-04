@@ -460,14 +460,14 @@ public class WebViewState(webContent: WebContent) {
     public var content: WebContent by mutableStateOf(webContent)
 
     /**
-     * Whether the WebView is currently [LoadingState.Loading] data in its main frame (along with
+     * Whether the WebView is currently [LoadingState.Loading] data in its commonMain frame (along with
      * progress) or the data loading has [LoadingState.Finished]. See [LoadingState]
      */
     public var loadingState: LoadingState by mutableStateOf(LoadingState.Initializing)
         internal set
 
     /**
-     * Whether the webview is currently loading data in its main frame
+     * Whether the webview is currently loading data in its commonMain frame
      */
     public val isLoading: Boolean
         get() = loadingState !is Finished
@@ -486,7 +486,7 @@ public class WebViewState(webContent: WebContent) {
 
     /**
      * A list for errors captured in the last load. Reset when a new page is loaded.
-     * Errors could be from any resource (iframe, image, etc.), not just for the main page.
+     * Errors could be from any resource (iframe, image, etc.), not just for the commonMain page.
      * For more fine grained control use the OnError callback of the WebView.
      */
     public val errorsForCurrentRequest: SnapshotStateList<WebViewError> = mutableStateListOf()
