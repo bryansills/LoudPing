@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,6 +41,11 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(16.dp),
         ) {
+            AlbumsBox(
+                albums = PlaceholderAlbums,
+                modifier = Modifier.align(Alignment.Center).widthIn(max = 400.dp),
+            )
+
             IconButton(
                 onClick = onNavigateToSettings,
                 modifier = Modifier.align(Alignment.BottomEnd),
@@ -62,7 +66,8 @@ private fun AlbumsBox(
 ) {
     Surface(
         shape = LoudPingTheme.shapes.large,
-        tonalElevation = 4.dp,
+        tonalElevation = 1.dp,
+        shadowElevation = 1.dp,
         modifier = modifier,
     ) {
         Column {
@@ -77,18 +82,20 @@ private fun AlbumsBox(
                     Box(
                         modifier = Modifier
                             .clip(LoudPingTheme.shapes.small)
-                            .background(Color.Cyan)
-                            .size(48.dp),
+                            .background(LoudPingTheme.colorScheme.secondary)
+                            .size(56.dp),
                     )
 
                     Column {
                         Text(
                             text = album.title,
-                            style = LoudPingTheme.typography.bodyMedium,
+                            style = LoudPingTheme.typography.bodyLarge,
+                            maxLines = 1,
                         )
                         Text(
                             text = album.artist,
-                            style = LoudPingTheme.typography.bodySmall,
+                            style = LoudPingTheme.typography.bodyMedium,
+                            maxLines = 1,
                         )
                     }
                 }
@@ -102,18 +109,19 @@ private data class PlaceholderAlbum(
     val title: String,
 )
 
+private val PlaceholderAlbums = listOf(
+    PlaceholderAlbum("Jeff Bob", "A Really Cool Album"),
+    PlaceholderAlbum("Annie Hart", "Not Her Best"),
+    PlaceholderAlbum("Bernice Griffin", "Whoops! All Bangers"),
+    PlaceholderAlbum("Rex Shepard", "Late Career Revival"),
+    PlaceholderAlbum("Steve Hawthorn", "Let's Not Talk About This One"),
+)
+
 @Preview
 @Composable
 private fun AlbumsBoxPreview() {
-    val albums = listOf(
-        PlaceholderAlbum("Jeff Bob", "A Really Cool Album"),
-        PlaceholderAlbum("Annie Hart", "Not Her Best"),
-        PlaceholderAlbum("Bernice Griffin", "Whoops! All Bangers"),
-        PlaceholderAlbum("Rex Shepard", "Late Career Revival"),
-        PlaceholderAlbum("Steve Hawthorn", "Let's Not Talk About This One"),
-    )
     AlbumsBox(
-        albums = albums,
+        albums = PlaceholderAlbums,
         modifier = Modifier.widthIn(max = 400.dp),
     )
 }
