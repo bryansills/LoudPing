@@ -12,7 +12,7 @@ compose-compiler = "1.5.11"
 ktlint = "1.0.1"
 buildconfig = "5.3.5"
 
-ksp = "1.9.23-1.0.19"
+ksp = "1.9.23-1.0.20"
 dagger = "2.51.1"
 
 coroutines = "1.8.0"
