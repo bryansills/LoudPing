@@ -1,6 +1,7 @@
 package ninja.bryansills.loudping.network.auth
 
-import ninja.bryansills.loudping.network.auth.model.TokenResponse
+import ninja.bryansills.loudping.network.auth.model.AccessTokenResponse
+import ninja.bryansills.loudping.network.auth.model.RefreshTokenResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -12,7 +13,7 @@ interface SpotifyAuthService {
         @Field("grant_type") grantType: String,
         @Field("code") code: String,
         @Field("redirect_uri") redirectUri: String,
-    ): TokenResponse
+    ): RefreshTokenResponse
 
     @FormUrlEncoded
     @POST("/api/token")
@@ -20,5 +21,5 @@ interface SpotifyAuthService {
         @Field("grant_type") grantType: String,
         @Field("refresh_token") refreshToken: String,
         @Field("client_id") clientId: String,
-    ): TokenResponse
+    ): AccessTokenResponse
 }

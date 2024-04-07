@@ -18,16 +18,32 @@ application {
 dependencies {
     implementation(project(":network"))
     implementation(project(":network-auth"))
+    implementation(project(":session"))
     implementation(project(":sneak"))
     implementation(project(":sneak-network"))
+    implementation(project(":storage"))
+    implementation(project(":time"))
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization)
+    implementation(libs.kotlinx.serialization.runtime)
+    implementation(libs.okhttp)
 }
 
 buildConfig {
-    packageName("ninja.bryansills.loudping")
+    packageName("ninja.bryansills.loudping.jvm.network.runner")
     useKotlinOutput { internalVisibility = true }
 
     val rootSecrets = rootProject.rootProperties("secrets.properties")
+
     string("JvmRefreshToken", rootSecrets.getSecret("jvm.refresh.token"))
+    string("SneakSalt", rootSecrets.getSecret("sneak.salt"))
+    string("SneakClientId", rootSecrets.getSecret("sneak.clientid"))
+    string("SneakClientSecret", rootSecrets.getSecret("sneak.clientsecret"))
+    string("SneakRedirectUrl", rootSecrets.getSecret("sneak.redirecturl"))
+    string("SneakBaseApiUrl", rootSecrets.getSecret("sneak.baseapiurl"))
+    string("SneakBaseAuthApiUrl", rootSecrets.getSecret("sneak.baseauthapiurl"))
+    string("SneakAuthorizeUrl", rootSecrets.getSecret("sneak.authorizeurl"))
 }
 
 fun BuildConfigExtension.string(key: String, value: String) {

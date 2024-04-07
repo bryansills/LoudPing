@@ -1,11 +1,12 @@
-package ninja.bryansills.loudping
+package ninja.bryansills.loudping.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ninja.bryansills.loudping.di.AndroidNetworkSneak
+import ninja.bryansills.loudping.BuildConfig
 import ninja.bryansills.loudping.sneak.network.NetworkSneak
+import ninja.bryansills.loudping.sneak.network.RealNetworkSneak
 import ninja.bryansills.sneak.Sneak
 
 @InstallIn(SingletonComponent::class)
@@ -18,7 +19,7 @@ object SneakModule {
     @OptIn(ExperimentalStdlibApi::class)
     @Provides
     fun provideNetworkSneak(sneak: Sneak): NetworkSneak {
-        return AndroidNetworkSneak(
+        return RealNetworkSneak(
             sneak = sneak,
             obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
             obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),

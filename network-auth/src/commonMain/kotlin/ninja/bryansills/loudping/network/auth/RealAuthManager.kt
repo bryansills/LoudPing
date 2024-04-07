@@ -5,7 +5,6 @@ import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.datetime.Instant
-import ninja.bryansills.loudping.network.auth.model.TokenResponse
 import ninja.bryansills.loudping.session.Stored
 import ninja.bryansills.loudping.sneak.network.NetworkSneak
 import ninja.bryansills.loudping.storage.SimpleStorage
@@ -60,7 +59,11 @@ class RealAuthManager(
             clientId = networkSneak.clientId,
         )
 
-        simpleStorage.update(response)
+        simpleStorage.edit {
+            it[Stored.AccessToken.key] = response.access_token
+            val expiresAt = timeProvider.now + response.expires_in.seconds
+            it[Stored.AccessTokenExpiresAt.key] = expiresAt.toString()
+        }
 
         return response.access_token
     }
@@ -80,7 +83,9 @@ class RealAuthManager(
             redirectUri = networkSneak.redirectUrl,
         )
 
-        simpleStorage.update(response)
+        simpleStorage.edit {
+            it[Stored.RefreshToken.key] = response.refresh_token
+        }
 
         return response.refresh_token
     }
@@ -91,16 +96,6 @@ class RealAuthManager(
         simpleStorage[Stored.RefreshToken],
     ) { accessToken, accessTokenExpiresAt, refreshToken ->
         RawAuthValues(accessToken, Instant.parse(accessTokenExpiresAt), refreshToken)
-    }
-
-    private suspend fun SimpleStorage.update(response: TokenResponse) {
-        this.edit {
-            it[Stored.RefreshToken.key] = response.refresh_token
-            it[Stored.AccessToken.key] = response.access_token
-
-            val expiresAt = timeProvider.now + response.expires_in.seconds
-            it[Stored.AccessTokenExpiresAt.key] = expiresAt.toString()
-        }
     }
 }
 

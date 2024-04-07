@@ -1,10 +1,8 @@
-package ninja.bryansills.loudping.di
+package ninja.bryansills.loudping.sneak.network
 
-import javax.inject.Inject
-import ninja.bryansills.loudping.sneak.network.NetworkSneak
 import ninja.bryansills.sneak.Sneak
 
-class AndroidNetworkSneak @Inject constructor(
+class RealNetworkSneak(
     private val sneak: Sneak,
     private val obfuscatedClientId: ByteArray,
     private val obfuscatedClientSecret: ByteArray,
