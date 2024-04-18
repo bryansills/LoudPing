@@ -16,6 +16,9 @@ fun main() {
 
         val response = spotifyService.getMe()
         println(response.toString())
+
+        val recentlyPlayed = spotifyService.getRecentlyPlayed()
+        println(recentlyPlayed.toString())
     }
 }
 
