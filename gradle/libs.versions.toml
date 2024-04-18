@@ -8,7 +8,7 @@ min-sdk = "26"
 agp = "8.3.2"
 kotlin = "1.9.23"
 spotless = "6.25.0"
-compose-compiler = "1.5.11"
+compose-compiler = "1.5.12"
 ktlint = "1.0.1"
 buildconfig = "5.3.5"
 
