@@ -26,6 +26,7 @@
             <option value="$PROJECT_DIR$/app-core" />
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/convention" />
+            <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/generate-app-secrets" />
             <option value="$PROJECT_DIR$/jvm-network-runner" />

@@ -37,10 +37,10 @@ okhttp = "4.12.0"
 datetime = "0.6.0-RC.2"
 navigation-compose-typed = "0.10.0"
 coil = "2.6.0"
-
 kotlinx-html = "0.11.0"
 okio = "3.9.0"
 androidDesugarJdkLibs = "2.0.4"
+sqldelight = "2.0.2"
 
 [libraries]
 # Core dependencies
@@ -79,6 +79,8 @@ kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",
 navigation-compose-typed = { group = "com.kiwi.navigation-compose.typed", name = "core", version.ref = "navigation-compose-typed"}
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil"}
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
+sqldelight-android-driver = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight"}
+sqldelight-jvm-driver = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqldelight"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -91,3 +93,4 @@ buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }

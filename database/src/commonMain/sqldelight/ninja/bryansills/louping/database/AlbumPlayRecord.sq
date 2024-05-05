@@ -1,0 +1,3 @@
+insert:
+INSERT INTO album_play_record(album_id, timestamp)
+VALUES (?, ?);

@@ -1,0 +1,5 @@
+CREATE TABLE album_play_record (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    album_id INTEGER NOT NULL,
+    timestamp TEXT NOT NULL
+);
