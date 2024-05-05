@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="history-recorder-jvm">
+    <output-path>$PROJECT_DIR$/history-recorder/build/libs</output-path>
+    <root id="archive" name="history-recorder-jvm.jar">
+      <element id="module-output" name="Loud_Ping.history-recorder.jvmMain" />
+    </root>
+  </artifact>
+</component>

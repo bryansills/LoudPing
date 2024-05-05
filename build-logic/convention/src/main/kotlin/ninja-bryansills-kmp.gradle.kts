@@ -19,9 +19,11 @@ kotlin {
     }
 
     sourceSets {
+        commonMain.dependencies {
+            implementation(libs.findLibrary("coroutines").get())
+        }
         commonTest.dependencies {
             implementation(kotlin("test"))
-            implementation(libs.findLibrary("coroutines").get())
         }
     }
 }

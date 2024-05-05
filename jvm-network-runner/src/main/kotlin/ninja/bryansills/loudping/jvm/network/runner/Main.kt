@@ -1,27 +1,30 @@
 package ninja.bryansills.loudping.jvm.network.runner
 
 import kotlin.system.exitProcess
+import kotlin.time.Duration.Companion.days
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
+import kotlinx.datetime.Clock
+import ninja.bryansills.loudping.network.RealNetworkService
 
 fun main() {
     val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     mainScope.launchBlocking {
         val spotifyService = initializeDependencies()
+        val networkService = RealNetworkService(spotifyService)
 
-        val response = spotifyService.getMe()
-        println(response.toString())
+        val start = Clock.System.now()
+        val end = start - 5.days
 
-        val recentlyPlayed = spotifyService.getRecentlyPlayed()
-        println(recentlyPlayed.toString())
-
-        val savedAlbums = spotifyService.getSavedAlbums()
-        println(savedAlbums.toString())
+        val allResponses = networkService.getRecentlyPlayedStream(start, end).toList()
+        val allListens = allResponses.flatMap { it.items }
+        println("I've listened to ${allListens.size} items")
     }
 }
 

@@ -20,7 +20,7 @@ kotlin {
 }
 
 android {
-    namespace = "ninja.bryansills.louping.database"
+    namespace = "ninja.bryansills.loudping.database"
 }
 
 sqldelight {
