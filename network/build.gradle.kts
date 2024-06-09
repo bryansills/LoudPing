@@ -21,5 +21,5 @@ kotlin {
 }
 
 android {
-    namespace = "ninja.bryansills.louping.network"
+    namespace = "ninja.bryansills.loudping.network"
 }

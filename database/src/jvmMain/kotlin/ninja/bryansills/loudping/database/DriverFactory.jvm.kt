@@ -2,7 +2,6 @@ package ninja.bryansills.loudping.database
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
-import ninja.bryansills.louping.database.Database
 
 actual class DriverFactory {
     actual fun createDriver(): SqlDriver {

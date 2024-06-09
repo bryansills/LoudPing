@@ -1,7 +1,6 @@
 package ninja.bryansills.loudping.database
 
 import kotlinx.datetime.Instant
-import ninja.bryansills.louping.database.Database
 
 class RealDatabaseService(private val database: Database) : DatabaseService {
     override suspend fun insertAlbumPlayRecord(albumId: Long, timestamp: Instant) {
