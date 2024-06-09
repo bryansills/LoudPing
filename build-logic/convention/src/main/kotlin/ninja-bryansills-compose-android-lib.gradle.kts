@@ -1,11 +1,12 @@
+
 import ninja.bryansills.findVersionNumber
-import ninja.bryansills.findVersionString
 import ninja.bryansills.javaVersion
 import ninja.bryansills.libs
 
 plugins {
     id("ninja-bryansills-spotless")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("com.android.library")
 }
 
@@ -27,9 +28,10 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.findVersionString("compose-compiler")
-    }
+}
+
+composeCompiler {
+    enableStrongSkippingMode = true
 }
 
 dependencies {
