@@ -16,6 +16,8 @@ application {
 }
 
 dependencies {
+    implementation(project(":database"))
+    implementation(project(":history-recorder"))
     implementation(project(":network"))
     implementation(project(":network-auth"))
     implementation(project(":session"))
