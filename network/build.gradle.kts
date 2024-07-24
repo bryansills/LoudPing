@@ -8,8 +8,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":network-auth"))
-            implementation(project(":sneak-network"))
+            implementation(projects.networkAuth)
+            implementation(projects.sneakNetwork)
 
             implementation(libs.retrofit)
             implementation(libs.retrofit.kotlinx.serialization)

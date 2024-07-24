@@ -11,4 +11,11 @@ plugins {
     alias(libs.plugins.hilt.plugin) apply false
     alias(libs.plugins.kotlinx.serialization) apply false
     alias(libs.plugins.sqldelight) apply false
+    alias(libs.plugins.dependency.analysis)
+    alias(libs.plugins.dependency.guard) apply false
+}
+
+dependencyAnalysis {
+    // TODO: fix the problems identified by this library
+    // issues { all { onAny { severity("fail") } } }
 }

@@ -21,6 +21,16 @@ jobs:
         with:
             cache-disabled: true
 
+      - name: Check the project's build health
+        run: ./gradlew buildHealth
+
+      - name: (Renovate only) Update the baseline for dependency versions
+        if: ${{ github.actor == 'renovate[bot]' }}
+        run: ./gradlew dependencyGuardBaseline
+
+      - name: Verify dependencies have not unexpectedly changed
+        run: ./gradlew dependencyGuard
+
       - name: Build and run tests
         run: ./gradlew check --continue
 

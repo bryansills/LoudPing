@@ -104,15 +104,15 @@ android {
 }
 
 dependencies {
-    implementation(project(":app-core"))
-    implementation(project(":di"))
-    implementation(project(":network"))
-    implementation(project(":network-auth"))
-    implementation(project(":session"))
-    implementation(project(":sneak-network"))
-    implementation(project(":sneak"))
-    implementation(project(":storage"))
-    implementation(project(":time"))
+    implementation(projects.appCore)
+    implementation(projects.di)
+    implementation(projects.network)
+    implementation(projects.networkAuth)
+    implementation(projects.session)
+    implementation(projects.sneakNetwork)
+    implementation(projects.sneak)
+    implementation(projects.storage)
+    implementation(projects.time)
 
     implementation(libs.androidx.compose.activity)
     implementation(libs.activity.ktx)

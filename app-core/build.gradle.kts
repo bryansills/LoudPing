@@ -7,10 +7,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":session"))
-    implementation(project(":network-auth"))
-    implementation(project(":time"))
-    implementation(project(":android-app-res"))
+    implementation(projects.session)
+    implementation(projects.networkAuth)
+    implementation(projects.time)
+    implementation(projects.androidAppRes)
 
     implementation(libs.androidx.compose.navigation)
     implementation(libs.kotlinx.serialization.runtime.core)

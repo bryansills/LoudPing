@@ -8,10 +8,10 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":storage"))
-            implementation(project(":time"))
-            implementation(project(":sneak-network"))
-            implementation(project(":session"))
+            implementation(projects.storage)
+            implementation(projects.time)
+            implementation(projects.sneakNetwork)
+            implementation(projects.session)
 
             implementation(libs.retrofit)
             implementation(libs.retrofit.kotlinx.serialization)

@@ -16,7 +16,7 @@ application {
 }
 
 dependencies {
-    implementation(project(":sneak"))
+    implementation(projects.sneak)
     implementation(libs.kotlinx.html)
     implementation(libs.okio)
 }

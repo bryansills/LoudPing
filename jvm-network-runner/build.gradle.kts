@@ -16,15 +16,15 @@ application {
 }
 
 dependencies {
-    implementation(project(":database"))
-    implementation(project(":history-recorder"))
-    implementation(project(":network"))
-    implementation(project(":network-auth"))
-    implementation(project(":session"))
-    implementation(project(":sneak"))
-    implementation(project(":sneak-network"))
-    implementation(project(":storage"))
-    implementation(project(":time"))
+    implementation(projects.database)
+    implementation(projects.historyRecorder)
+    implementation(projects.network)
+    implementation(projects.networkAuth)
+    implementation(projects.session)
+    implementation(projects.sneak)
+    implementation(projects.sneakNetwork)
+    implementation(projects.storage)
+    implementation(projects.time)
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlinx.serialization)

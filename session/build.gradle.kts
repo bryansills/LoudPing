@@ -7,7 +7,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":storage"))
+            implementation(projects.storage)
         }
     }
 }

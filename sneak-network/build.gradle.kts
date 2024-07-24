@@ -7,7 +7,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":sneak"))
+            implementation(projects.sneak)
         }
     }
 }

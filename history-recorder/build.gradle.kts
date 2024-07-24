@@ -8,8 +8,8 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.datetime)
-            implementation(project(":database"))
-            implementation(project(":network"))
+            implementation(projects.database)
+            implementation(projects.network)
         }
     }
 }

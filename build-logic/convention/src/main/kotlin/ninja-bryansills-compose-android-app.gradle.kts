@@ -1,4 +1,5 @@
 
+import gradle.kotlin.dsl.accessors._8aae7194a836cda562f7cf1fdfb59a64.dependencyGuard
 import ninja.bryansills.findVersionNumber
 import ninja.bryansills.javaVersion
 import ninja.bryansills.libs
@@ -10,6 +11,7 @@ plugins {
     id("com.android.application")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("com.dropbox.dependency-guard")
 }
 
 android {
@@ -58,4 +60,9 @@ dependencies {
     add("testImplementation", libs.findLibrary("junit").get())
     add("androidTestImplementation", libs.findLibrary("androidx-test-junit").get())
     add("androidTestImplementation", libs.findLibrary("androidx-test-runner").get())
+}
+
+dependencyGuard {
+    configuration("releaseCompileClasspath") { tree = true }
+    configuration("releaseRuntimeClasspath") { tree = true }
 }
