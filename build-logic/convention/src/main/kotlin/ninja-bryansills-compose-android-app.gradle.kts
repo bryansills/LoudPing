@@ -1,5 +1,5 @@
 
-import gradle.kotlin.dsl.accessors._8aae7194a836cda562f7cf1fdfb59a64.dependencyGuard
+import com.diffplug.gradle.spotless.SpotlessTask
 import ninja.bryansills.findVersionNumber
 import ninja.bryansills.javaVersion
 import ninja.bryansills.libs
@@ -65,4 +65,8 @@ dependencies {
 dependencyGuard {
     configuration("releaseCompileClasspath") { tree = true }
     configuration("releaseRuntimeClasspath") { tree = true }
+}
+
+tasks.dependencyGuard.configure {
+    mustRunAfter(tasks.withType<SpotlessTask>())
 }
