@@ -392,7 +392,7 @@
 |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.0
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.0.0 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.0 (*)
-+--- androidx.activity:activity-compose:1.9.0 -> 1.9.1
++--- androidx.activity:activity-compose:1.9.1
 |    +--- androidx.activity:activity-ktx:1.9.1
 |    |    +--- androidx.activity:activity:1.9.1 (*)
 |    |    +--- androidx.core:core-ktx:1.13.0 -> 1.13.1 (*)
