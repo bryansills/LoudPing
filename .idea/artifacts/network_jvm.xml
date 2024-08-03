@@ -2,7 +2,7 @@
   <artifact type="jar" name="network-jvm">
     <output-path>$PROJECT_DIR$/network/build/libs</output-path>
     <root id="archive" name="network-jvm.jar">
-      <element id="module-output" name="Loud_Ping.network.jvmMain" />
+      <element id="module-output" name="LoudPing.network.jvmMain" />
     </root>
   </artifact>
 </component>

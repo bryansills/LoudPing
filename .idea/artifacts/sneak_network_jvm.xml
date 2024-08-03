@@ -2,7 +2,7 @@
   <artifact type="jar" name="sneak-network-jvm">
     <output-path>$PROJECT_DIR$/sneak-network/build/libs</output-path>
     <root id="archive" name="sneak-network-jvm.jar">
-      <element id="module-output" name="Loud_Ping.sneak-network.jvmMain" />
+      <element id="module-output" name="LoudPing.sneak-network.jvmMain" />
     </root>
   </artifact>
 </component>
