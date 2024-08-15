@@ -1,11 +1,16 @@
 import org.gradle.accessors.dm.LibrariesForLibs
 
-val LibrariesForLibs.javaVersion
-    get(): JavaVersion = JavaVersion.toVersion(versions.java.version.get())
-
 plugins {
     `kotlin-dsl`
-    `kotlin-dsl-precompiled-script-plugins`
+    `kotlin-dsl-precompiled-script-plugins` // todo: delete
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.samReceiver)
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(libs.javaVersion.majorVersion))
+    }
 }
 
 dependencies {
@@ -22,6 +27,9 @@ dependencies {
     implementation(plugin(libs.plugins.dependency.guard))
 }
 
-fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {
+private fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {
     "$pluginId:$pluginId.gradle.plugin:$version"
 }
+
+private val LibrariesForLibs.javaVersion
+    get(): JavaVersion = JavaVersion.toVersion(versions.java.version.get())
