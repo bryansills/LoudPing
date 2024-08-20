@@ -546,8 +546,8 @@
 |    +--- androidx.core:core-ktx:1.13.1 (*)
 |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1 (*)
 |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1 (*)
-|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.0
-|    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.0
+|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1
+|    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.1
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.0.0 (*)
 |    +--- androidx.compose:compose-bom:2024.06.00 (*)
 |    +--- androidx.compose.material3:material3 -> 1.2.1 (*)
@@ -710,7 +710,7 @@
 |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1 (*)
 |    |    +--- project :storage (*)
 |    |    +--- project :time
-|    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.0 (*)
+|    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
 |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.0 (*)
 |    |    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1 (*)
 |    |    +--- project :sneak-network
@@ -739,7 +739,7 @@
 |    |    +--- androidx.core:core-ktx:1.13.1 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1 (*)
-|    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.0 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
 |    |    +--- androidx.compose:compose-bom:2024.06.00 (*)
 |    |    +--- androidx.compose.material3:material3 -> 1.2.1 (*)
 |    |    \--- androidx.compose.ui:ui-tooling-preview -> 1.6.8 (*)
@@ -792,7 +792,7 @@
 |    +--- androidx.core:core-ktx:1.13.1 (*)
 |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1 (*)
 |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1 (*)
-|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.0 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
 |    +--- androidx.compose:compose-bom:2024.06.00 (*)
 |    +--- androidx.compose.material3:material3 -> 1.2.1 (*)
 |    +--- androidx.compose.ui:ui-tooling-preview -> 1.6.8 (*)
@@ -809,7 +809,7 @@
 |    +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0 (*)
 |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1 (*)
 |    +--- com.squareup.okhttp3:okhttp:4.12.0 (*)
-|    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.0 (*)
+|    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
 +--- project :network-auth (*)
 +--- project :session (*)
 +--- project :sneak-network (*)

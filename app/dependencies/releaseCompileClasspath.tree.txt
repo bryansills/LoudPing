@@ -389,8 +389,8 @@
 |    |         \--- androidx.datastore:datastore-core-okio:1.1.1 (c)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.0 (*)
 +--- project :time
-|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.0
-|    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.0
+|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1
+|    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.1
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.0.0 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.0 (*)
 +--- androidx.activity:activity-compose:1.9.1
@@ -498,7 +498,7 @@
 +--- androidx.savedstate:savedstate:{strictly 1.2.1} -> 1.2.1 (c)
 +--- javax.inject:javax.inject:{strictly 1} -> 1 (c)
 +--- androidx.datastore:datastore-preferences:{strictly 1.1.1} -> 1.1.1 (c)
-+--- org.jetbrains.kotlinx:kotlinx-datetime:{strictly 0.6.0} -> 0.6.0 (c)
++--- org.jetbrains.kotlinx:kotlinx-datetime:{strictly 0.6.1} -> 0.6.1 (c)
 +--- androidx.compose.runtime:runtime:{strictly 1.6.8} -> 1.6.8 (c)
 +--- androidx.compose.runtime:runtime-saveable:{strictly 1.6.8} -> 1.6.8 (c)
 +--- androidx.compose.ui:ui:{strictly 1.6.8} -> 1.6.8 (c)
@@ -526,7 +526,7 @@
 +--- androidx.lifecycle:lifecycle-common-jvm:{strictly 2.8.4} -> 2.8.4 (c)
 +--- androidx.lifecycle:lifecycle-viewmodel-android:{strictly 2.8.4} -> 2.8.4 (c)
 +--- androidx.datastore:datastore-preferences-android:{strictly 1.1.1} -> 1.1.1 (c)
-+--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:{strictly 0.6.0} -> 0.6.0 (c)
++--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:{strictly 0.6.1} -> 0.6.1 (c)
 +--- androidx.compose.runtime:runtime-android:{strictly 1.6.8} -> 1.6.8 (c)
 +--- androidx.compose.runtime:runtime-saveable-android:{strictly 1.6.8} -> 1.6.8 (c)
 +--- androidx.compose.ui:ui-android:{strictly 1.6.8} -> 1.6.8 (c)
