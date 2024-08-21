@@ -86,7 +86,7 @@
 |    \--- androidx.core:core:1.13.1 (c)
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1 (*)
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1 (*)
-+--- androidx.compose:compose-bom:2024.06.00
++--- androidx.compose:compose-bom:2024.08.00
 |    +--- androidx.compose.material3:material3:1.2.1 (c)
 |    +--- androidx.compose.ui:ui-tooling-preview:1.6.8 (c)
 |    +--- androidx.compose.runtime:runtime:1.6.8 (c)
@@ -549,7 +549,7 @@
 |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1
 |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.1
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.0.0 (*)
-|    +--- androidx.compose:compose-bom:2024.06.00 (*)
+|    +--- androidx.compose:compose-bom:2024.08.00 (*)
 |    +--- androidx.compose.material3:material3 -> 1.2.1 (*)
 |    +--- androidx.compose.ui:ui-tooling-preview -> 1.6.8 (*)
 |    +--- com.google.dagger:hilt-android:2.52 (*)
@@ -740,7 +740,7 @@
 |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
-|    |    +--- androidx.compose:compose-bom:2024.06.00 (*)
+|    |    +--- androidx.compose:compose-bom:2024.08.00 (*)
 |    |    +--- androidx.compose.material3:material3 -> 1.2.1 (*)
 |    |    \--- androidx.compose.ui:ui-tooling-preview -> 1.6.8 (*)
 |    +--- androidx.navigation:navigation-compose:2.7.7 (*)
@@ -793,7 +793,7 @@
 |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1 (*)
 |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1 (*)
 |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
-|    +--- androidx.compose:compose-bom:2024.06.00 (*)
+|    +--- androidx.compose:compose-bom:2024.08.00 (*)
 |    +--- androidx.compose.material3:material3 -> 1.2.1 (*)
 |    +--- androidx.compose.ui:ui-tooling-preview -> 1.6.8 (*)
 |    +--- com.google.dagger:hilt-android:2.52 (*)
