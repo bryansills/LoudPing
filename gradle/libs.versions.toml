@@ -18,7 +18,7 @@ dagger = "2.52"
 
 coroutines = "1.8.1"
 compose-bom = "2024.08.00"
-activity = "1.9.1"
+activity = "1.9.2"
 activity-compose = "1.9.2"
 androidx-junit = "1.2.1"
 androidx-test-runner = "1.6.2"
