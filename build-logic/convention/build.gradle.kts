@@ -5,11 +5,24 @@ plugins {
     `kotlin-dsl-precompiled-script-plugins` // todo: delete
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.samReceiver)
+    alias(libs.plugins.spotless)
 }
 
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(libs.javaVersion.majorVersion))
+    }
+}
+
+spotless {
+    kotlin {
+        target("src/**/*.kt")
+        ktlint(libs.versions.ktlint.get())
+    }
+
+    kotlinGradle {
+        target("*.kts")
+        ktlint(libs.versions.ktlint.get())
     }
 }
 
@@ -33,3 +46,12 @@ private fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) 
 
 private val LibrariesForLibs.javaVersion
     get(): JavaVersion = JavaVersion.toVersion(versions.java.version.get())
+
+gradlePlugin {
+    plugins {
+        register("root") {
+            id = "ninja.bryansills.root"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.RootConventionPlugin"
+        }
+    }
+}
