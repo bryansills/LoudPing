@@ -1,11 +1,11 @@
 plugins {
-    id("ninja-bryansills-compose-android-lib")
+    id("ninja.bryansills.android.library")
 }
 
 android {
     namespace = "ninja.bryansills.loudping.res"
 
     buildFeatures {
-        resValues = true
+        androidResources = true
     }
 }

@@ -54,4 +54,10 @@ gradlePlugin {
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.RootConventionPlugin"
         }
     }
+    plugins {
+        register("androidLibrary") {
+            id = "ninja.bryansills.android.library"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.PlainAndroidLibraryConventionPlugin"
+        }
+    }
 }
