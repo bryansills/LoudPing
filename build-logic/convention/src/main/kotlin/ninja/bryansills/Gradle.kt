@@ -7,3 +7,5 @@ import org.gradle.api.plugins.PluginContainer
 internal fun Project.plugins(action: PluginContainer.() -> Unit) = with(plugins) { action() }
 
 internal fun Project.dependencies(action: DependencyHandler.() -> Unit) = with(dependencies) { action() }
+
+internal fun PluginContainer.id(name: String) { apply(name) }

@@ -12,6 +12,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("com.dropbox.dependency-guard")
+    id("com.autonomousapps.dependency-analysis")
 }
 
 android {

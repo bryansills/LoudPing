@@ -6,6 +6,7 @@ plugins {
     id("ninja-bryansills-spotless")
     id("org.jetbrains.kotlin.multiplatform")
     id("com.android.library")
+    id("com.autonomousapps.dependency-analysis")
 }
 
 kotlin {

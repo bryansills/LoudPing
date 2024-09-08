@@ -38,6 +38,7 @@ dependencies {
     implementation(plugin(libs.plugins.hilt.plugin))
     implementation(plugin(libs.plugins.kotlinx.serialization))
     implementation(plugin(libs.plugins.dependency.guard))
+    implementation(plugin(libs.plugins.dependency.analysis))
 }
 
 private fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {
