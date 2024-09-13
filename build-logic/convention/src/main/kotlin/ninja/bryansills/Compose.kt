@@ -6,7 +6,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 
-fun Project.configureCompose() {
+internal fun Project.configureCompose() {
     composeCompiler {
         enableStrongSkippingMode.set(true)
 
@@ -24,6 +24,6 @@ fun Project.configureCompose() {
     }
 }
 
-fun Project.composeCompiler(block: ComposeCompilerGradlePluginExtension.() -> Unit) {
+private fun Project.composeCompiler(block: ComposeCompilerGradlePluginExtension.() -> Unit) {
     extensions.configure<ComposeCompilerGradlePluginExtension>(block)
 }

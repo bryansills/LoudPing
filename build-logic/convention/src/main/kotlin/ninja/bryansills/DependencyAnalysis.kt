@@ -2,7 +2,7 @@ package ninja.bryansills
 
 import org.gradle.api.Project
 
-fun Project.configureDependencyAnalysis() {
+internal fun Project.configureDependencyAnalysis() {
     plugins {
         id("com.autonomousapps.dependency-analysis")
     }

@@ -3,11 +3,8 @@ package ninja.bryansills
 import com.android.build.api.dsl.BuildFeatures
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.LibraryBuildFeatures
-import com.android.build.api.dsl.LibraryExtension
 import com.android.build.gradle.BaseExtension
-import com.android.tools.r8.internal.Ex
 import java.io.File
-import kotlin.math.E
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies

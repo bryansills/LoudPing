@@ -6,7 +6,7 @@ import org.gradle.kotlin.dsl.configure
 
 internal fun Project.configureSpotless() {
     plugins {
-        apply("com.diffplug.spotless")
+        id("com.diffplug.spotless")
     }
 
     spotless {

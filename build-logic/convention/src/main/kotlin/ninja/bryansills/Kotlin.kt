@@ -1,10 +1,12 @@
 package ninja.bryansills
 
-import gradle.kotlin.dsl.accessors._e4f51d7368de1fd439d19755e40f9e91.sourceSets
+import org.gradle.api.Action
+import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.configure
-import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 internal fun Project.configureKotlin() {
     // Configure Java to use our chosen language level. Kotlin will automatically pick this up
@@ -33,7 +35,7 @@ internal fun Project.configureKotlinMultiplatform() {
                 }
             }
         }
-        
+
         sourceSets {
             commonMain.dependencies {
                 implementation(libs.findLibrary("coroutines").get())
@@ -48,3 +50,7 @@ internal fun Project.configureKotlinMultiplatform() {
 private fun Project.kotlin(block: KotlinMultiplatformExtension.() -> Unit) {
     extensions.configure<KotlinMultiplatformExtension>(block)
 }
+
+private fun KotlinMultiplatformExtension.sourceSets(
+    configure: Action<NamedDomainObjectContainer<KotlinSourceSet>>
+): Unit = (this as ExtensionAware).extensions.configure("sourceSets", configure)
