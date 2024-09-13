@@ -39,7 +39,7 @@ datetime = "0.6.1"
 navigation-compose-typed = "0.10.0"
 coil = "2.7.0"
 kotlinx-html = "0.11.0"
-okio = "3.9.0"
+okio = "3.9.1"
 androidDesugarJdkLibs = "2.1.2"
 sqldelight = "2.0.2"
 
