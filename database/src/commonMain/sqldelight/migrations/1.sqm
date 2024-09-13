@@ -1,8 +1,5 @@
-CREATE TABLE track_play_record (
+CREATE TABLE album_play_record (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    track_id TEXT NOT NULL,
-    track_number INTEGER NOT NULL,
-    track_title TEXT NOT NULL,
-    album_id TEXT NOT NULL,
+    album_id INTEGER NOT NULL,
     timestamp TEXT NOT NULL
 );

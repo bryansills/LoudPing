@@ -24,6 +24,7 @@ internal fun Project.configureSpotless() {
         kotlinGradle {
             ktlint(libs.findVersion("ktlint").get().requiredVersion)
             target("**/*.gradle.kts")
+            targetExclude("**/build/**/*.gradle.kts")
             trimTrailingWhitespace()
             endWithNewline()
         }

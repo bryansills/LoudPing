@@ -26,9 +26,12 @@ android {
 sqldelight {
     databases {
         create("Database") {
-            packageName.set("ninja.bryansills.loudping.database")
+            packageName = "ninja.bryansills.loudping.database"
+            schemaOutputDirectory = file("src/main/sqldelight/databases")
+            verifyMigrations = true
             generateAsync = true
             deriveSchemaFromMigrations = true
+            dialect(libs.sqldelight.sqlite.dialect)
         }
     }
 }
