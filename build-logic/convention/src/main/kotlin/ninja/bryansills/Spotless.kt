@@ -17,7 +17,7 @@ internal fun Project.configureSpotless() {
         }
         kotlin {
             ktlint(libs.findVersion("ktlint").get().requiredVersion)
-            target("**/*.kt")
+            target("src/**/*.kt")
             trimTrailingWhitespace()
             endWithNewline()
         }
