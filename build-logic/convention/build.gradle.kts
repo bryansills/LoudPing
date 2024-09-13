@@ -54,11 +54,17 @@ gradlePlugin {
             id = "ninja.bryansills.root"
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.RootConventionPlugin"
         }
-    }
-    plugins {
-        register("androidLibrary") {
+        register("javaAndroidLibrary") {
             id = "ninja.bryansills.android.library"
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.PlainAndroidLibraryConventionPlugin"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.JavaAndroidLibraryConventionPlugin"
+        }
+        register("kotlinAndroidLibrary") {
+            id = "ninja.bryansills.android.library.kotlin"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinAndroidLibraryConventionPlugin"
+        }
+        register("kotlinMultiplatformLibrary") {
+            id = "ninja.bryansills.multiplatform.library"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinMultiplatformLibraryConventionPlugin"
         }
     }
 }

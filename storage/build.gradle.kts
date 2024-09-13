@@ -1,17 +1,11 @@
 plugins {
-    id("ninja-bryansills-kmp")
+    id("ninja.bryansills.multiplatform.library")
 }
 
 kotlin {
-    jvm()
-
     sourceSets {
         commonMain.dependencies {
             api(libs.datastore)
         }
     }
-}
-
-android {
-    namespace = "ninja.bryansills.loudping.storage"
 }

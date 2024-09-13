@@ -38,7 +38,7 @@ internal fun Project.configureAndroid() {
     }
     dependencies {
         "coreLibraryDesugaring"(libs.findLibrary("android-desugarJdkLibs").get())
-        "androidTestImplementation"(libs.findLibrary("androidx-test-runner").get())
+        "androidTestRuntimeOnly"(libs.findLibrary("androidx-test-runner").get())
     }
 }
 
