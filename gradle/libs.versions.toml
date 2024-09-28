@@ -17,7 +17,7 @@ ksp = "2.0.20-1.0.24"
 dagger = "2.52"
 
 coroutines = "1.9.0"
-compose-bom = "2024.09.01"
+compose-bom = "2024.09.02"
 activity = "1.9.2"
 activity-compose = "1.9.2"
 androidx-junit = "1.2.1"
