@@ -66,5 +66,9 @@ gradlePlugin {
             id = "ninja.bryansills.multiplatform.library"
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinMultiplatformLibraryConventionPlugin"
         }
+        register("composeMultiplatformLibrary") {
+            id = "ninja.bryansills.multiplatform.library.compose"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeMultiplatformLibraryConventionPlugin"
+        }
     }
 }

@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import ninja.bryansills.loudping.app.core.theme.LoudPingTheme
+import ninja.bryansills.loudping.app.theme.LoudPingTheme
 import ninja.bryansills.loudping.session.Session
 
 @Composable

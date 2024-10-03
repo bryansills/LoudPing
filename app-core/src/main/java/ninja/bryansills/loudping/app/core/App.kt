@@ -11,7 +11,7 @@ import ninja.bryansills.loudping.app.core.navigation.DarkModeStatusBarDisposable
 import ninja.bryansills.loudping.app.core.navigation.DarkModeStatusBarNavArg
 import ninja.bryansills.loudping.app.core.settings.SettingsScreen
 import ninja.bryansills.loudping.app.core.splash.SplashScreen
-import ninja.bryansills.loudping.app.core.theme.LoudPingTheme
+import ninja.bryansills.loudping.app.theme.LoudPingTheme
 import ninja.bryansills.loudping.session.Session
 
 @Composable

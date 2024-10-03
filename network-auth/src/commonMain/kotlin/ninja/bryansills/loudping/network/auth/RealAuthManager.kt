@@ -26,7 +26,7 @@ class RealAuthManager(
     }
 
     override fun getAuthorizeUrl(startTime: Instant): String {
-        return networkSneak
+        val result = networkSneak
             .authorizeUrl
             .httpUrlBuilder {
                 addQueryParameter("response_type", "code")
@@ -36,6 +36,8 @@ class RealAuthManager(
                 addQueryParameter("state", getFullState(startTime))
             }
             .toString()
+
+        return result
     }
 
     override suspend fun getValidAccessToken(): String {
