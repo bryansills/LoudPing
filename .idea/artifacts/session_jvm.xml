@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="session-jvm">
-    <output-path>$PROJECT_DIR$/session/build/libs</output-path>
-    <root id="archive" name="session-jvm.jar" />
-  </artifact>
-</component>

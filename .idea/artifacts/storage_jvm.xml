@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="storage-jvm">
-    <output-path>$PROJECT_DIR$/storage/build/libs</output-path>
-    <root id="archive" name="storage-jvm.jar" />
-  </artifact>
-</component>

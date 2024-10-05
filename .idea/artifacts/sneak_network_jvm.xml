@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="sneak-network-jvm">
-    <output-path>$PROJECT_DIR$/sneak-network/build/libs</output-path>
-    <root id="archive" name="sneak-network-jvm.jar" />
-  </artifact>
-</component>

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="static-pages-jvm">
-    <output-path>$PROJECT_DIR$/static-pages/build/libs</output-path>
-    <root id="archive" name="static-pages-jvm.jar">
-      <element id="module-output" name="Loud_Ping.static-pages.jvmMain" />
-    </root>
-  </artifact>
-</component>
