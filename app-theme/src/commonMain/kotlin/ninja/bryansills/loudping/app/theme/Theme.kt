@@ -35,13 +35,13 @@ internal val mediumContrastLightColorScheme = lightColorScheme(
     inverseSurface = inverseSurfaceLightMediumContrast,
     inverseOnSurface = inverseOnSurfaceLightMediumContrast,
     inversePrimary = inversePrimaryLightMediumContrast,
-//    surfaceDim = surfaceDimLightMediumContrast,
-//    surfaceBright = surfaceBrightLightMediumContrast,
-//    surfaceContainerLowest = surfaceContainerLowestLightMediumContrast,
-//    surfaceContainerLow = surfaceContainerLowLightMediumContrast,
-//    surfaceContainer = surfaceContainerLightMediumContrast,
-//    surfaceContainerHigh = surfaceContainerHighLightMediumContrast,
-//    surfaceContainerHighest = surfaceContainerHighestLightMediumContrast,
+    surfaceDim = surfaceDimLightMediumContrast,
+    surfaceBright = surfaceBrightLightMediumContrast,
+    surfaceContainerLowest = surfaceContainerLowestLightMediumContrast,
+    surfaceContainerLow = surfaceContainerLowLightMediumContrast,
+    surfaceContainer = surfaceContainerLightMediumContrast,
+    surfaceContainerHigh = surfaceContainerHighLightMediumContrast,
+    surfaceContainerHighest = surfaceContainerHighestLightMediumContrast,
 )
 
 internal val mediumContrastDarkColorScheme = darkColorScheme(
@@ -73,13 +73,13 @@ internal val mediumContrastDarkColorScheme = darkColorScheme(
     inverseSurface = inverseSurfaceDarkMediumContrast,
     inverseOnSurface = inverseOnSurfaceDarkMediumContrast,
     inversePrimary = inversePrimaryDarkMediumContrast,
-//    surfaceDim = surfaceDimDarkMediumContrast,
-//    surfaceBright = surfaceBrightDarkMediumContrast,
-//    surfaceContainerLowest = surfaceContainerLowestDarkMediumContrast,
-//    surfaceContainerLow = surfaceContainerLowDarkMediumContrast,
-//    surfaceContainer = surfaceContainerDarkMediumContrast,
-//    surfaceContainerHigh = surfaceContainerHighDarkMediumContrast,
-//    surfaceContainerHighest = surfaceContainerHighestDarkMediumContrast,
+    surfaceDim = surfaceDimDarkMediumContrast,
+    surfaceBright = surfaceBrightDarkMediumContrast,
+    surfaceContainerLowest = surfaceContainerLowestDarkMediumContrast,
+    surfaceContainerLow = surfaceContainerLowDarkMediumContrast,
+    surfaceContainer = surfaceContainerDarkMediumContrast,
+    surfaceContainerHigh = surfaceContainerHighDarkMediumContrast,
+    surfaceContainerHighest = surfaceContainerHighestDarkMediumContrast,
 )
 
 @Composable
