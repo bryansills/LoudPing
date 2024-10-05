@@ -1,5 +1,5 @@
 plugins {
-    id("ninja-bryansills-compose-dagger-android-lib")
+    id("ninja.bryansills.android.library.compose.screen")
 }
 
 android {
@@ -12,10 +12,11 @@ dependencies {
     implementation(projects.time)
     implementation(projects.androidAppRes)
     implementation(projects.appTheme)
+    implementation(projects.ui.home)
 
-    implementation(libs.androidx.compose.navigation)
-    implementation(libs.kotlinx.serialization.runtime.core)
-    implementation(libs.navigation.compose.typed)
+    implementation(libs.androidx.compose.activity)
+    implementation(libs.activity.ktx)
     implementation(libs.coil)
     implementation(libs.coil.compose)
+    implementation(libs.core.ktx)
 }

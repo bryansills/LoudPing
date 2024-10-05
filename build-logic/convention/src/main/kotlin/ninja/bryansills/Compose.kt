@@ -4,9 +4,10 @@ import com.android.build.gradle.internal.lint.AndroidLintAnalysisTask
 import com.android.build.gradle.internal.lint.LintModelWriterTask
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 
-internal fun Project.configureCompose() {
+internal fun Project.configureComposeCompiler() {
     composeCompiler {
         enableStrongSkippingMode.set(true)
 
@@ -21,6 +22,20 @@ internal fun Project.configureCompose() {
     // implicit dependency.
     tasks.matching { it is AndroidLintAnalysisTask || it is LintModelWriterTask }.configureEach {
         mustRunAfter(tasks.matching { it.name.startsWith("generateResourceAccessorsFor") })
+    }
+}
+
+internal fun Project.configureComposeAndroid() {
+    configureComposeCompiler()
+
+    dependencies {
+        val composeBom = libs["androidx-compose-bom"]
+        implementation(platform(composeBom))
+        androidTestImplementation(platform(composeBom))
+
+        implementation(libs["androidx-compose-material3"])
+        implementation(libs["androidx-compose-preview"])
+        debugImplementation(libs["androidx-compose-ui-tooling"])
     }
 }
 

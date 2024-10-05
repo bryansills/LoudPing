@@ -70,5 +70,9 @@ gradlePlugin {
             id = "ninja.bryansills.multiplatform.library.compose"
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeMultiplatformLibraryConventionPlugin"
         }
+        register("composeAndroidScreen") {
+            id = "ninja.bryansills.android.library.compose.screen"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeAndroidScreenConventionPlugin"
+        }
     }
 }
