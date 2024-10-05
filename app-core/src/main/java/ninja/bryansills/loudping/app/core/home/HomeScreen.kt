@@ -25,7 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import ninja.bryansills.loudping.app.core.theme.LoudPingTheme
+import ninja.bryansills.loudping.app.theme.LoudPingTheme
 import ninja.bryansills.loudping.res.R as AppR
 
 @Composable

@@ -11,6 +11,7 @@ dependencies {
     implementation(projects.networkAuth)
     implementation(projects.time)
     implementation(projects.androidAppRes)
+    implementation(projects.appTheme)
 
     implementation(libs.androidx.compose.navigation)
     implementation(libs.kotlinx.serialization.runtime.core)

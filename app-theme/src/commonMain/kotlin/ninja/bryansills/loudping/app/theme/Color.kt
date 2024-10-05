@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.app.core.theme
+package ninja.bryansills.loudping.app.theme
 
 import androidx.compose.ui.graphics.Color
 
