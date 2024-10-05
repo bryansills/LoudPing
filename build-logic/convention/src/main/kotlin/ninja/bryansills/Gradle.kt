@@ -24,3 +24,15 @@ internal fun <T : ExternalDependency> DependencyHandlerScope.androidTestImplemen
 internal fun <T : ExternalDependency> DependencyHandlerScope.debugImplementation(lib: Provider<T>) {
     "debugImplementation"(lib)
 }
+
+internal fun <T : ExternalDependency> DependencyHandlerScope.coreLibraryDesugaring(lib: Provider<T>) {
+    "coreLibraryDesugaring"(lib)
+}
+
+internal fun <T : ExternalDependency> DependencyHandlerScope.androidTestRuntimeOnly(lib: Provider<T>) {
+    "androidTestRuntimeOnly"(lib)
+}
+
+internal fun <T : ExternalDependency> DependencyHandlerScope.ksp(lib: Provider<T>) {
+    "ksp"(lib)
+}

@@ -13,7 +13,7 @@ import org.gradle.kotlin.dsl.withType
 
 internal fun Project.configureDependencyGuard() {
     plugins {
-        apply("com.dropbox.dependency-guard")
+        id("com.dropbox.dependency-guard")
     }
 
     dependencyGuard {

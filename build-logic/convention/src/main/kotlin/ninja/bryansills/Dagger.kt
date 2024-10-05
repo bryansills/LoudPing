@@ -9,7 +9,7 @@ internal fun Project.configureDagger() {
         id("com.google.dagger.hilt.android")
     }
     dependencies {
-        "implementation"(libs.findLibrary("hilt-android").get())
-        "ksp"(libs.findLibrary("hilt-compiler").get())
+        implementation(libs["hilt-android"])
+        ksp(libs["hilt-compiler"])
     }
 }
