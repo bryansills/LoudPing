@@ -18,5 +18,4 @@ dependencies {
     implementation(libs.activity.ktx)
     implementation(libs.coil)
     implementation(libs.coil.compose)
-    implementation(libs.core.ktx)
 }

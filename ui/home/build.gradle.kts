@@ -5,6 +5,8 @@ plugins {
 android {
     namespace = "ninja.bryansills.loudping.ui.home"
 }
+
 dependencies {
-    implementation(libs.core.ktx)
+    implementation(projects.session)
+    implementation(projects.appTheme)
 }
