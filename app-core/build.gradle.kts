@@ -13,6 +13,8 @@ dependencies {
     implementation(projects.androidAppRes)
     implementation(projects.appTheme)
     implementation(projects.ui.home)
+    implementation(projects.ui.destinations)
+    implementation(projects.ui.login)
 
     implementation(libs.androidx.compose.activity)
     implementation(libs.activity.ktx)

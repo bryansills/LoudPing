@@ -16,11 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import kotlinx.serialization.Serializable
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
-
-@Serializable
-object Home
 
 @Composable
 fun HomeScreen(
