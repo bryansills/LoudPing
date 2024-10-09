@@ -16,7 +16,9 @@ fun App() {
         DarkModeStatusBarDisposableEffect(navController)
 
         NavHost(navController = navController, startDestination = Home) {
-            composable<Home> { HomeScreen() }
+            composable<Home> { HomeScreen(
+                onStartLogin = {}
+            ) }
 //            composable("splash") {
 //                SplashScreen { session ->
 //                    when (session) {

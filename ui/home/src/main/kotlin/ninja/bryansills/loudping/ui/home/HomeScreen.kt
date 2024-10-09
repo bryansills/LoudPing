@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -23,6 +24,7 @@ object Home
 
 @Composable
 fun HomeScreen(
+    onStartLogin: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
@@ -33,7 +35,10 @@ fun HomeScreen(
         when (uiState) {
             HomeUiState.Loading -> HomeLoadingScreen(modifier = screenModifier)
             HomeUiState.LoggedIn -> HomeLoggedInScreen(modifier = screenModifier)
-            HomeUiState.LoggedOut -> HomeLoggedOutScreen(modifier = screenModifier)
+            HomeUiState.LoggedOut -> HomeLoggedOutScreen(
+                onStartLogin = onStartLogin,
+                modifier = screenModifier
+            )
         }
     }
 }
@@ -58,16 +63,27 @@ private fun HomeLoadingScreen(modifier: Modifier = Modifier) {
 
 
 @Composable
-private fun HomeLoggedOutScreen(modifier: Modifier = Modifier) {
+private fun HomeLoggedOutScreen(
+    onStartLogin: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(
+            16.dp,
+            alignment = Alignment.CenterVertically,
+        ),
         modifier = modifier,
     ) {
         Text(
-            text = "Logged out...",
+            text = "You should log in...",
             style = LoudPingTheme.typography.labelLarge,
         )
+        Button(
+            onClick = onStartLogin
+        ) {
+            Text(text = "Log in")
+        }
     }
 }
 
