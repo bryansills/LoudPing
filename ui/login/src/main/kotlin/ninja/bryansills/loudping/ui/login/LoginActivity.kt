@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import ninja.bryansills.loudping.ui.login.databinding.ActivityLoginBinding
 
+@AndroidEntryPoint
 class LoginActivity : ComponentActivity() {
 
     private lateinit var binding: ActivityLoginBinding

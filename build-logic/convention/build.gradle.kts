@@ -62,6 +62,10 @@ gradlePlugin {
             id = "ninja.bryansills.android.library.kotlin"
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinAndroidLibraryConventionPlugin"
         }
+        register("kotlinAndroidDaggerLibrary") {
+            id = "ninja.bryansills.android.library.kotlin.dagger"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinAndroidDaggerLibraryConventionPlugin"
+        }
         register("kotlinMultiplatformLibrary") {
             id = "ninja.bryansills.multiplatform.library"
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinMultiplatformLibraryConventionPlugin"

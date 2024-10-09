@@ -1,5 +1,5 @@
 plugins {
-    id("ninja.bryansills.android.library.kotlin")
+    id("ninja.bryansills.android.library.kotlin.dagger")
 }
 
 android {
