@@ -1,6 +1,8 @@
 package ninja.bryansills.loudping.app.theme
 
+import androidx.annotation.ColorInt
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 
 val primaryLightMediumContrast = Color(0xFF6A340F)
 val onPrimaryLightMediumContrast = Color(0xFFFFFFFF)
@@ -73,3 +75,6 @@ val surfaceContainerLowDarkMediumContrast = Color(0xFF221A15)
 val surfaceContainerDarkMediumContrast = Color(0xFF271E19)
 val surfaceContainerHighDarkMediumContrast = Color(0xFF312823)
 val surfaceContainerHighestDarkMediumContrast = Color(0xFF3D332E)
+
+@ColorInt val primaryAsColorInt: Int = primaryLightMediumContrast.toArgb()
+@ColorInt val primaryDarkAsColorInt: Int = primaryDarkMediumContrast.toArgb()

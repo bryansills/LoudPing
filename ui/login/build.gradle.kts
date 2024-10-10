@@ -12,6 +12,12 @@ android {
 }
 
 dependencies {
+    implementation(projects.session)
+    implementation(projects.networkAuth)
+    implementation(projects.time)
+    implementation(projects.appTheme)
+
     implementation(libs.activity.ktx)
     implementation(libs.viewmodel)
+    implementation(libs.androidx.browser)
 }
