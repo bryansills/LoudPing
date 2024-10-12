@@ -1,5 +1,6 @@
-package ninja.bryansills.loudping.app.core.settings
+package ninja.bryansills.loudping.ui.settings
 
+import ninja.bryansills.loudping.res.R as AppR
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,7 +28,6 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format
 import kotlinx.datetime.toLocalDateTime
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
-import ninja.bryansills.loudping.res.R as AppR
 
 @Composable
 fun SettingsScreen(

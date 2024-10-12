@@ -15,6 +15,7 @@ dependencies {
     implementation(projects.ui.home)
     implementation(projects.ui.destinations)
     implementation(projects.ui.login)
+    implementation(projects.ui.settings)
 
     implementation(libs.androidx.compose.activity)
     implementation(libs.activity.ktx)

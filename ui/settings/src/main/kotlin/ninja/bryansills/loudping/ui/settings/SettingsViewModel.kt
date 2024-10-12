@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.app.core.settings
+package ninja.bryansills.loudping.ui.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

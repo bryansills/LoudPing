@@ -21,6 +21,7 @@ import ninja.bryansills.loudping.app.theme.LoudPingTheme
 @Composable
 fun HomeScreen(
     onStartLogin: () -> Unit,
+    onNavigateToSettings: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
@@ -32,7 +33,7 @@ fun HomeScreen(
             HomeUiState.Loading -> HomeLoadingScreen(modifier = screenModifier)
             HomeUiState.LoggedIn -> {
                 HomeLoggedInScreen(
-                    onNavigateToSettings = {},
+                    onNavigateToSettings = onNavigateToSettings,
                     modifier = screenModifier
                 )
             }
