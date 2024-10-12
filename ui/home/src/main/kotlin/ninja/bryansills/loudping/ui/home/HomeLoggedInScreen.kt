@@ -1,6 +1,5 @@
 package ninja.bryansills.loudping.ui.home
 
-import ninja.bryansills.loudping.res.R as AppR
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,11 +24,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
+import ninja.bryansills.loudping.res.R as AppR
 
 @Composable
 internal fun HomeLoggedInScreen(
     onNavigateToSettings: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier

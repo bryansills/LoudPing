@@ -12,7 +12,7 @@ import ninja.bryansills.loudping.session.SessionManager
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val sessionManager: SessionManager
+    private val sessionManager: SessionManager,
 ) : ViewModel() {
     val uiState = sessionManager
         .currentSession
@@ -25,7 +25,7 @@ class HomeViewModel @Inject constructor(
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(1000),
-            initialValue = HomeUiState.Loading
+            initialValue = HomeUiState.Loading,
         )
 }
 

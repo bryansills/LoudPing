@@ -23,7 +23,7 @@ fun HomeScreen(
     onStartLogin: () -> Unit,
     onNavigateToSettings: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     Scaffold(modifier = modifier) { paddingValues ->
@@ -34,12 +34,12 @@ fun HomeScreen(
             HomeUiState.LoggedIn -> {
                 HomeLoggedInScreen(
                     onNavigateToSettings = onNavigateToSettings,
-                    modifier = screenModifier
+                    modifier = screenModifier,
                 )
             }
             HomeUiState.LoggedOut -> HomeLoggedOutScreen(
                 onStartLogin = onStartLogin,
-                modifier = screenModifier
+                modifier = screenModifier,
             )
         }
     }
@@ -63,11 +63,10 @@ private fun HomeLoadingScreen(modifier: Modifier = Modifier) {
     }
 }
 
-
 @Composable
 private fun HomeLoggedOutScreen(
     onStartLogin: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -82,7 +81,7 @@ private fun HomeLoggedOutScreen(
             style = LoudPingTheme.typography.labelLarge,
         )
         Button(
-            onClick = onStartLogin
+            onClick = onStartLogin,
         ) {
             Text(text = "Log in")
         }

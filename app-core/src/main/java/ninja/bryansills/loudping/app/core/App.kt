@@ -21,10 +21,12 @@ fun App() {
         DarkModeStatusBarDisposableEffect(navController)
 
         NavHost(navController = navController, startDestination = Home) {
-            composable<Home> { HomeScreen(
-                onStartLogin = { navController.navigate(Login) },
-                onNavigateToSettings = { navController.navigate(Settings) }
-            ) }
+            composable<Home> {
+                HomeScreen(
+                    onStartLogin = { navController.navigate(Login) },
+                    onNavigateToSettings = { navController.navigate(Settings) },
+                )
+            }
             activity<Login> {
                 activityClass = LoginActivity::class
             }

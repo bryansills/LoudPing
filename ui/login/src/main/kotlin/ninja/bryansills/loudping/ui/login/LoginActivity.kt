@@ -29,7 +29,7 @@ class LoginActivity : ComponentActivity() {
     private val viewModel: LoginViewModel by viewModels()
 
     private val launchCustomTab = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
+        ActivityResultContracts.StartActivityForResult(),
     ) { result ->
         if (result.resultCode == RESULT_CANCELED && viewModel.progress == LoginProgress.LoggingIn) {
             finish()
@@ -47,8 +47,10 @@ class LoginActivity : ComponentActivity() {
             launchCustomTab.launch(
                 input = createCustomTabIntent(viewModel.loginUrl),
                 options = ActivityOptionsCompat.makeCustomAnimation(
-                    this, R.anim.enter_from_bottom, R.anim.fade_out,
-                )
+                    this,
+                    R.anim.enter_from_bottom,
+                    R.anim.fade_out,
+                ),
             )
         }
 

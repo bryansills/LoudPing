@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 actual fun LoudPingTheme(
     darkTheme: Boolean,
     dynamicColor: Boolean,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     TODO()
 }

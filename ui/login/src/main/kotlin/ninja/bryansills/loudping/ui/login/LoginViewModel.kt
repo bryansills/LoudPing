@@ -52,5 +52,7 @@ class LoginViewModel @Inject constructor(
 
 @Parcelize
 enum class LoginProgress : Parcelable {
-    Initializing, LoggingIn, Accessing
+    Initializing,
+    LoggingIn,
+    Accessing,
 }

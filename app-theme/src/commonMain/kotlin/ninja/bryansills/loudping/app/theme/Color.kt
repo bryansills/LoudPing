@@ -77,4 +77,5 @@ val surfaceContainerHighDarkMediumContrast = Color(0xFF312823)
 val surfaceContainerHighestDarkMediumContrast = Color(0xFF3D332E)
 
 @ColorInt val primaryAsColorInt: Int = primaryLightMediumContrast.toArgb()
+
 @ColorInt val primaryDarkAsColorInt: Int = primaryDarkMediumContrast.toArgb()
