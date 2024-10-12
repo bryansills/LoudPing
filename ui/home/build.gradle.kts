@@ -9,4 +9,5 @@ android {
 dependencies {
     implementation(projects.session)
     implementation(projects.appTheme)
+    implementation(projects.androidAppRes)
 }

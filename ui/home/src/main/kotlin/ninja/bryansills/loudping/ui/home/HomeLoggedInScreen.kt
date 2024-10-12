@@ -1,5 +1,6 @@
-package ninja.bryansills.loudping.app.core.home
+package ninja.bryansills.loudping.ui.home
 
+import ninja.bryansills.loudping.res.R as AppR
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,7 +15,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,37 +24,31 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
-import ninja.bryansills.loudping.res.R as AppR
 
 @Composable
-fun HomeScreen(
-    modifier: Modifier = Modifier,
-    homeViewModel: HomeViewModel = hiltViewModel(),
+internal fun HomeLoggedInScreen(
     onNavigateToSettings: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    Scaffold(modifier = modifier) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .padding(paddingValues)
-                .fillMaxSize()
-                .padding(16.dp),
-        ) {
-            AlbumsBox(
-                albums = PlaceholderAlbums,
-                modifier = Modifier.align(Alignment.Center).widthIn(max = 400.dp),
-            )
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
+    ) {
+        AlbumsBox(
+            albums = PlaceholderAlbums,
+            modifier = Modifier.align(Alignment.Center).widthIn(max = 400.dp),
+        )
 
-            IconButton(
-                onClick = onNavigateToSettings,
-                modifier = Modifier.align(Alignment.BottomEnd),
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Settings,
-                    contentDescription = stringResource(AppR.string.settings),
-                )
-            }
+        IconButton(
+            onClick = onNavigateToSettings,
+            modifier = Modifier.align(Alignment.BottomEnd),
+        ) {
+            Icon(
+                imageVector = Icons.Default.Settings,
+                contentDescription = stringResource(AppR.string.settings),
+            )
         }
     }
 }

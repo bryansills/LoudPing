@@ -30,7 +30,12 @@ fun HomeScreen(
 
         when (uiState) {
             HomeUiState.Loading -> HomeLoadingScreen(modifier = screenModifier)
-            HomeUiState.LoggedIn -> HomeLoggedInScreen(modifier = screenModifier)
+            HomeUiState.LoggedIn -> {
+                HomeLoggedInScreen(
+                    onNavigateToSettings = {},
+                    modifier = screenModifier
+                )
+            }
             HomeUiState.LoggedOut -> HomeLoggedOutScreen(
                 onStartLogin = onStartLogin,
                 modifier = screenModifier
@@ -80,20 +85,5 @@ private fun HomeLoggedOutScreen(
         ) {
             Text(text = "Log in")
         }
-    }
-}
-
-
-@Composable
-private fun HomeLoggedInScreen(modifier: Modifier = Modifier) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = modifier,
-    ) {
-        Text(
-            text = "Logged in...",
-            style = LoudPingTheme.typography.labelLarge,
-        )
     }
 }

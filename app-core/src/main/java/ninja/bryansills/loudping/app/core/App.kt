@@ -25,30 +25,6 @@ fun App() {
             activity<Login> {
                 activityClass = LoginActivity::class
             }
-//            composable("splash") {
-//                SplashScreen { session ->
-//                    when (session) {
-//                        is Session.LoggedIn -> navController.navigate("home")
-//                        Session.LoggedOut -> navController.navigate("login")
-//                    }
-//                }
-//            }
-//            composable(
-//                route = "login",
-//                arguments = listOf(
-//                    navArgument(DarkModeStatusBarNavArg) { defaultValue = true },
-//                ),
-//            ) {
-//                LoginScreen { session ->
-//                    when (session) {
-//                        is Session.LoggedIn -> navController.navigate("home")
-//                        Session.LoggedOut -> navController.navigate("login")
-//                    }
-//                }
-//            }
-//            composable("home") {
-//                HomeScreen { navController.navigate("settings") }
-//            }
 //            composable("settings") {
 //                SettingsScreen()
 //            }
