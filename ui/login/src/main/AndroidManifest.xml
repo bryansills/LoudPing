@@ -1,5 +1,16 @@
 <manifest>
     <application xmlns:android="http://schemas.android.com/apk/res/android">
-        <activity android:name=".LoginActivity" android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.Transparent"
+            android:launchMode="singleTop"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="loudping" android:host="callback" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

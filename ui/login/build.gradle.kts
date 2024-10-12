@@ -1,5 +1,6 @@
 plugins {
     id("ninja.bryansills.android.library.kotlin.dagger")
+    alias(libs.plugins.parcelize)
 }
 
 android {

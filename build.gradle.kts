@@ -16,6 +16,7 @@ plugins {
     alias(libs.plugins.sqldelight) apply false
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.dependency.guard) apply false
+    alias(libs.plugins.parcelize) apply false
 }
 
 dependencyAnalysis {
