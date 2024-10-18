@@ -7,6 +7,7 @@ import ninja.bryansills.loudping.database.DatabaseService
 import ninja.bryansills.loudping.database.model.TrackPlayRecord
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
+import ninja.bryansills.loudping.network.model.recent.ContextType
 
 class RealHistoryRecorder(
     private val networkService: NetworkService,
@@ -34,8 +35,7 @@ private fun List<RecentlyPlayedResponse>.toDatabase(): List<TrackPlayRecord> {
     return this
         .flatMap { networkRecord -> networkRecord.items }
         .filter { networkTrack ->
-            // TODO: filter if it wasn't played as an album
-            true
+            networkTrack.context.type == ContextType.Album
         }
         .map { networkTrack ->
             TrackPlayRecord(
