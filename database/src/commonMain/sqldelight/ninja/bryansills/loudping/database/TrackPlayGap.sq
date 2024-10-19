@@ -1,0 +1,3 @@
+insert:
+INSERT INTO track_play_gap(start, end)
+VALUES (?, ?);

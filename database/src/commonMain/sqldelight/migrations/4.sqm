@@ -1,0 +1,5 @@
+CREATE TABLE track_play_gap (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    start TEXT NOT NULL,
+    end TEXT NOT NULL
+);

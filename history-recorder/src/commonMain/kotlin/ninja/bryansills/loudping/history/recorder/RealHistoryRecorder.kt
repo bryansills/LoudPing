@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.history.recorder
 
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Instant
@@ -9,6 +10,8 @@ import ninja.bryansills.loudping.database.model.TrackPlayRecord
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 import ninja.bryansills.loudping.network.model.recent.ContextType
+import ninja.bryansills.loudping.network.model.recent.PlayHistoryItem
+import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
 
 class RealHistoryRecorder(
     private val networkService: NetworkService,
@@ -23,13 +26,27 @@ class RealHistoryRecorder(
         }
 
         val networkResponse = networkService
-            .getRecentlyPlayedStream(startAt, stopAt ?: Instant.DISTANT_PAST)
+            .getRecentlyPlayedStream(
+                startAt = startAt,
+                stopAt = stopAt ?: Instant.DISTANT_PAST,
+                trimmingStrategy = RecentTrimmingStrategy.None,
+            )
             .toList()
-        val databaseEntries = networkResponse.toDatabase()
 
-        databaseService.insertTrackPlayRecords(databaseEntries)
+        val playRecords = networkResponse.toRecords()
+        val hasPlaybackGap = stopAt != null && playRecords.isNotEmpty() && playRecords.none { it.played_at < stopAt }
+        if (hasPlaybackGap) {
+            val oldestPlayedAt = playRecords.minByOrNull { it.played_at }
+            databaseService.insertTrackPlayGap(
+                start = stopAt!! + 5.seconds,
+                end = oldestPlayedAt!!.played_at,
+            )
+        }
 
+        val databaseEntries = playRecords.toDatabase(stopAt)
         val result = if (databaseEntries.isNotEmpty()) {
+            databaseService.insertTrackPlayRecords(databaseEntries)
+
             TrackHistoryResult.Standard(
                 oldestTimestamp = databaseEntries.first().timestamp,
                 newestTimestamp = databaseEntries.last().timestamp,
@@ -41,10 +58,15 @@ class RealHistoryRecorder(
     }
 }
 
-private fun List<RecentlyPlayedResponse>.toDatabase(): List<TrackPlayRecord> {
+private fun List<RecentlyPlayedResponse>.toRecords(): List<PlayHistoryItem> {
     return this
         .flatMap { networkRecord -> networkRecord.items }
         .sortedBy { it.played_at }
+}
+
+private fun List<PlayHistoryItem>.toDatabase(stopAt: Instant?): List<TrackPlayRecord> {
+    return this
+        .filter { it.played_at > (stopAt ?: Instant.DISTANT_PAST) }
         .map { networkTrack ->
             TrackPlayRecord(
                 trackId = networkTrack.track.id,

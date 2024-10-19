@@ -10,4 +10,9 @@ interface DatabaseService {
         albumId: Long,
         timestamp: Instant,
     )
+
+    suspend fun insertTrackPlayGap(
+        start: Instant,
+        end: Instant,
+    )
 }

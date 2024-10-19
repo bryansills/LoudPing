@@ -8,6 +8,8 @@ import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.network.model.PrivateUserResponse
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 import ninja.bryansills.loudping.network.model.SavedAlbumsResponse
+import ninja.bryansills.loudping.network.model.recent.PlayHistoryItem
+import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
 
 class RealNetworkService(
     private val spotifyService: SpotifyService,
@@ -27,6 +29,7 @@ class RealNetworkService(
     override fun getRecentlyPlayedStream(
         startAt: Instant,
         stopAt: Instant,
+        trimmingStrategy: RecentTrimmingStrategy,
     ): Flow<RecentlyPlayedResponse> = flow {
         var currentQueryTime: Instant? = startAt
         var nextUrl: String? = null
@@ -47,10 +50,13 @@ class RealNetworkService(
                 spotifyService.getRecentlyPlayed(beforeTimestampUnix = beforeInMillis)
             }
 
-            val stopAtFiltered = response.copy(
-                items = response.items.filter { it.played_at > stopAt },
-            )
-            emit(stopAtFiltered)
+            val trimmedResponse = when (trimmingStrategy) {
+                RecentTrimmingStrategy.None -> response
+                RecentTrimmingStrategy.StopAt -> {
+                    response.copy(items = response.items.trim(stopAt))
+                }
+            }
+            emit(trimmedResponse)
 
             currentQueryTime = try {
                 Instant.fromEpochMilliseconds(response.cursors!!.before.toLong())
@@ -74,4 +80,8 @@ private fun keepGoing(
     } else {
         nextUrl != null && inProgress != null && inProgress > stopAt
     }
+}
+
+fun List<PlayHistoryItem>.trim(olderThan: Instant): List<PlayHistoryItem> {
+    return this.filter { it.played_at > olderThan }
 }
