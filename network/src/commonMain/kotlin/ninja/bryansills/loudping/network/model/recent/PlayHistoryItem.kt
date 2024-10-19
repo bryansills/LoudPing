@@ -27,12 +27,15 @@ data class PlayHistoryItem(
 sealed class ContextType {
     @Serializable
     data object Album : ContextType()
+
     @Serializable
     data object Artist : ContextType()
+
     @Serializable
     data object Playlist : ContextType()
+
     @Serializable
-    data class Unknown(val rawString: String): ContextType()
+    data class Unknown(val rawString: String) : ContextType()
 
     companion object {
         internal val albumKey = "album"
@@ -56,7 +59,7 @@ object ContextTypeSerializer : KSerializer<ContextType> {
 
     override fun deserialize(decoder: Decoder): ContextType {
         return when (val string = decoder.decodeString()) {
-            ContextType.albumKey  -> ContextType.Album
+            ContextType.albumKey -> ContextType.Album
             ContextType.artistKey -> ContextType.Artist
             ContextType.playlistKey -> ContextType.Playlist
             else -> ContextType.Unknown(string)
