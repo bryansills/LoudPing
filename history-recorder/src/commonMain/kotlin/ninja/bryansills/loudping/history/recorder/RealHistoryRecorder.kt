@@ -16,7 +16,7 @@ class RealHistoryRecorder(
     override suspend operator fun invoke(
         startAt: Instant,
         stopAt: Instant?,
-    ): Result<Instant> = coroutineScope {
+    ): Result<TrackHistoryResult> = coroutineScope {
         if (stopAt != null) {
             check(startAt > stopAt)
         }
@@ -24,10 +24,19 @@ class RealHistoryRecorder(
         val networkResponse = networkService
             .getRecentlyPlayedStream(startAt, stopAt ?: Instant.DISTANT_PAST)
             .toList()
+        val databaseEntries = networkResponse.toDatabase()
 
-        databaseService.insertTrackPlayRecords(networkResponse.toDatabase())
+        databaseService.insertTrackPlayRecords(databaseEntries)
 
-        Result.success(networkResponse.first().items.first().played_at)
+        val result = if (databaseEntries.isNotEmpty()) {
+            TrackHistoryResult.Standard(
+                oldestTimestamp = databaseEntries.first().timestamp,
+                newestTimestamp = databaseEntries.last().timestamp,
+            )
+        } else {
+            TrackHistoryResult.NothingPlayed
+        }
+        Result.success(result)
     }
 }
 
@@ -37,6 +46,7 @@ private fun List<RecentlyPlayedResponse>.toDatabase(): List<TrackPlayRecord> {
         .filter { networkTrack ->
             networkTrack.context.type == ContextType.Album
         }
+        .sortedBy { it.played_at }
         .map { networkTrack ->
             TrackPlayRecord(
                 trackId = networkTrack.track.id,
