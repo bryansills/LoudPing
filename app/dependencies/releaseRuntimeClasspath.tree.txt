@@ -800,7 +800,7 @@
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6 (*)
 |    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
 |    +--- project :ui:login
-|    |    +--- androidx.databinding:viewbinding:8.7.0
+|    |    +--- androidx.databinding:viewbinding:8.7.1
 |    |    |    \--- androidx.annotation:annotation:1.0.0 -> 1.8.1 (*)
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 |    |    +--- com.google.dagger:hilt-android:2.52 (*)
