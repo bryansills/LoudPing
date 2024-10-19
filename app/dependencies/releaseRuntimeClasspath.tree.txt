@@ -691,10 +691,10 @@
 |    |         |         |         +--- androidx.datastore:datastore-core:1.1.1
 |    |         |         |         |    \--- androidx.datastore:datastore-core-android:1.1.1
 |    |         |         |         |         +--- androidx.annotation:annotation:1.7.0 -> 1.8.1 (*)
-|    |         |         |         |         +--- org.jetbrains.kotlin:kotlin-parcelize-runtime:1.9.22
-|    |         |         |         |         |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.22 -> 2.0.21 (*)
-|    |         |         |         |         |    \--- org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.22
-|    |         |         |         |         |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.22 -> 2.0.21 (*)
+|    |         |         |         |         +--- org.jetbrains.kotlin:kotlin-parcelize-runtime:1.9.22 -> 2.0.21
+|    |         |         |         |         |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
+|    |         |         |         |         |    \--- org.jetbrains.kotlin:kotlin-android-extensions-runtime:2.0.21
+|    |         |         |         |         |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 |    |         |         |         |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
 |    |         |         |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3 -> 1.9.0 (*)
 |    |         |         |         |         +--- androidx.datastore:datastore:1.1.1 (c)
@@ -787,7 +787,8 @@
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
 |    |    +--- project :session (*)
-|    |    \--- project :app-theme (*)
+|    |    +--- project :app-theme (*)
+|    |    \--- project :android-app-res
 |    +--- project :ui:destinations
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 |    |    +--- androidx.compose:compose-bom:2024.09.03 (*)
@@ -809,14 +810,29 @@
 |    |    +--- project :app-theme (*)
 |    |    +--- androidx.activity:activity-ktx:1.9.2 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6 (*)
-|    |    \--- androidx.browser:browser:1.8.0
-|    |         +--- androidx.annotation:annotation:1.2.0 -> 1.8.1 (*)
-|    |         +--- androidx.annotation:annotation-experimental:1.4.0 -> 1.4.1 (*)
-|    |         +--- androidx.collection:collection:1.1.0 -> 1.4.4 (*)
-|    |         +--- androidx.concurrent:concurrent-futures:1.0.0 -> 1.1.0 (*)
-|    |         +--- androidx.core:core:1.1.0 -> 1.13.1 (*)
-|    |         +--- androidx.interpolator:interpolator:1.0.0 (*)
-|    |         \--- com.google.guava:listenablefuture:1.0
+|    |    +--- androidx.browser:browser:1.8.0
+|    |    |    +--- androidx.annotation:annotation:1.2.0 -> 1.8.1 (*)
+|    |    |    +--- androidx.annotation:annotation-experimental:1.4.0 -> 1.4.1 (*)
+|    |    |    +--- androidx.collection:collection:1.1.0 -> 1.4.4 (*)
+|    |    |    +--- androidx.concurrent:concurrent-futures:1.0.0 -> 1.1.0 (*)
+|    |    |    +--- androidx.core:core:1.1.0 -> 1.13.1 (*)
+|    |    |    +--- androidx.interpolator:interpolator:1.0.0 (*)
+|    |    |    \--- com.google.guava:listenablefuture:1.0
+|    |    \--- org.jetbrains.kotlin:kotlin-parcelize-runtime:2.0.21 (*)
+|    +--- project :ui:settings
+|    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
+|    |    +--- androidx.compose:compose-bom:2024.09.03 (*)
+|    |    +--- androidx.compose.material3:material3 -> 1.3.0 (*)
+|    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.3 (*)
+|    |    +--- com.google.dagger:hilt-android:2.52 (*)
+|    |    +--- androidx.navigation:navigation-compose:2.8.2 (*)
+|    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
+|    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
+|    |    +--- project :network-auth (*)
+|    |    +--- project :app-theme (*)
+|    |    +--- project :android-app-res
+|    |    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
 |    +--- androidx.activity:activity-compose:1.9.2 (*)
 |    +--- androidx.activity:activity-ktx:1.9.2 (*)
 |    +--- io.coil-kt:coil:2.7.0
