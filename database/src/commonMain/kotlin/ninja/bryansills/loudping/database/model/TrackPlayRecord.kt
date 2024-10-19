@@ -8,4 +8,5 @@ data class TrackPlayRecord(
     val trackTitle: String,
     val albumId: String,
     val timestamp: Instant,
+    val context: TrackPlayContext,
 )

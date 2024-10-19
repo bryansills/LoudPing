@@ -14,6 +14,7 @@ class RealDatabaseService(private val database: Database) : DatabaseService {
                     record.trackTitle,
                     record.albumId,
                     record.timestamp.toString(),
+                    record.context,
                 )
             }
         }

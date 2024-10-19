@@ -4,6 +4,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.database.DatabaseService
+import ninja.bryansills.loudping.database.model.TrackPlayContext
 import ninja.bryansills.loudping.database.model.TrackPlayRecord
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
@@ -43,9 +44,6 @@ class RealHistoryRecorder(
 private fun List<RecentlyPlayedResponse>.toDatabase(): List<TrackPlayRecord> {
     return this
         .flatMap { networkRecord -> networkRecord.items }
-        .filter { networkTrack ->
-            networkTrack.context.type == ContextType.Album
-        }
         .sortedBy { it.played_at }
         .map { networkTrack ->
             TrackPlayRecord(
@@ -54,6 +52,16 @@ private fun List<RecentlyPlayedResponse>.toDatabase(): List<TrackPlayRecord> {
                 trackTitle = networkTrack.track.name,
                 albumId = networkTrack.track.album.id,
                 timestamp = networkTrack.played_at,
+                context = networkTrack.context.type.toDatabase(),
             )
         }
+}
+
+private fun ContextType.toDatabase(): TrackPlayContext {
+    return when (this) {
+        ContextType.Album -> TrackPlayContext.Album
+        ContextType.Artist -> TrackPlayContext.Artist
+        ContextType.Playlist -> TrackPlayContext.Playlist
+        is ContextType.Unknown -> TrackPlayContext.Unknown
+    }
 }
