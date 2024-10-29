@@ -6,5 +6,4 @@ import javax.inject.Inject
 import ninja.bryansills.loudping.foreman.Foreman
 
 @HiltViewModel
-class HomeLoggedInViewModel @Inject constructor(private val foreman: Foreman) : ViewModel() {
-}
+class HomeLoggedInViewModel @Inject constructor(private val foreman: Foreman) : ViewModel()

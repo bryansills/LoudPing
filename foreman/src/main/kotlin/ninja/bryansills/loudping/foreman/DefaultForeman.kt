@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class DefaultForeman @Inject constructor(
-    workManager: WorkManager
+    workManager: WorkManager,
 ) : Foreman {
     init {
         workManager.enqueueUniquePeriodicWork(
             ForemanJobs.TrackSyncing.workManagerId,
             ExistingPeriodicWorkPolicy.KEEP,
-            PeriodicWorkRequestBuilder<HistoryRecorderWorker>(Duration.ofHours(2)).build()
+            PeriodicWorkRequestBuilder<HistoryRecorderWorker>(Duration.ofHours(2)).build(),
         )
     }
 
@@ -26,5 +26,5 @@ class DefaultForeman @Inject constructor(
 }
 
 enum class ForemanJobs(val workManagerId: String) {
-    TrackSyncing("loud-ping-track-syncing")
+    TrackSyncing("loud-ping-track-syncing"),
 }
