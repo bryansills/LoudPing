@@ -8,5 +8,5 @@ interface HistoryRecorder {
      * @param stopAt What (earlier) time to stop recording history. If null, keep recording history
      * until Spotify says you have reached the end.
      */
-    suspend fun invoke(startAt: Instant, stopAt: Instant?): Result<TrackHistoryResult>
+    suspend operator fun invoke(startAt: Instant, stopAt: Instant?): Result<TrackHistoryResult>
 }

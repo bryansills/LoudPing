@@ -10,4 +10,5 @@ dependencies {
     implementation(projects.session)
     implementation(projects.appTheme)
     implementation(projects.androidAppRes)
+    implementation(projects.foreman)
 }

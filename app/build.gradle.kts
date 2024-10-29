@@ -121,6 +121,9 @@ dependencies {
     implementation(libs.retrofit.kotlinx.serialization)
     implementation(libs.kotlinx.serialization.runtime)
     implementation(libs.okhttp)
+
+    implementation(libs.workmanager)
+    implementation(libs.workmanager.hilt)
 }
 
 /**
