@@ -106,6 +106,7 @@ android {
 dependencies {
     implementation(projects.appCore)
     implementation(projects.di)
+    implementation(projects.database)
     implementation(projects.network)
     implementation(projects.networkAuth)
     implementation(projects.session)

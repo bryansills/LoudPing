@@ -15,4 +15,6 @@ interface DatabaseService {
         start: Instant,
         end: Instant,
     )
+
+    suspend fun getAllPlayedTracks(): List<TrackPlayRecord>
 }

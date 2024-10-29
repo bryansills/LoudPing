@@ -1,3 +1,8 @@
 insert:
 INSERT INTO track_play_record(track_id, track_number, track_title, album_id, timestamp, context)
 VALUES (?, ?, ?, ?, ?, ?);
+
+select_all:
+SELECT *
+FROM track_play_record
+LIMIT 100;

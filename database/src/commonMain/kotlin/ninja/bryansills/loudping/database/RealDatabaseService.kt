@@ -1,9 +1,11 @@
 package ninja.bryansills.loudping.database
 
+import app.cash.sqldelight.async.coroutines.awaitAsList
 import kotlinx.datetime.Instant
 import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeComponents
 import kotlinx.datetime.format.DateTimeFormat
+import ninja.bryansills.loudping.database.model.TrackPlayContext
 import ninja.bryansills.loudping.database.model.TrackPlayRecord
 
 class RealDatabaseService(
@@ -37,5 +39,22 @@ class RealDatabaseService(
             start = start.format(timestampFormatter),
             end = end.format(timestampFormatter),
         )
+    }
+
+    override suspend fun getAllPlayedTracks(): List<TrackPlayRecord> {
+        return database
+            .trackPlayRecordQueries
+            .select_all()
+            .awaitAsList()
+            .map { db ->
+                TrackPlayRecord(
+                    trackId = db.track_id,
+                    trackNumber = db.track_number.toInt(),
+                    trackTitle = db.track_title,
+                    albumId = db.album_id,
+                    timestamp = Instant.parse(db.timestamp),
+                    context = db.context ?: TrackPlayContext.Unknown,
+                )
+            }
     }
 }

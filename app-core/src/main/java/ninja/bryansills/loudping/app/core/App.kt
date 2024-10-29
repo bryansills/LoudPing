@@ -11,6 +11,8 @@ import ninja.bryansills.loudping.ui.home.Home
 import ninja.bryansills.loudping.ui.home.HomeScreen
 import ninja.bryansills.loudping.ui.login.Login
 import ninja.bryansills.loudping.ui.login.LoginActivity
+import ninja.bryansills.loudping.ui.playedtracks.PlayedTracks
+import ninja.bryansills.loudping.ui.playedtracks.PlayedTracksScreen
 import ninja.bryansills.loudping.ui.settings.Settings
 import ninja.bryansills.loudping.ui.settings.SettingsScreen
 
@@ -24,6 +26,7 @@ fun App() {
             composable<Home> {
                 HomeScreen(
                     onStartLogin = { navController.navigate(Login) },
+                    onNavigateToPlayedTracks = { navController.navigate(PlayedTracks) },
                     onNavigateToSettings = { navController.navigate(Settings) },
                 )
             }
@@ -31,6 +34,7 @@ fun App() {
                 activityClass = LoginActivity::class
             }
             composable<Settings> { SettingsScreen() }
+            composable<PlayedTracks> { PlayedTracksScreen() }
         }
     }
 }

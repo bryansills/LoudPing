@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -29,6 +30,7 @@ import ninja.bryansills.loudping.res.R as AppR
 
 @Composable
 internal fun HomeLoggedInScreen(
+    onNavigateToPlayedTracks: () -> Unit,
     onNavigateToSettings: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeLoggedInViewModel = hiltViewModel(),
@@ -43,14 +45,16 @@ internal fun HomeLoggedInScreen(
             modifier = Modifier.align(Alignment.Center).widthIn(max = 400.dp),
         )
 
-        IconButton(
-            onClick = onNavigateToSettings,
-            modifier = Modifier.align(Alignment.BottomEnd),
-        ) {
-            Icon(
-                imageVector = Icons.Default.Settings,
-                contentDescription = stringResource(AppR.string.settings),
-            )
+        Row(modifier = Modifier.align(Alignment.BottomEnd)) {
+            Button(onClick = onNavigateToPlayedTracks) {
+                Text(text = "Played tracks")
+            }
+            IconButton(onClick = onNavigateToSettings) {
+                Icon(
+                    imageVector = Icons.Default.Settings,
+                    contentDescription = stringResource(AppR.string.settings),
+                )
+            }
         }
     }
 }

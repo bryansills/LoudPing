@@ -16,6 +16,7 @@ dependencies {
     implementation(projects.ui.destinations)
     implementation(projects.ui.login)
     implementation(projects.ui.settings)
+    implementation(projects.ui.playedTracks)
 
     implementation(libs.androidx.compose.activity)
     implementation(libs.activity.ktx)
