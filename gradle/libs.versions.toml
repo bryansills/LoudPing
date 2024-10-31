@@ -41,7 +41,7 @@ kotlinx-html = "0.11.0"
 okio = "3.9.1"
 androidDesugarJdkLibs = "2.1.2"
 sqldelight = "2.0.2"
-workmanager = "2.9.1"
+workmanager = "2.10.0"
 
 [libraries]
 # Core dependencies
