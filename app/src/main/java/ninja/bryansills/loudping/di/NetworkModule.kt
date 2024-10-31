@@ -37,16 +37,20 @@ interface NetworkModule {
 
         @Singleton
         @Provides
+        fun provideJson(): Json {
+            return Json { ignoreUnknownKeys = true }
+        }
+
+        @Singleton
+        @Provides
         fun provideSpotifyAuthService(
+            json: Json,
             authorizationHeaderInterceptor: AuthorizationHeaderInterceptor,
             networkSneak: NetworkSneak,
         ): SpotifyAuthService {
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(authorizationHeaderInterceptor)
                 .build()
-            val json = Json {
-                ignoreUnknownKeys = true
-            }
             val converterFactory = json.asConverterFactory(
                 "application/json; charset=UTF8".toMediaType(),
             )
@@ -88,12 +92,13 @@ interface NetworkModule {
         @Provides
         fun provideSpotifyService(
             interceptor: AccessTokenInterceptor,
+            json: Json,
             networkSneak: NetworkSneak,
         ): SpotifyService {
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .build()
-            val converterFactory = Json.asConverterFactory(
+            val converterFactory = json.asConverterFactory(
                 "application/json; charset=UTF8".toMediaType(),
             )
 

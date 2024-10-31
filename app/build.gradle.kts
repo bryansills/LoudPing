@@ -107,6 +107,7 @@ dependencies {
     implementation(projects.appCore)
     implementation(projects.di)
     implementation(projects.database)
+    implementation(projects.historyRecorder)
     implementation(projects.network)
     implementation(projects.networkAuth)
     implementation(projects.session)

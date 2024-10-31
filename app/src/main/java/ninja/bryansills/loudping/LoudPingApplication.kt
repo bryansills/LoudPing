@@ -11,9 +11,11 @@ class LoudPingApplication : Application(), Configuration.Provider {
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
 
-    override val workManagerConfiguration
-        get() = Configuration
-            .Builder()
-            .setWorkerFactory(workerFactory)
-            .build()
+    override val workManagerConfiguration: Configuration
+        get() {
+            return Configuration
+                .Builder()
+                .setWorkerFactory(workerFactory)
+                .build()
+        }
 }

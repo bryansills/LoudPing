@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import androidx.work.workDataOf
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.first
@@ -32,7 +33,7 @@ class HistoryRecorderWorker @AssistedInject constructor(
             simpleStorage.update(SyncedUpTo) { currentTime.toString() }
             Result.success()
         } catch (ex: Exception) {
-            Result.failure()
+            Result.failure(workDataOf("CAUSE" to ex.localizedMessage))
         }
     }
 }
