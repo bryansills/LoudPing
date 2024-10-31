@@ -500,20 +500,22 @@
 |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
 |         \--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.3 (*)
 +--- com.squareup.okhttp3:okhttp:4.12.0 (*)
-+--- androidx.work:work-runtime-ktx:2.9.1
-|    +--- androidx.work:work-runtime:2.9.1
-|    |    +--- androidx.annotation:annotation-experimental:1.0.0 -> 1.4.1 (*)
-|    |    +--- androidx.lifecycle:lifecycle-livedata:2.5.1 -> 2.8.7 (*)
++--- androidx.work:work-runtime-ktx:2.10.0
+|    +--- androidx.work:work-runtime:2.10.0
+|    |    +--- androidx.annotation:annotation-experimental:1.4.1 (*)
+|    |    +--- androidx.core:core:1.12.0 -> 1.13.1 (*)
+|    |    +--- androidx.lifecycle:lifecycle-livedata:2.6.2 -> 2.8.7 (*)
 |    |    +--- androidx.startup:startup-runtime:1.1.1
 |    |    +--- com.google.guava:listenablefuture:1.0
-|    |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
-|    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1 -> 1.9.0 (*)
-|    |    \--- androidx.work:work-runtime-ktx:2.9.1 (c)
-|    \--- androidx.work:work-runtime:2.9.1 (c)
+|    |    +--- org.jetbrains.kotlin:kotlin-stdlib -> 2.0.21 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3 -> 1.9.0 (*)
+|    |    +--- androidx.work:work-runtime-ktx:2.10.0 (c)
+|    |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (c)
+|    \--- androidx.work:work-runtime:2.10.0 (c)
 +--- androidx.hilt:hilt-work:1.2.0
 |    +--- androidx.annotation:annotation:1.1.0 -> 1.8.1 (*)
 |    +--- androidx.hilt:hilt-common:1.2.0
-|    +--- androidx.work:work-runtime:2.3.4 -> 2.9.1 (*)
+|    +--- androidx.work:work-runtime:2.3.4 -> 2.10.0 (*)
 |    \--- com.google.dagger:hilt-android:2.49 -> 2.52 (*)
 +--- org.jetbrains.kotlin:kotlin-stdlib:{strictly 2.0.21} -> 2.0.21 (c)
 +--- androidx.core:core-ktx:{strictly 1.13.1} -> 1.13.1 (c)
@@ -529,7 +531,7 @@
 +--- com.squareup.retrofit2:retrofit:{strictly 2.11.0} -> 2.11.0 (c)
 +--- com.squareup.okhttp3:okhttp:{strictly 4.12.0} -> 4.12.0 (c)
 +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:{strictly 1.0.0} -> 1.0.0 (c)
-+--- androidx.work:work-runtime-ktx:{strictly 2.9.1} -> 2.9.1 (c)
++--- androidx.work:work-runtime-ktx:{strictly 2.10.0} -> 2.10.0 (c)
 +--- androidx.hilt:hilt-work:{strictly 1.2.0} -> 1.2.0 (c)
 +--- org.jetbrains:annotations:{strictly 23.0.0} -> 23.0.0 (c)
 +--- androidx.annotation:annotation:{strictly 1.8.1} -> 1.8.1 (c)
@@ -564,7 +566,7 @@
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:{strictly 1.9.0} -> 1.9.0 (c)
 +--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:{strictly 1.7.3} -> 1.7.3 (c)
 +--- com.squareup.okio:okio:{strictly 3.9.0} -> 3.9.0 (c)
-+--- androidx.work:work-runtime:{strictly 2.9.1} -> 2.9.1 (c)
++--- androidx.work:work-runtime:{strictly 2.10.0} -> 2.10.0 (c)
 +--- androidx.hilt:hilt-common:{strictly 1.2.0} -> 1.2.0 (c)
 +--- androidx.annotation:annotation-jvm:{strictly 1.8.1} -> 1.8.1 (c)
 +--- androidx.lifecycle:lifecycle-runtime:{strictly 2.8.7} -> 2.8.7 (c)
