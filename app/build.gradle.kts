@@ -68,8 +68,8 @@ android {
         }
 
         create("release") {
-            if (rootProject.file("release/loudping-upload.jks").exists()) {
-                storeFile = rootProject.file("release/loudping-upload.jks")
+            if (rootProject.file("release/loudping-signing.jks").exists()) {
+                storeFile = rootProject.file("release/loudping-signing.jks")
 
                 val keystoreProperties = rootProject.rootProperties("release/keystore.properties")
 
