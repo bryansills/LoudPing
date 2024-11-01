@@ -17,7 +17,7 @@ jobs:
         run: echo "version.name=${GITHUB_REF:10}" >> local.properties
 
       - name: Decrypt keystore
-        run: ./.github/scripts/decrypt_keystore.sh $KEYSTORE_GPG_PASSPHRASE
+        run: ./.github/scripts/decrypt_keystore.sh $KEYSTORE_GPG_PASSPHRASE release/loudping-upload.jks release/loudping-upload.jks.gpg
         env:
           KEYSTORE_GPG_PASSPHRASE: ${{ secrets.KEYSTORE_GPG_PASSPHRASE }}
 
