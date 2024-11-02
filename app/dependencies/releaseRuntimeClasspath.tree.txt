@@ -1018,6 +1018,7 @@
 |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
 |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
 +--- project :database (*)
++--- project :history-recorder (*)
 +--- project :network (*)
 +--- project :network-auth (*)
 +--- project :session (*)
