@@ -50,6 +50,19 @@ jobs:
       - name: Make the bundle
         run: ./gradlew :app:bundleRelease --stacktrace
 
+      - name: Decrypt keystore
+        run: ./.github/scripts/decrypt_keystore.sh $APK_KEYSTORE_GPG_PASSPHRASE release/loudping-signing.jks release/loudping-googleplay.jks.gpg
+        env:
+          APK_KEYSTORE_GPG_PASSPHRASE: ${{ secrets.APK_KEYSTORE_GPG_PASSPHRASE }}
+
+      - name: Setup app signing configuration
+        run: 'echo "$APK_KEYSTORE_PROPERTIES" > release/keystore.properties'
+        env:
+          APK_KEYSTORE_PROPERTIES: ${{ secrets.APK_KEYSTORE_PROPERTIES }}
+
+      - name: Make the bundle
+        run: ./gradlew :app:assembleRelease --stacktrace
+
       - name: Upload build outputs
         uses: actions/upload-artifact@v4
         with:
