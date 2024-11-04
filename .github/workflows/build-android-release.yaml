@@ -16,12 +16,12 @@ jobs:
       - name: Set version name
         run: echo "version.name=${GITHUB_REF:10}" >> local.properties
 
-      - name: Decrypt keystore
+      - name: Decrypt AAB keystore
         run: ./.github/scripts/decrypt_keystore.sh $KEYSTORE_GPG_PASSPHRASE release/loudping-signing.jks release/loudping-upload.jks.gpg
         env:
           KEYSTORE_GPG_PASSPHRASE: ${{ secrets.KEYSTORE_GPG_PASSPHRASE }}
 
-      - name: Setup app signing configuration
+      - name: Setup AAB signing configuration
         run: 'echo "$KEYSTORE_PROPERTIES" > release/keystore.properties'
         env:
           KEYSTORE_PROPERTIES: ${{ secrets.KEYSTORE_PROPERTIES }}
@@ -47,20 +47,20 @@ jobs:
             RAW_BASEAUTHAPIURL: ${{ secrets.RAW_BASEAUTHAPIURL }}
             RAW_AUTHORIZEURL: ${{ secrets.RAW_AUTHORIZEURL }}
 
-      - name: Make the bundle
+      - name: Make the app bundle
         run: ./gradlew :app:bundleRelease --stacktrace
 
-      - name: Decrypt keystore
+      - name: Decrypt APK keystore
         run: ./.github/scripts/decrypt_keystore.sh $APK_KEYSTORE_GPG_PASSPHRASE release/loudping-signing.jks release/loudping-googleplay.jks.gpg
         env:
           APK_KEYSTORE_GPG_PASSPHRASE: ${{ secrets.APK_KEYSTORE_GPG_PASSPHRASE }}
 
-      - name: Setup app signing configuration
+      - name: Setup APK signing configuration
         run: 'echo "$APK_KEYSTORE_PROPERTIES" > release/keystore.properties'
         env:
           APK_KEYSTORE_PROPERTIES: ${{ secrets.APK_KEYSTORE_PROPERTIES }}
 
-      - name: Make the bundle
+      - name: Make the APK
         run: ./gradlew :app:assembleRelease --stacktrace
 
       - name: Upload build outputs

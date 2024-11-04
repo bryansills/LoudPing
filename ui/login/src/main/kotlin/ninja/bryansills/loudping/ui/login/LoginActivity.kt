@@ -16,6 +16,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ninja.bryansills.loudping.app.theme.primaryAsColorInt
@@ -31,8 +32,15 @@ class LoginActivity : ComponentActivity() {
     private val launchCustomTab = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult(),
     ) { result ->
-        if (result.resultCode == RESULT_CANCELED && viewModel.progress == LoginProgress.LoggingIn) {
-            finish()
+        lifecycleScope.launch {
+            binding.progress.visibility = View.VISIBLE
+
+            // timing here is terrible. give the system a bit of time to call `onNewIntent()`.
+            delay(500)
+
+            if (result.resultCode == RESULT_CANCELED && viewModel.progress == LoginProgress.LoggingIn) {
+                finish()
+            }
         }
     }
 

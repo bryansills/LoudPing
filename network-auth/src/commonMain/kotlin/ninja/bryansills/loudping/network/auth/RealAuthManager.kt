@@ -71,7 +71,8 @@ class RealAuthManager(
     }
 
     override suspend fun setAuthorizationCode(state: String, code: String, startTime: Instant): String {
-        require(state == getFullState(startTime))
+        val localCalculatedState = getFullState(startTime)
+        require(state == localCalculatedState)
 
         simpleStorage.edit {
             it.remove(Stored.RefreshToken.key)
