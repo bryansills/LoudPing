@@ -1,10 +1,12 @@
 package ninja.bryansills.loudping.app.core
 
+import android.app.Activity
 import androidx.compose.runtime.Composable
 import androidx.navigation.activity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kotlin.reflect.KClass
 import ninja.bryansills.loudping.app.core.navigation.DarkModeStatusBarDisposableEffect
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
 import ninja.bryansills.loudping.ui.home.Home
@@ -31,7 +33,7 @@ fun App() {
                 )
             }
             activity<Login> {
-                activityClass = LoginActivity::class
+                activityClass = (LoginActivity::class as KClass<out Activity>)
             }
             composable<Settings> { SettingsScreen() }
             composable<PlayedTracks> { PlayedTracksScreen() }

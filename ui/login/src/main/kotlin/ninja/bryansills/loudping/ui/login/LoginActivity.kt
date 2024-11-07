@@ -33,6 +33,7 @@ class LoginActivity : ComponentActivity() {
         ActivityResultContracts.StartActivityForResult(),
     ) { result ->
         lifecycleScope.launch {
+            binding.loginContent.visibility = View.GONE
             binding.progress.visibility = View.VISIBLE
 
             // timing here is terrible. give the system a bit of time to call `onNewIntent()`.
@@ -50,7 +51,7 @@ class LoginActivity : ComponentActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (viewModel.progress == LoginProgress.Initializing) {
+        binding.loginButton.setOnClickListener {
             viewModel.progress = LoginProgress.LoggingIn
             launchCustomTab.launch(
                 input = createCustomTabIntent(viewModel.loginUrl),
@@ -98,6 +99,7 @@ class LoginActivity : ComponentActivity() {
         val state = intent.data?.getQueryParameter("state")
 
         if (code != null && state != null) {
+            binding.loginContent.visibility = View.GONE
             binding.progress.visibility = View.VISIBLE
             viewModel.setAuthorizationCode(code, state)
         } else {

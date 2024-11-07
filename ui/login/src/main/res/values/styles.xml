@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Transparent" parent="android:Theme.Translucent.NoTitleBar">
+    <style name="Theme.Transparent" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
+
+        <item name="colorPrimary">#FF6A340F</item>
+        <item name="colorPrimaryDark">#FFFFBC97</item>
+        <item name="colorSecondary">#FF673052</item>
+        <item name="android:colorBackground">#FFFFF8F6</item>
+        <item name="colorError">#FF8C0009</item>
     </style>
 </resources>

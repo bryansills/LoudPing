@@ -3,6 +3,8 @@ package ninja.bryansills.loudping.ui.playedtracks
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,18 +27,20 @@ fun PlayedTracksScreen(
         Column(modifier = screenModifier) {
             if (tracks.isEmpty()) {
                 Text(text = "Nothing played...")
-            }
-
-            tracks.forEach { record ->
-                Column(modifier = Modifier.padding(8.dp)) {
-                    Text(
-                        text = record.trackTitle,
-                        style = LoudPingTheme.typography.titleLarge,
-                    )
-                    Text(
-                        text = record.trackNumber.toString(),
-                        style = LoudPingTheme.typography.titleSmall,
-                    )
+            } else {
+                LazyColumn {
+                    items(tracks) { record ->
+                        Column(modifier = Modifier.padding(8.dp)) {
+                            Text(
+                                text = record.trackTitle,
+                                style = LoudPingTheme.typography.titleLarge,
+                            )
+                            Text(
+                                text = record.trackNumber.toString(),
+                                style = LoudPingTheme.typography.titleSmall,
+                            )
+                        }
+                    }
                 }
             }
         }
