@@ -65,7 +65,9 @@ class LoginActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.loginComplete.collectLatest { finish() }
+                viewModel.loginComplete.collectLatest {
+                    finish()
+                }
             }
         }
     }

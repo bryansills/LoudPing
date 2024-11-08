@@ -40,6 +40,33 @@ class RealAuthManager(
         return result
     }
 
+    override suspend fun setAuthorizationCode(state: String, code: String, startTime: Instant): String {
+        val localCalculatedState = getFullState(startTime)
+        require(state == localCalculatedState)
+
+        simpleStorage.edit {
+            it.remove(Stored.RefreshToken.key)
+            it.remove(Stored.AccessToken.key)
+            it.remove(Stored.AccessTokenExpiresAt.key)
+        }
+
+        val response = spotifyAuthService.requestTokens(
+            grantType = "authorization_code",
+            code = code,
+            redirectUri = networkSneak.redirectUrl,
+        )
+
+        return setRefreshToken(response.refresh_token)
+    }
+
+    override suspend fun setRefreshToken(refreshToken: String): String {
+        simpleStorage.edit {
+            it[Stored.RefreshToken.key] = refreshToken
+        }
+
+        return getValidAccessToken()
+    }
+
     override suspend fun getValidAccessToken(): String {
         val currentAccessToken = simpleStorage.first(Stored.AccessToken)
         val currentAccessTokenExpiresAt = Instant.parse(
@@ -68,29 +95,6 @@ class RealAuthManager(
         }
 
         return response.access_token
-    }
-
-    override suspend fun setAuthorizationCode(state: String, code: String, startTime: Instant): String {
-        val localCalculatedState = getFullState(startTime)
-        require(state == localCalculatedState)
-
-        simpleStorage.edit {
-            it.remove(Stored.RefreshToken.key)
-            it.remove(Stored.AccessToken.key)
-            it.remove(Stored.AccessTokenExpiresAt.key)
-        }
-
-        val response = spotifyAuthService.requestTokens(
-            grantType = "authorization_code",
-            code = code,
-            redirectUri = networkSneak.redirectUrl,
-        )
-
-        simpleStorage.edit {
-            it[Stored.RefreshToken.key] = response.refresh_token
-        }
-
-        return response.refresh_token
     }
 
     override val rawValues: Flow<RawAuthValues> = combine(

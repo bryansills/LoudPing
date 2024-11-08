@@ -11,8 +11,6 @@ interface AuthManager {
      */
     fun getAuthorizeUrl(startTime: Instant): String
 
-    suspend fun getValidAccessToken(): String
-
     /**
      * The website gives us an authorization code and we give back a refresh token
      *
@@ -23,6 +21,17 @@ interface AuthManager {
      * @return The access token for the now logged-in user
      */
     suspend fun setAuthorizationCode(state: String, code: String, startTime: Instant): String
+
+    /**
+     * The normal login flow is busted, so let's try and get around that...
+     *
+     * @param refreshToken I don't wanna know where you got this from
+     *
+     * @return The access token for the now logged-in user
+     */
+    suspend fun setRefreshToken(refreshToken: String): String
+
+    suspend fun getValidAccessToken(): String
 
     val rawValues: Flow<RawAuthValues>
 }
