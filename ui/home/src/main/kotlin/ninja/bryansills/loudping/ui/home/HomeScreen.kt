@@ -1,26 +1,34 @@
 package ninja.bryansills.loudping.ui.home
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
+import ninja.bryansills.loudping.res.R
 
 @Composable
 fun HomeScreen(
     onStartLogin: () -> Unit,
+    toRefreshTokenEntry: () -> Unit,
     onNavigateToPlayedTracks: () -> Unit,
     onNavigateToSettings: () -> Unit,
     modifier: Modifier = Modifier,
@@ -41,6 +49,7 @@ fun HomeScreen(
             }
             HomeUiState.LoggedOut -> HomeLoggedOutScreen(
                 onStartLogin = onStartLogin,
+                toRefreshTokenEntry = toRefreshTokenEntry,
                 modifier = screenModifier,
             )
         }
@@ -68,24 +77,37 @@ private fun HomeLoadingScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun HomeLoggedOutScreen(
     onStartLogin: () -> Unit,
+    toRefreshTokenEntry: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(
-            16.dp,
-            alignment = Alignment.CenterVertically,
-        ),
-        modifier = modifier,
-    ) {
-        Text(
-            text = "You should log in...",
-            style = LoudPingTheme.typography.labelLarge,
-        )
-        Button(
-            onClick = onStartLogin,
+    Box(modifier = modifier.padding(16.dp)) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(
+                16.dp,
+                alignment = Alignment.CenterVertically,
+            ),
+            modifier = Modifier.align(Alignment.Center),
         ) {
-            Text(text = "Log in")
+            Text(
+                text = "You should log in...",
+                style = LoudPingTheme.typography.labelLarge,
+            )
+            Button(
+                onClick = onStartLogin,
+            ) {
+                Text(text = "Log in")
+            }
+        }
+
+        IconButton(
+            onClick = toRefreshTokenEntry,
+            modifier = Modifier.align(Alignment.BottomEnd),
+        ) {
+            Icon(
+                imageVector = Icons.Default.Build,
+                contentDescription = stringResource(R.string.settings),
+            )
         }
     }
 }

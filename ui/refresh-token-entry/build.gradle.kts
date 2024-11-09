@@ -3,13 +3,12 @@ plugins {
 }
 
 android {
-    namespace = "ninja.bryansills.loudping.ui.home"
+    namespace = "ninja.bryansills.loudping.ui.refreshtokenentry"
 }
 
 dependencies {
-    implementation(projects.session)
+    implementation(projects.networkAuth)
     implementation(projects.appTheme)
     implementation(projects.androidAppRes)
-    implementation(projects.foreman)
-    implementation(libs.androidx.compose.icons)
+    implementation(projects.ui.destinations)
 }

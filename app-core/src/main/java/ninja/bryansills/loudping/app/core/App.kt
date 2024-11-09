@@ -15,6 +15,8 @@ import ninja.bryansills.loudping.ui.login.Login
 import ninja.bryansills.loudping.ui.login.LoginActivity
 import ninja.bryansills.loudping.ui.playedtracks.PlayedTracks
 import ninja.bryansills.loudping.ui.playedtracks.PlayedTracksScreen
+import ninja.bryansills.loudping.ui.refreshtokenentry.RefreshTokenEntry
+import ninja.bryansills.loudping.ui.refreshtokenentry.refreshTokenEntry
 import ninja.bryansills.loudping.ui.settings.Settings
 import ninja.bryansills.loudping.ui.settings.SettingsScreen
 
@@ -28,6 +30,7 @@ fun App() {
             composable<Home> {
                 HomeScreen(
                     onStartLogin = { navController.navigate(Login) },
+                    toRefreshTokenEntry = { navController.navigate(RefreshTokenEntry) },
                     onNavigateToPlayedTracks = { navController.navigate(PlayedTracks) },
                     onNavigateToSettings = { navController.navigate(Settings) },
                 )
@@ -37,6 +40,9 @@ fun App() {
             }
             composable<Settings> { SettingsScreen() }
             composable<PlayedTracks> { PlayedTracksScreen() }
+            refreshTokenEntry(
+                onDismiss = { navController.popBackStack() },
+            )
         }
     }
 }
