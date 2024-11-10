@@ -44,11 +44,7 @@ class RealAuthManager(
         val localCalculatedState = getFullState(startTime)
         require(state == localCalculatedState)
 
-        simpleStorage.edit {
-            it.remove(Stored.RefreshToken.key)
-            it.remove(Stored.AccessToken.key)
-            it.remove(Stored.AccessTokenExpiresAt.key)
-        }
+        resetAuthenticationState()
 
         val response = spotifyAuthService.requestTokens(
             grantType = "authorization_code",
@@ -60,41 +56,52 @@ class RealAuthManager(
     }
 
     override suspend fun setRefreshToken(refreshToken: String): String {
-        simpleStorage.edit {
-            it[Stored.RefreshToken.key] = refreshToken
-        }
-
-        return getValidAccessToken()
+        return getValidAccessTokenInternal { refreshToken }
     }
 
     override suspend fun getValidAccessToken(): String {
-        val currentAccessToken = simpleStorage.first(Stored.AccessToken)
-        val currentAccessTokenExpiresAt = Instant.parse(
-            simpleStorage.first(Stored.AccessTokenExpiresAt),
-        )
+        return getValidAccessTokenInternal {
+            simpleStorage.first(Stored.RefreshToken)
+        }
+    }
 
-        if (timeProvider.now < currentAccessTokenExpiresAt) {
-            return currentAccessToken
-        } else {
-            simpleStorage.edit {
-                it.remove(Stored.AccessToken.key)
-                it.remove(Stored.AccessTokenExpiresAt.key)
+    private suspend fun getValidAccessTokenInternal(
+        provideRefreshToken: suspend () -> String,
+    ): String {
+        return try {
+            val currentAccessToken = simpleStorage.first(Stored.AccessToken)
+            val currentAccessTokenExpiresAt = Instant.parse(
+                simpleStorage.first(Stored.AccessTokenExpiresAt),
+            )
+
+            if (timeProvider.now < currentAccessTokenExpiresAt) {
+                return currentAccessToken
+            } else {
+                simpleStorage.edit {
+                    it.remove(Stored.AccessToken.key)
+                    it.remove(Stored.AccessTokenExpiresAt.key)
+                }
             }
+
+            val refreshToken = provideRefreshToken()
+            val response = spotifyAuthService.refreshTokens(
+                grantType = "refresh_token",
+                refreshToken = refreshToken,
+                clientId = networkSneak.clientId,
+            )
+
+            simpleStorage.edit {
+                it[Stored.RefreshToken.key] = refreshToken
+                it[Stored.AccessToken.key] = response.access_token
+                val expiresAt = timeProvider.now + response.expires_in.seconds
+                it[Stored.AccessTokenExpiresAt.key] = expiresAt.toString()
+            }
+
+            response.access_token
+        } catch (ex: Exception) {
+            resetAuthenticationState()
+            throw ex
         }
-
-        val response = spotifyAuthService.refreshTokens(
-            grantType = "refresh_token",
-            refreshToken = simpleStorage.first(Stored.RefreshToken),
-            clientId = networkSneak.clientId,
-        )
-
-        simpleStorage.edit {
-            it[Stored.AccessToken.key] = response.access_token
-            val expiresAt = timeProvider.now + response.expires_in.seconds
-            it[Stored.AccessTokenExpiresAt.key] = expiresAt.toString()
-        }
-
-        return response.access_token
     }
 
     override val rawValues: Flow<RawAuthValues> = combine(
@@ -103,6 +110,14 @@ class RealAuthManager(
         simpleStorage[Stored.RefreshToken],
     ) { accessToken, accessTokenExpiresAt, refreshToken ->
         RawAuthValues(accessToken, Instant.parse(accessTokenExpiresAt), refreshToken)
+    }
+
+    private suspend fun resetAuthenticationState() {
+        simpleStorage.edit {
+            it.remove(Stored.RefreshToken.key)
+            it.remove(Stored.AccessToken.key)
+            it.remove(Stored.AccessTokenExpiresAt.key)
+        }
     }
 }
 

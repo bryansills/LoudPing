@@ -1,7 +1,6 @@
 package ninja.bryansills.loudping.history.recorder
 
 import kotlin.time.Duration.Companion.seconds
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.database.DatabaseService
@@ -20,7 +19,7 @@ class RealHistoryRecorder(
     override suspend operator fun invoke(
         startAt: Instant,
         stopAt: Instant?,
-    ): Result<TrackHistoryResult> = coroutineScope {
+    ): Result<TrackHistoryResult> {
         if (stopAt != null) {
             check(startAt > stopAt)
         }
@@ -54,7 +53,8 @@ class RealHistoryRecorder(
         } else {
             TrackHistoryResult.NothingPlayed
         }
-        Result.success(result)
+
+        return Result.success(result)
     }
 }
 
