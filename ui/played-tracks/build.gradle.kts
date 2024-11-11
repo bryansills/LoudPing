@@ -9,4 +9,5 @@ android {
 dependencies {
     implementation(projects.database)
     implementation(projects.appTheme)
+    implementation(libs.kotlinx.datetime)
 }
