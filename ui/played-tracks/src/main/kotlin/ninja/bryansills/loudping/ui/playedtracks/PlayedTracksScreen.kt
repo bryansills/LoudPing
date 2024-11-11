@@ -47,7 +47,7 @@ fun PlayedTracksScreen(
                             title = track.trackTitle,
                             artist = "TODO Artist",
                             playedAt = track.timestamp,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
                         )
                     }
                 }
@@ -61,7 +61,7 @@ private fun PlayedTrack(
     title: String,
     artist: String,
     playedAt: Instant,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -93,7 +93,7 @@ private fun PlayedTrack(
         Text(
             text = playedAt.relativeFormatted(),
             style = LoudPingTheme.typography.labelMedium,
-            color = LoudPingTheme.colorScheme.onBackground.copy(alpha = 0.65f)
+            color = LoudPingTheme.colorScheme.onBackground.copy(alpha = 0.65f),
         )
     }
 }
@@ -108,7 +108,7 @@ private fun Instant.relativeFormatted(
             this.toEpochMilliseconds(),
             DateUtils.MINUTE_IN_MILLIS,
             DateUtils.WEEK_IN_MILLIS,
-            0
+            0,
         )
         .toString()
 }

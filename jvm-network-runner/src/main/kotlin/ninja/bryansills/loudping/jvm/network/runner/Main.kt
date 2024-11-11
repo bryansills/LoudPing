@@ -1,7 +1,7 @@
 package ninja.bryansills.loudping.jvm.network.runner
 
 import kotlin.system.exitProcess
-import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.days
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +25,7 @@ fun main() {
         val historyRecorder = RealHistoryRecorder(networkService, databaseService)
 
         val start = Clock.System.now()
-        val end = start - 5.hours
+        val end = start - 5.days
 
         val syncedTo = historyRecorder(start, end)
         println("Synced tracks all the way back to $syncedTo")

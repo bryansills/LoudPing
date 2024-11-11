@@ -45,7 +45,7 @@ sealed class ContextType {
 }
 
 object ContextTypeSerializer : KSerializer<ContextType> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("CoolEnum", PrimitiveKind.STRING)
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("ContextType", PrimitiveKind.STRING)
 
     override fun serialize(encoder: Encoder, value: ContextType) {
         val string = when (value) {
