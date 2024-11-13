@@ -17,6 +17,7 @@ plugins {
     alias(libs.plugins.dependency.analysis)
     alias(libs.plugins.dependency.guard) apply false
     alias(libs.plugins.parcelize) apply false
+    alias(libs.plugins.bugsnag) apply false
 }
 
 dependencyAnalysis {

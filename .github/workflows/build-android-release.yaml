@@ -49,6 +49,8 @@ jobs:
 
       - name: Make the app bundle
         run: ./gradlew :app:bundleRelease --stacktrace
+        env:
+          BUGSNAG_API_KEY: ${{ secrets.BUGSNAG_API_KEY }}
 
       - name: Decrypt APK keystore
         run: ./.github/scripts/decrypt_keystore.sh $APK_KEYSTORE_GPG_PASSPHRASE release/loudping-signing.jks release/loudping-googleplay.jks.gpg
@@ -62,6 +64,8 @@ jobs:
 
       - name: Make the APK
         run: ./gradlew :app:assembleRelease --stacktrace
+        env:
+          BUGSNAG_API_KEY: ${{ secrets.BUGSNAG_API_KEY }}
 
       - name: Upload build outputs
         uses: actions/upload-artifact@v4

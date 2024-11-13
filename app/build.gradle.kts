@@ -8,6 +8,7 @@ import org.jetbrains.kotlin.util.capitalizeDecapitalize.toUpperCaseAsciiOnly
 plugins {
     id("ninja-bryansills-compose-android-app")
     kotlin("plugin.serialization")
+    alias(libs.plugins.bugsnag)
 }
 
 android {
@@ -57,6 +58,8 @@ android {
             "SneakAuthorizeUrl",
             rootSecrets.getSecret("sneak.authorizeurl"),
         )
+
+        manifestPlaceholders["BUGSNAG_API_KEY"] = rootSecrets.getSecret("bugsnag.api.key")
     }
 
     signingConfigs {
@@ -126,6 +129,8 @@ dependencies {
 
     implementation(libs.workmanager)
     implementation(libs.workmanager.hilt)
+
+    implementation(libs.bugsnag)
 }
 
 /**
