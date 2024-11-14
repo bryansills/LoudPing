@@ -23,6 +23,5 @@ class LoudPingApplication : Application(), Configuration.Provider {
     override fun onCreate() {
         super.onCreate()
         Bugsnag.start(this)
-        Bugsnag.notify(RuntimeException("is bugsnag working?"))
     }
 }

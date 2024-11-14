@@ -1,5 +1,8 @@
 package ninja.bryansills.loudping.network.auth
 
+import com.slack.eithernet.ApiResult
+import com.slack.eithernet.exceptionOrNull
+import com.slack.eithernet.successOrNothing
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.flow.Flow
@@ -46,13 +49,17 @@ class RealAuthManager(
 
         resetAuthenticationState()
 
-        val response = spotifyAuthService.requestTokens(
+        val apiResponse = spotifyAuthService.requestTokens(
             grantType = "authorization_code",
             code = code,
             redirectUri = networkSneak.redirectUrl,
         )
 
-        return setRefreshToken(response.refresh_token)
+        val successResponse = apiResponse.successOrNothing { failure ->
+            throw failure.exceptionOrNull() ?: RuntimeException(failure.toString())
+        }
+
+        return setRefreshToken(successResponse.refresh_token)
     }
 
     override suspend fun setRefreshToken(refreshToken: String): String {
@@ -68,40 +75,53 @@ class RealAuthManager(
     private suspend fun getValidAccessTokenInternal(
         provideRefreshToken: suspend () -> String,
     ): String {
-        return try {
-            val currentAccessToken = simpleStorage.first(Stored.AccessToken)
-            val currentAccessTokenExpiresAt = Instant.parse(
-                simpleStorage.first(Stored.AccessTokenExpiresAt),
-            )
+        val currentAccessToken = simpleStorage.first(Stored.AccessToken)
+        val currentAccessTokenExpiresAt = Instant.parse(
+            simpleStorage.first(Stored.AccessTokenExpiresAt),
+        )
 
-            if (timeProvider.now < currentAccessTokenExpiresAt) {
-                return currentAccessToken
-            } else {
-                simpleStorage.edit {
-                    it.remove(Stored.AccessToken.key)
-                    it.remove(Stored.AccessTokenExpiresAt.key)
+        if (timeProvider.now < currentAccessTokenExpiresAt) {
+            return currentAccessToken
+        } else {
+            simpleStorage.edit {
+                it.remove(Stored.AccessToken.key)
+                it.remove(Stored.AccessTokenExpiresAt.key)
+            }
+        }
+
+        val refreshToken = provideRefreshToken()
+        val apiResponse = spotifyAuthService.refreshTokens(
+            grantType = "refresh_token",
+            refreshToken = refreshToken,
+            clientId = networkSneak.clientId,
+        )
+
+        val successResponse = apiResponse.successOrNothing { failure ->
+            (failure as? ApiResult.Failure.HttpFailure)?.let { httpFailure ->
+                when (httpFailure.code) {
+                    401 -> {
+                        simpleStorage.edit {
+                            it.remove(Stored.AccessToken.key)
+                            it.remove(Stored.AccessTokenExpiresAt.key)
+                        }
+                    }
+                    429 -> {
+                        resetAuthenticationState()
+                    }
+                    else -> {}
                 }
             }
-
-            val refreshToken = provideRefreshToken()
-            val response = spotifyAuthService.refreshTokens(
-                grantType = "refresh_token",
-                refreshToken = refreshToken,
-                clientId = networkSneak.clientId,
-            )
-
-            simpleStorage.edit {
-                it[Stored.RefreshToken.key] = refreshToken
-                it[Stored.AccessToken.key] = response.access_token
-                val expiresAt = timeProvider.now + response.expires_in.seconds
-                it[Stored.AccessTokenExpiresAt.key] = expiresAt.toString()
-            }
-
-            response.access_token
-        } catch (ex: Exception) {
-            resetAuthenticationState()
-            throw ex
+            throw failure.exceptionOrNull() ?: RuntimeException(failure.toString())
         }
+
+        simpleStorage.edit {
+            it[Stored.RefreshToken.key] = refreshToken
+            it[Stored.AccessToken.key] = successResponse.access_token
+            val expiresAt = timeProvider.now + successResponse.expires_in.seconds
+            it[Stored.AccessTokenExpiresAt.key] = expiresAt.toString()
+        }
+
+        return successResponse.access_token
     }
 
     override val rawValues: Flow<RawAuthValues> = combine(

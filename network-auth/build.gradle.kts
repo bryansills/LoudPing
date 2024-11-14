@@ -17,6 +17,7 @@ kotlin {
             implementation(libs.retrofit.kotlinx.serialization)
             implementation(libs.kotlinx.serialization.runtime)
             implementation(libs.okhttp)
+            implementation(libs.eithernet)
         }
     }
 }

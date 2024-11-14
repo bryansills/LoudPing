@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.network.auth
 
+import com.slack.eithernet.ApiResult
 import ninja.bryansills.loudping.network.auth.model.AccessTokenResponse
 import ninja.bryansills.loudping.network.auth.model.RefreshTokenResponse
 import retrofit2.http.Field
@@ -13,7 +14,7 @@ interface SpotifyAuthService {
         @Field("grant_type") grantType: String,
         @Field("code") code: String,
         @Field("redirect_uri") redirectUri: String,
-    ): RefreshTokenResponse
+    ): ApiResult<RefreshTokenResponse, Unit>
 
     @FormUrlEncoded
     @POST("/api/token")
@@ -21,5 +22,5 @@ interface SpotifyAuthService {
         @Field("grant_type") grantType: String,
         @Field("refresh_token") refreshToken: String,
         @Field("client_id") clientId: String,
-    ): AccessTokenResponse
+    ): ApiResult<AccessTokenResponse, Unit>
 }
