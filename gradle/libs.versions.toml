@@ -108,4 +108,4 @@ hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-bugsnag = { id = "com.bugsnag.gradle", version = "0.+" }
+bugsnag = { id = "com.bugsnag.gradle", version = "0.3.0" }
