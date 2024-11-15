@@ -54,7 +54,7 @@ androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
-bugsnag = { module = "com.bugsnag:bugsnag-android", version = "6.9.0" }
+bugsnag = { module = "com.bugsnag:bugsnag-android", version = "6.10.0" }
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
