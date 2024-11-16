@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.history.recorder.HistoryRecorder
+import ninja.bryansills.loudping.logger.Logger
+import ninja.bryansills.loudping.logger.e
 import ninja.bryansills.loudping.storage.SimpleEntry
 import ninja.bryansills.loudping.storage.SimpleStorage
 import ninja.bryansills.loudping.time.TimeProvider
@@ -23,6 +25,7 @@ class HistoryRecorderWorker @AssistedInject constructor(
     private val historyRecorder: HistoryRecorder,
     private val simpleStorage: SimpleStorage,
     private val timeProvider: TimeProvider,
+    private val logger: Logger,
 ) : CoroutineWorker(appContext, workerParams) {
     override suspend fun doWork(): Result {
         return try {
@@ -33,6 +36,7 @@ class HistoryRecorderWorker @AssistedInject constructor(
             simpleStorage.update(SyncedUpTo) { currentTime.toString() }
             Result.success()
         } catch (ex: Exception) {
+            logger.e(ex)
             Result.failure(workDataOf("CAUSE" to ex.localizedMessage))
         }
     }

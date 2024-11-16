@@ -118,6 +118,8 @@ dependencies {
     implementation(projects.sneak)
     implementation(projects.storage)
     implementation(projects.time)
+    implementation(projects.logger)
+    implementation(projects.loggerBugsnag)
 
     implementation(libs.androidx.compose.activity)
     implementation(libs.activity.ktx)
