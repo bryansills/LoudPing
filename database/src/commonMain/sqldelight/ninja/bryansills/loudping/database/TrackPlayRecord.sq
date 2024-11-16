@@ -6,3 +6,12 @@ select_all:
 SELECT *
 FROM track_play_record
 LIMIT 100;
+
+count_tracks:
+SELECT count(*) FROM track_play_record;
+
+all:
+SELECT *
+FROM track_play_record
+ORDER BY timestamp DESC
+LIMIT :limit OFFSET :offset;

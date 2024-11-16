@@ -11,12 +11,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,7 +24,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
 
@@ -33,23 +34,37 @@ fun PlayedTracksScreen(
     modifier: Modifier = Modifier,
     viewModel: PlayedTracksViewModel = hiltViewModel(),
 ) {
-    val tracks by viewModel.tracks.collectAsStateWithLifecycle()
     Scaffold(modifier = modifier) { paddingValues ->
         val screenModifier = Modifier.padding(paddingValues).fillMaxSize()
 
-        Column(modifier = screenModifier) {
-            if (tracks.isEmpty()) {
-                Text(text = "Nothing played...")
-            } else {
-                LazyColumn(modifier = Modifier.fillMaxWidth()) {
-                    items(tracks) { track ->
-                        PlayedTrack(
-                            title = track.trackTitle,
-                            artist = "TODO Artist",
-                            playedAt = track.timestamp,
-                            modifier = Modifier.fillMaxWidth(),
-                        )
-                    }
+        val pagingItems = viewModel.coolTracks.collectAsLazyPagingItems()
+        LazyColumn(modifier = screenModifier) {
+            if (pagingItems.loadState.refresh == LoadState.Loading) {
+                item {
+                    Text(
+                        text = "Waiting for items to load from the backend",
+                        modifier = Modifier.fillMaxWidth()
+                            .wrapContentWidth(Alignment.CenterHorizontally)
+                    )
+                }
+            }
+
+            items(count = pagingItems.itemCount) { index ->
+                val track = pagingItems[index]!!
+                PlayedTrack(
+                    title = track.trackTitle,
+                    artist = "TODO Artist",
+                    playedAt = track.timestamp,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
+
+            if (pagingItems.loadState.append == LoadState.Loading) {
+                item {
+                    CircularProgressIndicator(
+                        modifier = Modifier.fillMaxWidth()
+                            .wrapContentWidth(Alignment.CenterHorizontally)
+                    )
                 }
             }
         }

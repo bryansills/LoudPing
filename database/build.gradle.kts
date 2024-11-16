@@ -9,6 +9,8 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.datetime)
+            api(libs.paging)
+            implementation(libs.paging.sqldelight)
         }
         androidMain.dependencies {
             implementation(libs.sqldelight.android.driver)

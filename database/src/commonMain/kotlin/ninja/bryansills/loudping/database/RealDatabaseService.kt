@@ -1,6 +1,9 @@
 package ninja.bryansills.loudping.database
 
+import androidx.paging.PagingSource
 import app.cash.sqldelight.async.coroutines.awaitAsList
+import app.cash.sqldelight.paging3.QueryPagingSource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.datetime.Instant
 import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeComponents
@@ -44,17 +47,39 @@ class RealDatabaseService(
     override suspend fun getAllPlayedTracks(): List<TrackPlayRecord> {
         return database
             .trackPlayRecordQueries
-            .select_all()
+            .select_all(mapper = ::DomainTrackPlayRecord)
             .awaitAsList()
-            .map { db ->
-                TrackPlayRecord(
-                    trackId = db.track_id,
-                    trackNumber = db.track_number.toInt(),
-                    trackTitle = db.track_title,
-                    albumId = db.album_id,
-                    timestamp = Instant.parse(db.timestamp),
-                    context = db.context ?: TrackPlayContext.Unknown,
-                )
-            }
     }
+
+    override val playedTracks: PagingSource<Int, TrackPlayRecord> = QueryPagingSource(
+        countQuery = database.trackPlayRecordQueries.count_tracks(),
+        transacter = database.trackPlayRecordQueries,
+        context = Dispatchers.IO,
+        queryProvider = { limit, offset ->
+            database.trackPlayRecordQueries.all(
+                limit = limit,
+                offset = offset,
+                mapper = ::DomainTrackPlayRecord
+            )
+        }
+    )
+}
+
+private fun DomainTrackPlayRecord(
+    id: Long,
+    track_id: String,
+    track_number: Long,
+    track_title: String,
+    album_id: String,
+    timestamp: String,
+    context: TrackPlayContext?
+): TrackPlayRecord {
+    return TrackPlayRecord(
+        trackId = track_id,
+        trackNumber = track_number.toInt(),
+        trackTitle = track_title,
+        albumId = album_id,
+        timestamp = Instant.parse(timestamp),
+        context = context ?: TrackPlayContext.Unknown,
+    )
 }

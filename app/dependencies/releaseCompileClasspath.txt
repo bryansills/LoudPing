@@ -61,6 +61,7 @@ androidx.lifecycle:lifecycle-common-jvm:2.8.7
 androidx.lifecycle:lifecycle-common:2.8.7
 androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7
 androidx.lifecycle:lifecycle-livedata-core:2.8.7
+androidx.lifecycle:lifecycle-livedata-ktx:2.8.7
 androidx.lifecycle:lifecycle-livedata:2.8.7
 androidx.lifecycle:lifecycle-runtime-android:2.8.7
 androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7
@@ -73,6 +74,11 @@ androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7
 androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7
 androidx.lifecycle:lifecycle-viewmodel:2.8.7
 androidx.loader:loader:1.0.0
+androidx.paging:paging-common-android:3.3.4
+androidx.paging:paging-common-ktx:3.3.4
+androidx.paging:paging-common:3.3.4
+androidx.paging:paging-runtime:3.3.4
+androidx.recyclerview:recyclerview:1.2.1
 androidx.savedstate:savedstate-ktx:1.2.1
 androidx.savedstate:savedstate:1.2.1
 androidx.startup:startup-runtime:1.1.1

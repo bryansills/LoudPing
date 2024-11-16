@@ -89,6 +89,7 @@ androidx.lifecycle:lifecycle-common-jvm:2.8.7
 androidx.lifecycle:lifecycle-common:2.8.7
 androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7
 androidx.lifecycle:lifecycle-livedata-core:2.8.7
+androidx.lifecycle:lifecycle-livedata-ktx:2.8.7
 androidx.lifecycle:lifecycle-livedata:2.8.7
 androidx.lifecycle:lifecycle-process:2.8.7
 androidx.lifecycle:lifecycle-runtime-android:2.8.7
@@ -111,9 +112,15 @@ androidx.navigation:navigation-common:2.8.3
 androidx.navigation:navigation-compose:2.8.3
 androidx.navigation:navigation-runtime-ktx:2.8.3
 androidx.navigation:navigation-runtime:2.8.3
+androidx.paging:paging-common-android:3.3.4
+androidx.paging:paging-common-ktx:3.3.4
+androidx.paging:paging-common:3.3.4
+androidx.paging:paging-compose-android:3.3.4
+androidx.paging:paging-compose:3.3.4
+androidx.paging:paging-runtime:3.3.4
 androidx.print:print:1.0.0
 androidx.profileinstaller:profileinstaller:1.3.1
-androidx.recyclerview:recyclerview:1.1.0
+androidx.recyclerview:recyclerview:1.2.1
 androidx.resourceinspection:resourceinspection-annotation:1.0.1
 androidx.room:room-common:2.6.1
 androidx.room:room-ktx:2.6.1
@@ -133,7 +140,11 @@ androidx.viewpager2:viewpager2:1.0.0
 androidx.viewpager:viewpager:1.0.0
 androidx.work:work-runtime-ktx:2.10.0
 androidx.work:work-runtime:2.10.0
+app.cash.paging:paging-common-jvm:3.1.1-0.3.1
+app.cash.paging:paging-common:3.1.1-0.3.1
 app.cash.sqldelight:android-driver:2.0.2
+app.cash.sqldelight:androidx-paging3-extensions-jvm:2.0.2
+app.cash.sqldelight:androidx-paging3-extensions:2.0.2
 app.cash.sqldelight:async-extensions-jvm:2.0.2
 app.cash.sqldelight:async-extensions:2.0.2
 app.cash.sqldelight:runtime-jvm:2.0.2

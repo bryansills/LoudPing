@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.database
 
+import androidx.paging.PagingSource
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.database.model.TrackPlayRecord
 
@@ -17,4 +18,6 @@ interface DatabaseService {
     )
 
     suspend fun getAllPlayedTracks(): List<TrackPlayRecord>
+
+    val playedTracks: PagingSource<Int, TrackPlayRecord>
 }
