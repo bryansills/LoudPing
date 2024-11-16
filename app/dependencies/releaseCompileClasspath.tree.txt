@@ -503,6 +503,10 @@
 |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.1
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.0.21 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
++--- project :logger
+|    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
++--- project :logger-bugsnag
+|    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 +--- androidx.activity:activity-compose:1.9.3
 |    +--- androidx.activity:activity-ktx:1.9.3
 |    |    +--- androidx.activity:activity:1.9.3 (*)
