@@ -67,11 +67,11 @@ fun SettingsScreen(
             Text(
                 text = stringResource(AppR.string.background_work),
                 style = LoudPingTheme.typography.bodyLarge,
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
             )
 
             uiState.jobDetails.forEach { jobDetail ->
-                Row(modifier = Modifier.padding(16.dp)) {
+                Column(modifier = Modifier.padding(16.dp)) {
                     Text(
                         text = jobDetail.loudPingId,
                         style = LoudPingTheme.typography.bodyMedium,
