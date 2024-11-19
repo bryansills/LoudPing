@@ -44,7 +44,7 @@ fun PlayedTracksScreen(
                     Text(
                         text = "Waiting for items to load from the backend",
                         modifier = Modifier.fillMaxWidth()
-                            .wrapContentWidth(Alignment.CenterHorizontally)
+                            .wrapContentWidth(Alignment.CenterHorizontally),
                     )
                 }
             }
@@ -63,7 +63,7 @@ fun PlayedTracksScreen(
                 item {
                     CircularProgressIndicator(
                         modifier = Modifier.fillMaxWidth()
-                            .wrapContentWidth(Alignment.CenterHorizontally)
+                            .wrapContentWidth(Alignment.CenterHorizontally),
                     )
                 }
             }

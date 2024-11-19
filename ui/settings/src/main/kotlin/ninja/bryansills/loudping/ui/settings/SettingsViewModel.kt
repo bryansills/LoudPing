@@ -21,7 +21,7 @@ class SettingsViewModel @Inject constructor(
 ) : ViewModel() {
     val uiState = combine(
         authManager.rawValues,
-        foreman.jobStatus
+        foreman.jobStatus,
     ) { rawAuthValues, jobInfoMap ->
         SettingsUiState(
             rawAuthValues = rawAuthValues,
@@ -37,8 +37,8 @@ class SettingsViewModel @Inject constructor(
                     accessTokenExpiresAt = Instant.DISTANT_PAST,
                     refreshToken = "",
                 ),
-                jobDetails = listOf()
-            )
+                jobDetails = listOf(),
+            ),
         )
 }
 
@@ -69,6 +69,6 @@ private fun Map.Entry<ForemanJobs, WorkInfo>.toJobDetails(): JobDetails {
             null
         } else {
             Instant.fromEpochMilliseconds(this.value.nextScheduleTimeMillis)
-        }
+        },
     )
 }

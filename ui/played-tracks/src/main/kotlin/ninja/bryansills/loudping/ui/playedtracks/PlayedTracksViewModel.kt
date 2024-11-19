@@ -24,7 +24,7 @@ class PlayedTracksViewModel @Inject constructor(
         )
 
     val coolTracks = Pager(
-        config = PagingConfig(pageSize = 50)
+        config = PagingConfig(pageSize = 50),
     ) { databaseService.playedTracks }
         .flow
         .cachedIn(viewModelScope)

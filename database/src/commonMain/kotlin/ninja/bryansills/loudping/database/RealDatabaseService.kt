@@ -59,12 +59,13 @@ class RealDatabaseService(
             database.trackPlayRecordQueries.all(
                 limit = limit,
                 offset = offset,
-                mapper = ::DomainTrackPlayRecord
+                mapper = ::DomainTrackPlayRecord,
             )
-        }
+        },
     )
 }
 
+@Suppress("ktlint:standard:function-naming")
 private fun DomainTrackPlayRecord(
     id: Long,
     track_id: String,
@@ -72,7 +73,7 @@ private fun DomainTrackPlayRecord(
     track_title: String,
     album_id: String,
     timestamp: String,
-    context: TrackPlayContext?
+    context: TrackPlayContext?,
 ): TrackPlayRecord {
     return TrackPlayRecord(
         trackId = track_id,
