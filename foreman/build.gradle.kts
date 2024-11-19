@@ -11,7 +11,7 @@ dependencies {
     implementation(projects.storage)
     implementation(projects.time)
     implementation(projects.logger)
-    implementation(libs.workmanager)
+    api(libs.workmanager)
     ksp(libs.androidx.hilt.compiler)
     implementation(libs.workmanager.hilt)
     implementation(libs.kotlinx.datetime)

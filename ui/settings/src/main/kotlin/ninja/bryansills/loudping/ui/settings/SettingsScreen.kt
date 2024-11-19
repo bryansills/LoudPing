@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.ui.settings
 
+import ninja.bryansills.loudping.res.R as AppR
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,12 +23,12 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format
 import kotlinx.datetime.toLocalDateTime
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
-import ninja.bryansills.loudping.res.R as AppR
 
 @Composable
 fun SettingsScreen(
@@ -42,32 +43,57 @@ fun SettingsScreen(
                 .fillMaxSize(),
         ) {
             val uiState by settingsViewModel.uiState.collectAsState()
-            uiState.accessTokenExpiresAt
-                .toLocalDateTime(TimeZone.currentSystemDefault())
-                .format(LocalDateTime.Formats.ISO)
-
             SettingsItem(
                 headline = stringResource(AppR.string.refresh_token),
-                value = uiState.refreshToken,
+                value = uiState.rawAuthValues.refreshToken,
                 onCopyToClipboard = {
-                    clipboardManager.setText(AnnotatedString(uiState.refreshToken))
+                    clipboardManager.setText(AnnotatedString(uiState.rawAuthValues.refreshToken))
                 },
                 modifier = Modifier.fillMaxWidth(),
             )
             SettingsItem(
                 headline = stringResource(AppR.string.access_token),
-                value = uiState.accessToken,
+                value = uiState.rawAuthValues.accessToken,
                 subValue = stringResource(
                     AppR.string.expires_at,
-                    uiState.accessTokenExpiresAt
-                        .toLocalDateTime(TimeZone.currentSystemDefault())
-                        .format(LocalDateTime.Formats.ISO),
+                    uiState.rawAuthValues.accessTokenExpiresAt.format(),
                 ),
                 onCopyToClipboard = {
-                    clipboardManager.setText(AnnotatedString(uiState.accessToken))
+                    clipboardManager.setText(AnnotatedString(uiState.rawAuthValues.accessToken))
                 },
                 modifier = Modifier.fillMaxWidth(),
             )
+
+            Text(
+                text = stringResource(AppR.string.background_work),
+                style = LoudPingTheme.typography.bodyLarge,
+                modifier = Modifier.padding(16.dp),
+            )
+
+            uiState.jobDetails.forEach { jobDetail ->
+                Row(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = jobDetail.loudPingId,
+                        style = LoudPingTheme.typography.bodyMedium,
+                    )
+                    Text(
+                        text = jobDetail.internalWorkManagerId,
+                        style = LoudPingTheme.typography.bodySmall,
+                    )
+                    Text(
+                        text = stringResource(AppR.string.job_status, jobDetail.status.name),
+                        style = LoudPingTheme.typography.bodySmall,
+                    )
+                    Text(
+                        text = if (jobDetail.nextAttemptAt != null) {
+                            stringResource(AppR.string.next_run_at, jobDetail.nextAttemptAt.format())
+                        } else {
+                            stringResource(AppR.string.no_future_runs)
+                        },
+                        style = LoudPingTheme.typography.bodySmall,
+                    )
+                }
+            }
         }
     }
 }
@@ -113,4 +139,10 @@ private fun SettingsItem(
             )
         }
     }
+}
+
+private fun Instant.format(timeZone: TimeZone = TimeZone.currentSystemDefault()): String {
+    return this
+        .toLocalDateTime(timeZone)
+        .format(LocalDateTime.Formats.ISO)
 }

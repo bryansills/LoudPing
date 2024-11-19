@@ -4,4 +4,8 @@
     <string name="access_token">Access Token</string>
     <string name="expires_at">Expires at: %1$s</string>
     <string name="copy_to_clipboard">Copy to clipboard</string>
+    <string name="background_work">Background Work</string>
+    <string name="job_status">Status: %1$s</string>
+    <string name="next_run_at">Next run at: %1$s</string>
+    <string name="no_future_runs">No future runs</string>
 </resources>
