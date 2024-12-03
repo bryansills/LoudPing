@@ -22,7 +22,9 @@ class DefaultForeman @Inject constructor(
 
     override val jobStatus: Flow<Map<ForemanJobs, WorkInfo>> = workManager
         .getWorkInfosForUniqueWorkFlow(ForemanJobs.TrackSyncing.workManagerId)
-        .map { mapOf(ForemanJobs.TrackSyncing to it.first()) }
+        .map {
+            mapOf(ForemanJobs.TrackSyncing to it.first())
+        }
 }
 
 enum class ForemanJobs(val workManagerId: String) {

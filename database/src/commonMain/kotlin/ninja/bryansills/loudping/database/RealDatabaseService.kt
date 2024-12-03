@@ -8,6 +8,7 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeComponents
 import kotlinx.datetime.format.DateTimeFormat
+import ninja.bryansills.loudping.database.model.Album
 import ninja.bryansills.loudping.database.model.TrackPlayContext
 import ninja.bryansills.loudping.database.model.TrackPlayRecord
 
@@ -19,14 +20,26 @@ class RealDatabaseService(
         val queries = database.trackPlayRecordQueries
         database.transaction {
             records.forEach { record ->
-                queries.insert(
-                    record.trackId,
-                    record.trackNumber.toLong(),
-                    record.trackTitle,
-                    record.albumId,
-                    record.timestamp.format(timestampFormatter),
-                    record.context,
+                queries.insert_track(
+                    spotifyTrackId = record.trackId,
+                    trackNumber = record.trackNumber.toLong(),
+                    trackTitle = record.trackTitle,
+                    spotifyAlbumId = record.album.spotifyId,
+                    timestamp = record.timestamp.format(timestampFormatter),
+                    context = record.context,
                 )
+                queries.insert_album(
+                    spotifyId = record.album.spotifyId,
+                    trackCount = record.album.trackCount.toLong(),
+                    title = record.album.title,
+                    coverImage = record.album.coverImage,
+                )
+                record.artists.forEach { trackArtist ->
+                    queries.insert_artist(
+                        spotifyId = trackArtist.spotifyId,
+                        name = trackArtist.name,
+                    )
+                }
             }
         }
     }
@@ -79,7 +92,13 @@ private fun DomainTrackPlayRecord(
         trackId = track_id,
         trackNumber = track_number.toInt(),
         trackTitle = track_title,
-        albumId = album_id,
+        album = Album(
+            spotifyId = album_id,
+            title = "TODO TITLE",
+            trackCount = -1,
+            coverImage = null,
+        ),
+        artists = listOf(),
         timestamp = Instant.parse(timestamp),
         context = context ?: TrackPlayContext.Unknown,
     )

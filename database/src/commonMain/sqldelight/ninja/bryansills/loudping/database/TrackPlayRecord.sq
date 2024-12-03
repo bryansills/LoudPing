@@ -1,9 +1,24 @@
-insert:
-INSERT INTO track_play_record(track_id, track_number, track_title, album_id, timestamp, context)
-VALUES (?, ?, ?, ?, ?, ?);
+insert_track:
+INSERT INTO track_play_record(id, spotify_track_id, track_number, track_title, spotify_album_id, timestamp, context)
+VALUES (
+    (SELECT id FROM track_play_record WHERE spotify_track_id = :spotifyTrackId AND timestamp = :timestamp ),
+    :spotifyTrackId,
+    :trackNumber,
+    :trackTitle,
+    :spotifyAlbumId,
+    :timestamp,
+    :context
+);
 
 select_all:
-SELECT *
+SELECT
+    id,
+    spotify_track_id,
+    track_number,
+    track_title,
+    spotify_album_id,
+    timestamp,
+    context
 FROM track_play_record
 LIMIT 100;
 
@@ -11,7 +26,40 @@ count_tracks:
 SELECT count(*) FROM track_play_record;
 
 all:
-SELECT *
+SELECT
+    id,
+    spotify_track_id,
+    track_number,
+    track_title,
+    spotify_album_id,
+    timestamp,
+    context
 FROM track_play_record
 ORDER BY timestamp DESC
 LIMIT :limit OFFSET :offset;
+
+insert_album:
+INSERT INTO album(id, spotify_id, track_count, title, cover_image)
+VALUES (
+    (SELECT id FROM album WHERE spotify_id = :spotifyId),
+    :spotifyId,
+    :trackCount,
+    :title,
+    :coverImage
+);
+
+insert_artist:
+INSERT INTO artist(id, spotify_id, name)
+VALUES (
+    (SELECT id FROM artist WHERE spotify_id = :spotifyId),
+    :spotifyId,
+    :name
+);
+
+insert_track_artist:
+INSERT INTO track_artist(id, spotify_track_id, spotify_album_id)
+VALUES (
+    (SELECT id FROM track_artist WHERE spotify_track_id = :spotifyTrackId AND spotify_album_id = :spotifyAlbumId),
+    :spotifyTrackId,
+    :spotifyAlbumId
+);

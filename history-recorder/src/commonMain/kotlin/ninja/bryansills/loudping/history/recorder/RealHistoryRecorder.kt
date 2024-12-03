@@ -4,10 +4,13 @@ import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.database.DatabaseService
+import ninja.bryansills.loudping.database.model.Album
+import ninja.bryansills.loudping.database.model.Artist
 import ninja.bryansills.loudping.database.model.TrackPlayContext
 import ninja.bryansills.loudping.database.model.TrackPlayRecord
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
+import ninja.bryansills.loudping.network.model.artist.SimplifiedArtist
 import ninja.bryansills.loudping.network.model.recent.ContextType
 import ninja.bryansills.loudping.network.model.recent.PlayHistoryItem
 import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
@@ -72,11 +75,31 @@ private fun List<PlayHistoryItem>.toDatabase(stopAt: Instant?): List<TrackPlayRe
                 trackId = networkTrack.track.id,
                 trackNumber = networkTrack.track.track_number,
                 trackTitle = networkTrack.track.name,
-                albumId = networkTrack.track.album.id,
+                album = Album(
+                    spotifyId = networkTrack.track.album.id,
+                    title = networkTrack.track.album.name,
+                    trackCount = networkTrack.track.album.total_tracks,
+                    coverImage = networkTrack
+                        .track
+                        .album
+                        .images
+                        .maxByOrNull { (it.height ?: 0) * (it.width ?: 0) }
+                        ?.url,
+                ),
+                artists = networkTrack.track.artists.toDatabase(),
                 timestamp = networkTrack.played_at,
                 context = networkTrack.context.type.toDatabase(),
             )
         }
+}
+
+private fun List<SimplifiedArtist>.toDatabase(): List<Artist> {
+    return this.map { networkArtist ->
+        Artist(
+            spotifyId = networkArtist.id,
+            name = networkArtist.name,
+        )
+    }
 }
 
 private fun ContextType.toDatabase(): TrackPlayContext {
