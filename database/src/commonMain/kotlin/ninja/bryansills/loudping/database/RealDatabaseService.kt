@@ -106,13 +106,13 @@ class RealDatabaseService(
                                         )
                                     },
                                     timestamp = Instant.parse(firstRow.timestamp),
-                                    context = TrackPlayContext.Unknown // TODO: fill in
+                                    context = TrackPlayContext.Unknown, // TODO: fill in
                                 )
                             } else {
                                 null
                             }
                         }
-                }
+                },
             )
         }
 }
