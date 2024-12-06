@@ -63,7 +63,7 @@ jobs:
           APK_KEYSTORE_PROPERTIES: ${{ secrets.APK_KEYSTORE_PROPERTIES }}
 
       - name: Make the APK
-        run: ./gradlew :app:assembleRelease --stacktrace
+        run: ./gradlew :app:assembleRelease bugsnagUploadReleaseProguardMapping bugsnagCreateReleaseBuild --stacktrace
         env:
           BUGSNAG_API_KEY: ${{ secrets.BUGSNAG_API_KEY }}
 
