@@ -882,38 +882,38 @@
 |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
 |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
 |    |    |    |    +--- project :database
-|    |    |    |    |    +--- app.cash.sqldelight:android-driver:2.0.2
+|    |    |    |    |    +--- app.cash.sqldelight:android-driver:2.1.0-SNAPSHOT
 |    |    |    |    |    |    +--- androidx.sqlite:sqlite-framework:2.4.0 (*)
-|    |    |    |    |    |    +--- app.cash.sqldelight:runtime:2.0.2
-|    |    |    |    |    |    |    \--- app.cash.sqldelight:runtime-jvm:2.0.2
-|    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
+|    |    |    |    |    |    +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT
+|    |    |    |    |    |    |    \--- app.cash.sqldelight:runtime-jvm:2.1.0-SNAPSHOT
+|    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
 |    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.4.0 (*)
-|    |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
+|    |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
 |    |    |    |    |    +--- androidx.paging:paging-common:3.3.4
 |    |    |    |    |    |    \--- androidx.paging:paging-common-android:3.3.4
 |    |    |    |    |    |         +--- androidx.annotation:annotation:1.8.1 -> 1.9.1 (*)
 |    |    |    |    |    |         +--- androidx.arch.core:core-common:2.2.0 (*)
 |    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
 |    |    |    |    |    |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3 -> 1.9.0 (*)
-|    |    |    |    |    +--- app.cash.sqldelight:runtime:2.0.2 (*)
-|    |    |    |    |    +--- app.cash.sqldelight:async-extensions:2.0.2
-|    |    |    |    |    |    \--- app.cash.sqldelight:async-extensions-jvm:2.0.2
-|    |    |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0 -> 1.9.0 (*)
-|    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
-|    |    |    |    |    |         \--- app.cash.sqldelight:runtime:2.0.2 (*)
+|    |    |    |    |    +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT (*)
+|    |    |    |    |    +--- app.cash.sqldelight:async-extensions:2.1.0-SNAPSHOT
+|    |    |    |    |    |    \--- app.cash.sqldelight:async-extensions-jvm:2.1.0-SNAPSHOT
+|    |    |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
+|    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
+|    |    |    |    |    |         \--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT (*)
 |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
-|    |    |    |    |    \--- app.cash.sqldelight:androidx-paging3-extensions:2.0.2
-|    |    |    |    |         \--- app.cash.sqldelight:androidx-paging3-extensions-jvm:2.0.2
-|    |    |    |    |              +--- app.cash.sqldelight:runtime:2.0.2 (*)
+|    |    |    |    |    \--- app.cash.sqldelight:androidx-paging3-extensions:2.1.0-SNAPSHOT
+|    |    |    |    |         \--- app.cash.sqldelight:androidx-paging3-extensions-jvm:2.1.0-SNAPSHOT
+|    |    |    |    |              +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT (*)
 |    |    |    |    |              +--- app.cash.paging:paging-common:3.1.1-0.3.1
 |    |    |    |    |              |    \--- app.cash.paging:paging-common-jvm:3.1.1-0.3.1
 |    |    |    |    |              |         +--- androidx.paging:paging-common:3.1.1 -> 3.3.4 (*)
 |    |    |    |    |              |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10 -> 1.9.0 (*)
 |    |    |    |    |              |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4 -> 1.9.0 (*)
-|    |    |    |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
-|    |    |    |    |              \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0 -> 1.9.0 (*)
+|    |    |    |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
+|    |    |    |    |              \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
 |    |    |    |    \--- project :network
 |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
