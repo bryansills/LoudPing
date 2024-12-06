@@ -375,13 +375,13 @@
 |    |         +--- androidx.arch.core:core-common:2.2.0 (*)
 |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
 |    |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3 -> 1.9.0 (*)
-|    +--- app.cash.sqldelight:runtime:2.0.2
-|    |    \--- app.cash.sqldelight:runtime-jvm:2.0.2
-|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
-|    +--- app.cash.sqldelight:async-extensions:2.0.2
-|    |    \--- app.cash.sqldelight:async-extensions-jvm:2.0.2
-|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0 -> 1.9.0 (*)
-|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
+|    +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT
+|    |    \--- app.cash.sqldelight:runtime-jvm:2.1.0-SNAPSHOT
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
+|    +--- app.cash.sqldelight:async-extensions:2.1.0-SNAPSHOT
+|    |    \--- app.cash.sqldelight:async-extensions-jvm:2.1.0-SNAPSHOT
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 +--- project :history-recorder
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
@@ -581,8 +581,8 @@
 +--- androidx.savedstate:savedstate:{strictly 1.2.1} -> 1.2.1 (c)
 +--- javax.inject:javax.inject:{strictly 1} -> 1 (c)
 +--- androidx.paging:paging-common:{strictly 3.3.4} -> 3.3.4 (c)
-+--- app.cash.sqldelight:runtime:{strictly 2.0.2} -> 2.0.2 (c)
-+--- app.cash.sqldelight:async-extensions:{strictly 2.0.2} -> 2.0.2 (c)
++--- app.cash.sqldelight:runtime:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
++--- app.cash.sqldelight:async-extensions:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- androidx.datastore:datastore-preferences:{strictly 1.1.1} -> 1.1.1 (c)
 +--- org.jetbrains.kotlinx:kotlinx-datetime:{strictly 0.6.1} -> 0.6.1 (c)
 +--- androidx.compose.runtime:runtime:{strictly 1.8.0-alpha06} -> 1.8.0-alpha06 (c)
@@ -617,8 +617,8 @@
 +--- androidx.lifecycle:lifecycle-common-jvm:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.lifecycle:lifecycle-viewmodel-android:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.paging:paging-common-android:{strictly 3.3.4} -> 3.3.4 (c)
-+--- app.cash.sqldelight:runtime-jvm:{strictly 2.0.2} -> 2.0.2 (c)
-+--- app.cash.sqldelight:async-extensions-jvm:{strictly 2.0.2} -> 2.0.2 (c)
++--- app.cash.sqldelight:runtime-jvm:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
++--- app.cash.sqldelight:async-extensions-jvm:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- androidx.datastore:datastore-preferences-android:{strictly 1.1.1} -> 1.1.1 (c)
 +--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:{strictly 0.6.1} -> 0.6.1 (c)
 +--- androidx.compose.runtime:runtime-android:{strictly 1.8.0-alpha06} -> 1.8.0-alpha06 (c)
