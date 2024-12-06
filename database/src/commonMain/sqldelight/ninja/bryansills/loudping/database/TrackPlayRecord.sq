@@ -57,9 +57,33 @@ VALUES (
 );
 
 insert_track_artist:
-INSERT INTO track_artist(id, spotify_track_id, spotify_album_id)
+INSERT INTO track_artist(id, spotify_track_id, spotify_artist_id)
 VALUES (
-    (SELECT id FROM track_artist WHERE spotify_track_id = :spotifyTrackId AND spotify_album_id = :spotifyAlbumId),
+    (SELECT id FROM track_artist WHERE spotify_track_id = :spotifyTrackId AND spotify_artist_id = :spotifyArtistId),
     :spotifyTrackId,
-    :spotifyAlbumId
+    :spotifyArtistId
 );
+
+keyed_page_boundaries_play_record:
+SELECT timestamp
+FROM (
+  SELECT
+    timestamp,
+    CASE
+      WHEN ((row_number() OVER(ORDER BY timestamp DESC) - 1) % :limit) = 0 THEN 1
+      WHEN :anchor IS NOT NULL AND timestamp = :anchor THEN 1
+      ELSE 0
+    END page_boundary
+  FROM track_play_record
+  ORDER BY timestamp DESC
+)
+WHERE page_boundary = 1;
+
+get_keyed_play_records:
+SELECT track_play_record.spotify_track_id, track_play_record.track_title, track_play_record.spotify_album_id, track_play_record.timestamp, album.title AS album_title, album.cover_image, artist.name AS artist_name
+FROM track_play_record
+INNER JOIN album ON track_play_record.spotify_album_id = album.spotify_id
+INNER JOIN track_artist ON track_play_record.spotify_track_id = track_artist.spotify_track_id
+INNER JOIN artist ON track_artist.spotify_artist_id = artist.spotify_id
+WHERE timestamp >= :beginInclusive AND (timestamp < :endExclusive OR :endExclusive IS NULL)
+ORDER BY timestamp DESC;

@@ -18,7 +18,7 @@ ALTER TABLE track_play_record RENAME COLUMN album_id TO spotify_album_id;
 CREATE TABLE track_artist (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     spotify_track_id TEXT NOT NULL,
-    spotify_album_id TEXT NOT NULL
+    spotify_artist_id TEXT NOT NULL
 );
 
 -- CREATE TABLE song (

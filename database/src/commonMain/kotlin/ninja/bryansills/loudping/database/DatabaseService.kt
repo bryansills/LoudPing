@@ -19,5 +19,5 @@ interface DatabaseService {
 
     suspend fun getAllPlayedTracks(): List<TrackPlayRecord>
 
-    val playedTracks: PagingSource<Int, TrackPlayRecord>
+    val playedTracks: PagingSource<String, TrackPlayRecord>
 }
