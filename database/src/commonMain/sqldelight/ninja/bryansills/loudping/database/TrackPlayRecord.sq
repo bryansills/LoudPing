@@ -1,14 +1,19 @@
 insert_track:
 INSERT INTO track_play_record(id, spotify_track_id, track_number, track_title, spotify_album_id, timestamp, context)
 VALUES (
-    (SELECT id FROM track_play_record WHERE spotify_track_id = :spotifyTrackId AND timestamp = :timestamp ),
+    (SELECT id FROM track_play_record WHERE spotify_track_id = :spotifyTrackId AND spotify_album_id = :spotifyAlbumId AND timestamp = :timestamp ),
     :spotifyTrackId,
     :trackNumber,
     :trackTitle,
     :spotifyAlbumId,
     :timestamp,
     :context
-);
+)
+ON CONFLICT(id) DO UPDATE SET
+    track_number=excluded.track_number,
+    track_title=excluded.track_title,
+    context=excluded.context
+;
 
 select_all:
 SELECT
@@ -22,22 +27,6 @@ SELECT
 FROM track_play_record
 LIMIT 100;
 
-count_tracks:
-SELECT count(*) FROM track_play_record;
-
-all:
-SELECT
-    id,
-    spotify_track_id,
-    track_number,
-    track_title,
-    spotify_album_id,
-    timestamp,
-    context
-FROM track_play_record
-ORDER BY timestamp DESC
-LIMIT :limit OFFSET :offset;
-
 insert_album:
 INSERT INTO album(id, spotify_id, track_count, title, cover_image)
 VALUES (
@@ -46,7 +35,12 @@ VALUES (
     :trackCount,
     :title,
     :coverImage
-);
+)
+ON CONFLICT(id) DO UPDATE SET
+    track_count=excluded.track_count,
+    title=excluded.title,
+    cover_image=excluded.cover_image
+;
 
 insert_artist:
 INSERT INTO artist(id, spotify_id, name)
@@ -54,7 +48,10 @@ VALUES (
     (SELECT id FROM artist WHERE spotify_id = :spotifyId),
     :spotifyId,
     :name
-);
+)
+ON CONFLICT(id) DO UPDATE SET
+    name=excluded.name
+;
 
 insert_track_artist:
 INSERT INTO track_artist(id, spotify_track_id, spotify_artist_id)
@@ -62,7 +59,8 @@ VALUES (
     (SELECT id FROM track_artist WHERE spotify_track_id = :spotifyTrackId AND spotify_artist_id = :spotifyArtistId),
     :spotifyTrackId,
     :spotifyArtistId
-);
+)
+ON CONFLICT DO NOTHING;
 
 keyed_page_boundaries_play_record:
 SELECT timestamp
