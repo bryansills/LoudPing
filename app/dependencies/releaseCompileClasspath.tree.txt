@@ -242,14 +242,14 @@
 |         +--- androidx.compose.ui:ui-graphics:1.7.5 (c)
 |         +--- androidx.compose.ui:ui-unit:1.7.5 (c)
 |         \--- androidx.compose.ui:ui-util:1.7.5 (c)
-+--- com.google.dagger:hilt-android:2.53
-|    +--- com.google.dagger:dagger:2.53
++--- com.google.dagger:hilt-android:2.53.1
+|    +--- com.google.dagger:dagger:2.53.1
 |    |    +--- jakarta.inject:jakarta.inject-api:2.0.1
 |    |    +--- javax.inject:javax.inject:1
 |    |    \--- org.jspecify:jspecify:1.0.0
-|    +--- com.google.dagger:dagger-lint-aar:2.53
-|    +--- com.google.dagger:hilt-core:2.53
-|    |    +--- com.google.dagger:dagger:2.53 (*)
+|    +--- com.google.dagger:dagger-lint-aar:2.53.1
+|    +--- com.google.dagger:hilt-core:2.53.1
+|    |    +--- com.google.dagger:dagger:2.53.1 (*)
 |    |    +--- com.google.code.findbugs:jsr305:3.0.2
 |    |    \--- javax.inject:javax.inject:1
 |    +--- com.google.code.findbugs:jsr305:3.0.2
@@ -363,7 +363,7 @@
 |    +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1 -> 2.8.7 (*)
 |    +--- androidx.savedstate:savedstate:1.2.0 -> 1.2.1 (*)
 |    +--- javax.inject:javax.inject:1
-|    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.0-Beta5 -> 2.0.21 (*)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 +--- project :app-core
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 +--- project :di
@@ -375,13 +375,13 @@
 |    |         +--- androidx.arch.core:core-common:2.2.0 (*)
 |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
 |    |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3 -> 1.9.0 (*)
-|    +--- app.cash.sqldelight:runtime:2.0.2
-|    |    \--- app.cash.sqldelight:runtime-jvm:2.0.2
-|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
-|    +--- app.cash.sqldelight:async-extensions:2.0.2
-|    |    \--- app.cash.sqldelight:async-extensions-jvm:2.0.2
-|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0 -> 1.9.0 (*)
-|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
+|    +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT
+|    |    \--- app.cash.sqldelight:runtime-jvm:2.1.0-SNAPSHOT
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
+|    +--- app.cash.sqldelight:async-extensions:2.1.0-SNAPSHOT
+|    |    \--- app.cash.sqldelight:async-extensions-jvm:2.1.0-SNAPSHOT
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 +--- project :history-recorder
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
@@ -528,7 +528,7 @@
 |    +--- androidx.annotation:annotation:1.1.0 -> 1.9.1 (*)
 |    +--- androidx.hilt:hilt-common:1.2.0
 |    +--- androidx.work:work-runtime:2.3.4 -> 2.10.0 (*)
-|    \--- com.google.dagger:hilt-android:2.49 -> 2.53 (*)
+|    \--- com.google.dagger:hilt-android:2.49 -> 2.53.1 (*)
 +--- com.bugsnag:bugsnag-android:6.10.0
 |    +--- androidx.annotation:annotation:1.1.0 -> 1.9.1 (*)
 |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.5.10 -> 2.0.21 (*)
@@ -552,7 +552,7 @@
 +--- androidx.compose.ui:ui-tooling-preview:{strictly 1.7.5} -> 1.7.5 (c)
 +--- androidx.compose:compose-bom:{strictly 2024.11.00} -> 2024.11.00 (c)
 +--- androidx.compose.material3:material3:{strictly 1.4.0-alpha04} -> 1.4.0-alpha04 (c)
-+--- com.google.dagger:hilt-android:{strictly 2.53} -> 2.53 (c)
++--- com.google.dagger:hilt-android:{strictly 2.53.1} -> 2.53.1 (c)
 +--- org.jetbrains.kotlinx:kotlinx-serialization-json:{strictly 1.7.3} -> 1.7.3 (c)
 +--- com.squareup.retrofit2:retrofit:{strictly 2.11.0} -> 2.11.0 (c)
 +--- com.squareup.okhttp3:okhttp:{strictly 4.12.0} -> 4.12.0 (c)
@@ -568,9 +568,9 @@
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-bom:{strictly 1.9.0} -> 1.9.0 (c)
 +--- androidx.compose.material3:material3-android:{strictly 1.4.0-alpha04} -> 1.4.0-alpha04 (c)
 +--- androidx.compose.ui:ui-tooling-preview-android:{strictly 1.7.5} -> 1.7.5 (c)
-+--- com.google.dagger:dagger:{strictly 2.53} -> 2.53 (c)
-+--- com.google.dagger:dagger-lint-aar:{strictly 2.53} -> 2.53 (c)
-+--- com.google.dagger:hilt-core:{strictly 2.53} -> 2.53 (c)
++--- com.google.dagger:dagger:{strictly 2.53.1} -> 2.53.1 (c)
++--- com.google.dagger:dagger-lint-aar:{strictly 2.53.1} -> 2.53.1 (c)
++--- com.google.dagger:hilt-core:{strictly 2.53.1} -> 2.53.1 (c)
 +--- com.google.code.findbugs:jsr305:{strictly 3.0.2} -> 3.0.2 (c)
 +--- androidx.activity:activity:{strictly 1.9.3} -> 1.9.3 (c)
 +--- androidx.annotation:annotation-experimental:{strictly 1.4.1} -> 1.4.1 (c)
@@ -581,8 +581,8 @@
 +--- androidx.savedstate:savedstate:{strictly 1.2.1} -> 1.2.1 (c)
 +--- javax.inject:javax.inject:{strictly 1} -> 1 (c)
 +--- androidx.paging:paging-common:{strictly 3.3.4} -> 3.3.4 (c)
-+--- app.cash.sqldelight:runtime:{strictly 2.0.2} -> 2.0.2 (c)
-+--- app.cash.sqldelight:async-extensions:{strictly 2.0.2} -> 2.0.2 (c)
++--- app.cash.sqldelight:runtime:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
++--- app.cash.sqldelight:async-extensions:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- androidx.datastore:datastore-preferences:{strictly 1.1.1} -> 1.1.1 (c)
 +--- org.jetbrains.kotlinx:kotlinx-datetime:{strictly 0.6.1} -> 0.6.1 (c)
 +--- androidx.compose.runtime:runtime:{strictly 1.8.0-alpha06} -> 1.8.0-alpha06 (c)
@@ -617,8 +617,8 @@
 +--- androidx.lifecycle:lifecycle-common-jvm:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.lifecycle:lifecycle-viewmodel-android:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.paging:paging-common-android:{strictly 3.3.4} -> 3.3.4 (c)
-+--- app.cash.sqldelight:runtime-jvm:{strictly 2.0.2} -> 2.0.2 (c)
-+--- app.cash.sqldelight:async-extensions-jvm:{strictly 2.0.2} -> 2.0.2 (c)
++--- app.cash.sqldelight:runtime-jvm:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
++--- app.cash.sqldelight:async-extensions-jvm:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- androidx.datastore:datastore-preferences-android:{strictly 1.1.1} -> 1.1.1 (c)
 +--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:{strictly 0.6.1} -> 0.6.1 (c)
 +--- androidx.compose.runtime:runtime-android:{strictly 1.8.0-alpha06} -> 1.8.0-alpha06 (c)
