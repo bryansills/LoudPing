@@ -601,7 +601,7 @@
 |    +--- androidx.compose.material3:material3:1.4.0-alpha04 (*)
 |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
 |    +--- com.google.dagger:hilt-android:2.53 (*)
-|    +--- androidx.navigation:navigation-compose:2.8.4
+|    +--- androidx.navigation:navigation-compose:2.8.5
 |    |    +--- androidx.activity:activity-compose:1.8.0 -> 1.9.3 (*)
 |    |    +--- androidx.compose.animation:animation:1.7.2 -> 1.7.5 (*)
 |    |    +--- androidx.compose.foundation:foundation-layout:1.7.2 -> 1.7.5 (*)
@@ -630,9 +630,9 @@
 |    |    |         +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7 (c)
 |    |    |         +--- androidx.lifecycle:lifecycle-runtime-compose:2.8.7 (c)
 |    |    |         \--- androidx.lifecycle:lifecycle-process:2.8.7 (c)
-|    |    +--- androidx.navigation:navigation-runtime-ktx:2.8.4
-|    |    |    +--- androidx.navigation:navigation-common-ktx:2.8.4
-|    |    |    |    +--- androidx.navigation:navigation-common:2.8.4
+|    |    +--- androidx.navigation:navigation-runtime-ktx:2.8.5
+|    |    |    +--- androidx.navigation:navigation-common-ktx:2.8.5
+|    |    |    |    +--- androidx.navigation:navigation-common:2.8.5
 |    |    |    |    |    +--- androidx.annotation:annotation:1.8.1 -> 1.9.1 (*)
 |    |    |    |    |    +--- androidx.collection:collection-ktx:1.4.2 -> 1.5.0-alpha06 (*)
 |    |    |    |    |    +--- androidx.core:core-ktx:1.1.0 -> 1.15.0 (*)
@@ -651,47 +651,47 @@
 |    |    |    |    |    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (c)
 |    |    |    |    |    |         |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3 (c)
 |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
-|    |    |    |    |    +--- androidx.navigation:navigation-common-ktx:2.8.4 (c)
-|    |    |    |    |    +--- androidx.navigation:navigation-compose:2.8.4 (c)
-|    |    |    |    |    +--- androidx.navigation:navigation-runtime:2.8.4 (c)
-|    |    |    |    |    \--- androidx.navigation:navigation-runtime-ktx:2.8.4 (c)
-|    |    |    |    +--- androidx.navigation:navigation-common:2.8.4 (c)
-|    |    |    |    +--- androidx.navigation:navigation-compose:2.8.4 (c)
-|    |    |    |    +--- androidx.navigation:navigation-runtime:2.8.4 (c)
-|    |    |    |    \--- androidx.navigation:navigation-runtime-ktx:2.8.4 (c)
-|    |    |    +--- androidx.navigation:navigation-runtime:2.8.4
+|    |    |    |    |    +--- androidx.navigation:navigation-common-ktx:2.8.5 (c)
+|    |    |    |    |    +--- androidx.navigation:navigation-compose:2.8.5 (c)
+|    |    |    |    |    +--- androidx.navigation:navigation-runtime:2.8.5 (c)
+|    |    |    |    |    \--- androidx.navigation:navigation-runtime-ktx:2.8.5 (c)
+|    |    |    |    +--- androidx.navigation:navigation-common:2.8.5 (c)
+|    |    |    |    +--- androidx.navigation:navigation-compose:2.8.5 (c)
+|    |    |    |    +--- androidx.navigation:navigation-runtime:2.8.5 (c)
+|    |    |    |    \--- androidx.navigation:navigation-runtime-ktx:2.8.5 (c)
+|    |    |    +--- androidx.navigation:navigation-runtime:2.8.5
 |    |    |    |    +--- androidx.activity:activity-ktx:1.7.1 -> 1.9.3 (*)
 |    |    |    |    +--- androidx.annotation:annotation-experimental:1.4.1 (*)
 |    |    |    |    +--- androidx.collection:collection:1.4.2 -> 1.5.0-alpha06 (*)
 |    |    |    |    +--- androidx.lifecycle:lifecycle-runtime-ktx:2.6.2 -> 2.8.7 (*)
 |    |    |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2 -> 2.8.7 (*)
-|    |    |    |    +--- androidx.navigation:navigation-common:2.8.4 (*)
+|    |    |    |    +--- androidx.navigation:navigation-common:2.8.5 (*)
 |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
 |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3 -> 1.7.3 (*)
-|    |    |    |    +--- androidx.navigation:navigation-common:2.8.4 (c)
-|    |    |    |    +--- androidx.navigation:navigation-common-ktx:2.8.4 (c)
-|    |    |    |    +--- androidx.navigation:navigation-compose:2.8.4 (c)
-|    |    |    |    \--- androidx.navigation:navigation-runtime-ktx:2.8.4 (c)
-|    |    |    +--- androidx.navigation:navigation-common-ktx:2.8.4 (c)
-|    |    |    +--- androidx.navigation:navigation-compose:2.8.4 (c)
-|    |    |    +--- androidx.navigation:navigation-runtime:2.8.4 (c)
-|    |    |    \--- androidx.navigation:navigation-common:2.8.4 (c)
+|    |    |    |    +--- androidx.navigation:navigation-common:2.8.5 (c)
+|    |    |    |    +--- androidx.navigation:navigation-common-ktx:2.8.5 (c)
+|    |    |    |    +--- androidx.navigation:navigation-compose:2.8.5 (c)
+|    |    |    |    \--- androidx.navigation:navigation-runtime-ktx:2.8.5 (c)
+|    |    |    +--- androidx.navigation:navigation-common-ktx:2.8.5 (c)
+|    |    |    +--- androidx.navigation:navigation-compose:2.8.5 (c)
+|    |    |    +--- androidx.navigation:navigation-runtime:2.8.5 (c)
+|    |    |    \--- androidx.navigation:navigation-common:2.8.5 (c)
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3 -> 1.7.3 (*)
-|    |    +--- androidx.navigation:navigation-runtime-ktx:2.8.4 (c)
-|    |    +--- androidx.navigation:navigation-common-ktx:2.8.4 (c)
-|    |    +--- androidx.navigation:navigation-runtime:2.8.4 (c)
-|    |    \--- androidx.navigation:navigation-common:2.8.4 (c)
+|    |    +--- androidx.navigation:navigation-runtime-ktx:2.8.5 (c)
+|    |    +--- androidx.navigation:navigation-common-ktx:2.8.5 (c)
+|    |    +--- androidx.navigation:navigation-runtime:2.8.5 (c)
+|    |    \--- androidx.navigation:navigation-common:2.8.5 (c)
 |    +--- androidx.hilt:hilt-navigation-compose:1.2.0
 |    |    +--- androidx.compose.runtime:runtime:1.0.1 -> 1.8.0-alpha06 (*)
 |    |    +--- androidx.compose.ui:ui:1.0.1 -> 1.7.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation:1.2.0
 |    |    |    +--- androidx.annotation:annotation:1.1.0 -> 1.9.1 (*)
-|    |    |    +--- androidx.navigation:navigation-runtime:2.5.1 -> 2.8.4 (*)
+|    |    |    +--- androidx.navigation:navigation-runtime:2.5.1 -> 2.8.5 (*)
 |    |    |    +--- com.google.dagger:hilt-android:2.49 -> 2.53 (*)
 |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1 -> 2.8.7 (*)
-|    |    +--- androidx.navigation:navigation-compose:2.5.1 -> 2.8.4 (*)
+|    |    +--- androidx.navigation:navigation-compose:2.5.1 -> 2.8.5 (*)
 |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
 |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
 |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3
@@ -806,7 +806,7 @@
 |    |    +--- androidx.compose.material3:material3:1.4.0-alpha04 (*)
 |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
 |    |    +--- com.google.dagger:hilt-android:2.53 (*)
-|    |    +--- androidx.navigation:navigation-compose:2.8.4 (*)
+|    |    +--- androidx.navigation:navigation-compose:2.8.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
@@ -882,38 +882,38 @@
 |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
 |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
 |    |    |    |    +--- project :database
-|    |    |    |    |    +--- app.cash.sqldelight:android-driver:2.0.2
+|    |    |    |    |    +--- app.cash.sqldelight:android-driver:2.1.0-SNAPSHOT
 |    |    |    |    |    |    +--- androidx.sqlite:sqlite-framework:2.4.0 (*)
-|    |    |    |    |    |    +--- app.cash.sqldelight:runtime:2.0.2
-|    |    |    |    |    |    |    \--- app.cash.sqldelight:runtime-jvm:2.0.2
-|    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
+|    |    |    |    |    |    +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT
+|    |    |    |    |    |    |    \--- app.cash.sqldelight:runtime-jvm:2.1.0-SNAPSHOT
+|    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
 |    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.4.0 (*)
-|    |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
+|    |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
 |    |    |    |    |    +--- androidx.paging:paging-common:3.3.4
 |    |    |    |    |    |    \--- androidx.paging:paging-common-android:3.3.4
 |    |    |    |    |    |         +--- androidx.annotation:annotation:1.8.1 -> 1.9.1 (*)
 |    |    |    |    |    |         +--- androidx.arch.core:core-common:2.2.0 (*)
 |    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
 |    |    |    |    |    |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3 -> 1.9.0 (*)
-|    |    |    |    |    +--- app.cash.sqldelight:runtime:2.0.2 (*)
-|    |    |    |    |    +--- app.cash.sqldelight:async-extensions:2.0.2
-|    |    |    |    |    |    \--- app.cash.sqldelight:async-extensions-jvm:2.0.2
-|    |    |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0 -> 1.9.0 (*)
-|    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
-|    |    |    |    |    |         \--- app.cash.sqldelight:runtime:2.0.2 (*)
+|    |    |    |    |    +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT (*)
+|    |    |    |    |    +--- app.cash.sqldelight:async-extensions:2.1.0-SNAPSHOT
+|    |    |    |    |    |    \--- app.cash.sqldelight:async-extensions-jvm:2.1.0-SNAPSHOT
+|    |    |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
+|    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
+|    |    |    |    |    |         \--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT (*)
 |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
-|    |    |    |    |    \--- app.cash.sqldelight:androidx-paging3-extensions:2.0.2
-|    |    |    |    |         \--- app.cash.sqldelight:androidx-paging3-extensions-jvm:2.0.2
-|    |    |    |    |              +--- app.cash.sqldelight:runtime:2.0.2 (*)
+|    |    |    |    |    \--- app.cash.sqldelight:androidx-paging3-extensions:2.1.0-SNAPSHOT
+|    |    |    |    |         \--- app.cash.sqldelight:androidx-paging3-extensions-jvm:2.1.0-SNAPSHOT
+|    |    |    |    |              +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT (*)
 |    |    |    |    |              +--- app.cash.paging:paging-common:3.1.1-0.3.1
 |    |    |    |    |              |    \--- app.cash.paging:paging-common-jvm:3.1.1-0.3.1
 |    |    |    |    |              |         +--- androidx.paging:paging-common:3.1.1 -> 3.3.4 (*)
 |    |    |    |    |              |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10 -> 1.9.0 (*)
 |    |    |    |    |              |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4 -> 1.9.0 (*)
-|    |    |    |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.23 -> 2.0.21 (*)
-|    |    |    |    |              \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0 -> 1.9.0 (*)
+|    |    |    |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.0.21 (*)
+|    |    |    |    |              \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
 |    |    |    |    \--- project :network
 |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
@@ -948,7 +948,7 @@
 |    |    +--- androidx.compose.material3:material3:1.4.0-alpha04 (*)
 |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
 |    |    +--- com.google.dagger:hilt-android:2.53 (*)
-|    |    +--- androidx.navigation:navigation-compose:2.8.4 (*)
+|    |    +--- androidx.navigation:navigation-compose:2.8.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
 |    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
@@ -1075,7 +1075,7 @@
 |    |    +--- androidx.compose.material3:material3:1.4.0-alpha04 (*)
 |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
 |    |    +--- com.google.dagger:hilt-android:2.53 (*)
-|    |    +--- androidx.navigation:navigation-compose:2.8.4 (*)
+|    |    +--- androidx.navigation:navigation-compose:2.8.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
@@ -1091,7 +1091,7 @@
 |    |    +--- androidx.compose.material3:material3:1.4.0-alpha04 (*)
 |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
 |    |    +--- com.google.dagger:hilt-android:2.53 (*)
-|    |    +--- androidx.navigation:navigation-compose:2.8.4 (*)
+|    |    +--- androidx.navigation:navigation-compose:2.8.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
@@ -1112,7 +1112,7 @@
 |    |    +--- androidx.compose.material3:material3:1.4.0-alpha04 (*)
 |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
 |    |    +--- com.google.dagger:hilt-android:2.53 (*)
-|    |    +--- androidx.navigation:navigation-compose:2.8.4 (*)
+|    |    +--- androidx.navigation:navigation-compose:2.8.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
