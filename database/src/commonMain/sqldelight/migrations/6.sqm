@@ -1,0 +1,1 @@
+ALTER TABLE album_play_record RENAME COLUMN album_id TO spotify_album_id;

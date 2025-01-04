@@ -20,39 +20,3 @@ CREATE TABLE track_artist (
     spotify_track_id TEXT NOT NULL,
     spotify_artist_id TEXT NOT NULL
 );
-
--- CREATE TABLE song (
---   id INTEGER PRIMARY KEY AUTOINCREMENT,
---   name TEXT NOT NULL
--- );
---
--- CREATE TABLE artist (
---   id INTEGER PRIMARY KEY AUTOINCREMENT,
---   name TEXT NOT NULL
--- );
---
--- CREATE TABLE song_artists (
---   id INTEGER PRIMARY KEY AUTOINCREMENT,
---   song_id INTEGER NOT NULL,
---   artist_id INTEGER NOT NULL
--- );
---
--- INSERT INTO song(name) VALUES ('call me maybe');
--- INSERT INTO song(name) VALUES ('old english');
--- INSERT INTO song(name) VALUES ('harambe');
---
--- INSERT INTO artist(name) VALUES ('carly rae');
--- INSERT INTO artist(name) VALUES ('a$ap ferg');
--- INSERT INTO artist(name) VALUES ('freddie gibbs');
--- INSERT INTO artist(name) VALUES ('youth thug');
---
--- INSERT INTO song_artists(song_id, artist_id) VALUES (1, 1);
--- INSERT INTO song_artists(song_id, artist_id) VALUES (2, 2);
--- INSERT INTO song_artists(song_id, artist_id) VALUES (2, 3);
--- INSERT INTO song_artists(song_id, artist_id) VALUES (2, 4);
--- INSERT INTO song_artists(song_id, artist_id) VALUES (3, 4);
---
--- SELECT song.id, song.name, artist.id, artist.name
--- FROM song
--- JOIN song_artists ON song.id = song_artists.song_id
--- JOIN artist on song_artists.artist_id = artist.id;

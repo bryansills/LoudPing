@@ -1,29 +1,12 @@
 package ninja.bryansills.loudping.history.recorder
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.datetime.Instant
-import ninja.bryansills.loudping.database.DatabaseService
-import ninja.bryansills.loudping.network.NetworkService
 
-class AlbumBatcher(
-    private val networkService: NetworkService,
-    private val databaseService: DatabaseService,
-    private val coroutineScope: CoroutineScope,
-    private val startAt: Instant,
-    private val stopAt: Instant = Instant.DISTANT_PAST,
-) {
-    private val internalFlow = MutableSharedFlow<Pair<Instant, String>>(
-        replay = 0,
-        extraBufferCapacity = 1000,
-        onBufferOverflow = BufferOverflow.SUSPEND,
-    )
-
-    val stream = internalFlow.asSharedFlow()
-
-    init {
-        networkService.getRecentlyPlayedStream(startAt, stopAt)
-    }
+interface AlbumBatcher {
+    /**
+     * @param startAt What time to start batching albums (often the current time).
+     * @param stopAt What (earlier) time to stop batching albums. If null, keep batching albums
+     * until you have reached the end of the tracked playback.
+     */
+    suspend operator fun invoke(startAt: Instant, stopAt: Instant?): Result<AlbumBatcherResult>
 }

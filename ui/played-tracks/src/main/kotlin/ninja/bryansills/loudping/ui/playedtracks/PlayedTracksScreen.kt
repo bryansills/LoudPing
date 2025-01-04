@@ -28,6 +28,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
+import ninja.bryansills.loudping.database.model.TrackPlayRecord
 
 @Composable
 fun PlayedTracksScreen(
@@ -53,7 +54,7 @@ fun PlayedTracksScreen(
                 val track = pagingItems[index]!!
                 PlayedTrack(
                     title = track.trackTitle,
-                    artist = "TODO Artist",
+                    artist = track.formattedArtist,
                     playedAt = track.timestamp,
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -127,3 +128,12 @@ private fun Instant.relativeFormatted(
         )
         .toString()
 }
+
+private val TrackPlayRecord.formattedArtist: String
+    get() {
+        return if (this.artists.isNotEmpty()) {
+            this.artists.joinToString { it.name }
+        } else {
+            "Unknown artist"
+        }
+    }
