@@ -12,7 +12,7 @@ class RateLimiter(
     private val timeProvider: TimeProvider,
     private val sleeper: Sleeper,
     @Volatile var permitsPerWindow: Long = 1L,
-    private val windowSize: Duration = 1.seconds
+    private val windowSize: Duration = 1.seconds,
 ) {
     private val allocatedUntil = MutableStateFlow(timeProvider.now)
 

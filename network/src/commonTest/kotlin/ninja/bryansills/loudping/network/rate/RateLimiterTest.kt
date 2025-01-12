@@ -14,7 +14,7 @@ class RateLimiterTest {
     fun basic() {
         val timestamps = instantsOf(
             "2025-01-10T05:21:12Z", // used when initializing the RateLimiter
-            "2025-01-10T05:21:13Z" // used when getting the first permit
+            "2025-01-10T05:21:13Z", // used when getting the first permit
         )
         val timeProvider = ScriptedTimeProvider(timestamps)
         val sleeper = FakeSleeper()
@@ -23,7 +23,7 @@ class RateLimiterTest {
             timeProvider = timeProvider,
             sleeper = sleeper,
             permitsPerWindow = 1,
-            windowSize = 1.minutes
+            windowSize = 1.minutes,
         )
 
         val permit = rateLimiter.tryAcquire(permitsRequested = 1, timeout = 1.hours)
@@ -40,7 +40,7 @@ class RateLimiterTest {
         val timestamps = instantsOf(
             "2025-01-10T05:21:12Z", // used when initializing the RateLimiter
             "2025-01-10T05:21:13Z", // used when getting the first permit
-            "2025-01-10T05:21:14Z" // used when getting the second permit
+            "2025-01-10T05:21:14Z", // used when getting the second permit
         )
         val timeProvider = ScriptedTimeProvider(timestamps)
         val sleeper = FakeSleeper()
@@ -49,7 +49,7 @@ class RateLimiterTest {
             timeProvider = timeProvider,
             sleeper = sleeper,
             permitsPerWindow = 1,
-            windowSize = 1.minutes
+            windowSize = 1.minutes,
         )
 
         val firstPermit = rateLimiter.tryAcquire(permitsRequested = 1, timeout = 1.hours)
@@ -78,7 +78,7 @@ class RateLimiterTest {
             timeProvider = timeProvider,
             sleeper = sleeper,
             permitsPerWindow = 5,
-            windowSize = 1.minutes
+            windowSize = 1.minutes,
         )
 
         val firstPermit = rateLimiter.tryAcquire(permitsRequested = 1, timeout = 1.hours)
@@ -98,7 +98,7 @@ class RateLimiterTest {
             timeProvider = timeBoi,
             sleeper = timeBoi,
             permitsPerWindow = 5,
-            windowSize = 1.minutes
+            windowSize = 1.minutes,
         )
 
         val permits = (1..5).map { rateLimiter.tryAcquire(permitsRequested = 1, timeout = 1.hours) }

@@ -32,7 +32,7 @@ fun main() {
 
     val playCount = records.groupBy(
         keySelector = { it.spotify_track_uri },
-        valueTransform = { "${it.master_metadata_album_artist_name} - ${it.master_metadata_track_name}"}
+        valueTransform = { "${it.master_metadata_album_artist_name} - ${it.master_metadata_track_name}" },
     )
 
     val top100 = playCount.values.sortedByDescending { it.count() }.take(100)

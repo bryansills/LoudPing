@@ -14,5 +14,5 @@ data class DeepHistoryRecord(
     val reason_start: String,
     val reason_end: String,
     val shuffle: Boolean,
-    val skipped: Boolean
+    val skipped: Boolean,
 )
