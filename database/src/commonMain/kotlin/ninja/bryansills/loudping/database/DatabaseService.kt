@@ -2,6 +2,7 @@ package ninja.bryansills.loudping.database
 
 import androidx.paging.PagingSource
 import kotlinx.datetime.Instant
+import ninja.bryansills.loudping.database.model.Album
 import ninja.bryansills.loudping.database.model.TrackPlayRecord
 
 interface DatabaseService {
@@ -17,7 +18,10 @@ interface DatabaseService {
         end: Instant,
     )
 
-    suspend fun getAllPlayedTracks(): List<TrackPlayRecord>
-
     val playedTracks: PagingSource<String, TrackPlayRecord>
+
+    /**
+     * @param trackId Just the base62 data. Do not include the URI prefix "spotify:track:".
+     */
+    suspend fun getAlbumFromTrackId(trackId: String): Album?
 }

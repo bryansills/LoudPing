@@ -93,6 +93,8 @@ eithernet = { module = "com.slack.eithernet:eithernet", version.ref = "eithernet
 paging = { module = "androidx.paging:paging-common", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 paging-sqldelight = { module = "app.cash.sqldelight:androidx-paging3-extensions", version.ref = "sqldelight" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -10,9 +10,9 @@ VALUES (
     :context
 )
 ON CONFLICT(id) DO UPDATE SET
-    track_number=excluded.track_number,
-    track_title=excluded.track_title,
-    context=excluded.context
+    track_number = excluded.track_number,
+    track_title = excluded.track_title,
+    context = excluded.context
 ;
 
 select_all:
@@ -37,9 +37,9 @@ VALUES (
     :coverImage
 )
 ON CONFLICT(id) DO UPDATE SET
-    track_count=excluded.track_count,
-    title=excluded.title,
-    cover_image=excluded.cover_image
+    track_count = excluded.track_count,
+    title = excluded.title,
+    cover_image = excluded.cover_image
 ;
 
 insert_artist:
@@ -50,7 +50,7 @@ VALUES (
     :name
 )
 ON CONFLICT(id) DO UPDATE SET
-    name=excluded.name
+    name = excluded.name
 ;
 
 insert_track_artist:

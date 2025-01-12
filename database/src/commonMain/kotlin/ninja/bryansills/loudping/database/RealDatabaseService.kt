@@ -1,7 +1,6 @@
 package ninja.bryansills.loudping.database
 
 import androidx.paging.PagingSource
-import app.cash.sqldelight.async.coroutines.awaitAsList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.datetime.Instant
 import kotlinx.datetime.format
@@ -17,10 +16,9 @@ class RealDatabaseService(
     private val timestampFormatter: DateTimeFormat<DateTimeComponents> = DateTimeComponents.Formats.ISO_DATE_TIME_OFFSET,
 ) : DatabaseService {
     override suspend fun insertTrackPlayRecords(records: List<TrackPlayRecord>) {
-        val queries = database.trackPlayRecordQueries
         database.transaction {
             records.forEach { record ->
-                queries.insert_track(
+                database.trackPlayRecordQueries.insert_track(
                     spotifyTrackId = record.trackId,
                     trackNumber = record.trackNumber.toLong(),
                     trackTitle = record.trackTitle,
@@ -28,18 +26,22 @@ class RealDatabaseService(
                     timestamp = record.timestamp.format(timestampFormatter),
                     context = record.context,
                 )
-                queries.insert_album(
+                database.trackPlayRecordQueries.insert_album(
                     spotifyId = record.album.spotifyId,
                     trackCount = record.album.trackCount.toLong(),
                     title = record.album.title,
                     coverImage = record.album.coverImage,
                 )
+                database.albumQueries.insert_artist_album(
+                    spotifyTrackId = record.trackId,
+                    spotifyAlbumId = record.album.spotifyId,
+                )
                 record.artists.forEach { trackArtist ->
-                    queries.insert_artist(
+                    database.trackPlayRecordQueries.insert_artist(
                         spotifyId = trackArtist.spotifyId,
                         name = trackArtist.name,
                     )
-                    queries.insert_track_artist(
+                    database.trackPlayRecordQueries.insert_track_artist(
                         spotifyTrackId = record.trackId,
                         spotifyArtistId = trackArtist.spotifyId,
                     )
@@ -59,13 +61,6 @@ class RealDatabaseService(
             start = start.format(timestampFormatter),
             end = end.format(timestampFormatter),
         )
-    }
-
-    override suspend fun getAllPlayedTracks(): List<TrackPlayRecord> {
-        return database
-            .trackPlayRecordQueries
-            .select_all(mapper = ::DomainTrackPlayRecord)
-            .awaitAsList()
     }
 
     override val playedTracks: PagingSource<String, TrackPlayRecord>
@@ -115,30 +110,13 @@ class RealDatabaseService(
                 },
             )
         }
-}
 
-@Suppress("ktlint:standard:function-naming")
-private fun DomainTrackPlayRecord(
-    id: Long,
-    track_id: String,
-    track_number: Long,
-    track_title: String,
-    album_id: String,
-    timestamp: String,
-    context: TrackPlayContext?,
-): TrackPlayRecord {
-    return TrackPlayRecord(
-        trackId = track_id,
-        trackNumber = track_number.toInt(),
-        trackTitle = track_title,
-        album = Album(
-            spotifyId = album_id,
-            title = "TODO TITLE",
-            trackCount = -1,
-            coverImage = null,
-        ),
-        artists = listOf(),
-        timestamp = Instant.parse(timestamp),
-        context = context ?: TrackPlayContext.Unknown,
-    )
+    override suspend fun getAlbumFromTrackId(trackId: String): Album? {
+        return try {
+            val result = database.albumQueries.get_album_from_track_id(trackId)
+            TODO()
+        } catch (ex: Exception) {
+            TODO()
+        }
+    }
 }

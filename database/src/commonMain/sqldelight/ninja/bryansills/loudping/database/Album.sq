@@ -1,0 +1,18 @@
+get_album_from_track_id:
+SELECT album.spotify_id, album.title, album.track_count, album.cover_image
+FROM track_album
+INNER JOIN album ON track_album.spotify_album_id = album.spotify_id
+WHERE track_album.spotify_track_id = :spotifyTrackId
+LIMIT 1;
+
+insert_artist_album:
+INSERT INTO track_album(id, spotify_track_id, spotify_album_id)
+VALUES (
+    (SELECT id FROM track_album WHERE spotify_track_id = :spotifyTrackId AND spotify_album_id = :spotifyAlbumId),
+    :spotifyTrackId,
+    :spotifyAlbumId
+)
+ON CONFLICT(id) DO UPDATE SET
+    spotify_track_id = excluded.spotify_track_id,
+    spotify_album_id = excluded.spotify_album_id
+;

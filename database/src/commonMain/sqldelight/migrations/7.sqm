@@ -1,0 +1,5 @@
+CREATE TABLE track_album (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    spotify_track_id TEXT NOT NULL,
+    spotify_album_id TEXT NOT NULL
+);
