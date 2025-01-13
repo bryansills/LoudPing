@@ -10,6 +10,7 @@ import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 import ninja.bryansills.loudping.network.model.SavedAlbumsResponse
 import ninja.bryansills.loudping.network.model.recent.PlayHistoryItem
 import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
+import ninja.bryansills.loudping.network.model.track.Track
 
 class RealNetworkService(
     private val spotifyService: SpotifyService,
@@ -67,6 +68,10 @@ class RealNetworkService(
             isFirstQuery = false
         }
     }
+
+    override suspend fun getSeveralTracks(ids: List<String>): List<Track> {
+        return spotifyService.getSeveralTracks(ids.joinToString(separator = ",")).tracks
+    }
 }
 
 private fun keepGoing(
@@ -82,6 +87,6 @@ private fun keepGoing(
     }
 }
 
-fun List<PlayHistoryItem>.trim(olderThan: Instant): List<PlayHistoryItem> {
+private fun List<PlayHistoryItem>.trim(olderThan: Instant): List<PlayHistoryItem> {
     return this.filter { it.played_at > olderThan }
 }

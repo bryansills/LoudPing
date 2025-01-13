@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.network.model.recent
+package ninja.bryansills.loudping.network.model.track
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -10,7 +10,7 @@ import kotlinx.serialization.encoding.Encoder
 import ninja.bryansills.loudping.network.model.artist.SimplifiedArtist
 
 @Serializable
-data class PlayHistoryTrackAlbum(
+data class TrackAlbum(
     val id: String,
     val name: String,
     val album_type: AlbumType,

@@ -16,6 +16,9 @@ class RateLimiter(
 ) {
     private val allocatedUntil = MutableStateFlow(timeProvider.now)
 
+    val blockedUntil: Instant
+        get() = allocatedUntil.value
+
     fun tryAcquire(permitsRequested: Long, timeout: Duration): Boolean {
         require(permitsRequested > 0) { "unexpected permitCount: $permitsRequested" }
         require(!timeout.isNegative()) { "unexpected timeout: $timeout" }
@@ -28,8 +31,8 @@ class RateLimiter(
         return true
     }
 
-    fun blockUntil(rateLimitEnd: Instant) {
-        allocatedUntil.value = rateLimitEnd
+    fun block(until: Instant) {
+        allocatedUntil.value = until
     }
 
     private fun timeToAcquire(permitsRequested: Long, timeout: Duration): Duration? {

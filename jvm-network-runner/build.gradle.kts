@@ -16,6 +16,7 @@ application {
 }
 
 dependencies {
+    implementation(projects.coroutinesExt)
     implementation(projects.database)
     implementation(projects.historyRecorder)
     implementation(projects.network)

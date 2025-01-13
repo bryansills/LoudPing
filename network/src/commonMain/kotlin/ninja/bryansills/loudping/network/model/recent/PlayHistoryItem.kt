@@ -8,12 +8,13 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import ninja.bryansills.loudping.network.model.track.Track
 
 @Serializable
 data class PlayHistoryItem(
     val played_at: Instant,
     val context: Context,
-    val track: PlayHistoryTrack,
+    val track: Track,
 ) {
     @Serializable
     data class Context(
