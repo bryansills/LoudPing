@@ -519,14 +519,14 @@
 |         +--- androidx.compose.ui:ui-text:1.7.5 (c)
 |         +--- androidx.compose.ui:ui-unit:1.7.5 (c)
 |         \--- androidx.compose.ui:ui-util:1.7.5 (c)
-+--- com.google.dagger:hilt-android:2.53
-|    +--- com.google.dagger:dagger:2.53
++--- com.google.dagger:hilt-android:2.55
+|    +--- com.google.dagger:dagger:2.55
 |    |    +--- jakarta.inject:jakarta.inject-api:2.0.1
 |    |    +--- javax.inject:javax.inject:1
 |    |    \--- org.jspecify:jspecify:1.0.0
-|    +--- com.google.dagger:dagger-lint-aar:2.53
-|    +--- com.google.dagger:hilt-core:2.53
-|    |    +--- com.google.dagger:dagger:2.53 (*)
+|    +--- com.google.dagger:dagger-lint-aar:2.55
+|    +--- com.google.dagger:hilt-core:2.55
+|    |    +--- com.google.dagger:dagger:2.55 (*)
 |    |    +--- com.google.code.findbugs:jsr305:3.0.2
 |    |    \--- javax.inject:javax.inject:1
 |    +--- com.google.code.findbugs:jsr305:3.0.2
@@ -595,13 +595,13 @@
 |    +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1 -> 2.8.7 (*)
 |    +--- androidx.savedstate:savedstate:1.2.0 -> 1.2.1 (*)
 |    +--- javax.inject:javax.inject:1
-|    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.0-Beta5 -> 2.0.21 (*)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 +--- project :app-core
 |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 |    +--- androidx.compose:compose-bom:2024.11.00 (*)
 |    +--- androidx.compose.material3:material3:1.4.0-alpha05 (*)
 |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
-|    +--- com.google.dagger:hilt-android:2.53 (*)
+|    +--- com.google.dagger:hilt-android:2.55 (*)
 |    +--- androidx.navigation:navigation-compose:2.8.4
 |    |    +--- androidx.activity:activity-compose:1.8.0 -> 1.9.3 (*)
 |    |    +--- androidx.compose.animation:animation:1.7.2 -> 1.7.5 (*)
@@ -689,7 +689,7 @@
 |    |    +--- androidx.hilt:hilt-navigation:1.2.0
 |    |    |    +--- androidx.annotation:annotation:1.1.0 -> 1.9.0 (*)
 |    |    |    +--- androidx.navigation:navigation-runtime:2.5.1 -> 2.8.4 (*)
-|    |    |    +--- com.google.dagger:hilt-android:2.49 -> 2.53 (*)
+|    |    |    +--- com.google.dagger:hilt-android:2.49 -> 2.55 (*)
 |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1 -> 2.8.7 (*)
 |    |    +--- androidx.navigation:navigation-compose:2.5.1 -> 2.8.4 (*)
@@ -806,7 +806,7 @@
 |    |    +--- androidx.compose:compose-bom:2024.11.00 (*)
 |    |    +--- androidx.compose.material3:material3:1.4.0-alpha05 (*)
 |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
-|    |    +--- com.google.dagger:hilt-android:2.53 (*)
+|    |    +--- com.google.dagger:hilt-android:2.55 (*)
 |    |    +--- androidx.navigation:navigation-compose:2.8.4 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
@@ -877,7 +877,7 @@
 |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.0.21 (c)
 |    |    |    |    \--- androidx.work:work-runtime:2.10.0 (c)
 |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
-|    |    |    +--- com.google.dagger:hilt-android:2.53 (*)
+|    |    |    +--- com.google.dagger:hilt-android:2.55 (*)
 |    |    |    +--- project :history-recorder
 |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
 |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
@@ -920,6 +920,7 @@
 |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
 |    |    |    |         +--- project :network-auth (*)
 |    |    |    |         +--- project :sneak-network (*)
+|    |    |    |         +--- project :time (*)
 |    |    |    |         +--- com.squareup.retrofit2:retrofit:2.11.0 (*)
 |    |    |    |         +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0 (*)
 |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
@@ -933,9 +934,9 @@
 |    |    |    +--- androidx.hilt:hilt-work:1.2.0
 |    |    |    |    +--- androidx.annotation:annotation:1.1.0 -> 1.9.0 (*)
 |    |    |    |    +--- androidx.hilt:hilt-common:1.2.0
-|    |    |    |    |    \--- com.google.dagger:hilt-core:2.49 -> 2.53 (*)
+|    |    |    |    |    \--- com.google.dagger:hilt-core:2.49 -> 2.55 (*)
 |    |    |    |    +--- androidx.work:work-runtime:2.3.4 -> 2.10.0 (*)
-|    |    |    |    \--- com.google.dagger:hilt-android:2.49 -> 2.53 (*)
+|    |    |    |    \--- com.google.dagger:hilt-android:2.49 -> 2.55 (*)
 |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
 |    |    \--- androidx.compose.material:material-icons-core -> 1.7.5
 |    |         \--- androidx.compose.material:material-icons-core-android:1.7.5
@@ -948,7 +949,7 @@
 |    |    +--- androidx.compose:compose-bom:2024.11.00 (*)
 |    |    +--- androidx.compose.material3:material3:1.4.0-alpha05 (*)
 |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
-|    |    +--- com.google.dagger:hilt-android:2.53 (*)
+|    |    +--- com.google.dagger:hilt-android:2.55 (*)
 |    |    +--- androidx.navigation:navigation-compose:2.8.4 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
@@ -957,7 +958,7 @@
 |    |    +--- androidx.databinding:viewbinding:8.7.2
 |    |    |    \--- androidx.annotation:annotation:1.0.0 -> 1.9.0 (*)
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 (*)
-|    |    +--- com.google.dagger:hilt-android:2.53 (*)
+|    |    +--- com.google.dagger:hilt-android:2.55 (*)
 |    |    +--- project :session (*)
 |    |    +--- project :network-auth (*)
 |    |    +--- project :time (*)
@@ -1075,7 +1076,7 @@
 |    |    +--- androidx.compose:compose-bom:2024.11.00 (*)
 |    |    +--- androidx.compose.material3:material3:1.4.0-alpha05 (*)
 |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
-|    |    +--- com.google.dagger:hilt-android:2.53 (*)
+|    |    +--- com.google.dagger:hilt-android:2.55 (*)
 |    |    +--- androidx.navigation:navigation-compose:2.8.4 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
@@ -1091,7 +1092,7 @@
 |    |    +--- androidx.compose:compose-bom:2024.11.00 (*)
 |    |    +--- androidx.compose.material3:material3:1.4.0-alpha05 (*)
 |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
-|    |    +--- com.google.dagger:hilt-android:2.53 (*)
+|    |    +--- com.google.dagger:hilt-android:2.55 (*)
 |    |    +--- androidx.navigation:navigation-compose:2.8.4 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
@@ -1112,7 +1113,7 @@
 |    |    +--- androidx.compose:compose-bom:2024.11.00 (*)
 |    |    +--- androidx.compose.material3:material3:1.4.0-alpha05 (*)
 |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
-|    |    +--- com.google.dagger:hilt-android:2.53 (*)
+|    |    +--- com.google.dagger:hilt-android:2.55 (*)
 |    |    +--- androidx.navigation:navigation-compose:2.8.4 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
@@ -1129,7 +1130,7 @@
 |    |    |    +--- androidx.compose:compose-bom:2024.11.00 (*)
 |    |    |    +--- androidx.compose.material3:material3:1.4.0-alpha05 (*)
 |    |    |    +--- androidx.compose.ui:ui-tooling-preview -> 1.7.5 (*)
-|    |    |    +--- com.google.dagger:hilt-android:2.53 (*)
+|    |    |    +--- com.google.dagger:hilt-android:2.55 (*)
 |    |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
 |    |    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
