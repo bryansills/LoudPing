@@ -28,6 +28,9 @@ data class TrackAlbum(
     )
 }
 
+val TrackAlbum.coverImageUrl: String?
+    get() = this.images.maxByOrNull { (it.height ?: 0) * (it.width ?: 0) }?.url
+
 @Serializable(with = AlbumTypeSerializer::class)
 sealed class AlbumType {
     @Serializable

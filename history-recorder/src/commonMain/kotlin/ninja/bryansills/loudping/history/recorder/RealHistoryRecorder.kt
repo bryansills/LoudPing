@@ -14,6 +14,7 @@ import ninja.bryansills.loudping.network.model.artist.SimplifiedArtist
 import ninja.bryansills.loudping.network.model.recent.ContextType
 import ninja.bryansills.loudping.network.model.recent.PlayHistoryItem
 import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
+import ninja.bryansills.loudping.network.model.track.coverImageUrl
 
 class RealHistoryRecorder(
     private val networkService: NetworkService,
@@ -79,12 +80,7 @@ private fun List<PlayHistoryItem>.toDatabase(stopAt: Instant?): List<TrackPlayRe
                     spotifyId = networkTrack.track.album.id,
                     title = networkTrack.track.album.name,
                     trackCount = networkTrack.track.album.total_tracks,
-                    coverImage = networkTrack
-                        .track
-                        .album
-                        .images
-                        .maxByOrNull { (it.height ?: 0) * (it.width ?: 0) }
-                        ?.url,
+                    coverImage = networkTrack.track.album.coverImageUrl,
                 ),
                 artists = networkTrack.track.artists.toDatabase(),
                 timestamp = networkTrack.played_at,
