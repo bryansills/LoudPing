@@ -112,7 +112,7 @@ class RealDatabaseService(
                 spotifyId = result.spotify_id,
                 title = result.title,
                 trackCount = result.track_count.toInt(),
-                coverImage = result.cover_image
+                coverImage = result.cover_image,
             )
         } catch (ex: Exception) {
             println(ex) // TODO: better logging

@@ -2,7 +2,6 @@ import com.github.gmazzo.buildconfig.BuildConfigExtension
 import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.util.Properties
-import org.jetbrains.kotlin.util.capitalizeDecapitalize.toUpperCaseAsciiOnly
 
 plugins {
     id("ninja-bryansills-spotless")
@@ -61,7 +60,7 @@ fun BuildConfigExtension.loadSecrets() {
  */
 fun Properties.getSecret(
     propertyName: String,
-    environmentName: String = propertyName.replace(".", "_").toUpperCaseAsciiOnly(),
+    environmentName: String = propertyName.replace(".", "_").uppercase(),
     fallback: String = "INVALID $propertyName",
 ): String {
     val propertyValue: String? = this.getProperty(propertyName)
