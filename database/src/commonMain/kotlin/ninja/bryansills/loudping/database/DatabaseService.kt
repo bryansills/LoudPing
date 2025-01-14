@@ -24,4 +24,6 @@ interface DatabaseService {
      * @param trackId Just the base62 data. Do not include the URI prefix "spotify:track:".
      */
     suspend fun getAlbumFromTrackId(trackId: String): Album?
+
+    suspend fun insertAlbum(album: Album, associatedTrackIds: List<String>)
 }

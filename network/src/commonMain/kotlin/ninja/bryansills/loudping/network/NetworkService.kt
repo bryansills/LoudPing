@@ -21,3 +21,7 @@ interface NetworkService {
 
     suspend fun getSeveralTracks(ids: List<String>): List<Track>
 }
+
+suspend fun NetworkService.getTrack(id: String): Track {
+    return this.getSeveralTracks(listOf(id)).first()
+}

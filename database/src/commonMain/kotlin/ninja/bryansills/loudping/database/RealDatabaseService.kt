@@ -1,6 +1,7 @@
 package ninja.bryansills.loudping.database
 
 import androidx.paging.PagingSource
+import app.cash.sqldelight.async.coroutines.awaitAsOne
 import kotlinx.coroutines.Dispatchers
 import kotlinx.datetime.Instant
 import kotlinx.datetime.format
@@ -26,16 +27,9 @@ class RealDatabaseService(
                     timestamp = record.timestamp.format(timestampFormatter),
                     context = record.context,
                 )
-                database.trackPlayRecordQueries.insert_album(
-                    spotifyId = record.album.spotifyId,
-                    trackCount = record.album.trackCount.toLong(),
-                    title = record.album.title,
-                    coverImage = record.album.coverImage,
-                )
-                database.albumQueries.insert_artist_album(
-                    spotifyTrackId = record.trackId,
-                    spotifyAlbumId = record.album.spotifyId,
-                )
+
+                insertAlbum(album = record.album, associatedTrackIds = listOf(record.trackId))
+
                 record.artists.forEach { trackArtist ->
                     database.trackPlayRecordQueries.insert_artist(
                         spotifyId = trackArtist.spotifyId,
@@ -113,10 +107,31 @@ class RealDatabaseService(
 
     override suspend fun getAlbumFromTrackId(trackId: String): Album? {
         return try {
-            val result = database.albumQueries.get_album_from_track_id(trackId)
-            TODO()
+            val result = database.albumQueries.get_album_from_track_id(trackId).awaitAsOne()
+            Album(
+                spotifyId = result.spotify_id,
+                title = result.title,
+                trackCount = result.track_count.toInt(),
+                coverImage = result.cover_image
+            )
         } catch (ex: Exception) {
-            TODO()
+            println(ex) // TODO: better logging
+            null
+        }
+    }
+
+    override suspend fun insertAlbum(album: Album, associatedTrackIds: List<String>) {
+        database.trackPlayRecordQueries.insert_album(
+            spotifyId = album.spotifyId,
+            trackCount = album.trackCount.toLong(),
+            title = album.title,
+            coverImage = album.coverImage,
+        )
+        associatedTrackIds.forEach { trackId ->
+            database.albumQueries.insert_artist_album(
+                spotifyTrackId = trackId,
+                spotifyAlbumId = album.spotifyId,
+            )
         }
     }
 }
