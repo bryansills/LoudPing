@@ -644,14 +644,14 @@
 |    |    |    |    |    +--- androidx.profileinstaller:profileinstaller:1.3.1 (*)
 |    |    |    |    |    +--- androidx.savedstate:savedstate-ktx:1.2.1 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.0 (*)
-|    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3 -> 1.7.3
-|    |    |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3
-|    |    |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.7.3
-|    |    |    |    |    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.3 (c)
-|    |    |    |    |    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.7.3 (c)
-|    |    |    |    |    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (c)
-|    |    |    |    |    |         |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3 (c)
-|    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.1.0 (*)
+|    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3 -> 1.8.0
+|    |    |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.0
+|    |    |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.8.0
+|    |    |    |    |    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.0 (c)
+|    |    |    |    |    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.0 (c)
+|    |    |    |    |    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (c)
+|    |    |    |    |    |         |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.0 (c)
+|    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.0 (*)
 |    |    |    |    |    +--- androidx.navigation:navigation-common-ktx:2.8.5 (c)
 |    |    |    |    |    +--- androidx.navigation:navigation-compose:2.8.5 (c)
 |    |    |    |    |    +--- androidx.navigation:navigation-runtime:2.8.5 (c)
@@ -668,7 +668,7 @@
 |    |    |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2 -> 2.8.7 (*)
 |    |    |    |    +--- androidx.navigation:navigation-common:2.8.5 (*)
 |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.0 (*)
-|    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3 -> 1.7.3 (*)
+|    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3 -> 1.8.0 (*)
 |    |    |    |    +--- androidx.navigation:navigation-common:2.8.5 (c)
 |    |    |    |    +--- androidx.navigation:navigation-common-ktx:2.8.5 (c)
 |    |    |    |    +--- androidx.navigation:navigation-compose:2.8.5 (c)
@@ -678,7 +678,7 @@
 |    |    |    +--- androidx.navigation:navigation-runtime:2.8.5 (c)
 |    |    |    \--- androidx.navigation:navigation-common:2.8.5 (c)
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.0 (*)
-|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3 -> 1.7.3 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.3 -> 1.8.0 (*)
 |    |    +--- androidx.navigation:navigation-runtime-ktx:2.8.5 (c)
 |    |    +--- androidx.navigation:navigation-common-ktx:2.8.5 (c)
 |    |    +--- androidx.navigation:navigation-runtime:2.8.5 (c)
@@ -695,11 +695,11 @@
 |    |    +--- androidx.navigation:navigation-compose:2.5.1 -> 2.8.5 (*)
 |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.0 (*)
 |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
-|    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3
-|    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.7.3
-|    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.7.3 (*)
-|    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.1.0 (*)
-|    |         \--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.3 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0
+|    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.0
+|    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.8.0 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.0 (*)
+|    |         \--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.0 (*)
 |    +--- project :session
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.0 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 (*)
@@ -785,9 +785,9 @@
 |    |    |                   \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.0 -> 2.1.0 (*)
 |    |    +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0
 |    |    |    +--- com.squareup.retrofit2:retrofit:2.9.0 -> 2.11.0 (*)
-|    |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.0 -> 1.7.3 (*)
+|    |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.0 -> 1.8.0 (*)
 |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10 -> 1.9.0 (*)
-|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 |    |    +--- com.squareup.okhttp3:okhttp:4.12.0 (*)
 |    |    \--- com.slack.eithernet:eithernet:1.9.0
 |    |         +--- com.squareup.retrofit2:retrofit:2.9.0 -> 2.11.0 (*)
@@ -810,7 +810,7 @@
 |    |    +--- androidx.navigation:navigation-compose:2.8.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
-|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 |    |    +--- project :session (*)
 |    |    +--- project :app-theme (*)
 |    |    +--- project :android-app-res
@@ -890,8 +890,8 @@
 |    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.1.0 (*)
 |    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.4.0 (*)
 |    |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.1.0 (*)
-|    |    |    |    |    +--- androidx.paging:paging-common:3.3.4
-|    |    |    |    |    |    \--- androidx.paging:paging-common-android:3.3.4
+|    |    |    |    |    +--- androidx.paging:paging-common:3.3.5
+|    |    |    |    |    |    \--- androidx.paging:paging-common-android:3.3.5
 |    |    |    |    |    |         +--- androidx.annotation:annotation:1.8.1 -> 1.9.0 (*)
 |    |    |    |    |    |         +--- androidx.arch.core:core-common:2.2.0 (*)
 |    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.0 (*)
@@ -910,7 +910,7 @@
 |    |    |    |    |              +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT (*)
 |    |    |    |    |              +--- app.cash.paging:paging-common:3.1.1-0.3.1
 |    |    |    |    |              |    \--- app.cash.paging:paging-common-jvm:3.1.1-0.3.1
-|    |    |    |    |              |         +--- androidx.paging:paging-common:3.1.1 -> 3.3.4 (*)
+|    |    |    |    |              |         +--- androidx.paging:paging-common:3.1.1 -> 3.3.5 (*)
 |    |    |    |    |              |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10 -> 1.9.0 (*)
 |    |    |    |    |              |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4 -> 1.9.0 (*)
 |    |    |    |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.1.0 (*)
@@ -923,7 +923,7 @@
 |    |    |    |         +--- project :time (*)
 |    |    |    |         +--- com.squareup.retrofit2:retrofit:2.11.0 (*)
 |    |    |    |         +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0 (*)
-|    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
+|    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 |    |    |    |         +--- com.squareup.okhttp3:okhttp:4.12.0 (*)
 |    |    |    |         \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
 |    |    |    +--- project :storage (*)
@@ -953,7 +953,7 @@
 |    |    +--- androidx.navigation:navigation-compose:2.8.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
-|    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
+|    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 |    +--- project :ui:login
 |    |    +--- androidx.databinding:viewbinding:8.8.0
 |    |    |    \--- androidx.annotation:annotation:1.0.0 -> 1.9.0 (*)
@@ -1080,7 +1080,7 @@
 |    |    +--- androidx.navigation:navigation-compose:2.8.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
-|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 |    |    +--- project :network-auth (*)
 |    |    +--- project :app-theme (*)
 |    |    +--- project :android-app-res
@@ -1096,18 +1096,18 @@
 |    |    +--- androidx.navigation:navigation-compose:2.8.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
-|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 |    |    +--- project :database (*)
 |    |    +--- project :app-theme (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
-|    |    +--- androidx.paging:paging-common:3.3.4 (*)
-|    |    \--- androidx.paging:paging-compose:3.3.4
-|    |         \--- androidx.paging:paging-compose-android:3.3.4
+|    |    +--- androidx.paging:paging-common:3.3.5 (*)
+|    |    \--- androidx.paging:paging-compose:3.3.5
+|    |         \--- androidx.paging:paging-compose-android:3.3.5
 |    |              +--- androidx.compose.foundation:foundation:1.5.0 -> 1.7.6 (*)
 |    |              +--- androidx.compose.runtime:runtime:1.5.0 -> 1.7.6 (*)
-|    |              +--- androidx.paging:paging-common:3.3.4 (*)
+|    |              +--- androidx.paging:paging-common:3.3.5 (*)
 |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.0 (*)
-|    |              \--- androidx.paging:paging-common:3.3.4 (c)
+|    |              \--- androidx.paging:paging-common:3.3.5 (c)
 |    +--- project :ui:refresh-token-entry
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.0 (*)
 |    |    +--- androidx.compose:compose-bom:2024.12.01 (*)
@@ -1117,7 +1117,7 @@
 |    |    +--- androidx.navigation:navigation-compose:2.8.5 (*)
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
-|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 |    |    +--- project :network-auth (*)
 |    |    +--- project :app-theme (*)
 |    |    +--- project :android-app-res
@@ -1133,7 +1133,7 @@
 |    |    |    +--- com.google.dagger:hilt-android:2.55 (*)
 |    |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
-|    |    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
+|    |    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 |    |    \--- project :ui:destinations (*)
 |    +--- androidx.activity:activity-compose:1.9.3 (*)
 |    +--- androidx.activity:activity-ktx:1.9.3 (*)
@@ -1196,7 +1196,7 @@
 +--- androidx.activity:activity-ktx:1.9.3 (*)
 +--- com.squareup.retrofit2:retrofit:2.11.0 (*)
 +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0 (*)
-+--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3 (*)
++--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 +--- com.squareup.okhttp3:okhttp:4.12.0 (*)
 +--- com.slack.eithernet:eithernet:1.9.0 (*)
 +--- androidx.work:work-runtime-ktx:2.10.0 (*)
