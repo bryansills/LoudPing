@@ -1,7 +1,6 @@
 import com.github.gmazzo.buildconfig.BuildConfigExtension
-import java.io.FileInputStream
-import java.io.InputStreamReader
-import java.util.Properties
+import ninja.bryansills.loudping.gradle.plugin.getSecret
+import ninja.bryansills.loudping.gradle.plugin.rootProperties
 
 plugins {
     id("ninja-bryansills-spotless")
@@ -28,13 +27,7 @@ buildConfig {
 }
 
 fun BuildConfigExtension.loadSecrets() {
-    val properties = Properties()
-    val localProperties = File(rootDir, "local.properties")
-    if (localProperties.isFile) {
-        InputStreamReader(FileInputStream(localProperties), Charsets.UTF_8).use { reader ->
-            properties.load(reader)
-        }
-    }
+    val properties = rootProject.rootProperties("local.properties")
 
     val saltString = properties.getSecret("sneak.salt")
     buildConfigField("String", "Salt", """"$saltString"""")
@@ -53,18 +46,4 @@ fun BuildConfigExtension.loadSecrets() {
 
     val startUrl = properties.getSecret("start.url")
     buildConfigField("String", "StartUrl", """"$startUrl"""")
-}
-
-/**
- * Copied in a few places...
- */
-fun Properties.getSecret(
-    propertyName: String,
-    environmentName: String = propertyName.replace(".", "_").uppercase(),
-    fallback: String = "INVALID $propertyName",
-): String {
-    val propertyValue: String? = this.getProperty(propertyName)
-    val environmentValue: String? = System.getenv(environmentName)
-
-    return propertyValue ?: environmentValue ?: fallback
 }
