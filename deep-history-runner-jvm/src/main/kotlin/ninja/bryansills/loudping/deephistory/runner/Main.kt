@@ -1,12 +1,30 @@
 package ninja.bryansills.loudping.deephistory.runner
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
+import ninja.bryansills.loudping.coroutines.launchBlocking
 import ninja.bryansills.loudping.deephistory.DeepHistoryRecord
 import okio.FileSystem
 import okio.Path.Companion.toPath
 import okio.buffer
 
 fun main() {
+    val records = getDeepHistory()
+    processData(records)
+
+    val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    mainScope.launchBlocking {
+        val deps = initializeDependencies()
+
+        val recordsWithDatabase = records.map { deepRecord ->
+            val databaseDetails = deps.albumRepo.getAlbumByTrackId(deepRecord.spotify_track_uri!!)
+        }
+    }
+}
+
+private fun getDeepHistory(): List<DeepHistoryRecord> {
     val jsonPaths = FileSystem.RESOURCES.list(".".toPath())
         .filter { path ->
             "json" == path.name.split(".").lastOrNull()?.lowercase()
@@ -21,10 +39,12 @@ fun main() {
 
     val json = Json { ignoreUnknownKeys = true }
 
-    val records = jsonText.flatMap { text ->
+    return jsonText.flatMap { text ->
         json.decodeFromString<List<DeepHistoryRecord>>(text)
     }
+}
 
+private fun processData(records: List<DeepHistoryRecord>) {
     println("number of songs i've ever played: ${records.size}")
 
     val longest = records.maxBy { it.ms_played }
