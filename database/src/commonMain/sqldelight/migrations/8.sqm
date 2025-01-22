@@ -1,0 +1,25 @@
+CREATE TABLE track (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    spotify_track_id TEXT NOT NULL,
+    title TEXT NOT NULL,
+    track_number INTEGER NOT NULL,
+    disc_number INTEGER NOT NULL,
+    duration_ms INTEGER NOT NULL
+);
+
+INSERT INTO track(spotify_track_id, title, track_number, disc_number, duration_ms)
+SELECT
+    track_play_record.spotify_track_id,
+    track_play_record.track_title,
+    track_play_record.track_number,
+    -1,
+    0
+FROM track_play_record
+;
+
+-- TODO: delete duplicates from this table
+-- DELETE FROM track WHERE id NOT IN (
+--   SELECT MAX(id)
+--   FROM track
+--   GROUP BY spotify_track_id
+-- );

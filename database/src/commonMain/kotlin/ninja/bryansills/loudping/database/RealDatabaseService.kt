@@ -1,7 +1,9 @@
 package ninja.bryansills.loudping.database
 
 import androidx.paging.PagingSource
+import app.cash.sqldelight.async.coroutines.awaitAsList
 import app.cash.sqldelight.async.coroutines.awaitAsOne
+import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.datetime.Instant
 import kotlinx.datetime.format
@@ -9,6 +11,9 @@ import kotlinx.datetime.format.DateTimeComponents
 import kotlinx.datetime.format.DateTimeFormat
 import ninja.bryansills.loudping.database.model.Album
 import ninja.bryansills.loudping.database.model.Artist
+import ninja.bryansills.loudping.database.model.Track
+import ninja.bryansills.loudping.database.model.Track.Companion.MISSING_DISC_NUMBER
+import ninja.bryansills.loudping.database.model.Track.Companion.MISSING_DURATION
 import ninja.bryansills.loudping.database.model.TrackPlayContext
 import ninja.bryansills.loudping.database.model.TrackPlayRecord
 
@@ -28,18 +33,17 @@ class RealDatabaseService(
                     context = record.context,
                 )
 
-                insertAlbum(album = record.album, associatedTrackIds = listOf(record.trackId))
-
-                record.artists.forEach { trackArtist ->
-                    database.trackPlayRecordQueries.insert_artist(
-                        spotifyId = trackArtist.spotifyId,
-                        name = trackArtist.name,
-                    )
-                    database.trackPlayRecordQueries.insert_track_artist(
-                        spotifyTrackId = record.trackId,
-                        spotifyArtistId = trackArtist.spotifyId,
-                    )
-                }
+                insertTrackInternal(
+                    track = Track(
+                        spotifyId = record.trackId,
+                        title = record.trackTitle,
+                        trackNumber = record.trackNumber,
+                        discNumber = MISSING_DISC_NUMBER,
+                        duration = MISSING_DURATION,
+                        album = record.album,
+                        artists = record.artists,
+                    ),
+                )
             }
         }
     }
@@ -121,6 +125,12 @@ class RealDatabaseService(
     }
 
     override suspend fun insertAlbum(album: Album, associatedTrackIds: List<String>) {
+        database.transaction {
+            insertAlbumInternal(album = album, associatedTrackIds = associatedTrackIds)
+        }
+    }
+
+    private suspend fun insertAlbumInternal(album: Album, associatedTrackIds: List<String>) {
         database.trackPlayRecordQueries.insert_album(
             spotifyId = album.spotifyId,
             trackCount = album.trackCount.toLong(),
@@ -131,6 +141,80 @@ class RealDatabaseService(
             database.albumQueries.insert_artist_album(
                 spotifyTrackId = trackId,
                 spotifyAlbumId = album.spotifyId,
+            )
+        }
+    }
+
+    override suspend fun getTrackFromSpotifyId(trackId: String): Track? {
+        return try {
+            val tracks = database.trackQueries.get_track_from_spotify_id(spotifyTrackId = trackId).awaitAsList()
+            tracks
+                .groupBy { it.spotify_track_id }
+                .values
+                .map { rowsForTrack ->
+                    val firstRow = rowsForTrack.first()
+                    Track(
+                        spotifyId = firstRow.spotify_track_id,
+                        title = firstRow.title,
+                        trackNumber = firstRow.track_number.toInt(),
+                        discNumber = firstRow.disc_number.toInt(),
+                        duration = firstRow.duration_ms.milliseconds,
+                        album = Album(
+                            spotifyId = firstRow.spotify_album_id,
+                            title = firstRow.album_title,
+                            trackCount = firstRow.album_track_count.toInt(),
+                            coverImage = firstRow.album_cover_image,
+                        ),
+                        artists = rowsForTrack.map { trackArtist ->
+                            Artist(
+                                spotifyId = trackArtist.spotify_artist_id,
+                                name = trackArtist.artist_name,
+                            )
+                        },
+                    )
+                }
+                .firstOrNull()
+        } catch (ex: Exception) {
+            println(ex) // TODO: better logging
+            null
+        }
+    }
+
+    override suspend fun insertTrack(track: Track) {
+        database.transaction {
+            insertTrackInternal(track = track)
+        }
+    }
+
+    private suspend fun insertTrackInternal(track: Track) {
+        database.trackQueries.insert_track(
+            spotifyTrackId = track.spotifyId,
+            title = track.title,
+            trackNumber = track.trackNumber.toLong(),
+            discNumber = track.discNumber.toLong(),
+            durationMs = track.duration.inWholeMilliseconds,
+        )
+        insertAlbumInternal(
+            album = track.album,
+            associatedTrackIds = listOf(track.spotifyId),
+        )
+        track.artists.forEach { trackArtist ->
+            insertArtistInternal(
+                artist = trackArtist,
+                associatedTrackIds = listOf(track.spotifyId),
+            )
+        }
+    }
+
+    private suspend fun insertArtistInternal(artist: Artist, associatedTrackIds: List<String>) {
+        database.trackPlayRecordQueries.insert_artist(
+            spotifyId = artist.spotifyId,
+            name = artist.name,
+        )
+        associatedTrackIds.forEach { trackId ->
+            database.trackPlayRecordQueries.insert_track_artist(
+                spotifyTrackId = trackId,
+                spotifyArtistId = artist.spotifyId,
             )
         }
     }

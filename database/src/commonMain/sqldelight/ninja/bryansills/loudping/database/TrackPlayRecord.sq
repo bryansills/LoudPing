@@ -15,18 +15,6 @@ ON CONFLICT(id) DO UPDATE SET
     context = excluded.context
 ;
 
-select_all:
-SELECT
-    id,
-    spotify_track_id,
-    track_number,
-    track_title,
-    spotify_album_id,
-    timestamp,
-    context
-FROM track_play_record
-LIMIT 100;
-
 insert_album:
 INSERT INTO album(id, spotify_id, track_count, title, cover_image)
 VALUES (

@@ -1,0 +1,27 @@
+insert_track:
+INSERT INTO track(id, spotify_track_id, title, track_number, disc_number, duration_ms)
+VALUES (
+     (SELECT id FROM track WHERE spotify_track_id = :spotifyTrackId),
+    :spotifyTrackId,
+    :title,
+    :trackNumber,
+    :discNumber,
+    :durationMs
+)
+ON CONFLICT(id) DO UPDATE SET
+    spotify_track_id = excluded.spotify_track_id,
+    title = excluded.title,
+    track_number = excluded.track_number,
+    disc_number = excluded.disc_number,
+    duration_ms = excluded.duration_ms
+;
+
+get_track_from_spotify_id:
+SELECT track.spotify_track_id, track.title, track.track_number, track.disc_number, track.duration_ms, album.spotify_id AS spotify_album_id, album.track_count AS album_track_count, album.title AS album_title, album.cover_image AS album_cover_image, artist.spotify_id AS spotify_artist_id, artist.name AS artist_name
+FROM track
+INNER JOIN track_album ON track.spotify_track_id = track_album.spotify_track_id
+INNER JOIN album ON track_album.spotify_album_id = album.spotify_id
+INNER JOIN track_artist ON track.spotify_track_id = track_artist.spotify_track_id
+INNER JOIN artist ON track_artist.spotify_artist_id = artist.spotify_id
+WHERE track.spotify_track_id = :spotifyTrackId
+;
