@@ -12,14 +12,46 @@ import okio.buffer
 
 fun main() {
     val records = getDeepHistory()
-    processData(records)
+//    processData(records)
 
     val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     mainScope.launchBlocking {
         val deps = initializeDependencies()
 
-        val recordsWithDatabase = records.map { deepRecord ->
-            val databaseDetails = deps.albumRepo.getAlbumByTrackId(deepRecord.spotify_track_uri!!)
+        val recordsWithDatabase = records
+            .take(50)
+            .associateWith { deepRecord ->
+                val cachedTrack = deps.trackRepo.getTrackBySpotifyId(deepRecord.spotify_track_uri!!)
+                cachedTrack
+            }
+
+        val recordsWithMissing = recordsWithDatabase
+            .filter { (_, cachedTrack) ->
+                cachedTrack == null
+            }
+            .map { (deepRecord, _) -> deepRecord }
+
+        val chunkedMissing = recordsWithMissing.chunked(50)
+
+        val recordsFromNetwork = chunkedMissing
+            .flatMap { recordsWindow ->
+                val ids = recordsWindow.mapNotNull { it.spotify_track_uri }
+                val repoTracks = deps.trackRepo.getTracksBySpotifyIds(ids)
+                recordsWindow.map { indRecord ->
+                    val matchingTrack = repoTracks.find {
+                        it.spotifyId == indRecord.spotify_track_uri
+                    }!!
+                    indRecord to matchingTrack
+                }
+            }
+            .toMap()
+
+        recordsWithDatabase.forEach { (record, track) ->
+            println("Record: $record Track: $track")
+        }
+        println("----------")
+        recordsFromNetwork.forEach { (record, track) ->
+            println("Record: $record Track: $track")
         }
     }
 }

@@ -8,5 +8,5 @@ interface AlbumRepository {
     /**
      * ALWAYS makes a network request, so try the other method first.
      */
-    suspend fun getAlbumsByTrackIds(trackIds: List<String>): Map<String, Album>
+    suspend fun getAlbumsByTrackIds(trackIds: List<String>): List<Album>
 }

@@ -2,6 +2,8 @@ package ninja.bryansills.loudping.deephistory.runner
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.slack.eithernet.ApiResultCallAdapterFactory
+import com.slack.eithernet.ApiResultConverterFactory
 import java.io.File
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.serialization.json.Json
@@ -22,6 +24,8 @@ import ninja.bryansills.loudping.network.rate.RateLimiter
 import ninja.bryansills.loudping.network.rate.Sleeper
 import ninja.bryansills.loudping.repository.album.AlbumRepository
 import ninja.bryansills.loudping.repository.album.RealAlbumRepository
+import ninja.bryansills.loudping.repository.track.RealTrackRepository
+import ninja.bryansills.loudping.repository.track.TrackRepository
 import ninja.bryansills.loudping.session.Stored
 import ninja.bryansills.loudping.sneak.network.RealNetworkSneak
 import ninja.bryansills.loudping.storage.RealSimpleStorage
@@ -70,7 +74,9 @@ internal suspend fun initializeDependencies(): JvmDependencies {
     val authRetrofit = Retrofit.Builder()
         .baseUrl(networkSneak.baseAuthApiUrl)
         .client(authOkHttpClient)
+        .addConverterFactory(ApiResultConverterFactory)
         .addConverterFactory(converterFactory)
+        .addCallAdapterFactory(ApiResultCallAdapterFactory)
         .build()
 
     val spotifyAuthService = authRetrofit.create<SpotifyAuthService>()
@@ -117,6 +123,10 @@ internal suspend fun initializeDependencies(): JvmDependencies {
             network = networkService,
             database = databaseService,
         ),
+        trackRepo = RealTrackRepository(
+            network = networkService,
+            database = databaseService,
+        ),
     )
 }
 
@@ -124,4 +134,5 @@ data class JvmDependencies(
     val network: NetworkService,
     val database: DatabaseService,
     val albumRepo: AlbumRepository,
+    val trackRepo: TrackRepository,
 )

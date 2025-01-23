@@ -2,6 +2,8 @@ package ninja.bryansills.loudping.jvm.network.runner
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.slack.eithernet.ApiResultCallAdapterFactory
+import com.slack.eithernet.ApiResultConverterFactory
 import java.io.File
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
@@ -63,7 +65,9 @@ internal fun initializeDependencies(): SpotifyService {
     val authRetrofit = Retrofit.Builder()
         .baseUrl(networkSneak.baseAuthApiUrl)
         .client(authOkHttpClient)
+        .addConverterFactory(ApiResultConverterFactory)
         .addConverterFactory(converterFactory)
+        .addCallAdapterFactory(ApiResultCallAdapterFactory)
         .build()
 
     val spotifyAuthService = authRetrofit.create<SpotifyAuthService>()

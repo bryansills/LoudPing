@@ -26,9 +26,11 @@ dependencies {
     implementation(projects.sneakNetwork)
     implementation(projects.storage)
     implementation(projects.time)
+    implementation(projects.trackRepo)
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlinx.serialization)
+    implementation(libs.eithernet)
     implementation(libs.okhttp)
     implementation(libs.okio)
     implementation(libs.kotlinx.serialization.runtime)

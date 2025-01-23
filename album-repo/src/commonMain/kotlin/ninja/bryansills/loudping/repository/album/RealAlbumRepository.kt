@@ -24,13 +24,29 @@ class RealAlbumRepository(
             }
     }
 
-    override suspend fun getAlbumsByTrackIds(trackIds: List<String>): Map<String, Album> {
-        val networkTracks = network.getSeveralTracks(trackIds)
+    override suspend fun getAlbumsByTrackIds(trackIds: List<String>): List<Album> {
+        val cachedAlbums = trackIds
+            .mapNotNull { trackId ->
+                val cachedDatabaseValue = database.getAlbumFromTrackId(trackId)
+                cachedDatabaseValue?.let { trackId to it }
+            }
+            .toMap()
+        val stillNeedDataTrackIds = trackIds.filter { !cachedAlbums.keys.contains(it) }
+        val networkTracks = network.getSeveralTracks(stillNeedDataTrackIds)
 
-        return networkTracks.associate { track ->
-            val databaseAlbum = track.album.toDatabase()
-            database.insertAlbum(album = databaseAlbum, associatedTrackIds = listOf(track.id))
-            track.id to databaseAlbum
+        val freshAlbums = networkTracks.associate { networkTrack ->
+            val databaseAlbum = networkTrack.album.toDatabase()
+            networkTrack.id to databaseAlbum
+        }
+
+        freshAlbums.entries.forEach { (trackId, databaseAlbum) ->
+            database.insertAlbum(album = databaseAlbum, associatedTrackIds = listOf(trackId))
+        }
+
+        return trackIds.map { ogTrackId ->
+            val trackResult = freshAlbums[ogTrackId] ?: cachedAlbums[ogTrackId]
+            checkNotNull(trackResult) { "The album for ID $ogTrackId is missing???" }
+            trackResult
         }
     }
 }

@@ -30,8 +30,29 @@ class RealTrackRepository(
     }
 
     override suspend fun getTracksBySpotifyIds(trackIds: List<String>): List<Track> {
-        val networkTracks = network.getSeveralTracks(trackIds)
-        return networkTracks.map { it.toDatabase() }
+        val cachedTracks = trackIds
+            .mapNotNull { trackId ->
+                val cachedDatabaseValue = database.getTrackFromSpotifyId(trackId)
+                cachedDatabaseValue?.let { trackId to it }
+            }
+            .toMap()
+        val stillNeedDataTrackIds = trackIds.filter { !cachedTracks.keys.contains(it) }
+        val networkTracks = network.getSeveralTracks(stillNeedDataTrackIds)
+
+        val freshTracks = networkTracks.associate { networkTrack ->
+            val databaseTrack = networkTrack.toDatabase()
+            networkTrack.id to databaseTrack
+        }
+
+        freshTracks.values.forEach { databaseTrack ->
+            database.insertTrack(databaseTrack)
+        }
+
+        return trackIds.map { ogTrackId ->
+            val trackResult = freshTracks[ogTrackId] ?: cachedTracks[ogTrackId]
+            checkNotNull(trackResult) { "The track for ID $ogTrackId is missing???" }
+            trackResult
+        }
     }
 }
 
