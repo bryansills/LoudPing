@@ -33,6 +33,7 @@ import ninja.bryansills.loudping.time.RealTimeProvider
 import ninja.bryansills.sneak.Sneak
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.create
 
@@ -68,6 +69,7 @@ internal suspend fun initializeDependencies(): JvmDependencies {
     val authorizationHeaderInterceptor = AuthorizationHeaderInterceptor(networkSneak)
 
     val authOkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY })
         .addInterceptor(authorizationHeaderInterceptor)
         .build()
 
@@ -99,6 +101,7 @@ internal suspend fun initializeDependencies(): JvmDependencies {
     )
 
     val mainOkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY })
         .addInterceptor(accessTokenInterceptor)
         .addInterceptor(rateLimitInterceptor)
         .build()
@@ -112,7 +115,7 @@ internal suspend fun initializeDependencies(): JvmDependencies {
     val spotifyService = mainRetrofit.create<SpotifyService>()
     val networkService = RealNetworkService(spotifyService = spotifyService)
 
-    val driverFactory = DriverFactory()
+    val driverFactory = DriverFactory(url = "jdbc:sqlite:deep-history.db")
     val sqlDatabase = createDatabase(driverFactory)
     val databaseService = RealDatabaseService(database = sqlDatabase)
 

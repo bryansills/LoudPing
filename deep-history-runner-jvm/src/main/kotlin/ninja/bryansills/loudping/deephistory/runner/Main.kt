@@ -6,6 +6,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
 import ninja.bryansills.loudping.coroutines.launchBlocking
 import ninja.bryansills.loudping.deephistory.DeepHistoryRecord
+import ninja.bryansills.loudping.deephistory.base62Uri
 import okio.FileSystem
 import okio.Path.Companion.toPath
 import okio.buffer
@@ -21,7 +22,7 @@ fun main() {
         val recordsWithDatabase = records
             .take(50)
             .associateWith { deepRecord ->
-                val cachedTrack = deps.trackRepo.getTrackBySpotifyId(deepRecord.spotify_track_uri!!)
+                val cachedTrack = deps.trackRepo.getTrackBySpotifyId(deepRecord.base62Uri)
                 cachedTrack
             }
 
@@ -35,11 +36,11 @@ fun main() {
 
         val recordsFromNetwork = chunkedMissing
             .flatMap { recordsWindow ->
-                val ids = recordsWindow.mapNotNull { it.spotify_track_uri }
+                val ids = recordsWindow.map { it.base62Uri }
                 val repoTracks = deps.trackRepo.getTracksBySpotifyIds(ids)
                 recordsWindow.map { indRecord ->
                     val matchingTrack = repoTracks.find {
-                        it.spotifyId == indRecord.spotify_track_uri
+                        it.spotifyId == indRecord.base62Uri
                     }!!
                     indRecord to matchingTrack
                 }

@@ -16,3 +16,8 @@ data class DeepHistoryRecord(
     val shuffle: Boolean,
     val skipped: Boolean,
 )
+
+val DeepHistoryRecord.base62Uri: String
+    get() {
+        return this.spotify_track_uri!!.split(":").last()
+    }
