@@ -19,14 +19,20 @@ fun main() {
     mainScope.launchBlocking {
         val deps = initializeDependencies()
 
-        val recordsWithDatabase = records
-            .take(50)
+        val recordsWithCachedData = records
             .associateWith { deepRecord ->
                 val cachedTrack = deps.trackRepo.getTrackBySpotifyId(deepRecord.base62Uri)
                 cachedTrack
             }
 
-        val recordsWithMissing = recordsWithDatabase
+        val recordsWithNotNullCached = recordsWithCachedData
+            .entries
+            .mapNotNull { (deepRecord, cachedTrack) ->
+                if (cachedTrack != null) deepRecord to cachedTrack else null
+            }
+            .toMap()
+
+        val recordsWithMissing = recordsWithCachedData
             .filter { (_, cachedTrack) ->
                 cachedTrack == null
             }
@@ -47,12 +53,12 @@ fun main() {
             }
             .toMap()
 
-        recordsWithDatabase.forEach { (record, track) ->
-            println("Record: $record Track: $track")
+        recordsWithNotNullCached.forEach { (record, track) ->
+            println("${track.artists.joinToString { it.name }} - ${track.title} played at ${record.ts}")
         }
         println("----------")
         recordsFromNetwork.forEach { (record, track) ->
-            println("Record: $record Track: $track")
+            println("${track.artists.joinToString { it.name }} - ${track.title} played at ${record.ts}")
         }
     }
 }

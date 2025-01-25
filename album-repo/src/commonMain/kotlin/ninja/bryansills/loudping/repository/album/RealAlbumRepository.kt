@@ -32,7 +32,11 @@ class RealAlbumRepository(
             }
             .toMap()
         val stillNeedDataTrackIds = trackIds.filter { !cachedAlbums.keys.contains(it) }
-        val networkTracks = network.getSeveralTracks(stillNeedDataTrackIds)
+        val networkTracks = if (stillNeedDataTrackIds.isNotEmpty()) {
+            network.getSeveralTracks(stillNeedDataTrackIds)
+        } else {
+            listOf()
+        }
 
         val freshAlbums = networkTracks.associate { networkTrack ->
             val databaseAlbum = networkTrack.album.toDatabase()

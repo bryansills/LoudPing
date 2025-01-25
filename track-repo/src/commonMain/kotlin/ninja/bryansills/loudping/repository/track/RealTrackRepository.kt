@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.repository.track
 
+import ninja.bryansills.loudping.network.model.track.Track as NetworkTrack
 import kotlin.time.Duration.Companion.milliseconds
 import ninja.bryansills.loudping.database.DatabaseService
 import ninja.bryansills.loudping.database.model.Album
@@ -8,7 +9,6 @@ import ninja.bryansills.loudping.database.model.Track
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.getTrack
 import ninja.bryansills.loudping.network.model.artist.SimplifiedArtist
-import ninja.bryansills.loudping.network.model.track.Track as NetworkTrack
 import ninja.bryansills.loudping.network.model.track.TrackAlbum
 import ninja.bryansills.loudping.network.model.track.coverImageUrl
 
@@ -37,7 +37,11 @@ class RealTrackRepository(
             }
             .toMap()
         val stillNeedDataTrackIds = trackIds.filter { !cachedTracks.keys.contains(it) }
-        val networkTracks = network.getSeveralTracks(stillNeedDataTrackIds)
+        val networkTracks = if (stillNeedDataTrackIds.isNotEmpty()) {
+            network.getSeveralTracks(stillNeedDataTrackIds)
+        } else {
+            listOf()
+        }
 
         val freshTracks = networkTracks.associate { networkTrack ->
             val databaseTrack = networkTrack.toDatabase()

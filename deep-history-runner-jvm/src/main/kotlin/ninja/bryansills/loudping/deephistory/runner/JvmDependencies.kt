@@ -101,7 +101,7 @@ internal suspend fun initializeDependencies(): JvmDependencies {
     )
 
     val mainOkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY })
+//        .addInterceptor(HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY })
         .addInterceptor(accessTokenInterceptor)
         .addInterceptor(rateLimitInterceptor)
         .build()
