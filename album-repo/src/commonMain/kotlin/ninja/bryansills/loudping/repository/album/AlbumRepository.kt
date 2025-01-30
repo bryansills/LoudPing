@@ -6,7 +6,7 @@ interface AlbumRepository {
     suspend fun getAlbumByTrackId(trackId: String, shouldQueryNetwork: Boolean = false): Album?
 
     /**
-     * ALWAYS makes a network request, so try the other method first.
+     * TODO: migrate this to support partial success
      */
     suspend fun getAlbumsByTrackIds(trackIds: List<String>): List<Album>
 }

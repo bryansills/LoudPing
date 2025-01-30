@@ -29,33 +29,46 @@ class RealTrackRepository(
             }
     }
 
-    override suspend fun getTracksBySpotifyIds(trackIds: List<String>): List<Track> {
-        val cachedTracks = trackIds
-            .mapNotNull { trackId ->
-                val cachedDatabaseValue = database.getTrackFromSpotifyId(trackId)
-                cachedDatabaseValue?.let { trackId to it }
+    override suspend fun getTracksBySpotifyIds(trackIds: List<String>): MultiTrackResult {
+        return try {
+            val cachedTracks = trackIds
+                .mapNotNull { trackId ->
+                    val cachedDatabaseValue = database.getTrackFromSpotifyId(trackId)
+                    cachedDatabaseValue?.let { trackId to it }
+                }
+                .toMap()
+            val stillNeedDataTrackIds = trackIds.filter { !cachedTracks.keys.contains(it) }
+            val networkTracks = if (stillNeedDataTrackIds.isNotEmpty()) {
+                network.getSeveralTracks(stillNeedDataTrackIds)
+            } else {
+                listOf()
             }
-            .toMap()
-        val stillNeedDataTrackIds = trackIds.filter { !cachedTracks.keys.contains(it) }
-        val networkTracks = if (stillNeedDataTrackIds.isNotEmpty()) {
-            network.getSeveralTracks(stillNeedDataTrackIds)
-        } else {
-            listOf()
-        }
 
-        val freshTracks = networkTracks.associate { networkTrack ->
-            val databaseTrack = networkTrack.toDatabase()
-            networkTrack.id to databaseTrack
-        }
+            val freshTracks = networkTracks.associate { networkTrack ->
+                val databaseTrack = networkTrack.toDatabase()
+                networkTrack.id to databaseTrack
+            }
 
-        freshTracks.values.forEach { databaseTrack ->
-            database.insertTrack(databaseTrack)
-        }
+            freshTracks.values.forEach { databaseTrack ->
+                database.insertTrack(databaseTrack)
+            }
 
-        return trackIds.map { ogTrackId ->
-            val trackResult = freshTracks[ogTrackId] ?: cachedTracks[ogTrackId]
-            checkNotNull(trackResult) { "The track for ID $ogTrackId is missing???" }
-            trackResult
+            val finalMapping = trackIds.map { ogTrackId ->
+                val trackResult = freshTracks[ogTrackId] ?: cachedTracks[ogTrackId]
+                ogTrackId to trackResult
+            }
+
+            val foundTracks = finalMapping.mapNotNull { (_, track) -> track }
+            if (finalMapping.all { (_, track) -> track != null }) {
+                MultiTrackResult.Success(foundTracks)
+            } else {
+                val missingTrackIds = finalMapping.mapNotNull {
+                    (trackId, track) -> trackId.takeIf { track == null }
+                }
+                MultiTrackResult.Mixed(foundTracks, missingTrackIds)
+            }
+        } catch (ex: Exception) {
+            MultiTrackResult.Failure(ex)
         }
     }
 }

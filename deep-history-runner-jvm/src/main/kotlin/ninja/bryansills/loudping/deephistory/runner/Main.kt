@@ -5,25 +5,33 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
 import ninja.bryansills.loudping.coroutines.launchBlocking
+import ninja.bryansills.loudping.database.model.Track
 import ninja.bryansills.loudping.deephistory.DeepHistoryRecord
 import ninja.bryansills.loudping.deephistory.base62Uri
+import ninja.bryansills.loudping.repository.track.MultiTrackResult
 import okio.FileSystem
 import okio.Path.Companion.toPath
 import okio.buffer
 
 fun main() {
+    println("Starting work")
     val records = getDeepHistory()
+    println("Loaded data into memory")
 //    processData(records)
 
     val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     mainScope.launchBlocking {
         val deps = initializeDependencies()
 
+        println("Dependencies initialized")
+
         val recordsWithCachedData = records
             .associateWith { deepRecord ->
                 val cachedTrack = deps.trackRepo.getTrackBySpotifyId(deepRecord.base62Uri)
                 cachedTrack
             }
+
+        println("Got all the cached data")
 
         val recordsWithNotNullCached = recordsWithCachedData
             .entries
@@ -40,16 +48,15 @@ fun main() {
 
         val chunkedMissing = recordsWithMissing.chunked(50)
 
+        println("Starting fetching more data")
+
         val recordsFromNetwork = chunkedMissing
-            .flatMap { recordsWindow ->
+            .flatMapIndexed { index, recordsWindow ->
                 val ids = recordsWindow.map { it.base62Uri }
                 val repoTracks = deps.trackRepo.getTracksBySpotifyIds(ids)
-                recordsWindow.map { indRecord ->
-                    val matchingTrack = repoTracks.find {
-                        it.spotifyId == indRecord.base62Uri
-                    }!!
-                    indRecord to matchingTrack
-                }
+                val groupResult = recordsWindow.groupTracks(repoTracks)
+                println("Chunk $index processed")
+                groupResult
             }
             .toMap()
 
@@ -112,4 +119,27 @@ private fun processData(records: List<DeepHistoryRecord>) {
             it.spotify_track_uri == null
     }
     badData.forEach { println(it) }
+}
+
+private fun List<DeepHistoryRecord>.groupTracks(repoResult: MultiTrackResult): List<Pair<DeepHistoryRecord, Track>> {
+    return when (repoResult) {
+        is MultiTrackResult.Success -> {
+            this.map { indRecord ->
+                val matchingTrack = repoResult.tracks.find { it.spotifyId == indRecord.base62Uri }!!
+                indRecord to matchingTrack
+            }
+        }
+        is MultiTrackResult.Mixed -> {
+            this.mapNotNull { indRecord ->
+                val matchingTrack = repoResult.tracks.find { it.spotifyId == indRecord.base62Uri }
+                if (matchingTrack != null) {
+                    indRecord to matchingTrack
+                } else {
+                    check(repoResult.missingIds.contains(indRecord.base62Uri))
+                    null
+                }
+            }
+        }
+        is MultiTrackResult.Failure -> throw repoResult.exception
+    }
 }
