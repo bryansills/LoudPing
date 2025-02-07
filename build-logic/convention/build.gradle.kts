@@ -78,5 +78,9 @@ gradlePlugin {
             id = "ninja.bryansills.android.library.compose.screen"
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeAndroidScreenConventionPlugin"
         }
+        register("composeMosaic") {
+            id = "ninja.bryansills.compose.mosaic"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeMosaicConventionPlugin"
+        }
     }
 }

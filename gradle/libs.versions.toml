@@ -96,6 +96,7 @@ paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pag
 paging-sqldelight = { module = "app.cash.sqldelight:androidx-paging3-extensions", version.ref = "sqldelight" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+mosaic = { module = "com.jakewharton.mosaic:mosaic-runtime", version = "0.15.0" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
