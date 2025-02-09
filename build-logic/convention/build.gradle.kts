@@ -82,5 +82,9 @@ gradlePlugin {
             id = "ninja.bryansills.compose.mosaic"
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeMosaicConventionPlugin"
         }
+        register("sqldelight") {
+            id = "ninja.bryansills.sqldelight"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.SqldelightConventionPlugin"
+        }
     }
 }

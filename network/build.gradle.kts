@@ -1,11 +1,9 @@
 plugins {
-    id("ninja-bryansills-kmp")
+    id("ninja.bryansills.multiplatform.library")
     kotlin("plugin.serialization")
 }
 
 kotlin {
-    jvm()
-
     sourceSets {
         commonMain.dependencies {
             implementation(projects.networkAuth)
@@ -23,8 +21,4 @@ kotlin {
             implementation(libs.kotlin.test.junit)
         }
     }
-}
-
-android {
-    namespace = "ninja.bryansills.loudping.network"
 }

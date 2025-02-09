@@ -1,11 +1,8 @@
 plugins {
-    id("ninja-bryansills-kmp")
-    alias(libs.plugins.sqldelight)
+    id("ninja.bryansills.sqldelight")
 }
 
 kotlin {
-    jvm()
-
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.datetime)
