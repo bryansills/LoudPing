@@ -16,8 +16,8 @@ androidx.compose.foundation:foundation-android:1.7.7
 androidx.compose.foundation:foundation-layout-android:1.7.7
 androidx.compose.foundation:foundation-layout:1.7.7
 androidx.compose.foundation:foundation:1.7.7
-androidx.compose.material3:material3-android:1.4.0-alpha06
-androidx.compose.material3:material3:1.4.0-alpha06
+androidx.compose.material3:material3-android:1.4.0-alpha07
+androidx.compose.material3:material3:1.4.0-alpha07
 androidx.compose.material:material-ripple-android:1.7.7
 androidx.compose.material:material-ripple:1.7.7
 androidx.compose.runtime:runtime-android:1.7.7
