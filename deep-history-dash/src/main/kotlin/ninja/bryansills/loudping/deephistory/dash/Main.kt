@@ -29,13 +29,13 @@ fun main() = runMosaicBlocking {
                     is DeepHistoryRunEvent.CachedChunk -> {
                         runStats.copy(
                             cachedFound = runStats.cachedFound + event.found.size,
-                            cachedMissing = runStats.cachedMissing + event.missing.size
+                            cachedMissing = runStats.cachedMissing + event.missing.size,
                         )
                     }
                     is DeepHistoryRunEvent.NetworkChunk -> {
                         runStats.copy(
                             networkFound = runStats.networkFound + event.found.size,
-                            networkMissing = runStats.networkMissing + event.stillMissing.size
+                            networkMissing = runStats.networkMissing + event.stillMissing.size,
                         )
                     }
                 }
@@ -45,27 +45,27 @@ fun main() = runMosaicBlocking {
     Column {
         Text(
             value = "Initialized: ${if (runStats.depsInitialized) "true" else "false"}",
-            color = Color.Yellow
+            color = Color.Yellow,
         )
         Text(
             value = "Total tracks: ${runStats.recordCount}",
-            color = Color.Yellow
+            color = Color.Yellow,
         )
         Text(
             value = "Cached tracks: ${runStats.cachedFound}",
-            color = Color.Yellow
+            color = Color.Yellow,
         )
         Text(
             value = "Non-cached tracks: ${runStats.cachedMissing}",
-            color = Color.Yellow
+            color = Color.Yellow,
         )
         Text(
             value = "Network tracks: ${runStats.networkFound}",
-            color = Color.Yellow
+            color = Color.Yellow,
         )
         Text(
             value = "Still missing tracks: ${runStats.networkMissing}",
-            color = Color.Yellow
+            color = Color.Yellow,
         )
     }
 }

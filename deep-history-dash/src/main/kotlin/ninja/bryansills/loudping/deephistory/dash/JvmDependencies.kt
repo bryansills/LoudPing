@@ -125,7 +125,7 @@ internal suspend fun initializeDependencies(): JvmDependencies {
         database = databaseService,
     )
     val deepHistoryRunner = DefaultDeepHistoryRunner(
-        trackRepository = trackRepo
+        trackRepository = trackRepo,
     )
 
     return JvmDependencies(
@@ -133,7 +133,7 @@ internal suspend fun initializeDependencies(): JvmDependencies {
         database = databaseService,
         trackRepo = trackRepo,
         deepHistoryRunner = deepHistoryRunner,
-        deepHistoryDataProvider = LazyJavaResourcesDeepHistoryDataProvider()
+        deepHistoryDataProvider = LazyJavaResourcesDeepHistoryDataProvider(),
     )
 }
 
@@ -142,5 +142,5 @@ data class JvmDependencies(
     val database: DatabaseService,
     val trackRepo: TrackRepository,
     val deepHistoryRunner: DeepHistoryRunner,
-    val deepHistoryDataProvider: DeepHistoryDataProvider
+    val deepHistoryDataProvider: DeepHistoryDataProvider,
 )

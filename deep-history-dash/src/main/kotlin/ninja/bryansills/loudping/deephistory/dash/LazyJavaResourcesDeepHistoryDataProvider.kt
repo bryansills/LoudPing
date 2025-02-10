@@ -9,7 +9,7 @@ import okio.buffer
 
 class LazyJavaResourcesDeepHistoryDataProvider(
     private val fileSystem: FileSystem = FileSystem.RESOURCES,
-    private val json: Json = Json { ignoreUnknownKeys = true }
+    private val json: Json = Json { ignoreUnknownKeys = true },
 ) : DeepHistoryDataProvider {
     override val data: List<DeepHistoryRecord> by lazy {
         val jsonPaths = fileSystem.list(".".toPath())

@@ -54,4 +54,3 @@ buildConfig {
 fun BuildConfigExtension.string(key: String, value: String) {
     this.buildConfigField("String", key, "\"$value\"")
 }
-

@@ -7,7 +7,7 @@ import ninja.bryansills.loudping.repository.track.MultiTrackResult
 import ninja.bryansills.loudping.repository.track.TrackRepository
 
 class DefaultDeepHistoryRunner(
-    private val trackRepository: TrackRepository
+    private val trackRepository: TrackRepository,
 ) : DeepHistoryRunner {
     override fun invoke(dataProvider: DeepHistoryDataProvider): Flow<DeepHistoryRunEvent> = flow {
         val records = dataProvider.data
@@ -39,8 +39,8 @@ class DefaultDeepHistoryRunner(
             emit(
                 DeepHistoryRunEvent.CachedChunk(
                     found = processedCached,
-                    missing = processedMissing
-                )
+                    missing = processedMissing,
+                ),
             )
 
             recordsWithCachedTracks.addAll(processedCached)
@@ -57,8 +57,8 @@ class DefaultDeepHistoryRunner(
             emit(
                 DeepHistoryRunEvent.NetworkChunk(
                     found = groupResult.found,
-                    stillMissing = groupResult.stillMissing
-                )
+                    stillMissing = groupResult.stillMissing,
+                ),
             )
         }
     }
@@ -74,7 +74,7 @@ private fun List<DeepHistoryRecord>.groupRecords(repoResult: MultiTrackResult): 
 
             NetworkGroupedRecords(
                 found = found,
-                stillMissing = listOf()
+                stillMissing = listOf(),
             )
         }
         is MultiTrackResult.Mixed -> {
@@ -98,7 +98,7 @@ private fun List<DeepHistoryRecord>.groupRecords(repoResult: MultiTrackResult): 
 
             NetworkGroupedRecords(
                 found = found,
-                stillMissing = stillMissing
+                stillMissing = stillMissing,
             )
         }
         is MultiTrackResult.Failure -> throw repoResult.exception
@@ -107,6 +107,5 @@ private fun List<DeepHistoryRecord>.groupRecords(repoResult: MultiTrackResult): 
 
 data class NetworkGroupedRecords(
     val found: List<Pair<DeepHistoryRecord, Track>>,
-    val stillMissing: List<DeepHistoryRecord>
+    val stillMissing: List<DeepHistoryRecord>,
 )
-
