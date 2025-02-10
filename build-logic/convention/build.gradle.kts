@@ -54,6 +54,10 @@ gradlePlugin {
             id = "ninja.bryansills.root"
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.RootConventionPlugin"
         }
+        register("androidApp") {
+            id = "ninja.bryansills.android.app"
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.AndroidAppConventionPlugin"
+        }
         register("javaAndroidLibrary") {
             id = "ninja.bryansills.android.library"
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.JavaAndroidLibraryConventionPlugin"

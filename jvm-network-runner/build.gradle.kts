@@ -3,8 +3,8 @@ import ninja.bryansills.loudping.gradle.plugin.getSecret
 import ninja.bryansills.loudping.gradle.plugin.rootProperties
 
 plugins {
-    id("ninja-bryansills-spotless")
-    kotlin("jvm")
+    id("ninja.bryansills.root")
+    alias(libs.plugins.kotlin.jvm)
     application
     alias(libs.plugins.buildconfig)
 }
