@@ -14,7 +14,7 @@ application {
 }
 
 dependencies {
-    implementation(projects.deepHistoryModel)
+    implementation(projects.deepHistory)
     implementation(projects.albumRepo)
     implementation(projects.coroutinesExt)
     implementation(projects.database)

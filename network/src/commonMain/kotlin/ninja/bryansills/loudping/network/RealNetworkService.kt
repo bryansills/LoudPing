@@ -70,6 +70,7 @@ class RealNetworkService(
     }
 
     override suspend fun getSeveralTracks(ids: List<String>): List<Track> {
+        require(ids.size <= 50) { "You can only query for 50 tracks at a time." }
         return spotifyService.getSeveralTracks(ids.joinToString(separator = ",")).tracks
     }
 }

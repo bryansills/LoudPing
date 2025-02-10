@@ -11,3 +11,4 @@ local.properties
 secrets.properties
 *.preferences_pb
 .kotlin
+deep-history.db

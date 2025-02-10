@@ -2,7 +2,6 @@ import org.gradle.accessors.dm.LibrariesForLibs
 
 plugins {
     `kotlin-dsl`
-    `kotlin-dsl-precompiled-script-plugins` // todo: delete
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.samReceiver)
     alias(libs.plugins.spotless)
