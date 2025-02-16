@@ -5,7 +5,7 @@ import ninja.bryansills.loudping.database.model.Track
 interface TrackRepository {
     suspend fun getTrackBySpotifyId(trackId: String, shouldQueryNetwork: Boolean = false): Track?
 
-    suspend fun getTracksBySpotifyIds(trackIds: List<String>): MultiTrackResult
+    suspend fun getTracksBySpotifyIds(trackIds: List<String>, shouldQueryNetworkForMissing: Boolean): MultiTrackResult
 }
 
 sealed interface MultiTrackResult {

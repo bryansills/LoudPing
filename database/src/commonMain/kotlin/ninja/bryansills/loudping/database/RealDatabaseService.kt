@@ -180,6 +180,39 @@ class RealDatabaseService(
         }
     }
 
+    override suspend fun getTracksFromSpotifyIds(trackIds: List<String>): List<Track> {
+        val tracks = database
+            .trackQueries
+            .get_tracks_from_spotify_ids(spotifyTrackIds = trackIds)
+            .awaitAsList()
+
+        return tracks
+            .groupBy { it.spotify_track_id }
+            .values
+            .map { rowsForTrack ->
+                val firstRow = rowsForTrack.first()
+                Track(
+                    spotifyId = firstRow.spotify_track_id,
+                    title = firstRow.title,
+                    trackNumber = firstRow.track_number.toInt(),
+                    discNumber = firstRow.disc_number.toInt(),
+                    duration = firstRow.duration_ms.milliseconds,
+                    album = Album(
+                        spotifyId = firstRow.spotify_album_id,
+                        title = firstRow.album_title,
+                        trackCount = firstRow.album_track_count.toInt(),
+                        coverImage = firstRow.album_cover_image,
+                    ),
+                    artists = rowsForTrack.map { trackArtist ->
+                        Artist(
+                            spotifyId = trackArtist.spotify_artist_id,
+                            name = trackArtist.artist_name,
+                        )
+                    },
+                )
+            }
+    }
+
     override suspend fun insertTrack(track: Track) {
         database.transaction {
             insertTrackInternal(track = track)

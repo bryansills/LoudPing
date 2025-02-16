@@ -39,7 +39,7 @@ import retrofit2.Retrofit
 import retrofit2.create
 
 @OptIn(ExperimentalStdlibApi::class)
-internal suspend fun initializeDependencies(): JvmDependencies {
+suspend fun initializeDependencies(): JvmDependencies {
     val sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
     val networkSneak = RealNetworkSneak(
         sneak = sneak,

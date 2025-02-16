@@ -25,3 +25,14 @@ INNER JOIN track_artist ON track.spotify_track_id = track_artist.spotify_track_i
 INNER JOIN artist ON track_artist.spotify_artist_id = artist.spotify_id
 WHERE track.spotify_track_id = :spotifyTrackId
 ;
+
+
+get_tracks_from_spotify_ids:
+SELECT track.spotify_track_id, track.title, track.track_number, track.disc_number, track.duration_ms, album.spotify_id AS spotify_album_id, album.track_count AS album_track_count, album.title AS album_title, album.cover_image AS album_cover_image, artist.spotify_id AS spotify_artist_id, artist.name AS artist_name
+FROM track
+INNER JOIN track_album ON track.spotify_track_id = track_album.spotify_track_id
+INNER JOIN album ON track_album.spotify_album_id = album.spotify_id
+INNER JOIN track_artist ON track.spotify_track_id = track_artist.spotify_track_id
+INNER JOIN artist ON track_artist.spotify_artist_id = artist.spotify_id
+WHERE track.spotify_track_id IN :spotifyTrackIds
+;

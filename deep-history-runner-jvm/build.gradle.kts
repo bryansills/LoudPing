@@ -14,27 +14,10 @@ application {
 }
 
 dependencies {
+    implementation(projects.deepHistoryDash)
     implementation(projects.deepHistory)
-    implementation(projects.albumRepo)
     implementation(projects.coroutinesExt)
-    implementation(projects.database)
-    implementation(projects.historyRecorder)
-    implementation(projects.network)
-    implementation(projects.networkAuth)
-    implementation(projects.session)
-    implementation(projects.sneak)
-    implementation(projects.sneakNetwork)
-    implementation(projects.storage)
-    implementation(projects.time)
-    implementation(projects.trackRepo)
-
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.kotlinx.serialization)
-    implementation(libs.eithernet)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging)
-    implementation(libs.okio)
-    implementation(libs.kotlinx.serialization.runtime)
+    implementation(libs.coroutines)
 }
 
 buildConfig {
