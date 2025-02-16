@@ -5,6 +5,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.jakewharton.mosaic.layout.background
+import com.jakewharton.mosaic.modifier.Modifier
 import com.jakewharton.mosaic.runMosaicBlocking
 import com.jakewharton.mosaic.ui.Color
 import com.jakewharton.mosaic.ui.Column
@@ -42,30 +44,30 @@ fun main() = runMosaicBlocking {
             }
     }
 
-    Column {
+    Column(modifier = Modifier.background(Color.Black)) {
         Text(
             value = "Initialized: ${if (runStats.depsInitialized) "true" else "false"}",
-            color = Color.Yellow,
+            color = Color.White,
         )
         Text(
             value = "Total tracks: ${runStats.recordCount}",
-            color = Color.Yellow,
+            color = Color.White,
         )
         Text(
             value = "Cached tracks: ${runStats.cachedFound}",
-            color = Color.Yellow,
+            color = Color.White,
         )
         Text(
             value = "Non-cached tracks: ${runStats.cachedMissing}",
-            color = Color.Yellow,
+            color = Color.White,
         )
         Text(
             value = "Network tracks: ${runStats.networkFound}",
-            color = Color.Yellow,
+            color = Color.White,
         )
         Text(
             value = "Still missing tracks: ${runStats.networkMissing}",
-            color = Color.Yellow,
+            color = Color.White,
         )
     }
 }

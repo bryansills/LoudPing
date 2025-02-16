@@ -33,5 +33,10 @@ interface DatabaseService {
      */
     suspend fun getTrackFromSpotifyId(trackId: String): Track?
 
+    /**
+     * @param trackIds Just the base62 data. Do not include the URI prefix "spotify:track:".
+     */
+    suspend fun getTracksFromSpotifyIds(trackIds: List<String>): List<Track>
+
     suspend fun insertTrack(track: Track)
 }

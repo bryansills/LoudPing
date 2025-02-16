@@ -18,40 +18,31 @@ class DefaultDeepHistoryRunner(
         val recordsWithCachedTracks = mutableListOf<Pair<DeepHistoryRecord, Track>>()
         val recordsWithoutCachedTracks = mutableListOf<DeepHistoryRecord>()
 
-        chunkedRecords.forEach { chunk ->
-            val processedChunk = chunk.associateWith { deepRecord ->
-                val cachedTrack = trackRepository.getTrackBySpotifyId(deepRecord.base62Uri)
-                cachedTrack
-            }
-
-            val processedCached = processedChunk
-                .entries
-                .mapNotNull { (deepRecord, cachedTrack) ->
-                    if (cachedTrack != null) deepRecord to cachedTrack else null
-                }
-
-            val processedMissing = processedChunk
-                .filter { (_, cachedTrack) ->
-                    cachedTrack == null
-                }
-                .map { (deepRecord, _) -> deepRecord }
+        chunkedRecords.forEach { recordsWindow ->
+            val repoTracks = trackRepository.getTracksBySpotifyIds(
+                trackIds = recordsWindow.map { it.base62Uri },
+                shouldQueryNetworkForMissing = false,
+            )
+            val groupResult = recordsWindow.groupRecords(repoTracks)
 
             emit(
                 DeepHistoryRunEvent.CachedChunk(
-                    found = processedCached,
-                    missing = processedMissing,
+                    found = groupResult.found,
+                    missing = groupResult.stillMissing,
                 ),
             )
 
-            recordsWithCachedTracks.addAll(processedCached)
-            recordsWithoutCachedTracks.addAll(processedMissing)
+            recordsWithCachedTracks.addAll(groupResult.found)
+            recordsWithoutCachedTracks.addAll(groupResult.stillMissing)
         }
 
         val chunkedMissing = recordsWithoutCachedTracks.chunked(50)
 
         chunkedMissing.forEach { recordsWindow ->
-            val ids = recordsWindow.map { it.base62Uri }
-            val repoTracks = trackRepository.getTracksBySpotifyIds(ids)
+            val repoTracks = trackRepository.getTracksBySpotifyIds(
+                trackIds = recordsWindow.map { it.base62Uri },
+                shouldQueryNetworkForMissing = true,
+            )
             val groupResult = recordsWindow.groupRecords(repoTracks)
 
             emit(
