@@ -790,8 +790,8 @@
 |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1 (*)
 |    |    +--- project :storage (*)
 |    |    +--- project :time
-|    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1
-|    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.1
+|    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2
+|    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.2
 |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.1.10 (*)
 |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
 |    |    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1 (*)
@@ -907,7 +907,7 @@
 |    |    |    +--- project :history-recorder
 |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
 |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1 (*)
-|    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
+|    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
 |    |    |    |    +--- project :database
 |    |    |    |    |    +--- app.cash.sqldelight:android-driver:2.1.0-SNAPSHOT
 |    |    |    |    |    |    +--- androidx.sqlite:sqlite-framework:2.4.0 (*)
@@ -930,7 +930,7 @@
 |    |    |    |    |    |         \--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT (*)
 |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1 (*)
-|    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
+|    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
 |    |    |    |    |    \--- app.cash.sqldelight:androidx-paging3-extensions:2.1.0-SNAPSHOT
 |    |    |    |    |         \--- app.cash.sqldelight:androidx-paging3-extensions-jvm:2.1.0-SNAPSHOT
 |    |    |    |    |              +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT (*)
@@ -951,7 +951,7 @@
 |    |    |    |         +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0 (*)
 |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 |    |    |    |         +--- com.squareup.okhttp3:okhttp:4.12.0 (*)
-|    |    |    |         \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
+|    |    |    |         \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
 |    |    |    +--- project :storage (*)
 |    |    |    +--- project :time (*)
 |    |    |    +--- project :logger
@@ -963,7 +963,7 @@
 |    |    |    |    |    \--- com.google.dagger:hilt-core:2.49 -> 2.55 (*)
 |    |    |    |    +--- androidx.work:work-runtime:2.3.4 -> 2.10.0 (*)
 |    |    |    |    \--- com.google.dagger:hilt-android:2.49 -> 2.55 (*)
-|    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
+|    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
 |    |    \--- androidx.compose.material:material-icons-core -> 1.7.7
 |    |         \--- androidx.compose.material:material-icons-core-android:1.7.7
 |    |              +--- androidx.compose.ui:ui:1.6.0 -> 1.7.7 (*)
@@ -1111,7 +1111,7 @@
 |    |    +--- project :app-theme (*)
 |    |    +--- project :android-app-res
 |    |    +--- project :foreman (*)
-|    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
 |    |    \--- androidx.work:work-runtime-ktx:2.10.0 (*)
 |    +--- project :ui:played-tracks
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
@@ -1125,7 +1125,7 @@
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
 |    |    +--- project :database (*)
 |    |    +--- project :app-theme (*)
-|    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
 |    |    +--- androidx.paging:paging-common:3.3.5 (*)
 |    |    \--- androidx.paging:paging-compose:3.3.5
 |    |         \--- androidx.paging:paging-compose-android:3.3.5

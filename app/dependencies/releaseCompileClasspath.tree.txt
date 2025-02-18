@@ -445,8 +445,8 @@
 |    |         \--- androidx.datastore:datastore-core-okio:1.1.2 (c)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
 +--- project :time
-|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.1
-|    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.1
+|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2
+|    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.2
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.1.10 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
 +--- project :logger
@@ -576,7 +576,7 @@
 +--- app.cash.sqldelight:runtime:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- app.cash.sqldelight:async-extensions:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- androidx.datastore:datastore-preferences:{strictly 1.1.2} -> 1.1.2 (c)
-+--- org.jetbrains.kotlinx:kotlinx-datetime:{strictly 0.6.1} -> 0.6.1 (c)
++--- org.jetbrains.kotlinx:kotlinx-datetime:{strictly 0.6.2} -> 0.6.2 (c)
 +--- androidx.compose.runtime:runtime:{strictly 1.7.7} -> 1.7.7 (c)
 +--- androidx.compose.runtime:runtime-saveable:{strictly 1.7.7} -> 1.7.7 (c)
 +--- androidx.compose.ui:ui:{strictly 1.7.7} -> 1.7.7 (c)
@@ -613,7 +613,7 @@
 +--- app.cash.sqldelight:runtime-jvm:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- app.cash.sqldelight:async-extensions-jvm:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- androidx.datastore:datastore-preferences-android:{strictly 1.1.2} -> 1.1.2 (c)
-+--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:{strictly 0.6.1} -> 0.6.1 (c)
++--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:{strictly 0.6.2} -> 0.6.2 (c)
 +--- androidx.compose.runtime:runtime-android:{strictly 1.7.7} -> 1.7.7 (c)
 +--- androidx.compose.runtime:runtime-saveable-android:{strictly 1.7.7} -> 1.7.7 (c)
 +--- androidx.compose.ui:ui-android:{strictly 1.7.7} -> 1.7.7 (c)
