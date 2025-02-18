@@ -16,60 +16,59 @@ import kotlinx.coroutines.flow.flowOn
 import ninja.bryansills.loudping.deephistory.DeepHistoryRunEvent
 
 fun main() = runMosaicBlocking {
-    var runStats by remember { mutableStateOf(ProgressStats()) }
-    LaunchedEffect(Unit) {
-        val deps = initializeDependencies()
-        runStats = runStats.copy(depsInitialized = true)
-        deps
-            .deepHistoryRunner(deps.deepHistoryDataProvider)
-            .flowOn(Dispatchers.Default)
-            .collect { event ->
-                runStats = when (event) {
-                    is DeepHistoryRunEvent.EntriesLoaded -> {
-                        runStats.copy(recordCount = event.playCount)
-                    }
-                    is DeepHistoryRunEvent.CachedChunk -> {
-                        runStats.copy(
-                            cachedFound = runStats.cachedFound + event.found.size,
-                            cachedMissing = runStats.cachedMissing + event.missing.size,
-                        )
-                    }
-                    is DeepHistoryRunEvent.NetworkChunk -> {
-                        runStats.copy(
-                            networkFound = runStats.networkFound + event.found.size,
-                            networkMissing = runStats.networkMissing + event.stillMissing.size,
-                        )
-                    }
-                }
+  var runStats by remember { mutableStateOf(ProgressStats()) }
+  LaunchedEffect(Unit) {
+    val deps = initializeDependencies()
+    runStats = runStats.copy(depsInitialized = true)
+    deps.deepHistoryRunner(deps.deepHistoryDataProvider).flowOn(Dispatchers.Default).collect { event
+      ->
+      runStats =
+          when (event) {
+            is DeepHistoryRunEvent.EntriesLoaded -> {
+              runStats.copy(recordCount = event.playCount)
             }
+            is DeepHistoryRunEvent.CachedChunk -> {
+              runStats.copy(
+                  cachedFound = runStats.cachedFound + event.found.size,
+                  cachedMissing = runStats.cachedMissing + event.missing.size,
+              )
+            }
+            is DeepHistoryRunEvent.NetworkChunk -> {
+              runStats.copy(
+                  networkFound = runStats.networkFound + event.found.size,
+                  networkMissing = runStats.networkMissing + event.stillMissing.size,
+              )
+            }
+          }
     }
+  }
 
-    Column(modifier = Modifier.background(Color.Black)) {
-        Text(
-            value = "Initialized: ${if (runStats.depsInitialized) "true" else "false"}",
-            color = Color.White,
-        )
-        Text(
-            value = "Total tracks: ${runStats.recordCount}",
-            color = Color.White,
-        )
-        Text(
-            value = "Cached tracks: ${runStats.cachedFound}",
-            color = Color.White,
-        )
-        Text(
-            value = "Non-cached tracks: ${runStats.cachedMissing}",
-            color = Color.White,
-        )
-        Text(
-            value = "Network tracks: ${runStats.networkFound}",
-            color = Color.White,
-        )
-        Text(
-            value = "Still missing tracks: ${runStats.networkMissing}",
-            color = Color.White,
-        )
-    }
+  Column(modifier = Modifier.background(Color.Black)) {
+    Text(
+        value = "Initialized: ${if (runStats.depsInitialized) "true" else "false"}",
+        color = Color.White,
+    )
+    Text(
+        value = "Total tracks: ${runStats.recordCount}",
+        color = Color.White,
+    )
+    Text(
+        value = "Cached tracks: ${runStats.cachedFound}",
+        color = Color.White,
+    )
+    Text(
+        value = "Non-cached tracks: ${runStats.cachedMissing}",
+        color = Color.White,
+    )
+    Text(
+        value = "Network tracks: ${runStats.networkFound}",
+        color = Color.White,
+    )
+    Text(
+        value = "Still missing tracks: ${runStats.networkMissing}",
+        color = Color.White,
+    )
+  }
 }
 
 data class ProgressStats(

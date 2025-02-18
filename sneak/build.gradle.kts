@@ -1,3 +1,1 @@
-plugins {
-    id("ninja.bryansills.multiplatform.library")
-}
+plugins { id("ninja.bryansills.multiplatform.library") }

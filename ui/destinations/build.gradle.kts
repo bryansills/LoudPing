@@ -1,7 +1,3 @@
-plugins {
-    id("ninja.bryansills.android.library.compose.screen")
-}
+plugins { id("ninja.bryansills.android.library.compose.screen") }
 
-android {
-    namespace = "ninja.bryansills.loudping.ui.destinations"
-}
+android { namespace = "ninja.bryansills.loudping.ui.destinations" }

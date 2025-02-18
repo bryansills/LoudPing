@@ -16,13 +16,13 @@ internal fun Project.configureSpotless() {
             endWithNewline()
         }
         kotlin {
-            ktlint(libs.findVersion("ktlint").get().requiredVersion)
+            ktfmt(libs.findVersion("ktfmt").get().requiredVersion)
             target("src/**/*.kt")
             trimTrailingWhitespace()
             endWithNewline()
         }
         kotlinGradle {
-            ktlint(libs.findVersion("ktlint").get().requiredVersion)
+            ktfmt(libs.findVersion("ktfmt").get().requiredVersion)
             target("**/*.gradle.kts")
             targetExclude("**/build/**/*.gradle.kts") // TODO: remove when the old stuff is gone
             trimTrailingWhitespace()

@@ -11,21 +11,21 @@ class RealNetworkSneak(
     private val obfuscatedBaseAuthApiUrl: ByteArray,
     private val obfuscatedAuthorizeUrl: ByteArray,
 ) : NetworkSneak {
-    override val clientId: String
-        get() = sneak.deobfuscate(obfuscatedClientId)
+  override val clientId: String
+    get() = sneak.deobfuscate(obfuscatedClientId)
 
-    override val clientSecret: String
-        get() = sneak.deobfuscate(obfuscatedClientSecret)
+  override val clientSecret: String
+    get() = sneak.deobfuscate(obfuscatedClientSecret)
 
-    override val redirectUrl: String
-        get() = sneak.deobfuscate(obfuscatedRedirectUrl)
+  override val redirectUrl: String
+    get() = sneak.deobfuscate(obfuscatedRedirectUrl)
 
-    override val baseApiUrl: String
-        get() = sneak.deobfuscate(obfuscatedBaseApiUrl)
+  override val baseApiUrl: String
+    get() = sneak.deobfuscate(obfuscatedBaseApiUrl)
 
-    override val baseAuthApiUrl: String
-        get() = sneak.deobfuscate(obfuscatedBaseAuthApiUrl)
+  override val baseAuthApiUrl: String
+    get() = sneak.deobfuscate(obfuscatedBaseAuthApiUrl)
 
-    override val authorizeUrl: String
-        get() = sneak.deobfuscate(obfuscatedAuthorizeUrl)
+  override val authorizeUrl: String
+    get() = sneak.deobfuscate(obfuscatedAuthorizeUrl)
 }

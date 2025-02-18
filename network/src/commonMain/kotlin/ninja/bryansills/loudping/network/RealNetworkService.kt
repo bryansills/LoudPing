@@ -15,64 +15,66 @@ import ninja.bryansills.loudping.network.model.track.Track
 class RealNetworkService(
     private val spotifyService: SpotifyService,
 ) : NetworkService {
-    override suspend fun getMe(): PrivateUserResponse {
-        return spotifyService.getMe()
-    }
+  override suspend fun getMe(): PrivateUserResponse {
+    return spotifyService.getMe()
+  }
 
-    override suspend fun getRecentlyPlayed(): RecentlyPlayedResponse {
-        return spotifyService.getRecentlyPlayed()
-    }
+  override suspend fun getRecentlyPlayed(): RecentlyPlayedResponse {
+    return spotifyService.getRecentlyPlayed()
+  }
 
-    override suspend fun getSavedAlbums(): SavedAlbumsResponse {
-        return spotifyService.getSavedAlbums()
-    }
+  override suspend fun getSavedAlbums(): SavedAlbumsResponse {
+    return spotifyService.getSavedAlbums()
+  }
 
-    override fun getRecentlyPlayedStream(
-        startAt: Instant,
-        stopAt: Instant,
-        trimmingStrategy: RecentTrimmingStrategy,
-    ): Flow<RecentlyPlayedResponse> = flow {
-        var currentQueryTime: Instant? = startAt
-        var nextUrl: String? = null
-        var isFirstQuery = true
+  override fun getRecentlyPlayedStream(
+      startAt: Instant,
+      stopAt: Instant,
+      trimmingStrategy: RecentTrimmingStrategy,
+  ): Flow<RecentlyPlayedResponse> = flow {
+    var currentQueryTime: Instant? = startAt
+    var nextUrl: String? = null
+    var isFirstQuery = true
 
-        while (
-            currentCoroutineContext().isActive && keepGoing(
-                currentQueryTime,
-                stopAt,
-                nextUrl,
-                isFirstQuery,
-            )
-        ) {
-            val response = if (nextUrl != null) {
-                spotifyService.getOlderRecentlyPlayed(nextUrl)
-            } else {
-                val beforeInMillis = currentQueryTime!!.toEpochMilliseconds()
-                spotifyService.getRecentlyPlayed(beforeTimestampUnix = beforeInMillis)
+    while (currentCoroutineContext().isActive &&
+        keepGoing(
+            currentQueryTime,
+            stopAt,
+            nextUrl,
+            isFirstQuery,
+        )) {
+      val response =
+          if (nextUrl != null) {
+            spotifyService.getOlderRecentlyPlayed(nextUrl)
+          } else {
+            val beforeInMillis = currentQueryTime!!.toEpochMilliseconds()
+            spotifyService.getRecentlyPlayed(beforeTimestampUnix = beforeInMillis)
+          }
+
+      val trimmedResponse =
+          when (trimmingStrategy) {
+            RecentTrimmingStrategy.None -> response
+            RecentTrimmingStrategy.StopAt -> {
+              response.copy(items = response.items.trim(stopAt))
             }
+          }
+      emit(trimmedResponse)
 
-            val trimmedResponse = when (trimmingStrategy) {
-                RecentTrimmingStrategy.None -> response
-                RecentTrimmingStrategy.StopAt -> {
-                    response.copy(items = response.items.trim(stopAt))
-                }
-            }
-            emit(trimmedResponse)
-
-            currentQueryTime = try {
-                Instant.fromEpochMilliseconds(response.cursors!!.before.toLong())
-            } catch (ex: Exception) {
-                null
-            }
-            nextUrl = response.next
-            isFirstQuery = false
-        }
+      currentQueryTime =
+          try {
+            Instant.fromEpochMilliseconds(response.cursors!!.before.toLong())
+          } catch (ex: Exception) {
+            null
+          }
+      nextUrl = response.next
+      isFirstQuery = false
     }
+  }
 
-    override suspend fun getSeveralTracks(ids: List<String>): List<Track> {
-        require(ids.size <= 50) { "You can only query for 50 tracks at a time." }
-        return spotifyService.getSeveralTracks(ids.joinToString(separator = ",")).tracks
-    }
+  override suspend fun getSeveralTracks(ids: List<String>): List<Track> {
+    require(ids.size <= 50) { "You can only query for 50 tracks at a time." }
+    return spotifyService.getSeveralTracks(ids.joinToString(separator = ",")).tracks
+  }
 }
 
 private fun keepGoing(
@@ -81,13 +83,13 @@ private fun keepGoing(
     nextUrl: String?,
     isFirstQuery: Boolean,
 ): Boolean {
-    return if (isFirstQuery) {
-        inProgress != null && inProgress > stopAt
-    } else {
-        nextUrl != null && inProgress != null && inProgress > stopAt
-    }
+  return if (isFirstQuery) {
+    inProgress != null && inProgress > stopAt
+  } else {
+    nextUrl != null && inProgress != null && inProgress > stopAt
+  }
 }
 
 private fun List<PlayHistoryItem>.trim(olderThan: Instant): List<PlayHistoryItem> {
-    return this.filter { it.played_at > olderThan }
+  return this.filter { it.played_at > olderThan }
 }

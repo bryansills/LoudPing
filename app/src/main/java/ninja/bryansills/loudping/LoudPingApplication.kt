@@ -9,19 +9,15 @@ import javax.inject.Inject
 
 @HiltAndroidApp
 class LoudPingApplication : Application(), Configuration.Provider {
-    @Inject
-    lateinit var workerFactory: HiltWorkerFactory
+  @Inject lateinit var workerFactory: HiltWorkerFactory
 
-    override val workManagerConfiguration: Configuration
-        get() {
-            return Configuration
-                .Builder()
-                .setWorkerFactory(workerFactory)
-                .build()
-        }
-
-    override fun onCreate() {
-        super.onCreate()
-        Bugsnag.start(this)
+  override val workManagerConfiguration: Configuration
+    get() {
+      return Configuration.Builder().setWorkerFactory(workerFactory).build()
     }
+
+  override fun onCreate() {
+    super.onCreate()
+    Bugsnag.start(this)
+  }
 }

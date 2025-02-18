@@ -11,21 +11,17 @@ class LazyJavaResourcesDeepHistoryDataProvider(
     private val fileSystem: FileSystem = FileSystem.RESOURCES,
     private val json: Json = Json { ignoreUnknownKeys = true },
 ) : DeepHistoryDataProvider {
-    override val data: List<DeepHistoryRecord> by lazy {
-        val jsonPaths = fileSystem.list(".".toPath())
-            .filter { path ->
-                "json" == path.name.split(".").lastOrNull()?.lowercase()
-            }
-
-        val jsonText = jsonPaths
-            .map { path ->
-                fileSystem.source(path).use { fileSource ->
-                    fileSource.buffer().readUtf8()
-                }
-            }
-
-        jsonText.flatMap { text ->
-            json.decodeFromString<List<DeepHistoryRecord>>(text)
+  override val data: List<DeepHistoryRecord> by lazy {
+    val jsonPaths =
+        fileSystem.list(".".toPath()).filter { path ->
+          "json" == path.name.split(".").lastOrNull()?.lowercase()
         }
-    }
+
+    val jsonText =
+        jsonPaths.map { path ->
+          fileSystem.source(path).use { fileSource -> fileSource.buffer().readUtf8() }
+        }
+
+    jsonText.flatMap { text -> json.decodeFromString<List<DeepHistoryRecord>>(text) }
+  }
 }

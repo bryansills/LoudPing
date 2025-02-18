@@ -1,15 +1,15 @@
 package ninja.bryansills.loudping.sneak.network
 
 interface NetworkSneak {
-    val clientId: String
+  val clientId: String
 
-    val clientSecret: String
+  val clientSecret: String
 
-    val redirectUrl: String
+  val redirectUrl: String
 
-    val baseApiUrl: String
+  val baseApiUrl: String
 
-    val baseAuthApiUrl: String
+  val baseAuthApiUrl: String
 
-    val authorizeUrl: String
+  val authorizeUrl: String
 }

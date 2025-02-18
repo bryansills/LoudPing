@@ -16,54 +16,52 @@ data class PlayHistoryItem(
     val context: Context,
     val track: Track,
 ) {
-    @Serializable
-    data class Context(
-        val type: ContextType,
-        val href: String,
-        val uri: String,
-    )
+  @Serializable
+  data class Context(
+      val type: ContextType,
+      val href: String,
+      val uri: String,
+  )
 }
 
 @Serializable(with = ContextTypeSerializer::class)
 sealed class ContextType {
-    @Serializable
-    data object Album : ContextType()
+  @Serializable data object Album : ContextType()
 
-    @Serializable
-    data object Artist : ContextType()
+  @Serializable data object Artist : ContextType()
 
-    @Serializable
-    data object Playlist : ContextType()
+  @Serializable data object Playlist : ContextType()
 
-    @Serializable
-    data class Unknown(val rawString: String) : ContextType()
+  @Serializable data class Unknown(val rawString: String) : ContextType()
 
-    companion object {
-        internal val albumKey = "album"
-        internal val artistKey = "artist"
-        internal val playlistKey = "playlist"
-    }
+  companion object {
+    internal val albumKey = "album"
+    internal val artistKey = "artist"
+    internal val playlistKey = "playlist"
+  }
 }
 
 object ContextTypeSerializer : KSerializer<ContextType> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("ContextType", PrimitiveKind.STRING)
+  override val descriptor: SerialDescriptor =
+      PrimitiveSerialDescriptor("ContextType", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: ContextType) {
-        val string = when (value) {
-            ContextType.Album -> ContextType.albumKey
-            ContextType.Artist -> ContextType.artistKey
-            ContextType.Playlist -> ContextType.playlistKey
-            is ContextType.Unknown -> value.rawString
+  override fun serialize(encoder: Encoder, value: ContextType) {
+    val string =
+        when (value) {
+          ContextType.Album -> ContextType.albumKey
+          ContextType.Artist -> ContextType.artistKey
+          ContextType.Playlist -> ContextType.playlistKey
+          is ContextType.Unknown -> value.rawString
         }
-        encoder.encodeString(string)
-    }
+    encoder.encodeString(string)
+  }
 
-    override fun deserialize(decoder: Decoder): ContextType {
-        return when (val string = decoder.decodeString()) {
-            ContextType.albumKey -> ContextType.Album
-            ContextType.artistKey -> ContextType.Artist
-            ContextType.playlistKey -> ContextType.Playlist
-            else -> ContextType.Unknown(string)
-        }
+  override fun deserialize(decoder: Decoder): ContextType {
+    return when (val string = decoder.decodeString()) {
+      ContextType.albumKey -> ContextType.Album
+      ContextType.artistKey -> ContextType.Artist
+      ContextType.playlistKey -> ContextType.Playlist
+      else -> ContextType.Unknown(string)
     }
+  }
 }

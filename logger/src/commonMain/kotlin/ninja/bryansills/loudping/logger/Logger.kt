@@ -1,9 +1,9 @@
 package ninja.bryansills.loudping.logger
 
 interface Logger {
-    fun e(message: String, ex: Throwable? = null)
+  fun e(message: String, ex: Throwable? = null)
 }
 
 fun Logger.e(ex: Throwable) {
-    this.e(message = ex.message!!, ex = ex)
+  this.e(message = ex.message!!, ex = ex)
 }

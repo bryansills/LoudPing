@@ -35,41 +35,39 @@ fun PlayedTracksScreen(
     modifier: Modifier = Modifier,
     viewModel: PlayedTracksViewModel = hiltViewModel(),
 ) {
-    Scaffold(modifier = modifier) { paddingValues ->
-        val screenModifier = Modifier.padding(paddingValues).fillMaxSize()
+  Scaffold(modifier = modifier) { paddingValues ->
+    val screenModifier = Modifier.padding(paddingValues).fillMaxSize()
 
-        val pagingItems = viewModel.coolTracks.collectAsLazyPagingItems()
-        LazyColumn(modifier = screenModifier) {
-            if (pagingItems.loadState.refresh == LoadState.Loading) {
-                item {
-                    Text(
-                        text = "Waiting for items to load from the backend",
-                        modifier = Modifier.fillMaxWidth()
-                            .wrapContentWidth(Alignment.CenterHorizontally),
-                    )
-                }
-            }
-
-            items(count = pagingItems.itemCount) { index ->
-                val track = pagingItems[index]!!
-                PlayedTrack(
-                    title = track.trackTitle,
-                    artist = track.formattedArtist,
-                    playedAt = track.timestamp,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-            }
-
-            if (pagingItems.loadState.append == LoadState.Loading) {
-                item {
-                    CircularProgressIndicator(
-                        modifier = Modifier.fillMaxWidth()
-                            .wrapContentWidth(Alignment.CenterHorizontally),
-                    )
-                }
-            }
+    val pagingItems = viewModel.coolTracks.collectAsLazyPagingItems()
+    LazyColumn(modifier = screenModifier) {
+      if (pagingItems.loadState.refresh == LoadState.Loading) {
+        item {
+          Text(
+              text = "Waiting for items to load from the backend",
+              modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.CenterHorizontally),
+          )
         }
+      }
+
+      items(count = pagingItems.itemCount) { index ->
+        val track = pagingItems[index]!!
+        PlayedTrack(
+            title = track.trackTitle,
+            artist = track.formattedArtist,
+            playedAt = track.timestamp,
+            modifier = Modifier.fillMaxWidth(),
+        )
+      }
+
+      if (pagingItems.loadState.append == LoadState.Loading) {
+        item {
+          CircularProgressIndicator(
+              modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.CenterHorizontally),
+          )
+        }
+      }
     }
+  }
 }
 
 @Composable
@@ -79,61 +77,60 @@ private fun PlayedTrack(
     playedAt: Instant,
     modifier: Modifier = Modifier,
 ) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalAlignment = Alignment.Top,
-        modifier = modifier.padding(16.dp),
-    ) {
-        Box(
-            modifier = Modifier
-                .clip(LoudPingTheme.shapes.small)
+  Row(
+      horizontalArrangement = Arrangement.spacedBy(16.dp),
+      verticalAlignment = Alignment.Top,
+      modifier = modifier.padding(16.dp),
+  ) {
+    Box(
+        modifier =
+            Modifier.clip(LoudPingTheme.shapes.small)
                 .background(LoudPingTheme.colorScheme.secondary)
                 .size(56.dp),
-        )
+    )
 
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = title,
-                style = LoudPingTheme.typography.bodyLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Text(
-                text = artist,
-                style = LoudPingTheme.typography.bodyMedium,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-        }
-
-        Text(
-            text = playedAt.relativeFormatted(),
-            style = LoudPingTheme.typography.labelMedium,
-            color = LoudPingTheme.colorScheme.onBackground.copy(alpha = 0.65f),
-        )
+    Column(modifier = Modifier.weight(1f)) {
+      Text(
+          text = title,
+          style = LoudPingTheme.typography.bodyLarge,
+          maxLines = 1,
+          overflow = TextOverflow.Ellipsis,
+      )
+      Text(
+          text = artist,
+          style = LoudPingTheme.typography.bodyMedium,
+          maxLines = 1,
+          overflow = TextOverflow.Ellipsis,
+      )
     }
+
+    Text(
+        text = playedAt.relativeFormatted(),
+        style = LoudPingTheme.typography.labelMedium,
+        color = LoudPingTheme.colorScheme.onBackground.copy(alpha = 0.65f),
+    )
+  }
 }
 
 @Composable
 private fun Instant.relativeFormatted(
     context: Context = LocalContext.current,
 ): String {
-    return DateUtils
-        .getRelativeDateTimeString(
-            context,
-            this.toEpochMilliseconds(),
-            DateUtils.MINUTE_IN_MILLIS,
-            DateUtils.WEEK_IN_MILLIS,
-            0,
-        )
-        .toString()
+  return DateUtils.getRelativeDateTimeString(
+          context,
+          this.toEpochMilliseconds(),
+          DateUtils.MINUTE_IN_MILLIS,
+          DateUtils.WEEK_IN_MILLIS,
+          0,
+      )
+      .toString()
 }
 
 private val TrackPlayRecord.formattedArtist: String
-    get() {
-        return if (this.artists.isNotEmpty()) {
-            this.artists.joinToString { it.name }
-        } else {
-            "Unknown artist"
-        }
+  get() {
+    return if (this.artists.isNotEmpty()) {
+      this.artists.joinToString { it.name }
+    } else {
+      "Unknown artist"
     }
+  }

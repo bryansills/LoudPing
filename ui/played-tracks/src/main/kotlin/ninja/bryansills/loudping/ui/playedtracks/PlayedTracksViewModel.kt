@@ -10,12 +10,17 @@ import javax.inject.Inject
 import ninja.bryansills.loudping.database.DatabaseService
 
 @HiltViewModel
-class PlayedTracksViewModel @Inject constructor(
+class PlayedTracksViewModel
+@Inject
+constructor(
     private val databaseService: DatabaseService,
 ) : ViewModel() {
-    val coolTracks = Pager(
-        config = PagingConfig(pageSize = 50),
-    ) { databaseService.playedTracks }
-        .flow
-        .cachedIn(viewModelScope)
+  val coolTracks =
+      Pager(
+              config = PagingConfig(pageSize = 50),
+          ) {
+            databaseService.playedTracks
+          }
+          .flow
+          .cachedIn(viewModelScope)
 }

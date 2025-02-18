@@ -1,11 +1,3 @@
-plugins {
-    id("ninja.bryansills.multiplatform.library")
-}
+plugins { id("ninja.bryansills.multiplatform.library") }
 
-kotlin {
-    sourceSets {
-        commonMain.dependencies {
-            implementation(projects.storage)
-        }
-    }
-}
+kotlin { sourceSets { commonMain.dependencies { implementation(projects.storage) } } }

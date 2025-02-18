@@ -1,11 +1,5 @@
-plugins {
-    id("ninja.bryansills.android.library.kotlin")
-}
+plugins { id("ninja.bryansills.android.library.kotlin") }
 
-android {
-    namespace = "ninja.bryansills.loudping.di"
-}
+android { namespace = "ninja.bryansills.loudping.di" }
 
-dependencies {
-    implementation(libs.javax.inject)
-}
+dependencies { implementation(libs.javax.inject) }

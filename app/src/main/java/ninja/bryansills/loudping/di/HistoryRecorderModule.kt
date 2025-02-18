@@ -12,16 +12,16 @@ import ninja.bryansills.loudping.network.NetworkService
 @Module
 @InstallIn(SingletonComponent::class)
 interface HistoryRecorderModule {
-    companion object {
-        @Provides
-        fun provideHistoryRecorder(
-            networkService: NetworkService,
-            databaseService: DatabaseService,
-        ): HistoryRecorder {
-            return RealHistoryRecorder(
-                networkService = networkService,
-                databaseService = databaseService,
-            )
-        }
+  companion object {
+    @Provides
+    fun provideHistoryRecorder(
+        networkService: NetworkService,
+        databaseService: DatabaseService,
+    ): HistoryRecorder {
+      return RealHistoryRecorder(
+          networkService = networkService,
+          databaseService = databaseService,
+      )
     }
+  }
 }

@@ -16,43 +16,46 @@ import ninja.bryansills.loudping.network.auth.AuthManager
 import ninja.bryansills.loudping.time.TimeProvider
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class LoginViewModel
+@Inject
+constructor(
     private val savedStateHandle: SavedStateHandle,
     private val authManager: AuthManager,
     private val timeProvider: TimeProvider,
 ) : ViewModel() {
-    private val startTime: Instant = timeProvider.now
+  private val startTime: Instant = timeProvider.now
 
-    var progress: LoginProgress
-        get() = savedStateHandle["wow-overkill"] ?: LoginProgress.Initializing
-        set(value) {
-            savedStateHandle["wow-overkill"] = value
-        }
-
-    val loginUrl: String = authManager.getAuthorizeUrl(startTime)
-
-    private var authJob: Job? = null
-
-    fun setAuthorizationCode(
-        code: String,
-        state: String,
-    ) {
-        if (authJob == null && progress == LoginProgress.LoggingIn) {
-            progress = LoginProgress.Accessing
-            authJob = viewModelScope.launch {
-                val accessToken = authManager.setAuthorizationCode(state, code, startTime)
-                loginCompleteChannel.send(accessToken)
-            }
-        }
+  var progress: LoginProgress
+    get() = savedStateHandle["wow-overkill"] ?: LoginProgress.Initializing
+    set(value) {
+      savedStateHandle["wow-overkill"] = value
     }
 
-    private val loginCompleteChannel = Channel<String>(capacity = Channel.CONFLATED)
-    val loginComplete = loginCompleteChannel.receiveAsFlow()
+  val loginUrl: String = authManager.getAuthorizeUrl(startTime)
+
+  private var authJob: Job? = null
+
+  fun setAuthorizationCode(
+      code: String,
+      state: String,
+  ) {
+    if (authJob == null && progress == LoginProgress.LoggingIn) {
+      progress = LoginProgress.Accessing
+      authJob =
+          viewModelScope.launch {
+            val accessToken = authManager.setAuthorizationCode(state, code, startTime)
+            loginCompleteChannel.send(accessToken)
+          }
+    }
+  }
+
+  private val loginCompleteChannel = Channel<String>(capacity = Channel.CONFLATED)
+  val loginComplete = loginCompleteChannel.receiveAsFlow()
 }
 
 @Parcelize
 enum class LoginProgress : Parcelable {
-    Initializing,
-    LoggingIn,
-    Accessing,
+  Initializing,
+  LoggingIn,
+  Accessing,
 }

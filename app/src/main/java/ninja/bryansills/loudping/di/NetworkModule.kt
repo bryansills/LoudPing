@@ -28,99 +28,100 @@ import retrofit2.create
 @InstallIn(SingletonComponent::class)
 @Module
 interface NetworkModule {
-    companion object {
-        @Singleton
-        @Provides
-        fun provideAuthorizationHeaderInterceptor(
-            networkSneak: NetworkSneak,
-        ): AuthorizationHeaderInterceptor {
-            return AuthorizationHeaderInterceptor(networkSneak)
-        }
-
-        @Singleton
-        @Provides
-        fun provideJson(): Json {
-            return Json { ignoreUnknownKeys = true }
-        }
-
-        @Singleton
-        @Provides
-        fun provideSpotifyAuthService(
-            json: Json,
-            authorizationHeaderInterceptor: AuthorizationHeaderInterceptor,
-            networkSneak: NetworkSneak,
-        ): SpotifyAuthService {
-            val okHttpClient = OkHttpClient.Builder()
-                .addInterceptor(authorizationHeaderInterceptor)
-                .build()
-            val converterFactory = json.asConverterFactory(
-                "application/json; charset=UTF8".toMediaType(),
-            )
-
-            val retrofit = Retrofit.Builder()
-                .baseUrl(networkSneak.baseAuthApiUrl)
-                .client(okHttpClient)
-                .addConverterFactory(ApiResultConverterFactory)
-                .addConverterFactory(converterFactory)
-                .addCallAdapterFactory(ApiResultCallAdapterFactory)
-                .build()
-
-            return retrofit.create()
-        }
-
-        @Singleton
-        @Provides
-        fun provideAuthManager(
-            simpleStorage: SimpleStorage,
-            spotifyAuthService: SpotifyAuthService,
-            timeProvider: TimeProvider,
-            networkSneak: NetworkSneak,
-        ): AuthManager {
-            return RealAuthManager(
-                simpleStorage = simpleStorage,
-                spotifyAuthService = spotifyAuthService,
-                timeProvider = timeProvider,
-                networkSneak = networkSneak,
-            )
-        }
-
-        @Singleton
-        @Provides
-        fun provideAccessTokenInterceptor(
-            authManager: AuthManager,
-        ): AccessTokenInterceptor {
-            return AccessTokenInterceptor(authManager)
-        }
-
-        @Singleton
-        @Provides
-        fun provideSpotifyService(
-            interceptor: AccessTokenInterceptor,
-            json: Json,
-            networkSneak: NetworkSneak,
-        ): SpotifyService {
-            val okHttpClient = OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .build()
-            val converterFactory = json.asConverterFactory(
-                "application/json; charset=UTF8".toMediaType(),
-            )
-
-            val retrofit = Retrofit.Builder()
-                .baseUrl(networkSneak.baseApiUrl)
-                .client(okHttpClient)
-                .addConverterFactory(converterFactory)
-                .build()
-
-            return retrofit.create()
-        }
-
-        @Singleton
-        @Provides
-        fun provideNetworkService(
-            spotifyService: SpotifyService,
-        ): NetworkService {
-            return RealNetworkService(spotifyService)
-        }
+  companion object {
+    @Singleton
+    @Provides
+    fun provideAuthorizationHeaderInterceptor(
+        networkSneak: NetworkSneak,
+    ): AuthorizationHeaderInterceptor {
+      return AuthorizationHeaderInterceptor(networkSneak)
     }
+
+    @Singleton
+    @Provides
+    fun provideJson(): Json {
+      return Json { ignoreUnknownKeys = true }
+    }
+
+    @Singleton
+    @Provides
+    fun provideSpotifyAuthService(
+        json: Json,
+        authorizationHeaderInterceptor: AuthorizationHeaderInterceptor,
+        networkSneak: NetworkSneak,
+    ): SpotifyAuthService {
+      val okHttpClient =
+          OkHttpClient.Builder().addInterceptor(authorizationHeaderInterceptor).build()
+      val converterFactory =
+          json.asConverterFactory(
+              "application/json; charset=UTF8".toMediaType(),
+          )
+
+      val retrofit =
+          Retrofit.Builder()
+              .baseUrl(networkSneak.baseAuthApiUrl)
+              .client(okHttpClient)
+              .addConverterFactory(ApiResultConverterFactory)
+              .addConverterFactory(converterFactory)
+              .addCallAdapterFactory(ApiResultCallAdapterFactory)
+              .build()
+
+      return retrofit.create()
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthManager(
+        simpleStorage: SimpleStorage,
+        spotifyAuthService: SpotifyAuthService,
+        timeProvider: TimeProvider,
+        networkSneak: NetworkSneak,
+    ): AuthManager {
+      return RealAuthManager(
+          simpleStorage = simpleStorage,
+          spotifyAuthService = spotifyAuthService,
+          timeProvider = timeProvider,
+          networkSneak = networkSneak,
+      )
+    }
+
+    @Singleton
+    @Provides
+    fun provideAccessTokenInterceptor(
+        authManager: AuthManager,
+    ): AccessTokenInterceptor {
+      return AccessTokenInterceptor(authManager)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSpotifyService(
+        interceptor: AccessTokenInterceptor,
+        json: Json,
+        networkSneak: NetworkSneak,
+    ): SpotifyService {
+      val okHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
+      val converterFactory =
+          json.asConverterFactory(
+              "application/json; charset=UTF8".toMediaType(),
+          )
+
+      val retrofit =
+          Retrofit.Builder()
+              .baseUrl(networkSneak.baseApiUrl)
+              .client(okHttpClient)
+              .addConverterFactory(converterFactory)
+              .build()
+
+      return retrofit.create()
+    }
+
+    @Singleton
+    @Provides
+    fun provideNetworkService(
+        spotifyService: SpotifyService,
+    ): NetworkService {
+      return RealNetworkService(spotifyService)
+    }
+  }
 }

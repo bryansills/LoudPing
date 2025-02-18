@@ -1,12 +1,10 @@
-plugins {
-    id("ninja.bryansills.multiplatform.library")
-}
+plugins { id("ninja.bryansills.multiplatform.library") }
 
 kotlin {
-    sourceSets {
-        commonMain.dependencies {
-            implementation(projects.database)
-            implementation(projects.network)
-        }
+  sourceSets {
+    commonMain.dependencies {
+      implementation(projects.database)
+      implementation(projects.network)
     }
+  }
 }

@@ -15,31 +15,36 @@ import ninja.bryansills.loudping.network.auth.AuthManager
 import ninja.bryansills.loudping.network.auth.RawAuthValues
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(
+class SettingsViewModel
+@Inject
+constructor(
     private val authManager: AuthManager,
     private val foreman: Foreman,
 ) : ViewModel() {
-    val uiState = combine(
-        authManager.rawValues,
-        foreman.jobStatus,
-    ) { rawAuthValues, jobInfoMap ->
-        SettingsUiState(
-            rawAuthValues = rawAuthValues,
-            jobDetails = jobInfoMap.entries.map { it.toJobDetails() },
-        )
-    }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(1000),
-            initialValue = SettingsUiState(
-                rawAuthValues = RawAuthValues(
-                    accessToken = "",
-                    accessTokenExpiresAt = Instant.DISTANT_PAST,
-                    refreshToken = "",
-                ),
-                jobDetails = listOf(),
-            ),
-        )
+  val uiState =
+      combine(
+              authManager.rawValues,
+              foreman.jobStatus,
+          ) { rawAuthValues, jobInfoMap ->
+            SettingsUiState(
+                rawAuthValues = rawAuthValues,
+                jobDetails = jobInfoMap.entries.map { it.toJobDetails() },
+            )
+          }
+          .stateIn(
+              scope = viewModelScope,
+              started = SharingStarted.WhileSubscribed(1000),
+              initialValue =
+                  SettingsUiState(
+                      rawAuthValues =
+                          RawAuthValues(
+                              accessToken = "",
+                              accessTokenExpiresAt = Instant.DISTANT_PAST,
+                              refreshToken = "",
+                          ),
+                      jobDetails = listOf(),
+                  ),
+          )
 }
 
 data class JobDetails(
@@ -50,9 +55,9 @@ data class JobDetails(
 )
 
 sealed interface JobStatus {
-    data object Good : JobStatus
+  data object Good : JobStatus
 
-    data class Stopped(val reason: String) : JobStatus
+  data class Stopped(val reason: String) : JobStatus
 }
 
 data class SettingsUiState(
@@ -61,14 +66,15 @@ data class SettingsUiState(
 )
 
 private fun Map.Entry<ForemanJobs, WorkInfo>.toJobDetails(): JobDetails {
-    return JobDetails(
-        loudPingId = this.key.workManagerId,
-        internalWorkManagerId = this.value.id.toString(),
-        status = this.value.state,
-        nextAttemptAt = if (this.value.nextScheduleTimeMillis == Long.MAX_VALUE) {
+  return JobDetails(
+      loudPingId = this.key.workManagerId,
+      internalWorkManagerId = this.value.id.toString(),
+      status = this.value.state,
+      nextAttemptAt =
+          if (this.value.nextScheduleTimeMillis == Long.MAX_VALUE) {
             null
-        } else {
+          } else {
             Instant.fromEpochMilliseconds(this.value.nextScheduleTimeMillis)
-        },
-    )
+          },
+  )
 }

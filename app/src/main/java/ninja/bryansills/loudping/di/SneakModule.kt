@@ -13,20 +13,19 @@ import ninja.bryansills.sneak.Sneak
 @Module
 object SneakModule {
 
-    @Provides
-    fun provideSneak(): Sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
+  @Provides fun provideSneak(): Sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
 
-    @OptIn(ExperimentalStdlibApi::class)
-    @Provides
-    fun provideNetworkSneak(sneak: Sneak): NetworkSneak {
-        return RealNetworkSneak(
-            sneak = sneak,
-            obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
-            obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
-            obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
-            obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
-            obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
-            obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
-        )
-    }
+  @OptIn(ExperimentalStdlibApi::class)
+  @Provides
+  fun provideNetworkSneak(sneak: Sneak): NetworkSneak {
+    return RealNetworkSneak(
+        sneak = sneak,
+        obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
+        obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
+        obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
+        obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
+        obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
+        obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
+    )
+  }
 }

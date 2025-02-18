@@ -22,27 +22,25 @@ import ninja.bryansills.loudping.ui.settings.SettingsScreen
 
 @Composable
 fun App() {
-    LoudPingTheme {
-        val navController = rememberNavController()
-        DarkModeStatusBarDisposableEffect(navController)
+  LoudPingTheme {
+    val navController = rememberNavController()
+    DarkModeStatusBarDisposableEffect(navController)
 
-        NavHost(navController = navController, startDestination = Home) {
-            composable<Home> {
-                HomeScreen(
-                    onStartLogin = { navController.navigate(Login) },
-                    toRefreshTokenEntry = { navController.navigate(RefreshTokenEntry) },
-                    onNavigateToPlayedTracks = { navController.navigate(PlayedTracks) },
-                    onNavigateToSettings = { navController.navigate(Settings) },
-                )
-            }
-            activity<Login> {
-                activityClass = (LoginActivity::class as KClass<out Activity>)
-            }
-            composable<Settings> { SettingsScreen() }
-            composable<PlayedTracks> { PlayedTracksScreen() }
-            refreshTokenEntry(
-                onDismiss = { navController.popBackStack() },
-            )
-        }
+    NavHost(navController = navController, startDestination = Home) {
+      composable<Home> {
+        HomeScreen(
+            onStartLogin = { navController.navigate(Login) },
+            toRefreshTokenEntry = { navController.navigate(RefreshTokenEntry) },
+            onNavigateToPlayedTracks = { navController.navigate(PlayedTracks) },
+            onNavigateToSettings = { navController.navigate(Settings) },
+        )
+      }
+      activity<Login> { activityClass = (LoginActivity::class as KClass<out Activity>) }
+      composable<Settings> { SettingsScreen() }
+      composable<PlayedTracks> { PlayedTracksScreen() }
+      refreshTokenEntry(
+          onDismiss = { navController.popBackStack() },
+      )
     }
+  }
 }

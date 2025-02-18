@@ -12,21 +12,22 @@ class RealSessionManager(
     private val simpleStorage: SimpleStorage,
     private val coroutineScope: CoroutineScope,
 ) : SessionManager {
-    override val currentSession: SharedFlow<Session> = simpleStorage[Stored.RefreshToken]
-        .map { refreshToken ->
+  override val currentSession: SharedFlow<Session> =
+      simpleStorage[Stored.RefreshToken]
+          .map { refreshToken ->
             if (refreshToken.isNotBlank()) {
-                Session.LoggedIn(UUID.randomUUID())
+              Session.LoggedIn(UUID.randomUUID())
             } else {
-                Session.LoggedOut
+              Session.LoggedOut
             }
-        }
-        .shareIn(
-            scope = coroutineScope,
-            started = SharingStarted.Lazily,
-            replay = 1,
-        )
+          }
+          .shareIn(
+              scope = coroutineScope,
+              started = SharingStarted.Lazily,
+              replay = 1,
+          )
 
-    override fun updateSession(block: (Session) -> Session) {
-        //
-    }
+  override fun updateSession(block: (Session) -> Session) {
+    //
+  }
 }

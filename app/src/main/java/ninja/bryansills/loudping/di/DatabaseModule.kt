@@ -16,19 +16,19 @@ import ninja.bryansills.loudping.database.createDatabase
 @Module
 @InstallIn(SingletonComponent::class)
 interface DatabaseModule {
-    companion object {
-        @Singleton
-        @Provides
-        fun provideDatabaseService(
-            database: Database,
-        ): DatabaseService {
-            return RealDatabaseService(database = database)
-        }
-
-        @Provides
-        fun provideDatabase(@ApplicationContext context: Context): Database {
-            val driverFactory = DriverFactory(context)
-            return createDatabase(driverFactory)
-        }
+  companion object {
+    @Singleton
+    @Provides
+    fun provideDatabaseService(
+        database: Database,
+    ): DatabaseService {
+      return RealDatabaseService(database = database)
     }
+
+    @Provides
+    fun provideDatabase(@ApplicationContext context: Context): Database {
+      val driverFactory = DriverFactory(context)
+      return createDatabase(driverFactory)
+    }
+  }
 }

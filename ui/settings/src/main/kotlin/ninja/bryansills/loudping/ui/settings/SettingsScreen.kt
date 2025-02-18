@@ -36,66 +36,66 @@ fun SettingsScreen(
     settingsViewModel: SettingsViewModel = hiltViewModel(),
     clipboardManager: ClipboardManager = LocalClipboardManager.current,
 ) {
-    Scaffold(modifier = modifier) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .padding(paddingValues)
-                .fillMaxSize(),
-        ) {
-            val uiState by settingsViewModel.uiState.collectAsState()
-            SettingsItem(
-                headline = stringResource(AppR.string.refresh_token),
-                value = uiState.rawAuthValues.refreshToken,
-                onCopyToClipboard = {
-                    clipboardManager.setText(AnnotatedString(uiState.rawAuthValues.refreshToken))
-                },
-                modifier = Modifier.fillMaxWidth(),
-            )
-            SettingsItem(
-                headline = stringResource(AppR.string.access_token),
-                value = uiState.rawAuthValues.accessToken,
-                subValue = stringResource(
-                    AppR.string.expires_at,
-                    uiState.rawAuthValues.accessTokenExpiresAt.format(),
-                ),
-                onCopyToClipboard = {
-                    clipboardManager.setText(AnnotatedString(uiState.rawAuthValues.accessToken))
-                },
-                modifier = Modifier.fillMaxWidth(),
-            )
+  Scaffold(modifier = modifier) { paddingValues ->
+    Column(
+        modifier = Modifier.padding(paddingValues).fillMaxSize(),
+    ) {
+      val uiState by settingsViewModel.uiState.collectAsState()
+      SettingsItem(
+          headline = stringResource(AppR.string.refresh_token),
+          value = uiState.rawAuthValues.refreshToken,
+          onCopyToClipboard = {
+            clipboardManager.setText(AnnotatedString(uiState.rawAuthValues.refreshToken))
+          },
+          modifier = Modifier.fillMaxWidth(),
+      )
+      SettingsItem(
+          headline = stringResource(AppR.string.access_token),
+          value = uiState.rawAuthValues.accessToken,
+          subValue =
+              stringResource(
+                  AppR.string.expires_at,
+                  uiState.rawAuthValues.accessTokenExpiresAt.format(),
+              ),
+          onCopyToClipboard = {
+            clipboardManager.setText(AnnotatedString(uiState.rawAuthValues.accessToken))
+          },
+          modifier = Modifier.fillMaxWidth(),
+      )
 
-            Text(
-                text = stringResource(AppR.string.background_work),
-                style = LoudPingTheme.typography.bodyLarge,
-                modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
-            )
+      Text(
+          text = stringResource(AppR.string.background_work),
+          style = LoudPingTheme.typography.bodyLarge,
+          modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
+      )
 
-            uiState.jobDetails.forEach { jobDetail ->
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text(
-                        text = jobDetail.loudPingId,
-                        style = LoudPingTheme.typography.bodyMedium,
-                    )
-                    Text(
-                        text = jobDetail.internalWorkManagerId,
-                        style = LoudPingTheme.typography.bodySmall,
-                    )
-                    Text(
-                        text = stringResource(AppR.string.job_status, jobDetail.status.name),
-                        style = LoudPingTheme.typography.bodySmall,
-                    )
-                    Text(
-                        text = if (jobDetail.nextAttemptAt != null) {
-                            stringResource(AppR.string.next_run_at, jobDetail.nextAttemptAt.format())
-                        } else {
-                            stringResource(AppR.string.no_future_runs)
-                        },
-                        style = LoudPingTheme.typography.bodySmall,
-                    )
-                }
-            }
+      uiState.jobDetails.forEach { jobDetail ->
+        Column(modifier = Modifier.padding(16.dp)) {
+          Text(
+              text = jobDetail.loudPingId,
+              style = LoudPingTheme.typography.bodyMedium,
+          )
+          Text(
+              text = jobDetail.internalWorkManagerId,
+              style = LoudPingTheme.typography.bodySmall,
+          )
+          Text(
+              text = stringResource(AppR.string.job_status, jobDetail.status.name),
+              style = LoudPingTheme.typography.bodySmall,
+          )
+          Text(
+              text =
+                  if (jobDetail.nextAttemptAt != null) {
+                    stringResource(AppR.string.next_run_at, jobDetail.nextAttemptAt.format())
+                  } else {
+                    stringResource(AppR.string.no_future_runs)
+                  },
+              style = LoudPingTheme.typography.bodySmall,
+          )
         }
+      }
     }
+  }
 }
 
 @Composable
@@ -106,43 +106,41 @@ private fun SettingsItem(
     modifier: Modifier = Modifier,
     subValue: String? = null,
 ) {
-    Row(modifier = modifier.padding(16.dp)) {
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = headline,
-                style = LoudPingTheme.typography.bodyLarge,
-            )
-            Text(
-                text = value,
-                style = LoudPingTheme.typography.bodyMedium,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.padding(top = 4.dp),
-            )
-            if (subValue != null) {
-                Text(
-                    text = subValue,
-                    style = LoudPingTheme.typography.bodySmall,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.padding(top = 4.dp),
-                )
-            }
-        }
-        IconButton(
-            onClick = onCopyToClipboard,
-            modifier = Modifier.align(Alignment.CenterVertically),
-        ) {
-            Icon(
-                painter = painterResource(AppR.drawable.icon_copy),
-                contentDescription = stringResource(AppR.string.copy_to_clipboard),
-            )
-        }
+  Row(modifier = modifier.padding(16.dp)) {
+    Column(modifier = Modifier.weight(1f)) {
+      Text(
+          text = headline,
+          style = LoudPingTheme.typography.bodyLarge,
+      )
+      Text(
+          text = value,
+          style = LoudPingTheme.typography.bodyMedium,
+          maxLines = 1,
+          overflow = TextOverflow.Ellipsis,
+          modifier = Modifier.padding(top = 4.dp),
+      )
+      if (subValue != null) {
+        Text(
+            text = subValue,
+            style = LoudPingTheme.typography.bodySmall,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.padding(top = 4.dp),
+        )
+      }
     }
+    IconButton(
+        onClick = onCopyToClipboard,
+        modifier = Modifier.align(Alignment.CenterVertically),
+    ) {
+      Icon(
+          painter = painterResource(AppR.drawable.icon_copy),
+          contentDescription = stringResource(AppR.string.copy_to_clipboard),
+      )
+    }
+  }
 }
 
 private fun Instant.format(timeZone: TimeZone = TimeZone.currentSystemDefault()): String {
-    return this
-        .toLocalDateTime(timeZone)
-        .format(LocalDateTime.Formats.ISO)
+  return this.toLocalDateTime(timeZone).format(LocalDateTime.Formats.ISO)
 }

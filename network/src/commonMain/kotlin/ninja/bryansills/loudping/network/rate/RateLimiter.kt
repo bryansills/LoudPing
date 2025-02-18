@@ -14,68 +14,70 @@ class RateLimiter(
     @Volatile var permitsPerWindow: Long = 1L,
     private val windowSize: Duration = 1.seconds,
 ) {
-    private val allocatedUntil = MutableStateFlow(timeProvider.now)
+  private val allocatedUntil = MutableStateFlow(timeProvider.now)
 
-    val blockedUntil: Instant
-        get() = allocatedUntil.value
+  val blockedUntil: Instant
+    get() = allocatedUntil.value
 
-    fun tryAcquire(permitsRequested: Long, timeout: Duration): Boolean {
-        require(permitsRequested > 0) { "unexpected permitCount: $permitsRequested" }
-        require(!timeout.isNegative()) { "unexpected timeout: $timeout" }
+  fun tryAcquire(permitsRequested: Long, timeout: Duration): Boolean {
+    require(permitsRequested > 0) { "unexpected permitCount: $permitsRequested" }
+    require(!timeout.isNegative()) { "unexpected timeout: $timeout" }
 
-        val sleepTime = timeToAcquire(permitsRequested, timeout)
-            ?: return false
+    val sleepTime = timeToAcquire(permitsRequested, timeout) ?: return false
 
-        sleeper.sleep(sleepTime)
+    sleeper.sleep(sleepTime)
 
-        return true
+    return true
+  }
+
+  fun block(until: Instant) {
+    allocatedUntil.value = until
+  }
+
+  private fun timeToAcquire(permitsRequested: Long, timeout: Duration): Duration? {
+    while (true) {
+      val currentlyAllocatedUntil = allocatedUntil.value
+      val permitsPerWindow = this.permitsPerWindow
+
+      if (permitsRequested > permitsPerWindow) return null
+
+      val now = timeProvider.now
+      val permitRequestCost = calculatePermitCost(permitsRequested, windowSize, permitsPerWindow)
+      val newAllocatedUntil = maxOf(currentlyAllocatedUntil, now) + permitRequestCost
+      val gottaSleepUntil = currentlyAllocatedUntil - now
+
+      if (gottaSleepUntil > timeout) return null
+
+      if (!allocatedUntil.compareAndSet(currentlyAllocatedUntil, newAllocatedUntil)) continue
+
+      return gottaSleepUntil.takeIf { it.isPositive() } ?: Duration.ZERO
     }
+  }
 
-    fun block(until: Instant) {
-        allocatedUntil.value = until
-    }
-
-    private fun timeToAcquire(permitsRequested: Long, timeout: Duration): Duration? {
-        while (true) {
-            val currentlyAllocatedUntil = allocatedUntil.value
-            val permitsPerWindow = this.permitsPerWindow
-
-            if (permitsRequested > permitsPerWindow) return null
-
-            val now = timeProvider.now
-            val permitRequestCost = calculatePermitCost(permitsRequested, windowSize, permitsPerWindow)
-            val newAllocatedUntil = maxOf(currentlyAllocatedUntil, now) + permitRequestCost
-            val gottaSleepUntil = currentlyAllocatedUntil - now
-
-            if (gottaSleepUntil > timeout) return null
-
-            if (!allocatedUntil.compareAndSet(currentlyAllocatedUntil, newAllocatedUntil)) continue
-
-            return gottaSleepUntil.takeIf { it.isPositive() } ?: Duration.ZERO
-        }
-    }
-
-    private fun calculatePermitCost(permitsRequested: Long, windowSize: Duration, permitsPerWindow: Long): Duration {
-        val nanosPerPermit = windowSize.inWholeNanoseconds / permitsPerWindow
-        val nanosForPermitsRequested = permitsRequested * nanosPerPermit
-        val result = nanosForPermitsRequested.toDuration(DurationUnit.NANOSECONDS)
-        return result
-    }
+  private fun calculatePermitCost(
+      permitsRequested: Long,
+      windowSize: Duration,
+      permitsPerWindow: Long
+  ): Duration {
+    val nanosPerPermit = windowSize.inWholeNanoseconds / permitsPerWindow
+    val nanosForPermitsRequested = permitsRequested * nanosPerPermit
+    val result = nanosForPermitsRequested.toDuration(DurationUnit.NANOSECONDS)
+    return result
+  }
 }
 
 interface Sleeper {
-    /**
-     * Sleeps if @param duration is a positive amount
-     */
-    fun sleep(duration: Duration)
+  /** Sleeps if @param duration is a positive amount */
+  fun sleep(duration: Duration)
 
-    companion object {
-        val Default: Sleeper = object : Sleeper {
-            override fun sleep(duration: Duration) {
-                if (duration.isPositive()) {
-                    Thread.sleep(duration.toLong(DurationUnit.MILLISECONDS))
-                }
+  companion object {
+    val Default: Sleeper =
+        object : Sleeper {
+          override fun sleep(duration: Duration) {
+            if (duration.isPositive()) {
+              Thread.sleep(duration.toLong(DurationUnit.MILLISECONDS))
             }
+          }
         }
-    }
+  }
 }

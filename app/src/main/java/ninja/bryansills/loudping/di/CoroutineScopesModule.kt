@@ -14,18 +14,18 @@ import kotlinx.coroutines.SupervisorJob
 @InstallIn(SingletonComponent::class)
 internal object CoroutineScopesModule {
 
-    @Provides
-    @Dispatcher(LoudPingDispatcher.Io)
-    fun providesIODispatcher(): CoroutineDispatcher = Dispatchers.IO
+  @Provides
+  @Dispatcher(LoudPingDispatcher.Io)
+  fun providesIODispatcher(): CoroutineDispatcher = Dispatchers.IO
 
-    @Provides
-    @Dispatcher(LoudPingDispatcher.Default)
-    fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
+  @Provides
+  @Dispatcher(LoudPingDispatcher.Default)
+  fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
-    @Provides
-    @Singleton
-    @ApplicationScope
-    fun providesCoroutineScope(
-        @Dispatcher(LoudPingDispatcher.Default) dispatcher: CoroutineDispatcher,
-    ): CoroutineScope = CoroutineScope(SupervisorJob() + dispatcher)
+  @Provides
+  @Singleton
+  @ApplicationScope
+  fun providesCoroutineScope(
+      @Dispatcher(LoudPingDispatcher.Default) dispatcher: CoroutineDispatcher,
+  ): CoroutineScope = CoroutineScope(SupervisorJob() + dispatcher)
 }
