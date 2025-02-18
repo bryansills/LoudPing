@@ -11,11 +11,11 @@ import ninja.bryansills.loudping.time.TimeProvider
 @InstallIn(SingletonComponent::class)
 @Module
 interface TimeModule {
-  companion object {
-    @Singleton
-    @Provides
-    fun provideTimeProvider(): TimeProvider {
-      return RealTimeProvider()
+    companion object {
+        @Singleton
+        @Provides
+        fun provideTimeProvider(): TimeProvider {
+            return RealTimeProvider()
+        }
     }
-  }
 }

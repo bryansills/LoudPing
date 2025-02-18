@@ -34,46 +34,39 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
-  val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-  Scaffold(modifier = modifier) { paddingValues ->
-    val screenModifier = Modifier.padding(paddingValues).fillMaxSize()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    Scaffold(modifier = modifier) { paddingValues ->
+        val screenModifier = Modifier.padding(paddingValues).fillMaxSize()
 
-    when (uiState) {
-      HomeUiState.Loading -> HomeLoadingScreen(modifier = screenModifier)
-      HomeUiState.LoggedIn -> {
-        HomeLoggedInScreen(
-            onNavigateToPlayedTracks = onNavigateToPlayedTracks,
-            onNavigateToSettings = onNavigateToSettings,
-            modifier = screenModifier,
-        )
-      }
-      HomeUiState.LoggedOut ->
-          HomeLoggedOutScreen(
-              onStartLogin = onStartLogin,
-              toRefreshTokenEntry = toRefreshTokenEntry,
-              modifier = screenModifier,
-          )
+        when (uiState) {
+            HomeUiState.Loading -> HomeLoadingScreen(modifier = screenModifier)
+            HomeUiState.LoggedIn -> {
+                HomeLoggedInScreen(
+                    onNavigateToPlayedTracks = onNavigateToPlayedTracks,
+                    onNavigateToSettings = onNavigateToSettings,
+                    modifier = screenModifier,
+                )
+            }
+            HomeUiState.LoggedOut ->
+                HomeLoggedOutScreen(
+                    onStartLogin = onStartLogin,
+                    toRefreshTokenEntry = toRefreshTokenEntry,
+                    modifier = screenModifier,
+                )
+        }
     }
-  }
 }
 
 @Composable
 private fun HomeLoadingScreen(modifier: Modifier = Modifier) {
-  Column(
-      horizontalAlignment = Alignment.CenterHorizontally,
-      verticalArrangement =
-          Arrangement.spacedBy(
-              16.dp,
-              alignment = Alignment.CenterVertically,
-          ),
-      modifier = modifier,
-  ) {
-    CircularProgressIndicator(modifier = Modifier.size(48.dp))
-    Text(
-        text = "Starting up...",
-        style = LoudPingTheme.typography.labelLarge,
-    )
-  }
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp, alignment = Alignment.CenterVertically),
+        modifier = modifier,
+    ) {
+        CircularProgressIndicator(modifier = Modifier.size(48.dp))
+        Text(text = "Starting up...", style = LoudPingTheme.typography.labelLarge)
+    }
 }
 
 @Composable
@@ -82,35 +75,22 @@ private fun HomeLoggedOutScreen(
     toRefreshTokenEntry: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-  Box(modifier = modifier.padding(16.dp)) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement =
-            Arrangement.spacedBy(
-                16.dp,
-                alignment = Alignment.CenterVertically,
-            ),
-        modifier = Modifier.align(Alignment.Center),
-    ) {
-      Text(
-          text = "You should log in...",
-          style = LoudPingTheme.typography.labelLarge,
-      )
-      Button(
-          onClick = onStartLogin,
-      ) {
-        Text(text = "Log in")
-      }
-    }
+    Box(modifier = modifier.padding(16.dp)) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement =
+                Arrangement.spacedBy(16.dp, alignment = Alignment.CenterVertically),
+            modifier = Modifier.align(Alignment.Center),
+        ) {
+            Text(text = "You should log in...", style = LoudPingTheme.typography.labelLarge)
+            Button(onClick = onStartLogin) { Text(text = "Log in") }
+        }
 
-    IconButton(
-        onClick = toRefreshTokenEntry,
-        modifier = Modifier.align(Alignment.BottomEnd),
-    ) {
-      Icon(
-          imageVector = Icons.Default.Build,
-          contentDescription = stringResource(R.string.settings),
-      )
+        IconButton(onClick = toRefreshTokenEntry, modifier = Modifier.align(Alignment.BottomEnd)) {
+            Icon(
+                imageVector = Icons.Default.Build,
+                contentDescription = stringResource(R.string.settings),
+            )
+        }
     }
-  }
 }

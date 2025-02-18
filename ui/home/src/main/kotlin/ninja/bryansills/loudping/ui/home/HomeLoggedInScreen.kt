@@ -35,73 +35,65 @@ internal fun HomeLoggedInScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeLoggedInViewModel = hiltViewModel(),
 ) {
-  Box(
-      modifier = modifier.fillMaxSize().padding(16.dp),
-  ) {
-    AlbumsBox(
-        albums = PlaceholderAlbums,
-        modifier = Modifier.align(Alignment.Center).widthIn(max = 400.dp),
-    )
-
-    Row(modifier = Modifier.align(Alignment.BottomEnd)) {
-      Button(onClick = onNavigateToPlayedTracks) { Text(text = "Played tracks") }
-      IconButton(onClick = onNavigateToSettings) {
-        Icon(
-            imageVector = Icons.Default.Settings,
-            contentDescription = stringResource(AppR.string.settings),
+    Box(modifier = modifier.fillMaxSize().padding(16.dp)) {
+        AlbumsBox(
+            albums = PlaceholderAlbums,
+            modifier = Modifier.align(Alignment.Center).widthIn(max = 400.dp),
         )
-      }
+
+        Row(modifier = Modifier.align(Alignment.BottomEnd)) {
+            Button(onClick = onNavigateToPlayedTracks) { Text(text = "Played tracks") }
+            IconButton(onClick = onNavigateToSettings) {
+                Icon(
+                    imageVector = Icons.Default.Settings,
+                    contentDescription = stringResource(AppR.string.settings),
+                )
+            }
+        }
     }
-  }
 }
 
 @Composable
-private fun AlbumsBox(
-    albums: List<PlaceholderAlbum>,
-    modifier: Modifier = Modifier,
-) {
-  Surface(
-      shape = LoudPingTheme.shapes.large,
-      tonalElevation = 1.dp,
-      shadowElevation = 1.dp,
-      modifier = modifier,
-  ) {
-    Column {
-      albums.forEach { album ->
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
-        ) {
-          Box(
-              modifier =
-                  Modifier.clip(LoudPingTheme.shapes.small)
-                      .background(LoudPingTheme.colorScheme.secondary)
-                      .size(56.dp),
-          )
+private fun AlbumsBox(albums: List<PlaceholderAlbum>, modifier: Modifier = Modifier) {
+    Surface(
+        shape = LoudPingTheme.shapes.large,
+        tonalElevation = 1.dp,
+        shadowElevation = 1.dp,
+        modifier = modifier,
+    ) {
+        Column {
+            albums.forEach { album ->
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                ) {
+                    Box(
+                        modifier =
+                            Modifier.clip(LoudPingTheme.shapes.small)
+                                .background(LoudPingTheme.colorScheme.secondary)
+                                .size(56.dp)
+                    )
 
-          Column {
-            Text(
-                text = album.title,
-                style = LoudPingTheme.typography.bodyLarge,
-                maxLines = 1,
-            )
-            Text(
-                text = album.artist,
-                style = LoudPingTheme.typography.bodyMedium,
-                maxLines = 1,
-            )
-          }
+                    Column {
+                        Text(
+                            text = album.title,
+                            style = LoudPingTheme.typography.bodyLarge,
+                            maxLines = 1,
+                        )
+                        Text(
+                            text = album.artist,
+                            style = LoudPingTheme.typography.bodyMedium,
+                            maxLines = 1,
+                        )
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
-private data class PlaceholderAlbum(
-    val artist: String,
-    val title: String,
-)
+private data class PlaceholderAlbum(val artist: String, val title: String)
 
 private val PlaceholderAlbums =
     listOf(
@@ -115,8 +107,5 @@ private val PlaceholderAlbums =
 @Preview
 @Composable
 private fun AlbumsBoxPreview() {
-  AlbumsBox(
-      albums = PlaceholderAlbums,
-      modifier = Modifier.widthIn(max = 400.dp),
-  )
+    AlbumsBox(albums = PlaceholderAlbums, modifier = Modifier.widthIn(max = 400.dp))
 }

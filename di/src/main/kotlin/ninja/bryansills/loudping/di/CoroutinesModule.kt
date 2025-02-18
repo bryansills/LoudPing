@@ -9,6 +9,6 @@ import javax.inject.Qualifier
 annotation class Dispatcher(val dispatcher: LoudPingDispatcher)
 
 enum class LoudPingDispatcher {
-  Default,
-  Io,
+    Default,
+    Io,
 }

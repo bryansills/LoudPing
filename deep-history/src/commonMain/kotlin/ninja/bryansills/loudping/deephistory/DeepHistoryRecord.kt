@@ -18,6 +18,6 @@ data class DeepHistoryRecord(
 )
 
 val DeepHistoryRecord.base62Uri: String
-  get() {
-    return this.spotify_track_uri!!.split(":").last()
-  }
+    get() {
+        return this.spotify_track_uri!!.split(":").last()
+    }

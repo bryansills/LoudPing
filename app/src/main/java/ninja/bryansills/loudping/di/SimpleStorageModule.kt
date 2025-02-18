@@ -17,19 +17,19 @@ import ninja.bryansills.loudping.storage.SimpleStorage
 @InstallIn(SingletonComponent::class)
 @Module
 interface SimpleStorageModule {
-  companion object {
-    @Provides
-    @Singleton
-    fun providesDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
-      return PreferenceDataStoreFactory.create {
-        context.preferencesDataStoreFile("loud-ping-storage")
-      }
-    }
+    companion object {
+        @Provides
+        @Singleton
+        fun providesDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
+            return PreferenceDataStoreFactory.create {
+                context.preferencesDataStoreFile("loud-ping-storage")
+            }
+        }
 
-    @Provides
-    @Singleton
-    fun providesSimpleStorage(dataStore: DataStore<Preferences>): SimpleStorage {
-      return RealSimpleStorage(dataStore)
+        @Provides
+        @Singleton
+        fun providesSimpleStorage(dataStore: DataStore<Preferences>): SimpleStorage {
+            return RealSimpleStorage(dataStore)
+        }
     }
-  }
 }

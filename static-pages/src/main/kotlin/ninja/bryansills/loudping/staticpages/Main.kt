@@ -9,21 +9,21 @@ import okio.Path.Companion.toPath
 import okio.buffer
 
 fun main() {
-  val fs = FileSystem.SYSTEM
+    val fs = FileSystem.SYSTEM
 
-  fs.createDirectories("build/html".toPath())
-  fs.createDirectories("build/html/callback".toPath())
+    fs.createDirectories("build/html".toPath())
+    fs.createDirectories("build/html/callback".toPath())
 
-  val callbackText = callbackPage()
-  fs.sink("build/html/callback/index.html".toPath()).buffer().use { sink ->
-    sink.writeUtf8(callbackText)
-  }
+    val callbackText = callbackPage()
+    fs.sink("build/html/callback/index.html".toPath()).buffer().use { sink ->
+        sink.writeUtf8(callbackText)
+    }
 }
 
 fun buildHtml(block: HTML.() -> Unit): String = buildString {
-  appendLine("<!DOCTYPE html>")
-  appendHTML().html {
-    lang = "en"
-    block()
-  }
+    appendLine("<!DOCTYPE html>")
+    appendHTML().html {
+        lang = "en"
+        block()
+    }
 }

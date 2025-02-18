@@ -29,23 +29,20 @@ constructor(
     private val timeProvider: TimeProvider,
     private val logger: Logger,
 ) : CoroutineWorker(appContext, workerParams) {
-  override suspend fun doWork(): Result {
-    return try {
-      val currentTime = timeProvider.now
-      val lastSyncedTo = simpleStorage[SyncedUpTo].map { Instant.parse(it) }.first()
-      val result = historyRecorder(currentTime, lastSyncedTo)
-      val successResult = result.getOrThrow()
-      simpleStorage.update(SyncedUpTo) { currentTime.toString() }
-      Result.success()
-    } catch (ex: Exception) {
-      logger.e(ex)
-      Result.failure(workDataOf("CAUSE" to ex.localizedMessage))
+    override suspend fun doWork(): Result {
+        return try {
+            val currentTime = timeProvider.now
+            val lastSyncedTo = simpleStorage[SyncedUpTo].map { Instant.parse(it) }.first()
+            val result = historyRecorder(currentTime, lastSyncedTo)
+            val successResult = result.getOrThrow()
+            simpleStorage.update(SyncedUpTo) { currentTime.toString() }
+            Result.success()
+        } catch (ex: Exception) {
+            logger.e(ex)
+            Result.failure(workDataOf("CAUSE" to ex.localizedMessage))
+        }
     }
-  }
 }
 
 private val SyncedUpTo =
-    SimpleEntry(
-        stringPreferencesKey("tracks-synced-up-to"),
-        "2000-01-01T09:00:00Z",
-    )
+    SimpleEntry(stringPreferencesKey("tracks-synced-up-to"), "2000-01-01T09:00:00Z")

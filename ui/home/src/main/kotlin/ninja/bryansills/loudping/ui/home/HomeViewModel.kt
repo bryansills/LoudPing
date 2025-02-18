@@ -11,30 +11,26 @@ import ninja.bryansills.loudping.session.Session
 import ninja.bryansills.loudping.session.SessionManager
 
 @HiltViewModel
-class HomeViewModel
-@Inject
-constructor(
-    private val sessionManager: SessionManager,
-) : ViewModel() {
-  val uiState =
-      sessionManager.currentSession
-          .map { session ->
-            when (session) {
-              is Session.LoggedIn -> HomeUiState.LoggedIn
-              Session.LoggedOut -> HomeUiState.LoggedOut
+class HomeViewModel @Inject constructor(private val sessionManager: SessionManager) : ViewModel() {
+    val uiState =
+        sessionManager.currentSession
+            .map { session ->
+                when (session) {
+                    is Session.LoggedIn -> HomeUiState.LoggedIn
+                    Session.LoggedOut -> HomeUiState.LoggedOut
+                }
             }
-          }
-          .stateIn(
-              scope = viewModelScope,
-              started = SharingStarted.WhileSubscribed(1000),
-              initialValue = HomeUiState.Loading,
-          )
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(1000),
+                initialValue = HomeUiState.Loading,
+            )
 }
 
 sealed interface HomeUiState {
-  data object Loading : HomeUiState
+    data object Loading : HomeUiState
 
-  data object LoggedOut : HomeUiState
+    data object LoggedOut : HomeUiState
 
-  data object LoggedIn : HomeUiState
+    data object LoggedIn : HomeUiState
 }

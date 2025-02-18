@@ -24,66 +24,63 @@ import retrofit2.create
 
 @OptIn(ExperimentalStdlibApi::class)
 internal fun initializeDependencies(): SpotifyService {
-  val sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
-  val networkSneak =
-      RealNetworkSneak(
-          sneak = sneak,
-          obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
-          obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
-          obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
-          obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
-          obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
-          obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
-      )
+    val sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
+    val networkSneak =
+        RealNetworkSneak(
+            sneak = sneak,
+            obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
+            obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
+            obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
+            obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
+            obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
+            obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
+        )
 
-  val dataStore = PreferenceDataStoreFactory.create { File("fake-jvm-storage.preferences_pb") }
-  val simpleStorage = RealSimpleStorage(dataStore)
+    val dataStore = PreferenceDataStoreFactory.create { File("fake-jvm-storage.preferences_pb") }
+    val simpleStorage = RealSimpleStorage(dataStore)
 
-  // preload SimpleStorage with the bundled refresh token
-  runBlocking { simpleStorage.edit { it[Stored.RefreshToken.key] = BuildConfig.JvmRefreshToken } }
+    // preload SimpleStorage with the bundled refresh token
+    runBlocking { simpleStorage.edit { it[Stored.RefreshToken.key] = BuildConfig.JvmRefreshToken } }
 
-  val timeProvider = RealTimeProvider()
+    val timeProvider = RealTimeProvider()
 
-  val json = Json { ignoreUnknownKeys = true }
-  val converterFactory =
-      json.asConverterFactory(
-          "application/json; charset=UTF8".toMediaType(),
-      )
+    val json = Json { ignoreUnknownKeys = true }
+    val converterFactory = json.asConverterFactory("application/json; charset=UTF8".toMediaType())
 
-  val authorizationHeaderInterceptor = AuthorizationHeaderInterceptor(networkSneak)
+    val authorizationHeaderInterceptor = AuthorizationHeaderInterceptor(networkSneak)
 
-  val authOkHttpClient =
-      OkHttpClient.Builder().addInterceptor(authorizationHeaderInterceptor).build()
+    val authOkHttpClient =
+        OkHttpClient.Builder().addInterceptor(authorizationHeaderInterceptor).build()
 
-  val authRetrofit =
-      Retrofit.Builder()
-          .baseUrl(networkSneak.baseAuthApiUrl)
-          .client(authOkHttpClient)
-          .addConverterFactory(ApiResultConverterFactory)
-          .addConverterFactory(converterFactory)
-          .addCallAdapterFactory(ApiResultCallAdapterFactory)
-          .build()
+    val authRetrofit =
+        Retrofit.Builder()
+            .baseUrl(networkSneak.baseAuthApiUrl)
+            .client(authOkHttpClient)
+            .addConverterFactory(ApiResultConverterFactory)
+            .addConverterFactory(converterFactory)
+            .addCallAdapterFactory(ApiResultCallAdapterFactory)
+            .build()
 
-  val spotifyAuthService = authRetrofit.create<SpotifyAuthService>()
+    val spotifyAuthService = authRetrofit.create<SpotifyAuthService>()
 
-  val authManager =
-      RealAuthManager(
-          simpleStorage = simpleStorage,
-          spotifyAuthService = spotifyAuthService,
-          timeProvider = timeProvider,
-          networkSneak = networkSneak,
-      )
+    val authManager =
+        RealAuthManager(
+            simpleStorage = simpleStorage,
+            spotifyAuthService = spotifyAuthService,
+            timeProvider = timeProvider,
+            networkSneak = networkSneak,
+        )
 
-  val accessTokenInterceptor = AccessTokenInterceptor(authManager)
+    val accessTokenInterceptor = AccessTokenInterceptor(authManager)
 
-  val mainOkHttpClient = OkHttpClient.Builder().addInterceptor(accessTokenInterceptor).build()
+    val mainOkHttpClient = OkHttpClient.Builder().addInterceptor(accessTokenInterceptor).build()
 
-  val mainRetrofit =
-      Retrofit.Builder()
-          .baseUrl(networkSneak.baseApiUrl)
-          .client(mainOkHttpClient)
-          .addConverterFactory(converterFactory)
-          .build()
+    val mainRetrofit =
+        Retrofit.Builder()
+            .baseUrl(networkSneak.baseApiUrl)
+            .client(mainOkHttpClient)
+            .addConverterFactory(converterFactory)
+            .build()
 
-  return mainRetrofit.create<SpotifyService>()
+    return mainRetrofit.create<SpotifyService>()
 }

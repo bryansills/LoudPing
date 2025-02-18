@@ -8,5 +8,5 @@ actual fun LoudPingTheme(
     dynamicColor: Boolean,
     content: @Composable () -> Unit,
 ) {
-  TODO()
+    TODO()
 }

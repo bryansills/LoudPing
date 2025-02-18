@@ -11,8 +11,8 @@ data class Track(
     val album: Album,
     val artists: List<Artist>,
 ) {
-  companion object {
-    const val MISSING_DISC_NUMBER = -1
-    val MISSING_DURATION = Duration.ZERO
-  }
+    companion object {
+        const val MISSING_DISC_NUMBER = -1
+        val MISSING_DURATION = Duration.ZERO
+    }
 }

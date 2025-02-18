@@ -12,12 +12,12 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 interface ForemanModule {
-  @Binds fun bindForeman(impl: DefaultForeman): Foreman
+    @Binds fun bindForeman(impl: DefaultForeman): Foreman
 
-  companion object {
-    @Provides
-    fun provideWorkManager(@ApplicationContext context: Context): WorkManager {
-      return WorkManager.getInstance(context)
+    companion object {
+        @Provides
+        fun provideWorkManager(@ApplicationContext context: Context): WorkManager {
+            return WorkManager.getInstance(context)
+        }
     }
-  }
 }
