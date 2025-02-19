@@ -8,9 +8,9 @@ internal fun Project.configureNavigation() {
         id("org.jetbrains.kotlin.plugin.serialization")
     }
     dependencies {
-        implementation(libs["androidx-compose-navigation"])
-        implementation(libs["hilt-navigation-compose"])
-        implementation(libs["viewmodel"])
-        implementation(libs["kotlinx-serialization-runtime"])
+        implementation(libs.androidx.compose.navigation)
+        implementation(libs.hilt.navigation.compose)
+        implementation(libs.viewmodel)
+        implementation(libs.kotlinx.serialization.runtime.json)
     }
 }

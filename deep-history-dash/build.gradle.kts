@@ -32,7 +32,7 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
     implementation(libs.okio)
-    implementation(libs.kotlinx.serialization.runtime)
+    implementation(libs.kotlinx.serialization.runtime.json)
 }
 
 buildConfig {

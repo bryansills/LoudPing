@@ -1,27 +1,12 @@
-import org.gradle.accessors.dm.LibrariesForLibs
-
 plugins {
     `kotlin-dsl`
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.samReceiver)
-    alias(libs.plugins.spotless)
 }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(libs.javaVersion.majorVersion))
-    }
-}
-
-spotless {
-    kotlin {
-        target("src/**/*.kt")
-        ktlint(libs.versions.ktlint.get())
-    }
-
-    kotlinGradle {
-        target("*.kts")
-        ktlint(libs.versions.ktlint.get())
+        languageVersion.set(JavaLanguageVersion.of(libs.versions.java.version.get()))
     }
 }
 
@@ -43,9 +28,6 @@ dependencies {
 private fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {
     "$pluginId:$pluginId.gradle.plugin:$version"
 }
-
-private val LibrariesForLibs.javaVersion
-    get(): JavaVersion = JavaVersion.toVersion(versions.java.version.get())
 
 gradlePlugin {
     plugins {

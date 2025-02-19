@@ -78,7 +78,7 @@ viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", ve
 datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore"}
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-kotlinx-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kotlinx-retrofit"}
-kotlinx-serialization-runtime = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-runtime"}
+kotlinx-serialization-runtime-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-runtime"}
 kotlinx-serialization-runtime-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization-runtime"}
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp"}

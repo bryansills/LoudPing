@@ -11,10 +11,10 @@ import org.gradle.kotlin.dsl.dependencies
 
 internal fun Project.configureAndroid() {
     android {
-        compileSdkVersion(libs.findVersionNumber("compile-sdk"))
+        compileSdkVersion(libs.versions.compile.sdk.toInt())
         defaultConfig {
-            minSdk = libs.findVersionNumber("min-sdk")
-            targetSdk = libs.findVersionNumber("target-sdk")
+            minSdk = libs.versions.min.sdk.toInt()
+            targetSdk = libs.versions.target.sdk.toInt()
 
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
@@ -34,15 +34,15 @@ internal fun Project.configureAndroid() {
         }
     }
     dependencies {
-        coreLibraryDesugaring(libs["android-desugarJdkLibs"])
-        androidTestRuntimeOnly(libs["androidx-test-runner"])
+        coreLibraryDesugaring(libs.android.desugarJdkLibs)
+        androidTestRuntimeOnly(libs.androidx.test.runner)
     }
 }
 
 private fun Project.android(action: BaseExtension.() -> Unit) = extensions.configure<BaseExtension>(action)
 
 private fun BaseExtension.buildFeatures(action: BuildFeatures.() -> Unit) {
-    if (this is CommonExtension<*,*,*,*,*,*>) {
+    if (this is CommonExtension<*, *, *, *, *, *>) {
         buildFeatures(action)
     } else {
         throw IllegalStateException("This should work...")

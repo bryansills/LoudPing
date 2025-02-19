@@ -1,27 +1,13 @@
 package ninja.bryansills
 
-import org.gradle.api.JavaVersion
+import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
-import org.gradle.api.artifacts.MinimalExternalModuleDependency
-import org.gradle.api.artifacts.VersionCatalog
-import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
-import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.the
 
 internal val Project.libs
-    get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+    get() = the<LibrariesForLibs>()
 
-internal val VersionCatalog.javaVersion
-    get(): JavaVersion = JavaVersion.toVersion(findVersion("java-version").get().requiredVersion)
-
-internal fun VersionCatalog.findVersionNumber(alias: String): Int {
-    return findVersion(alias).get().requiredVersion.toInt()
-}
-
-internal fun VersionCatalog.findVersionString(alias: String): String {
-    return findVersion(alias).get().requiredVersion
-}
-
-operator fun VersionCatalog.get(stringLibName: String): Provider<MinimalExternalModuleDependency> {
-    return this.findLibrary(stringLibName).get()
+internal fun Provider<String>.toInt(): Int {
+    return this.get().toInt()
 }

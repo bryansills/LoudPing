@@ -38,7 +38,7 @@ internal fun Project.configureKotlinMultiplatform() {
 
         sourceSets {
             commonMain.dependencies {
-                implementation(libs.findLibrary("coroutines").get())
+                implementation(libs.coroutines)
             }
             commonTest.dependencies {
                 implementation(kotlin("test"))
@@ -52,5 +52,5 @@ private fun Project.kotlin(block: KotlinMultiplatformExtension.() -> Unit) {
 }
 
 private fun KotlinMultiplatformExtension.sourceSets(
-    configure: Action<NamedDomainObjectContainer<KotlinSourceSet>>
+    configure: Action<NamedDomainObjectContainer<KotlinSourceSet>>,
 ): Unit = (this as ExtensionAware).extensions.configure("sourceSets", configure)

@@ -16,15 +16,24 @@ internal fun Project.configureSpotless() {
             endWithNewline()
         }
         kotlin {
-            ktlint(libs.findVersion("ktlint").get().requiredVersion)
-            target("src/**/*.kt")
+            ktlint(libs.versions.ktlint.get())
+            if (this@configureSpotless.path == ":") {
+                // at the root, target the build-logic code
+                target("build-logic/convention/src/**/*.kt")
+            } else {
+                target("src/**/*.kt")
+            }
             trimTrailingWhitespace()
             endWithNewline()
         }
         kotlinGradle {
-            ktlint(libs.findVersion("ktlint").get().requiredVersion)
-            target("**/*.gradle.kts")
-            targetExclude("**/build/**/*.gradle.kts") // TODO: remove when the old stuff is gone
+            ktlint(libs.versions.ktlint.get())
+            if (this@configureSpotless.path == ":") {
+                // additionally at the root, target the build-logic code
+                target("*.gradle.kts", "build-logic/**/*.gradle.kts")
+            } else {
+                target("**/*.gradle.kts")
+            }
             trimTrailingWhitespace()
             endWithNewline()
         }

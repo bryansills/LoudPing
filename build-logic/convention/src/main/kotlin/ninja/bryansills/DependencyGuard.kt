@@ -26,7 +26,6 @@ internal fun Project.configureDependencyGuard() {
     }
 }
 
-
 private fun Project.dependencyGuard(configure: Action<DependencyGuardPluginExtension>): Unit =
     (this as ExtensionAware).extensions.configure("dependencyGuard", configure)
 

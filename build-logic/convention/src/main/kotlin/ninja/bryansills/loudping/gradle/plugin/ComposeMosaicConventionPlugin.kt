@@ -4,7 +4,6 @@ import ninja.bryansills.configureComposeCompiler
 import ninja.bryansills.configureDependencyAnalysis
 import ninja.bryansills.configureKotlin
 import ninja.bryansills.configureSpotless
-import ninja.bryansills.get
 import ninja.bryansills.id
 import ninja.bryansills.implementation
 import ninja.bryansills.libs
@@ -25,7 +24,7 @@ class ComposeMosaicConventionPlugin : Plugin<Project> {
         configureDependencyAnalysis()
         configureComposeCompiler()
         dependencies {
-            implementation(libs["mosaic"])
+            implementation(libs.mosaic)
         }
     }
 }

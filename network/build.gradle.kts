@@ -12,7 +12,7 @@ kotlin {
 
             implementation(libs.retrofit)
             implementation(libs.retrofit.kotlinx.serialization)
-            implementation(libs.kotlinx.serialization.runtime)
+            implementation(libs.kotlinx.serialization.runtime.json)
             implementation(libs.okhttp)
             implementation(libs.kotlinx.datetime)
         }

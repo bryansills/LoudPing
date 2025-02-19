@@ -1,6 +1,5 @@
 package ninja.bryansills.loudping.gradle.plugin
 
-import ninja.bryansills.configureAndroid
 import ninja.bryansills.configureDependencyAnalysis
 import ninja.bryansills.configureKotlin
 import ninja.bryansills.configureKotlinMultiplatform

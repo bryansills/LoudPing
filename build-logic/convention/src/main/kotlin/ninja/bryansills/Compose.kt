@@ -12,7 +12,7 @@ internal fun Project.configureComposeCompiler() {
         enableStrongSkippingMode.set(true)
 
         // Needed for Layout Inspector to be able to see all of the nodes in the component tree:
-        //https://issuetracker.google.com/issues/338842143
+        // https://issuetracker.google.com/issues/338842143
         includeSourceInformation.set(true)
     }
 
@@ -29,13 +29,13 @@ internal fun Project.configureComposeAndroid() {
     configureComposeCompiler()
 
     dependencies {
-        val composeBom = libs["androidx-compose-bom"]
+        val composeBom = libs.androidx.compose.bom
         implementation(platform(composeBom))
         androidTestImplementation(platform(composeBom))
 
-        implementation(libs["androidx-compose-material3"])
-        implementation(libs["androidx-compose-preview"])
-        debugImplementation(libs["androidx-compose-ui-tooling"])
+        implementation(libs.androidx.compose.material3)
+        implementation(libs.androidx.compose.preview)
+        debugImplementation(libs.androidx.compose.ui.tooling)
     }
 }
 

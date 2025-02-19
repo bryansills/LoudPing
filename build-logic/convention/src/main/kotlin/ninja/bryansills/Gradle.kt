@@ -11,7 +11,9 @@ internal fun Project.plugins(action: PluginContainer.() -> Unit) = with(plugins)
 
 internal fun Project.dependencies(action: DependencyHandler.() -> Unit) = with(dependencies) { action() }
 
-internal fun PluginContainer.id(name: String) { apply(name) }
+internal fun PluginContainer.id(name: String) {
+    apply(name)
+}
 
 internal fun <T : ExternalDependency> DependencyHandlerScope.implementation(lib: Provider<T>) {
     "implementation"(lib)
