@@ -1,6 +1,7 @@
 package ninja.bryansills.loudping.database
 
 import androidx.paging.PagingSource
+import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.database.model.Album
 import ninja.bryansills.loudping.database.model.Track
@@ -39,4 +40,12 @@ interface DatabaseService {
     suspend fun getTracksFromSpotifyIds(trackIds: List<String>): List<Track>
 
     suspend fun insertTrack(track: Track)
+
+    /**
+     * @param newerTime What time to start (often the current time).
+     * @param olderTime What (earlier) time to stop.
+     * @return Pages of data, sorted by timestamp with the oldest data first. Tracks are missing any
+     * info on artists.
+     */
+    fun getTracksBetween(newerTime: Instant, olderTime: Instant): Flow<List<TrackPlayRecord>>
 }

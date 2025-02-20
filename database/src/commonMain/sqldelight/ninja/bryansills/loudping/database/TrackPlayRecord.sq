@@ -15,42 +15,7 @@ ON CONFLICT(id) DO UPDATE SET
     context = excluded.context
 ;
 
-insert_album:
-INSERT INTO album(id, spotify_id, track_count, title, cover_image)
-VALUES (
-    (SELECT id FROM album WHERE spotify_id = :spotifyId),
-    :spotifyId,
-    :trackCount,
-    :title,
-    :coverImage
-)
-ON CONFLICT(id) DO UPDATE SET
-    track_count = excluded.track_count,
-    title = excluded.title,
-    cover_image = excluded.cover_image
-;
-
-insert_artist:
-INSERT INTO artist(id, spotify_id, name)
-VALUES (
-    (SELECT id FROM artist WHERE spotify_id = :spotifyId),
-    :spotifyId,
-    :name
-)
-ON CONFLICT(id) DO UPDATE SET
-    name = excluded.name
-;
-
-insert_track_artist:
-INSERT INTO track_artist(id, spotify_track_id, spotify_artist_id)
-VALUES (
-    (SELECT id FROM track_artist WHERE spotify_track_id = :spotifyTrackId AND spotify_artist_id = :spotifyArtistId),
-    :spotifyTrackId,
-    :spotifyArtistId
-)
-ON CONFLICT DO NOTHING;
-
-keyed_page_boundaries_play_record:
+get_desc_page_boundaries:
 SELECT timestamp
 FROM (
   SELECT
@@ -65,7 +30,7 @@ FROM (
 )
 WHERE page_boundary = 1;
 
-get_keyed_play_records:
+get_desc_track_play_record_page:
 SELECT track_play_record.spotify_track_id, track_play_record.track_title, track_play_record.spotify_album_id, track_play_record.timestamp, album.title AS album_title, album.cover_image, artist.name AS artist_name
 FROM track_play_record
 INNER JOIN album ON track_play_record.spotify_album_id = album.spotify_id
@@ -73,3 +38,41 @@ INNER JOIN track_artist ON track_play_record.spotify_track_id = track_artist.spo
 INNER JOIN artist ON track_artist.spotify_artist_id = artist.spotify_id
 WHERE timestamp >= :beginInclusive AND (timestamp < :endExclusive OR :endExclusive IS NULL)
 ORDER BY timestamp DESC;
+
+get_asc_constrained_page_boundaries:
+SELECT timestamp
+FROM (
+  SELECT
+    timestamp,
+    CASE
+      WHEN ((row_number() OVER(ORDER BY timestamp ASC) - 1) % :pageSize) = 0 THEN 1
+      ELSE 0
+    END page_boundary
+  FROM track_play_record
+  WHERE timestamp >= :olderTime AND timestamp < :newerTime
+  ORDER BY timestamp ASC
+)
+WHERE page_boundary = 1;
+
+get_asc_track_play_record_page:
+SELECT
+  track_play_record.spotify_track_id,
+  track.title AS track_title,
+  track.track_number,
+  track.disc_number,
+  track.duration_ms,
+  album.spotify_id AS spotify_album_id,
+  album.title AS album_title,
+  album.track_count AS album_track_count,
+  album.cover_image AS album_cover_image,
+  artist.spotify_id AS spotify_artist_id,
+  artist.name AS artist_name,
+  track_play_record.timestamp,
+  track_play_record.context
+FROM track_play_record
+INNER JOIN track ON track_play_record.spotify_track_id = track.spotify_track_id
+INNER JOIN album ON track_play_record.spotify_album_id = album.spotify_id
+INNER JOIN track_artist ON track_play_record.spotify_track_id = track_artist.spotify_track_id
+INNER JOIN artist ON track_artist.spotify_artist_id = artist.spotify_id
+WHERE timestamp >= :olderTime AND timestamp < :newerTime
+ORDER BY timestamp ASC;

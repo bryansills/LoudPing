@@ -3,9 +3,9 @@ package ninja.bryansills.loudping.deephistory.runner
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.coroutines.launchBlocking
 import ninja.bryansills.loudping.deephistory.DeepHistoryRecord
-import ninja.bryansills.loudping.deephistory.DeepHistoryRunEvent
 import ninja.bryansills.loudping.deephistory.dash.initializeDependencies
 
 fun main() {
@@ -18,13 +18,53 @@ fun main() {
     mainScope.launchBlocking {
         val deps = initializeDependencies()
 
-        deps.deepHistoryRunner(deps.deepHistoryDataProvider).collect { event ->
-            when (event) {
-                is DeepHistoryRunEvent.EntriesLoaded -> println(event)
-                is DeepHistoryRunEvent.CachedChunk -> { }
-                is DeepHistoryRunEvent.NetworkChunk -> println(event)
+//        var chunksCached = 0
+//        var chunksSaved = 0
+//        var chunksRecorded = 0
+//        deps.deepHistoryRunner(deps.deepHistoryDataProvider).collect { event ->
+//            when (event) {
+//                is DeepHistoryRunEvent.EntriesLoaded -> println(event)
+//                is DeepHistoryRunEvent.CachedChunk -> {
+//                    if (chunksCached % 50 == 0) {
+//                        println("Cached $chunksCached")
+//                        println("Cached count: ${event.found.size} missing count: ${event.missing.size}")
+//                    }
+//                    chunksCached++
+//                }
+//                is DeepHistoryRunEvent.NetworkChunk -> {
+//                    if (chunksSaved % 50 == 0) {
+//                        println("Saved $chunksSaved")
+//                        println("Cached count: ${event.found.size} missing count: ${event.stillMissing.size}")
+//                    }
+//                    chunksSaved++
+//                }
+//                is DeepHistoryRunEvent.RecordedChunk -> {
+//                    if (chunksRecorded % 50 == 0) {
+//                        println("Recorded $chunksRecorded")
+//                        println("Recorded count: ${event.recorded.size}")
+//                    }
+//                    chunksRecorded++
+//                }
+//            }
+//        }
+
+        println("getting called")
+
+        deps.database.getTracksBetween(
+            newerTime = Instant.parse("2015-02-19T01:55:40Z"),
+            olderTime = Instant.parse("2012-02-19T01:55:40Z"),
+        ).collect { page ->
+            if (page.isNotEmpty()) {
+                val first = page.first()
+                val last = page.last()
+                println("First: $first")
+                println("Last: $last")
+                println("---")
+            } else {
+                println("!!! empty page !!!")
             }
         }
+        println("here at the end")
     }
 }
 

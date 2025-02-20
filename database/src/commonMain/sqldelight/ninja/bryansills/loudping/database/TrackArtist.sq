@@ -1,0 +1,8 @@
+insert_track_artist:
+INSERT INTO track_artist(id, spotify_track_id, spotify_artist_id)
+VALUES (
+    (SELECT id FROM track_artist WHERE spotify_track_id = :spotifyTrackId AND spotify_artist_id = :spotifyArtistId),
+    :spotifyTrackId,
+    :spotifyArtistId
+)
+ON CONFLICT DO NOTHING;

@@ -2,12 +2,16 @@ package ninja.bryansills.loudping.deephistory
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import ninja.bryansills.loudping.database.DatabaseService
 import ninja.bryansills.loudping.database.model.Track
+import ninja.bryansills.loudping.database.model.TrackPlayContext
+import ninja.bryansills.loudping.database.model.TrackPlayRecord
 import ninja.bryansills.loudping.repository.track.MultiTrackResult
 import ninja.bryansills.loudping.repository.track.TrackRepository
 
 class DefaultDeepHistoryRunner(
     private val trackRepository: TrackRepository,
+    private val databaseService: DatabaseService,
 ) : DeepHistoryRunner {
     override fun invoke(dataProvider: DeepHistoryDataProvider): Flow<DeepHistoryRunEvent> = flow {
         val records = dataProvider.data
@@ -15,8 +19,8 @@ class DefaultDeepHistoryRunner(
 
         val chunkedRecords = records.chunked(100)
 
-        val recordsWithCachedTracks = mutableListOf<Pair<DeepHistoryRecord, Track>>()
-        val recordsWithoutCachedTracks = mutableListOf<DeepHistoryRecord>()
+        val completeRecords = mutableListOf<Pair<DeepHistoryRecord, Track>>()
+        val stillTryingRecords = mutableListOf<DeepHistoryRecord>()
 
         chunkedRecords.forEach { recordsWindow ->
             val repoTracks = trackRepository.getTracksBySpotifyIds(
@@ -32,11 +36,12 @@ class DefaultDeepHistoryRunner(
                 ),
             )
 
-            recordsWithCachedTracks.addAll(groupResult.found)
-            recordsWithoutCachedTracks.addAll(groupResult.stillMissing)
+            completeRecords.addAll(groupResult.found)
+            stillTryingRecords.addAll(groupResult.stillMissing)
         }
 
-        val chunkedMissing = recordsWithoutCachedTracks.chunked(50)
+        val chunkedMissing = stillTryingRecords.chunked(50)
+        val failedRecords = mutableListOf<DeepHistoryRecord>()
 
         chunkedMissing.forEach { recordsWindow ->
             val repoTracks = trackRepository.getTracksBySpotifyIds(
@@ -51,6 +56,25 @@ class DefaultDeepHistoryRunner(
                     stillMissing = groupResult.stillMissing,
                 ),
             )
+
+            completeRecords.addAll(groupResult.found)
+            failedRecords.addAll(groupResult.stillMissing)
+        }
+
+        val trackPlayRecordChunks = completeRecords
+            .map { (deepHistoryRecord, track) ->
+                TrackPlayRecord(
+                    track = track,
+                    timestamp = deepHistoryRecord.ts,
+                    context = TrackPlayContext.Unknown,
+                )
+            }
+            .sortedBy { it.timestamp }
+            .chunked(100)
+
+        trackPlayRecordChunks.forEach { chunk ->
+            databaseService.insertTrackPlayRecords(records = chunk)
+            emit(DeepHistoryRunEvent.RecordedChunk(recorded = chunk))
         }
     }
 }

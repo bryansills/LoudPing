@@ -126,6 +126,7 @@ suspend fun initializeDependencies(): JvmDependencies {
     )
     val deepHistoryRunner = DefaultDeepHistoryRunner(
         trackRepository = trackRepo,
+        databaseService = databaseService,
     )
 
     return JvmDependencies(

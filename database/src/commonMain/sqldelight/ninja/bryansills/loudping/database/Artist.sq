@@ -1,0 +1,10 @@
+insert_artist:
+INSERT INTO artist(id, spotify_id, name)
+VALUES (
+    (SELECT id FROM artist WHERE spotify_id = :spotifyId),
+    :spotifyId,
+    :name
+)
+ON CONFLICT(id) DO UPDATE SET
+    name = excluded.name
+;

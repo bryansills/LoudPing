@@ -1,11 +1,13 @@
 package ninja.bryansills.loudping.history.recorder
 
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.database.DatabaseService
 import ninja.bryansills.loudping.database.model.Album
 import ninja.bryansills.loudping.database.model.Artist
+import ninja.bryansills.loudping.database.model.Track
 import ninja.bryansills.loudping.database.model.TrackPlayContext
 import ninja.bryansills.loudping.database.model.TrackPlayRecord
 import ninja.bryansills.loudping.network.NetworkService
@@ -73,16 +75,20 @@ private fun List<PlayHistoryItem>.toDatabase(stopAt: Instant?): List<TrackPlayRe
         .filter { it.played_at > (stopAt ?: Instant.DISTANT_PAST) }
         .map { networkTrack ->
             TrackPlayRecord(
-                trackId = networkTrack.track.id,
-                trackNumber = networkTrack.track.track_number,
-                trackTitle = networkTrack.track.name,
-                album = Album(
-                    spotifyId = networkTrack.track.album.id,
-                    title = networkTrack.track.album.name,
-                    trackCount = networkTrack.track.album.total_tracks,
-                    coverImage = networkTrack.track.album.coverImageUrl,
+                track = Track(
+                    spotifyId = networkTrack.track.id,
+                    title = networkTrack.track.name,
+                    trackNumber = networkTrack.track.track_number,
+                    discNumber = networkTrack.track.disc_number,
+                    duration = networkTrack.track.duration_ms.milliseconds,
+                    album = Album(
+                        spotifyId = networkTrack.track.album.id,
+                        title = networkTrack.track.album.name,
+                        trackCount = networkTrack.track.album.total_tracks,
+                        coverImage = networkTrack.track.album.coverImageUrl,
+                    ),
+                    artists = networkTrack.track.artists.toDatabase(),
                 ),
-                artists = networkTrack.track.artists.toDatabase(),
                 timestamp = networkTrack.played_at,
                 context = networkTrack.context.type.toDatabase(),
             )
