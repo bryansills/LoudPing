@@ -5,9 +5,10 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.kotlinx.datetime)
+            implementation(projects.core.model)
             implementation(projects.database)
             implementation(projects.network)
+            implementation(libs.kotlinx.datetime)
         }
     }
 }

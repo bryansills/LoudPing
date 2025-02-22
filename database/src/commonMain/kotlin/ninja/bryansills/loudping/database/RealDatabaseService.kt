@@ -11,11 +11,11 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeComponents
 import kotlinx.datetime.format.DateTimeFormat
-import ninja.bryansills.loudping.database.model.Album
-import ninja.bryansills.loudping.database.model.Artist
-import ninja.bryansills.loudping.database.model.Track
-import ninja.bryansills.loudping.database.model.TrackPlayContext
-import ninja.bryansills.loudping.database.model.TrackPlayRecord
+import ninja.bryansills.loudping.core.model.Album
+import ninja.bryansills.loudping.core.model.Artist
+import ninja.bryansills.loudping.core.model.Track
+import ninja.bryansills.loudping.core.model.TrackPlayContext
+import ninja.bryansills.loudping.core.model.TrackPlayRecord
 
 class RealDatabaseService(
     private val database: Database,

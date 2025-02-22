@@ -1,7 +1,7 @@
 package ninja.bryansills.loudping.deephistory
 
-import ninja.bryansills.loudping.database.model.Track
-import ninja.bryansills.loudping.database.model.TrackPlayRecord
+import ninja.bryansills.loudping.core.model.Track
+import ninja.bryansills.loudping.core.model.TrackPlayRecord
 
 sealed interface DeepHistoryRunEvent {
     data class EntriesLoaded(val playCount: Int) : DeepHistoryRunEvent

@@ -1,6 +1,6 @@
 package ninja.bryansills.loudping.repository.album
 
-import ninja.bryansills.loudping.database.model.Album
+import ninja.bryansills.loudping.core.model.Album
 
 interface AlbumRepository {
     suspend fun getAlbumByTrackId(trackId: String, shouldQueryNetwork: Boolean = false): Album?

@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.database.model
+package ninja.bryansills.loudping.core.model
 
 import kotlinx.datetime.Instant
 

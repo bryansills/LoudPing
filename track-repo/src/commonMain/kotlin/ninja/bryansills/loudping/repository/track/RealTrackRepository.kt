@@ -1,10 +1,10 @@
 package ninja.bryansills.loudping.repository.track
 
 import kotlin.time.Duration.Companion.milliseconds
+import ninja.bryansills.loudping.core.model.Album
+import ninja.bryansills.loudping.core.model.Artist
+import ninja.bryansills.loudping.core.model.Track
 import ninja.bryansills.loudping.database.DatabaseService
-import ninja.bryansills.loudping.database.model.Album
-import ninja.bryansills.loudping.database.model.Artist
-import ninja.bryansills.loudping.database.model.Track
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.getTrack
 import ninja.bryansills.loudping.network.model.artist.SimplifiedArtist

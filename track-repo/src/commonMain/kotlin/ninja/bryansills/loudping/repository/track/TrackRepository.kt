@@ -1,6 +1,6 @@
 package ninja.bryansills.loudping.repository.track
 
-import ninja.bryansills.loudping.database.model.Track
+import ninja.bryansills.loudping.core.model.Track
 
 interface TrackRepository {
     suspend fun getTrackBySpotifyId(trackId: String, shouldQueryNetwork: Boolean = false): Track?

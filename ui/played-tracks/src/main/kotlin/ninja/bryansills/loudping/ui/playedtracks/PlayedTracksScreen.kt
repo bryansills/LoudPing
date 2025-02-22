@@ -28,7 +28,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
-import ninja.bryansills.loudping.database.model.TrackPlayRecord
+import ninja.bryansills.loudping.core.model.TrackPlayRecord
 
 @Composable
 fun PlayedTracksScreen(

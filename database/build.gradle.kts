@@ -5,6 +5,7 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            api(projects.core.model)
             implementation(libs.kotlinx.datetime)
             api(libs.paging)
             implementation(libs.paging.sqldelight)

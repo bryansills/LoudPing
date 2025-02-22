@@ -2,7 +2,7 @@ package ninja.bryansills.loudping.grouper
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ninja.bryansills.loudping.database.model.TrackPlayRecord
+import ninja.bryansills.loudping.core.model.TrackPlayRecord
 
 class DefaultAlbumGrouper : AlbumGrouper {
     override fun invoke(songs: Flow<List<TrackPlayRecord>>) = flow {
@@ -38,7 +38,7 @@ internal fun WorkingSpace.squeezeOutGroups(minStillProcessingSize: Int) = buildL
         val albumGroup = AlbumGroup(
             previousSongs = tracksPrevious.values,
             supposedAlbum = currentAlbum,
-            subsequentSongs = stillProcessing.subList(0, minStillProcessingSize)
+            subsequentSongs = stillProcessing.subList(0, minStillProcessingSize),
         )
 
         add(albumGroup)

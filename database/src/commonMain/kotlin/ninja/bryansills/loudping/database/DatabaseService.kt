@@ -3,9 +3,9 @@ package ninja.bryansills.loudping.database
 import androidx.paging.PagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Instant
-import ninja.bryansills.loudping.database.model.Album
-import ninja.bryansills.loudping.database.model.Track
-import ninja.bryansills.loudping.database.model.TrackPlayRecord
+import ninja.bryansills.loudping.core.model.Album
+import ninja.bryansills.loudping.core.model.Track
+import ninja.bryansills.loudping.core.model.TrackPlayRecord
 
 interface DatabaseService {
     suspend fun insertTrackPlayRecords(records: List<TrackPlayRecord>)

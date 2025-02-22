@@ -2,10 +2,10 @@ package ninja.bryansills.loudping.deephistory
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import ninja.bryansills.loudping.core.model.Track
+import ninja.bryansills.loudping.core.model.TrackPlayContext
+import ninja.bryansills.loudping.core.model.TrackPlayRecord
 import ninja.bryansills.loudping.database.DatabaseService
-import ninja.bryansills.loudping.database.model.Track
-import ninja.bryansills.loudping.database.model.TrackPlayContext
-import ninja.bryansills.loudping.database.model.TrackPlayRecord
 import ninja.bryansills.loudping.repository.track.MultiTrackResult
 import ninja.bryansills.loudping.repository.track.TrackRepository
 

@@ -4,12 +4,12 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Instant
+import ninja.bryansills.loudping.core.model.Album
+import ninja.bryansills.loudping.core.model.Artist
+import ninja.bryansills.loudping.core.model.Track
+import ninja.bryansills.loudping.core.model.TrackPlayContext
+import ninja.bryansills.loudping.core.model.TrackPlayRecord
 import ninja.bryansills.loudping.database.DatabaseService
-import ninja.bryansills.loudping.database.model.Album
-import ninja.bryansills.loudping.database.model.Artist
-import ninja.bryansills.loudping.database.model.Track
-import ninja.bryansills.loudping.database.model.TrackPlayContext
-import ninja.bryansills.loudping.database.model.TrackPlayRecord
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 import ninja.bryansills.loudping.network.model.artist.SimplifiedArtist

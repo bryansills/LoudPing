@@ -1,7 +1,7 @@
 package ninja.bryansills.loudping.repository.album
 
+import ninja.bryansills.loudping.core.model.Album
 import ninja.bryansills.loudping.database.DatabaseService
-import ninja.bryansills.loudping.database.model.Album
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.getTrack
 import ninja.bryansills.loudping.network.model.track.TrackAlbum

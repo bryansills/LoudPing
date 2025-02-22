@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.database.model
+package ninja.bryansills.loudping.core.model
 
 data class Artist(
     val spotifyId: String,

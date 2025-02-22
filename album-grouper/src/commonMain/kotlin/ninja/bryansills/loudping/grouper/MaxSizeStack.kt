@@ -2,7 +2,7 @@ package ninja.bryansills.loudping.grouper
 
 class MaxSizeStack<Element>(
     initialValues: List<Element> = listOf(),
-    var maxSize: Int
+    var maxSize: Int,
 ) {
     init {
         require(maxSize > 0) { "Don't try me" }
