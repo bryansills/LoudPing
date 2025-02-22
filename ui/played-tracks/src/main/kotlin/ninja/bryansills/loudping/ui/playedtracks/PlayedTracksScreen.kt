@@ -51,11 +51,11 @@ fun PlayedTracksScreen(
             }
 
             items(count = pagingItems.itemCount) { index ->
-                val track = pagingItems[index]!!
+                val playedTrack = pagingItems[index]!!
                 PlayedTrack(
-                    title = track.trackTitle,
-                    artist = track.formattedArtist,
-                    playedAt = track.timestamp,
+                    title = playedTrack.track.title,
+                    artist = playedTrack.formattedArtist,
+                    playedAt = playedTrack.timestamp,
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
@@ -131,8 +131,8 @@ private fun Instant.relativeFormatted(
 
 private val TrackPlayRecord.formattedArtist: String
     get() {
-        return if (this.artists.isNotEmpty()) {
-            this.artists.joinToString { it.name }
+        return if (this.track.artists.isNotEmpty()) {
+            this.track.artists.joinToString { it.name }
         } else {
             "Unknown artist"
         }
