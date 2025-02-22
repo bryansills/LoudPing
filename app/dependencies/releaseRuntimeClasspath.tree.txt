@@ -907,7 +907,10 @@
 |    |    |    +--- project :history-recorder
 |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
 |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1 (*)
-|    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
+|    |    |    |    +--- project :core:model
+|    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
+|    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
+|    |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1 (*)
 |    |    |    |    +--- project :database
 |    |    |    |    |    +--- app.cash.sqldelight:android-driver:2.1.0-SNAPSHOT
 |    |    |    |    |    |    +--- androidx.sqlite:sqlite-framework:2.4.0 (*)
@@ -916,6 +919,7 @@
 |    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.1.10 (*)
 |    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.4.0 (*)
 |    |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.1.10 (*)
+|    |    |    |    |    +--- project :core:model (*)
 |    |    |    |    |    +--- androidx.paging:paging-common:3.3.5
 |    |    |    |    |    |    \--- androidx.paging:paging-common-android:3.3.5
 |    |    |    |    |    |         +--- androidx.annotation:annotation:1.8.1 -> 1.9.0 (*)
@@ -941,17 +945,18 @@
 |    |    |    |    |              |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4 -> 1.10.1 (*)
 |    |    |    |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.1.10 (*)
 |    |    |    |    |              \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 -> 1.10.1 (*)
-|    |    |    |    \--- project :network
-|    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
-|    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1 (*)
-|    |    |    |         +--- project :network-auth (*)
-|    |    |    |         +--- project :sneak-network (*)
-|    |    |    |         +--- project :time (*)
-|    |    |    |         +--- com.squareup.retrofit2:retrofit:2.11.0 (*)
-|    |    |    |         +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0 (*)
-|    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
-|    |    |    |         +--- com.squareup.okhttp3:okhttp:4.12.0 (*)
-|    |    |    |         \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
+|    |    |    |    +--- project :network
+|    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
+|    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1 (*)
+|    |    |    |    |    +--- project :network-auth (*)
+|    |    |    |    |    +--- project :sneak-network (*)
+|    |    |    |    |    +--- project :time (*)
+|    |    |    |    |    +--- com.squareup.retrofit2:retrofit:2.11.0 (*)
+|    |    |    |    |    +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0 (*)
+|    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
+|    |    |    |    |    +--- com.squareup.okhttp3:okhttp:4.12.0 (*)
+|    |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
+|    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
 |    |    |    +--- project :storage (*)
 |    |    |    +--- project :time (*)
 |    |    |    +--- project :logger
@@ -1123,6 +1128,7 @@
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.2.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (*)
+|    |    +--- project :core:model (*)
 |    |    +--- project :database (*)
 |    |    +--- project :app-theme (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)

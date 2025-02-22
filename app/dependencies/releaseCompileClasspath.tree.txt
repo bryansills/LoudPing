@@ -368,6 +368,11 @@
 +--- project :di
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
 +--- project :database
+|    +--- project :core:model
+|    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2
+|    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.2
+|    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.1.10 (*)
+|    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
 |    +--- androidx.paging:paging-common:3.3.5
 |    |    \--- androidx.paging:paging-common-android:3.3.5
 |    |         +--- androidx.annotation:annotation:1.8.1 -> 1.9.0 (*)
@@ -445,9 +450,7 @@
 |    |         \--- androidx.datastore:datastore-core-okio:1.1.2 (c)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
 +--- project :time
-|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2
-|    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.2
-|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.1.10 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
 +--- project :logger
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
