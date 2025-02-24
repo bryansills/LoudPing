@@ -4,19 +4,22 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import ninja.bryansills.loudping.core.model.TrackPlayRecord
 
-class DefaultAlbumGrouper : AlbumGrouper {
+class DefaultAlbumGrouper(
+    private val previousTrackCount: Int = 5,
+    private val followingTrackCount: Int = 5,
+) : AlbumGrouper {
     override fun invoke(songs: Flow<List<TrackPlayRecord>>) = flow {
-        val workingSpace = WorkingSpace()
+        val workingSpace = WorkingSpace(previousTrackCount = previousTrackCount)
 
         songs.collect { newChunk ->
             newChunk.fold(workingSpace) { acc, trackPlayRecord ->
-                if (trackPlayRecord.track.album.spotifyId != acc.currentAlbum.lastOrNull()?.track?.album?.spotifyId) {
-                    acc.stillProcessing.add(trackPlayRecord)
-                } else {
+                if (trackPlayRecord.shouldAddToCurrent(acc.currentAlbum)) {
                     acc.currentAlbum.add(trackPlayRecord)
+                } else {
+                    acc.stillProcessing.add(trackPlayRecord)
                 }
 
-                val albumGroups = acc.squeezeOutGroups(minStillProcessingSize = 5)
+                val albumGroups = acc.squeezeOutGroups(minStillProcessingSize = followingTrackCount)
                 albumGroups.forEach { emit(it) }
 
                 acc
@@ -24,8 +27,18 @@ class DefaultAlbumGrouper : AlbumGrouper {
         }
 
         val finalAlbumGroups = workingSpace.squeezeOutGroups(minStillProcessingSize = 0)
-        finalAlbumGroups.forEach { emit(it) }
+        finalAlbumGroups.forEachIndexed { index, albumGroup ->
+            // we don't emit the last album since it could be incomplete
+            if (index != finalAlbumGroups.lastIndex) {
+                emit(albumGroup)
+            }
+        }
     }
+}
+
+private fun TrackPlayRecord.shouldAddToCurrent(currentAlbum: List<TrackPlayRecord>): Boolean {
+    val isSameAlbum = this.track.album.spotifyId == currentAlbum.lastOrNull()?.track?.album?.spotifyId
+    return isSameAlbum || currentAlbum.isEmpty()
 }
 
 /**
@@ -36,9 +49,9 @@ class DefaultAlbumGrouper : AlbumGrouper {
 internal fun WorkingSpace.squeezeOutGroups(minStillProcessingSize: Int) = buildList {
     while (currentAlbum.isNotEmpty() && stillProcessing.size >= minStillProcessingSize) {
         val albumGroup = AlbumGroup(
-            previousSongs = tracksPrevious.values,
-            supposedAlbum = currentAlbum,
-            subsequentSongs = stillProcessing.subList(0, minStillProcessingSize),
+            previousSongs = tracksPrevious.values.toList(),
+            supposedAlbum = currentAlbum.toList(),
+            subsequentSongs = stillProcessing.subList(0, minStillProcessingSize).toList(),
         )
 
         add(albumGroup)
