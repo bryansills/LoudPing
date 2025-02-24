@@ -3,9 +3,9 @@ package ninja.bryansills.loudping.grouper
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlinx.coroutines.flow.flowOf
-import ninja.bryansills.loudping.core.model.test.TimestampTicker
-import ninja.bryansills.loudping.core.model.test.runTestTurbine
 import ninja.bryansills.loudping.core.model.test.testRecord
+import ninja.bryansills.loudping.core.test.TimestampTicker
+import ninja.bryansills.loudping.core.test.runTestTurbine
 
 class DefaultAlbumGrouperTest {
     private val timestampTicker = TimestampTicker()

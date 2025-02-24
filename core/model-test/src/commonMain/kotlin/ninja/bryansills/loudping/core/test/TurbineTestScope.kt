@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.core.model.test
+package ninja.bryansills.loudping.core.test
 
 import app.cash.turbine.TurbineContext
 import app.cash.turbine.turbineScope

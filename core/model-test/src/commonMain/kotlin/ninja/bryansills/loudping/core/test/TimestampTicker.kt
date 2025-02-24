@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.core.model.test
+package ninja.bryansills.loudping.core.test
 
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
