@@ -373,8 +373,8 @@
 |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.2
 |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.1.10 (*)
 |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 (*)
-|    +--- androidx.paging:paging-common:3.3.5
-|    |    \--- androidx.paging:paging-common-android:3.3.5
+|    +--- androidx.paging:paging-common:3.3.6
+|    |    \--- androidx.paging:paging-common-android:3.3.6
 |    |         +--- androidx.annotation:annotation:1.8.1 -> 1.9.0 (*)
 |    |         +--- androidx.arch.core:core-common:2.2.0 (*)
 |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.10 (*)
@@ -575,7 +575,7 @@
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.savedstate:savedstate:{strictly 1.2.1} -> 1.2.1 (c)
 +--- javax.inject:javax.inject:{strictly 1} -> 1 (c)
-+--- androidx.paging:paging-common:{strictly 3.3.5} -> 3.3.5 (c)
++--- androidx.paging:paging-common:{strictly 3.3.6} -> 3.3.6 (c)
 +--- app.cash.sqldelight:runtime:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- app.cash.sqldelight:async-extensions:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- androidx.datastore:datastore-preferences:{strictly 1.1.2} -> 1.1.2 (c)
@@ -612,7 +612,7 @@
 +--- androidx.lifecycle:lifecycle-common-jvm:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.lifecycle:lifecycle-viewmodel-android:{strictly 2.8.7} -> 2.8.7 (c)
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:{strictly 1.10.1} -> 1.10.1 (c)
-+--- androidx.paging:paging-common-android:{strictly 3.3.5} -> 3.3.5 (c)
++--- androidx.paging:paging-common-android:{strictly 3.3.6} -> 3.3.6 (c)
 +--- app.cash.sqldelight:runtime-jvm:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- app.cash.sqldelight:async-extensions-jvm:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- androidx.datastore:datastore-preferences-android:{strictly 1.1.2} -> 1.1.2 (c)
