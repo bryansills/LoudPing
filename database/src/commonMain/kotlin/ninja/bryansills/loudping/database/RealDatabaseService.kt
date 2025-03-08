@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:discouraged-comment-location")
+
 package ninja.bryansills.loudping.database
 
 import androidx.paging.PagingSource

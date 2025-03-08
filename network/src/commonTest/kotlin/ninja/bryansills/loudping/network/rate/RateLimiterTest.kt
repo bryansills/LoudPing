@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:discouraged-comment-location")
+
 package ninja.bryansills.loudping.network.rate
 
 import kotlin.test.Test
