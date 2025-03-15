@@ -3,9 +3,9 @@
 |    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0 -> 1.9.0 (c)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0 -> 1.9.0 (c)
 +--- androidx.compose:compose-bom:2025.02.00
-|    +--- androidx.compose.material3:material3:1.3.1 -> 1.4.0-alpha09 (c)
+|    +--- androidx.compose.material3:material3:1.3.1 -> 1.4.0-alpha10 (c)
 |    +--- androidx.compose.ui:ui-tooling-preview:1.7.8 (c)
-|    +--- androidx.compose.material3:material3-android:1.3.1 -> 1.4.0-alpha09 (c)
+|    +--- androidx.compose.material3:material3-android:1.3.1 -> 1.4.0-alpha10 (c)
 |    +--- androidx.compose.ui:ui-tooling-preview-android:1.7.8 (c)
 |    +--- androidx.compose.runtime:runtime:1.7.8 (c)
 |    +--- androidx.compose.runtime:runtime-saveable:1.7.8 (c)
@@ -33,8 +33,8 @@
 |    +--- androidx.compose.animation:animation-android:1.7.8 (c)
 |    +--- androidx.compose.animation:animation-core:1.7.8 (c)
 |    \--- androidx.compose.animation:animation-core-android:1.7.8 (c)
-+--- androidx.compose.material3:material3:1.4.0-alpha09
-|    \--- androidx.compose.material3:material3-android:1.4.0-alpha09
++--- androidx.compose.material3:material3:1.4.0-alpha10
+|    \--- androidx.compose.material3:material3-android:1.4.0-alpha10
 |         +--- androidx.annotation:annotation:1.8.1 -> 1.9.0
 |         |    \--- androidx.annotation:annotation-jvm:1.9.0
 |         |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.7.10 -> 2.1.10 (*)
@@ -547,7 +547,7 @@
 |         \--- com.bugsnag:bugsnag-android-core:6.12.1 (*)
 +--- org.jetbrains.kotlin:kotlin-stdlib:{strictly 2.1.10} -> 2.1.10 (c)
 +--- androidx.compose:compose-bom:{strictly 2025.02.00} -> 2025.02.00 (c)
-+--- androidx.compose.material3:material3:{strictly 1.4.0-alpha09} -> 1.4.0-alpha09 (c)
++--- androidx.compose.material3:material3:{strictly 1.4.0-alpha10} -> 1.4.0-alpha10 (c)
 +--- androidx.activity:activity-compose:{strictly 1.10.1} -> 1.10.1 (c)
 +--- androidx.activity:activity-ktx:{strictly 1.10.1} -> 1.10.1 (c)
 +--- androidx.compose.ui:ui-tooling-preview:{strictly 1.7.8} -> 1.7.8 (c)
@@ -561,7 +561,7 @@
 +--- androidx.hilt:hilt-work:{strictly 1.2.0} -> 1.2.0 (c)
 +--- com.bugsnag:bugsnag-android:{strictly 6.12.1} -> 6.12.1 (c)
 +--- org.jetbrains:annotations:{strictly 23.0.0} -> 23.0.0 (c)
-+--- androidx.compose.material3:material3-android:{strictly 1.4.0-alpha09} -> 1.4.0-alpha09 (c)
++--- androidx.compose.material3:material3-android:{strictly 1.4.0-alpha10} -> 1.4.0-alpha10 (c)
 +--- androidx.compose.ui:ui-tooling-preview-android:{strictly 1.7.8} -> 1.7.8 (c)
 +--- com.google.dagger:dagger:{strictly 2.55} -> 2.55 (c)
 +--- com.google.dagger:dagger-lint-aar:{strictly 2.55} -> 2.55 (c)
