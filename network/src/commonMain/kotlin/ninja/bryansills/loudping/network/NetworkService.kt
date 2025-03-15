@@ -5,6 +5,7 @@ import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.network.model.PrivateUserResponse
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 import ninja.bryansills.loudping.network.model.SavedAlbumsResponse
+import ninja.bryansills.loudping.network.model.album.FullAlbum
 import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
 import ninja.bryansills.loudping.network.model.track.Track
 
@@ -20,6 +21,8 @@ interface NetworkService {
     ): Flow<RecentlyPlayedResponse>
 
     suspend fun getSeveralTracks(ids: List<String>): List<Track>
+
+    suspend fun getSeveralAlbums(ids: List<String>): List<FullAlbum>
 }
 
 suspend fun NetworkService.getTrack(id: String): Track {

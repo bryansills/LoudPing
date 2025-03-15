@@ -3,6 +3,7 @@ package ninja.bryansills.loudping.network
 import ninja.bryansills.loudping.network.model.PrivateUserResponse
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 import ninja.bryansills.loudping.network.model.SavedAlbumsResponse
+import ninja.bryansills.loudping.network.model.SeveralAlbumsResponse
 import ninja.bryansills.loudping.network.model.SeveralTracksResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -34,4 +35,15 @@ interface SpotifyService {
      */
     @GET("/v1/tracks")
     suspend fun getSeveralTracks(@Query("ids") ids: String): SeveralTracksResponse
+
+    /**
+     * @param ids A comma-separated list of the Spotify IDs.
+     * For example: ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M.
+     * Maximum: 20 IDs.
+     */
+    @GET("/v1/albums")
+    suspend fun getSeveralAlbums(@Query("ids") ids: String): SeveralAlbumsResponse
+
+    @GET
+    suspend fun getSeveralAlbumsUrl(@Url fullUrl: String): SeveralAlbumsResponse
 }

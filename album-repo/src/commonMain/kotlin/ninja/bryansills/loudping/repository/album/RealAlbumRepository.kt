@@ -53,6 +53,17 @@ class RealAlbumRepository(
             trackResult
         }
     }
+
+    override suspend fun getAlbumBySpotifyId(albumId: String, shouldQueryNetwork: Boolean): Album? {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getAlbumsBySpotifyIds(
+        albumIds: List<String>,
+        shouldQueryNetworkForMissing: Boolean
+    ): MultiAlbumResult {
+        TODO("Not yet implemented")
+    }
 }
 
 private fun TrackAlbum.toDatabase(): Album {

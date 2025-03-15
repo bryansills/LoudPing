@@ -8,6 +8,7 @@ import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.network.model.PrivateUserResponse
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 import ninja.bryansills.loudping.network.model.SavedAlbumsResponse
+import ninja.bryansills.loudping.network.model.album.FullAlbum
 import ninja.bryansills.loudping.network.model.recent.PlayHistoryItem
 import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
 import ninja.bryansills.loudping.network.model.track.Track
@@ -72,6 +73,15 @@ class RealNetworkService(
     override suspend fun getSeveralTracks(ids: List<String>): List<Track> {
         require(ids.size <= 50) { "You can only query for 50 tracks at a time." }
         return spotifyService.getSeveralTracks(ids.joinToString(separator = ",")).tracks
+    }
+
+    override suspend fun getSeveralAlbums(ids: List<String>): List<FullAlbum> {
+        require(ids.size in 1..20) { "You can only query for up to 20 albums at a time." }
+        val networkResult = spotifyService.getSeveralAlbums(ids.joinToString(separator = ",")).albums
+
+        // find any albums that don't return the full results
+
+        return networkResult
     }
 }
 
