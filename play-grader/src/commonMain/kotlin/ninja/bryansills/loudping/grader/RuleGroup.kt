@@ -14,9 +14,9 @@ val DefaultRules = listOf(
         rules = listOf(
             GraderRule.Tracks,
             GraderRule.Sequence,
-            GraderRule.Compactness(runtimeMultiplier = 1.5f, minDurationPlayed = 0.94f)
+            GraderRule.Compactness(runtimeMultiplier = 1.5f, minDurationPlayed = 0.94f),
         ),
-        allAbove = 0.94f
+        allAbove = 0.94f,
     ),
     // if either are above 75%, we are good
     RuleGroup.Some(
@@ -24,10 +24,10 @@ val DefaultRules = listOf(
             GraderRule.Tracks,
             GraderRule.Duration,
             GraderRule.Sequence,
-            GraderRule.Compactness(runtimeMultiplier = 2.0f, minDurationPlayed = 0.64f)
+            GraderRule.Compactness(runtimeMultiplier = 2.0f, minDurationPlayed = 0.64f),
         ),
         above = 0.74f,
-        percentageAbove = 0.49f
+        percentageAbove = 0.49f,
     ),
     // if 3/4 are above 60%, we are good
     RuleGroup.Some(
@@ -35,9 +35,9 @@ val DefaultRules = listOf(
             GraderRule.Tracks,
             GraderRule.Duration,
             GraderRule.Sequence,
-            GraderRule.Compactness(runtimeMultiplier = 3.0f, minDurationPlayed = 0.49f)
+            GraderRule.Compactness(runtimeMultiplier = 3.0f, minDurationPlayed = 0.49f),
         ),
         above = 0.59f,
-        percentageAbove = 0.74f
-    )
+        percentageAbove = 0.74f,
+    ),
 )

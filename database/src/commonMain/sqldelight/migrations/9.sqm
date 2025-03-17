@@ -1,0 +1,3 @@
+import ninja.bryansills.loudping.core.model.AlbumType;
+
+ALTER TABLE album ADD COLUMN type TEXT AS AlbumType;

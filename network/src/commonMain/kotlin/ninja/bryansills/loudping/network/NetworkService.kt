@@ -28,3 +28,7 @@ interface NetworkService {
 suspend fun NetworkService.getTrack(id: String): Track {
     return this.getSeveralTracks(listOf(id)).first()
 }
+
+suspend fun NetworkService.getAlbum(id: String): FullAlbum {
+    return this.getSeveralAlbums(listOf(id)).first()
+}

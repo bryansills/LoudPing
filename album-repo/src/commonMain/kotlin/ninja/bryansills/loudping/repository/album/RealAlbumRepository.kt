@@ -1,17 +1,18 @@
 package ninja.bryansills.loudping.repository.album
 
-import ninja.bryansills.loudping.core.model.Album
+import ninja.bryansills.loudping.core.model.FullAlbum
+import ninja.bryansills.loudping.core.model.TrackAlbum as CoreTrackAlbum
 import ninja.bryansills.loudping.database.DatabaseService
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.getTrack
-import ninja.bryansills.loudping.network.model.track.TrackAlbum
+import ninja.bryansills.loudping.network.model.track.TrackAlbum as NetworkTrackAlbum
 import ninja.bryansills.loudping.network.model.track.coverImageUrl
 
 class RealAlbumRepository(
     private val network: NetworkService,
     private val database: DatabaseService,
 ) : AlbumRepository {
-    override suspend fun getAlbumByTrackId(trackId: String, shouldQueryNetwork: Boolean): Album? {
+    override suspend fun getAlbumByTrackId(trackId: String, shouldQueryNetwork: Boolean): ninja.bryansills.loudping.core.model.TrackAlbum? {
         val cachedDatabaseValue = database.getAlbumFromTrackId(trackId)
         return cachedDatabaseValue
             ?: if (shouldQueryNetwork) {
@@ -24,7 +25,7 @@ class RealAlbumRepository(
             }
     }
 
-    override suspend fun getAlbumsByTrackIds(trackIds: List<String>): List<Album> {
+    override suspend fun getAlbumsByTrackIds(trackIds: List<String>): List<ninja.bryansills.loudping.core.model.TrackAlbum> {
         val cachedAlbums = trackIds
             .mapNotNull { trackId ->
                 val cachedDatabaseValue = database.getAlbumFromTrackId(trackId)
@@ -54,20 +55,21 @@ class RealAlbumRepository(
         }
     }
 
-    override suspend fun getAlbumBySpotifyId(albumId: String, shouldQueryNetwork: Boolean): Album? {
-        TODO("Not yet implemented")
+    override suspend fun getAlbumBySpotifyId(albumId: String, shouldQueryNetwork: Boolean): FullAlbum? {
+        val cachedValue = database.getAlbumForSpotifyId(albumId)
+        return TODO()
     }
 
     override suspend fun getAlbumsBySpotifyIds(
         albumIds: List<String>,
-        shouldQueryNetworkForMissing: Boolean
+        shouldQueryNetworkForMissing: Boolean,
     ): MultiAlbumResult {
         TODO("Not yet implemented")
     }
 }
 
-private fun TrackAlbum.toDatabase(): Album {
-    return Album(
+private fun NetworkTrackAlbum.toDatabase(): CoreTrackAlbum {
+    return CoreTrackAlbum(
         spotifyId = this.id,
         title = this.name,
         trackCount = this.total_tracks,

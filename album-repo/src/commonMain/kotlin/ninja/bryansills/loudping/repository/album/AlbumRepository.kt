@@ -1,15 +1,15 @@
 package ninja.bryansills.loudping.repository.album
 
-import ninja.bryansills.loudping.core.model.Album
 import ninja.bryansills.loudping.core.model.FullAlbum
+import ninja.bryansills.loudping.core.model.TrackAlbum
 
 interface AlbumRepository {
-    suspend fun getAlbumByTrackId(trackId: String, shouldQueryNetwork: Boolean = false): Album?
+    suspend fun getAlbumByTrackId(trackId: String, shouldQueryNetwork: Boolean = false): TrackAlbum?
 
     /**
      * TODO: migrate this to support partial success
      */
-    suspend fun getAlbumsByTrackIds(trackIds: List<String>): List<Album>
+    suspend fun getAlbumsByTrackIds(trackIds: List<String>): List<TrackAlbum>
 
     suspend fun getAlbumBySpotifyId(albumId: String, shouldQueryNetwork: Boolean = false): FullAlbum?
 
@@ -27,5 +27,4 @@ sealed interface MultiAlbumResult {
     data class Mixed(val albums: List<FullAlbum>, val missingIds: List<String>) : MultiAlbumResult
 
     data class Failure(val exception: Exception) : MultiAlbumResult
-
 }

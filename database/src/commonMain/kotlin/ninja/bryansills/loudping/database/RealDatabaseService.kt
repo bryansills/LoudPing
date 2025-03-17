@@ -13,9 +13,11 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.format
 import kotlinx.datetime.format.DateTimeComponents
 import kotlinx.datetime.format.DateTimeFormat
-import ninja.bryansills.loudping.core.model.Album
+import ninja.bryansills.loudping.core.model.AlbumType
 import ninja.bryansills.loudping.core.model.Artist
+import ninja.bryansills.loudping.core.model.FullAlbum
 import ninja.bryansills.loudping.core.model.Track
+import ninja.bryansills.loudping.core.model.TrackAlbum
 import ninja.bryansills.loudping.core.model.TrackPlayContext
 import ninja.bryansills.loudping.core.model.TrackPlayRecord
 
@@ -80,7 +82,7 @@ class RealDatabaseService(
                                         trackNumber = -1, // TODO: fill in
                                         discNumber = -1, // TODO: fill in
                                         duration = ZERO, // TODO: fill in
-                                        album = Album(
+                                        album = TrackAlbum(
                                             spotifyId = firstRow.spotify_album_id,
                                             title = firstRow.album_title,
                                             trackCount = -1, // TODO: fill in
@@ -104,10 +106,10 @@ class RealDatabaseService(
             )
         }
 
-    override suspend fun getAlbumFromTrackId(trackId: String): Album? {
+    override suspend fun getAlbumFromTrackId(trackId: String): TrackAlbum? {
         return try {
             val result = database.trackAlbumQueries.get_album_from_track_id(trackId).awaitAsOne()
-            Album(
+            TrackAlbum(
                 spotifyId = result.spotify_id,
                 title = result.title,
                 trackCount = result.track_count.toInt(),
@@ -119,18 +121,19 @@ class RealDatabaseService(
         }
     }
 
-    override suspend fun insertAlbum(album: Album, associatedTrackIds: List<String>) {
+    override suspend fun insertAlbum(album: TrackAlbum, associatedTrackIds: List<String>) {
         database.transaction {
             insertAlbumInternal(album = album, associatedTrackIds = associatedTrackIds)
         }
     }
 
-    private suspend fun insertAlbumInternal(album: Album, associatedTrackIds: List<String>) {
+    private suspend fun insertAlbumInternal(album: TrackAlbum, associatedTrackIds: List<String>) {
         database.albumQueries.insert_album(
             spotifyId = album.spotifyId,
             trackCount = album.trackCount.toLong(),
             title = album.title,
             coverImage = album.coverImage,
+            type = AlbumType.Unknown,
         )
         associatedTrackIds.forEach { trackId ->
             database.trackAlbumQueries.insert_artist_album(
@@ -140,7 +143,7 @@ class RealDatabaseService(
         }
     }
 
-    override suspend fun getTrackFromSpotifyId(trackId: String): Track? {
+    override suspend fun getTrackForSpotifyId(trackId: String): Track? {
         return try {
             val tracks = database.trackQueries.get_track_from_spotify_id(spotifyTrackId = trackId).awaitAsList()
             tracks
@@ -154,7 +157,7 @@ class RealDatabaseService(
                         trackNumber = firstRow.track_number.toInt(),
                         discNumber = firstRow.disc_number.toInt(),
                         duration = firstRow.duration_ms.milliseconds,
-                        album = Album(
+                        album = TrackAlbum(
                             spotifyId = firstRow.spotify_album_id,
                             title = firstRow.album_title,
                             trackCount = firstRow.album_track_count.toInt(),
@@ -175,7 +178,7 @@ class RealDatabaseService(
         }
     }
 
-    override suspend fun getTracksFromSpotifyIds(trackIds: List<String>): List<Track> {
+    override suspend fun getTracksForSpotifyIds(trackIds: List<String>): List<Track> {
         val tracks = database
             .trackQueries
             .get_tracks_from_spotify_ids(spotifyTrackIds = trackIds)
@@ -192,7 +195,7 @@ class RealDatabaseService(
                     trackNumber = firstRow.track_number.toInt(),
                     discNumber = firstRow.disc_number.toInt(),
                     duration = firstRow.duration_ms.milliseconds,
-                    album = Album(
+                    album = TrackAlbum(
                         spotifyId = firstRow.spotify_album_id,
                         title = firstRow.album_title,
                         trackCount = firstRow.album_track_count.toInt(),
@@ -204,6 +207,43 @@ class RealDatabaseService(
                             name = trackArtist.artist_name,
                         )
                     },
+                )
+            }
+    }
+
+    override suspend fun getAlbumForSpotifyId(albumId: String): FullAlbum? {
+        return try {
+            val databaseResults = database.albumQueries.get_album_from_spotify_id(spotifyAlbumId = albumId).awaitAsList()
+            val firstRow = databaseResults.first()
+            FullAlbum(
+                spotifyId = firstRow.spotify_album_id,
+                title = firstRow.title,
+                trackCount = firstRow.track_count.toInt(),
+                coverImage = firstRow.cover_image,
+                type = firstRow.album_type ?: AlbumType.Unknown,
+                totalDuration = databaseResults.sumOf { it.track_duration }.milliseconds,
+            )
+        } catch (ex: Exception) {
+            println(ex.message)
+            null
+        }
+    }
+
+    override suspend fun getAlbumsForSpotifyIds(albumIds: List<String>): List<FullAlbum> {
+        val databaseResults = database.albumQueries.get_albums_from_spotify_ids(albumIds).awaitAsList()
+
+        return databaseResults
+            .groupBy { it.spotify_album_id }
+            .values
+            .map { albumRows ->
+                val firstRow = albumRows.first()
+                FullAlbum(
+                    spotifyId = firstRow.spotify_album_id,
+                    title = firstRow.title,
+                    trackCount = firstRow.track_count.toInt(),
+                    coverImage = firstRow.cover_image,
+                    type = firstRow.album_type ?: AlbumType.Unknown,
+                    totalDuration = albumRows.sumOf { it.track_duration }.milliseconds,
                 )
             }
     }
@@ -249,7 +289,7 @@ class RealDatabaseService(
                                 trackNumber = firstRow.track_number.toInt(),
                                 discNumber = firstRow.disc_number.toInt(),
                                 duration = firstRow.duration_ms.milliseconds,
-                                album = Album(
+                                album = TrackAlbum(
                                     spotifyId = firstRow.spotify_album_id,
                                     title = firstRow.album_title,
                                     trackCount = firstRow.album_track_count.toInt(),

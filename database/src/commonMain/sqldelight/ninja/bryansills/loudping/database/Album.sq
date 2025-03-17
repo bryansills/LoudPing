@@ -1,14 +1,33 @@
 insert_album:
-INSERT INTO album(id, spotify_id, track_count, title, cover_image)
+INSERT INTO album(id, spotify_id, track_count, title, cover_image, type)
 VALUES (
     (SELECT id FROM album WHERE spotify_id = :spotifyId),
     :spotifyId,
     :trackCount,
     :title,
-    :coverImage
+    :coverImage,
+    :type
 )
 ON CONFLICT(id) DO UPDATE SET
     track_count = excluded.track_count,
     title = excluded.title,
-    cover_image = excluded.cover_image
+    cover_image = excluded.cover_image,
+    type = excluded.type
+;
+
+get_album_from_spotify_id:
+SELECT album.id, album.spotify_id AS spotify_album_id, album.track_count, album.title, album.cover_image, album.type AS album_type, track.spotify_track_id AS spotify_track_id, track.title AS track_title, track.duration_ms AS track_duration
+FROM album
+INNER JOIN track_album ON album.spotify_id = track_album.spotify_album_id
+INNER JOIN track ON track_album.spotify_track_id = track.spotify_track_id
+WHERE album.spotify_id = :spotifyAlbumId
+;
+
+
+get_albums_from_spotify_ids:
+SELECT album.id, album.spotify_id AS spotify_album_id, album.track_count, album.title, album.cover_image, album.type AS album_type, track.spotify_track_id AS spotify_track_id, track.title AS track_title, track.duration_ms AS track_duration
+FROM album
+INNER JOIN track_album ON album.spotify_id = track_album.spotify_album_id
+INNER JOIN track ON track_album.spotify_track_id = track.spotify_track_id
+WHERE album.spotify_id IN :spotifyAlbumIds
 ;

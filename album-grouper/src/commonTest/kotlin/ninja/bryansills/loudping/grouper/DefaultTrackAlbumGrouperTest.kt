@@ -9,7 +9,7 @@ import ninja.bryansills.loudping.core.model.test.testRecord
 import ninja.bryansills.loudping.core.test.TimestampTicker
 import ninja.bryansills.loudping.core.test.runTestTurbine
 
-class DefaultAlbumGrouperTest {
+class DefaultTrackAlbumGrouperTest {
     private val timestampTicker = TimestampTicker()
 
     @Test

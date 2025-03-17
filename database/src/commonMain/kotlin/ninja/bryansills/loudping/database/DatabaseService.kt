@@ -3,8 +3,9 @@ package ninja.bryansills.loudping.database
 import androidx.paging.PagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Instant
-import ninja.bryansills.loudping.core.model.Album
+import ninja.bryansills.loudping.core.model.FullAlbum
 import ninja.bryansills.loudping.core.model.Track
+import ninja.bryansills.loudping.core.model.TrackAlbum
 import ninja.bryansills.loudping.core.model.TrackPlayRecord
 
 interface DatabaseService {
@@ -25,19 +26,23 @@ interface DatabaseService {
     /**
      * @param trackId Just the base62 data. Do not include the URI prefix "spotify:track:".
      */
-    suspend fun getAlbumFromTrackId(trackId: String): Album?
+    suspend fun getAlbumFromTrackId(trackId: String): TrackAlbum?
 
-    suspend fun insertAlbum(album: Album, associatedTrackIds: List<String>)
+    suspend fun insertAlbum(album: TrackAlbum, associatedTrackIds: List<String>)
 
     /**
      * @param trackId Just the base62 data. Do not include the URI prefix "spotify:track:".
      */
-    suspend fun getTrackFromSpotifyId(trackId: String): Track?
+    suspend fun getTrackForSpotifyId(trackId: String): Track?
 
     /**
      * @param trackIds Just the base62 data. Do not include the URI prefix "spotify:track:".
      */
-    suspend fun getTracksFromSpotifyIds(trackIds: List<String>): List<Track>
+    suspend fun getTracksForSpotifyIds(trackIds: List<String>): List<Track>
+
+    suspend fun getAlbumForSpotifyId(albumId: String): FullAlbum?
+
+    suspend fun getAlbumsForSpotifyIds(albumIds: List<String>): List<FullAlbum>
 
     suspend fun insertTrack(track: Track)
 

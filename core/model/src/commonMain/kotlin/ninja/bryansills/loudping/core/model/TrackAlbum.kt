@@ -1,6 +1,6 @@
 package ninja.bryansills.loudping.core.model
 
-data class Album(
+data class TrackAlbum(
     val spotifyId: String,
     val title: String,
     val trackCount: Int,

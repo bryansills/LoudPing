@@ -1,9 +1,9 @@
 package ninja.bryansills.loudping.repository.track
 
 import kotlin.time.Duration.Companion.milliseconds
-import ninja.bryansills.loudping.core.model.Album
 import ninja.bryansills.loudping.core.model.Artist
 import ninja.bryansills.loudping.core.model.Track
+import ninja.bryansills.loudping.core.model.TrackAlbum
 import ninja.bryansills.loudping.database.DatabaseService
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.getTrack
@@ -17,7 +17,7 @@ class RealTrackRepository(
     private val database: DatabaseService,
 ) : TrackRepository {
     override suspend fun getTrackBySpotifyId(trackId: String, shouldQueryNetwork: Boolean): Track? {
-        val cachedDatabaseValue = database.getTrackFromSpotifyId(trackId)
+        val cachedDatabaseValue = database.getTrackForSpotifyId(trackId)
         return cachedDatabaseValue
             ?: if (shouldQueryNetwork) {
                 val networkTrack = network.getTrack(trackId)
@@ -34,7 +34,7 @@ class RealTrackRepository(
         shouldQueryNetworkForMissing: Boolean,
     ): MultiTrackResult {
         return try {
-            val cachedList = database.getTracksFromSpotifyIds(trackIds)
+            val cachedList = database.getTracksForSpotifyIds(trackIds)
             val cachedTracks = trackIds.associateWith { id -> cachedList.find { it.spotifyId == id } }
             val missingAnyTracks = cachedTracks.any { (_, track) -> track == null }
 
@@ -71,8 +71,8 @@ private fun NetworkTrack.toDatabase(): Track {
     )
 }
 
-private fun TrackAlbum.toDatabase(): Album {
-    return Album(
+private fun TrackAlbum.toDatabase(): ninja.bryansills.loudping.core.model.TrackAlbum {
+    return ninja.bryansills.loudping.core.model.TrackAlbum(
         spotifyId = this.id,
         title = this.name,
         trackCount = this.total_tracks,

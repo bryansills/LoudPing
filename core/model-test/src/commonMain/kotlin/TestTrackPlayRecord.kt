@@ -3,8 +3,8 @@ package ninja.bryansills.loudping.core.model.test
 import kotlin.time.Duration
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import ninja.bryansills.loudping.core.model.Album
 import ninja.bryansills.loudping.core.model.Track
+import ninja.bryansills.loudping.core.model.TrackAlbum
 import ninja.bryansills.loudping.core.model.TrackPlayContext
 import ninja.bryansills.loudping.core.model.TrackPlayRecord
 
@@ -22,7 +22,7 @@ fun testRecord(
             trackNumber = -1,
             discNumber = -1,
             duration = Duration.ZERO,
-            album = Album(
+            album = TrackAlbum(
                 spotifyId = albumId,
                 title = "",
                 trackCount = -1,

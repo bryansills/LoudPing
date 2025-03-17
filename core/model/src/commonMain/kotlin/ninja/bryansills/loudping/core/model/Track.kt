@@ -8,7 +8,7 @@ data class Track(
     val trackNumber: Int,
     val discNumber: Int,
     val duration: Duration,
-    val album: Album,
+    val album: TrackAlbum,
     val artists: List<Artist>,
 ) {
     companion object {

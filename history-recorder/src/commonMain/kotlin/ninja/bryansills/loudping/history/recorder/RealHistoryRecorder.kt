@@ -4,9 +4,9 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Instant
-import ninja.bryansills.loudping.core.model.Album
 import ninja.bryansills.loudping.core.model.Artist
 import ninja.bryansills.loudping.core.model.Track
+import ninja.bryansills.loudping.core.model.TrackAlbum
 import ninja.bryansills.loudping.core.model.TrackPlayContext
 import ninja.bryansills.loudping.core.model.TrackPlayRecord
 import ninja.bryansills.loudping.database.DatabaseService
@@ -81,7 +81,7 @@ private fun List<PlayHistoryItem>.toDatabase(stopAt: Instant?): List<TrackPlayRe
                     trackNumber = networkTrack.track.track_number,
                     discNumber = networkTrack.track.disc_number,
                     duration = networkTrack.track.duration_ms.milliseconds,
-                    album = Album(
+                    album = TrackAlbum(
                         spotifyId = networkTrack.track.album.id,
                         title = networkTrack.track.album.name,
                         trackCount = networkTrack.track.album.total_tracks,
