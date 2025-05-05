@@ -16,18 +16,22 @@ ON CONFLICT(id) DO UPDATE SET
 ;
 
 get_album_from_spotify_id:
-SELECT album.id, album.spotify_id AS spotify_album_id, album.track_count, album.title, album.cover_image, album.type AS album_type, track.spotify_track_id AS spotify_track_id, track.title AS track_title, track.duration_ms AS track_duration
+SELECT album.id, album.spotify_id AS spotify_album_id, album.track_count, album.title, album.cover_image, album.type AS album_type, artist.spotify_id AS artist_spotify_id, artist.name AS artist_name, track.spotify_track_id AS spotify_track_id, track.spotify_track_id AS spotify_track_id, track.title AS track_title, track.track_number, track.disc_number, track.duration_ms AS track_duration
 FROM album
 INNER JOIN track_album ON album.spotify_id = track_album.spotify_album_id
 INNER JOIN track ON track_album.spotify_track_id = track.spotify_track_id
+INNER JOIN album_artist ON album.spotify_id = album_artist.spotify_album_id
+INNER JOIN artist ON album_artist.spotify_artist_id = artist.spotify_id
 WHERE album.spotify_id = :spotifyAlbumId
 ;
 
 
 get_albums_from_spotify_ids:
-SELECT album.id, album.spotify_id AS spotify_album_id, album.track_count, album.title, album.cover_image, album.type AS album_type, track.spotify_track_id AS spotify_track_id, track.title AS track_title, track.duration_ms AS track_duration
+SELECT album.id, album.spotify_id AS spotify_album_id, album.track_count, album.title, album.cover_image, album.type AS album_type, artist.spotify_id AS artist_spotify_id, artist.name AS artist_name, track.spotify_track_id AS spotify_track_id, track.spotify_track_id AS spotify_track_id, track.title AS track_title, track.track_number, track.disc_number, track.duration_ms AS track_duration
 FROM album
 INNER JOIN track_album ON album.spotify_id = track_album.spotify_album_id
 INNER JOIN track ON track_album.spotify_track_id = track.spotify_track_id
+INNER JOIN album_artist ON album.spotify_id = album_artist.spotify_album_id
+INNER JOIN artist ON album_artist.spotify_artist_id = artist.spotify_id
 WHERE album.spotify_id IN :spotifyAlbumIds
 ;

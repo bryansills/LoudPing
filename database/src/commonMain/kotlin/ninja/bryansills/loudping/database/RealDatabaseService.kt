@@ -221,7 +221,9 @@ class RealDatabaseService(
                 trackCount = firstRow.track_count.toInt(),
                 coverImage = firstRow.cover_image,
                 type = firstRow.album_type ?: AlbumType.Unknown,
-                totalDuration = databaseResults.sumOf { it.track_duration }.milliseconds,
+                artists = TODO(),
+                tracks = TODO(),
+//                totalDuration = databaseResults.sumOf { it.track_duration }.milliseconds,
             )
         } catch (ex: Exception) {
             println(ex.message)
@@ -243,7 +245,9 @@ class RealDatabaseService(
                     trackCount = firstRow.track_count.toInt(),
                     coverImage = firstRow.cover_image,
                     type = firstRow.album_type ?: AlbumType.Unknown,
-                    totalDuration = albumRows.sumOf { it.track_duration }.milliseconds,
+//                    totalDuration = albumRows.sumOf { it.track_duration }.milliseconds,
+                    artists = TODO(),
+                    tracks = TODO(),
                 )
             }
     }

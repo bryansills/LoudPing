@@ -3,13 +3,12 @@ package ninja.bryansills.loudping.repository.track
 import kotlin.time.Duration.Companion.milliseconds
 import ninja.bryansills.loudping.core.model.Artist
 import ninja.bryansills.loudping.core.model.Track
-import ninja.bryansills.loudping.core.model.TrackAlbum
 import ninja.bryansills.loudping.database.DatabaseService
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.getTrack
 import ninja.bryansills.loudping.network.model.artist.SimplifiedArtist
 import ninja.bryansills.loudping.network.model.track.Track as NetworkTrack
-import ninja.bryansills.loudping.network.model.track.TrackAlbum
+import ninja.bryansills.loudping.network.model.track.TrackAlbum as NetworkTrackAlbum
 import ninja.bryansills.loudping.network.model.track.coverImageUrl
 
 class RealTrackRepository(
@@ -71,7 +70,7 @@ private fun NetworkTrack.toDatabase(): Track {
     )
 }
 
-private fun TrackAlbum.toDatabase(): ninja.bryansills.loudping.core.model.TrackAlbum {
+private fun NetworkTrackAlbum.toDatabase(): ninja.bryansills.loudping.core.model.TrackAlbum {
     return ninja.bryansills.loudping.core.model.TrackAlbum(
         spotifyId = this.id,
         title = this.name,
