@@ -92,10 +92,10 @@ com.bugsnag:bugsnag-android:6.12.1
 com.bugsnag:bugsnag-plugin-android-anr:6.12.1
 com.bugsnag:bugsnag-plugin-android-ndk:6.12.1
 com.google.code.findbugs:jsr305:3.0.2
-com.google.dagger:dagger-lint-aar:2.55
-com.google.dagger:dagger:2.55
-com.google.dagger:hilt-android:2.55
-com.google.dagger:hilt-core:2.55
+com.google.dagger:dagger-lint-aar:2.56.2
+com.google.dagger:dagger:2.56.2
+com.google.dagger:hilt-android:2.56.2
+com.google.dagger:hilt-core:2.56.2
 com.google.guava:listenablefuture:1.0
 com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0
 com.slack.eithernet:eithernet:1.9.0
