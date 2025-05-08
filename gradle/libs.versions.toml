@@ -98,7 +98,7 @@ paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pag
 paging-sqldelight = { module = "app.cash.sqldelight:androidx-paging3-extensions", version.ref = "sqldelight" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-mosaic = { module = "com.jakewharton.mosaic:mosaic-runtime", version = "0.16.0" }
+mosaic = { module = "com.jakewharton.mosaic:mosaic-runtime", version = "0.17.0" }
 turbine = { module = "app.cash.turbine:turbine", version = "1.2.0" }
 
 [plugins]
