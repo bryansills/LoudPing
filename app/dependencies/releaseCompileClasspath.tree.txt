@@ -405,54 +405,54 @@
 +--- project :sneak
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 (*)
 +--- project :storage
-|    +--- androidx.datastore:datastore-preferences:1.1.3
-|    |    \--- androidx.datastore:datastore-preferences-android:1.1.3
-|    |         +--- androidx.datastore:datastore:1.1.3
-|    |         |    \--- androidx.datastore:datastore-android:1.1.3
+|    +--- androidx.datastore:datastore-preferences:1.1.6
+|    |    \--- androidx.datastore:datastore-preferences-android:1.1.6
+|    |         +--- androidx.datastore:datastore:1.1.6
+|    |         |    \--- androidx.datastore:datastore-android:1.1.6
 |    |         |         +--- androidx.annotation:annotation:1.2.0 -> 1.9.1 (*)
-|    |         |         +--- androidx.datastore:datastore-core:1.1.3
-|    |         |         |    \--- androidx.datastore:datastore-core-android:1.1.3
+|    |         |         +--- androidx.datastore:datastore-core:1.1.6
+|    |         |         |    \--- androidx.datastore:datastore-core-android:1.1.6
 |    |         |         |         +--- androidx.annotation:annotation:1.7.0 -> 1.9.1 (*)
 |    |         |         |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.20 (*)
 |    |         |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3 -> 1.10.1 (*)
-|    |         |         |         +--- androidx.datastore:datastore:1.1.3 (c)
-|    |         |         |         +--- androidx.datastore:datastore-core-okio:1.1.3 (c)
-|    |         |         |         +--- androidx.datastore:datastore-preferences:1.1.3 (c)
-|    |         |         |         \--- androidx.datastore:datastore-preferences-core:1.1.3 (c)
-|    |         |         +--- androidx.datastore:datastore-core-okio:1.1.3
-|    |         |         |    \--- androidx.datastore:datastore-core-okio-jvm:1.1.3
-|    |         |         |         +--- androidx.datastore:datastore-core:1.1.3 (*)
+|    |         |         |         +--- androidx.datastore:datastore:1.1.6 (c)
+|    |         |         |         +--- androidx.datastore:datastore-core-okio:1.1.6 (c)
+|    |         |         |         +--- androidx.datastore:datastore-preferences:1.1.6 (c)
+|    |         |         |         \--- androidx.datastore:datastore-preferences-core:1.1.6 (c)
+|    |         |         +--- androidx.datastore:datastore-core-okio:1.1.6
+|    |         |         |    \--- androidx.datastore:datastore-core-okio-jvm:1.1.6
+|    |         |         |         +--- androidx.datastore:datastore-core:1.1.6 (*)
 |    |         |         |         +--- com.squareup.okio:okio:3.4.0 -> 3.9.0
 |    |         |         |         |    \--- com.squareup.okio:okio-jvm:3.9.0
 |    |         |         |         |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.1.20 (*)
 |    |         |         |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.20 (*)
 |    |         |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3 -> 1.10.1 (*)
-|    |         |         |         +--- androidx.datastore:datastore:1.1.3 (c)
-|    |         |         |         +--- androidx.datastore:datastore-core:1.1.3 (c)
-|    |         |         |         +--- androidx.datastore:datastore-preferences:1.1.3 (c)
-|    |         |         |         \--- androidx.datastore:datastore-preferences-core:1.1.3 (c)
+|    |         |         |         +--- androidx.datastore:datastore:1.1.6 (c)
+|    |         |         |         +--- androidx.datastore:datastore-core:1.1.6 (c)
+|    |         |         |         +--- androidx.datastore:datastore-preferences:1.1.6 (c)
+|    |         |         |         \--- androidx.datastore:datastore-preferences-core:1.1.6 (c)
 |    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.20 (*)
 |    |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3 -> 1.10.1 (*)
-|    |         |         +--- androidx.datastore:datastore-core:1.1.3 (c)
-|    |         |         +--- androidx.datastore:datastore-core-okio:1.1.3 (c)
-|    |         |         +--- androidx.datastore:datastore-preferences:1.1.3 (c)
-|    |         |         \--- androidx.datastore:datastore-preferences-core:1.1.3 (c)
-|    |         +--- androidx.datastore:datastore-preferences-core:1.1.3
-|    |         |    \--- androidx.datastore:datastore-preferences-core-jvm:1.1.3
-|    |         |         +--- androidx.datastore:datastore-core:1.1.3 (*)
-|    |         |         +--- androidx.datastore:datastore-core-okio:1.1.3 (*)
+|    |         |         +--- androidx.datastore:datastore-core:1.1.6 (c)
+|    |         |         +--- androidx.datastore:datastore-core-okio:1.1.6 (c)
+|    |         |         +--- androidx.datastore:datastore-preferences:1.1.6 (c)
+|    |         |         \--- androidx.datastore:datastore-preferences-core:1.1.6 (c)
+|    |         +--- androidx.datastore:datastore-preferences-core:1.1.6
+|    |         |    \--- androidx.datastore:datastore-preferences-core-android:1.1.6
+|    |         |         +--- androidx.datastore:datastore-core:1.1.6 (*)
+|    |         |         +--- androidx.datastore:datastore-core-okio:1.1.6 (*)
 |    |         |         +--- com.squareup.okio:okio:3.4.0 -> 3.9.0 (*)
 |    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.20 (*)
-|    |         |         +--- androidx.datastore:datastore:1.1.3 (c)
-|    |         |         +--- androidx.datastore:datastore-core:1.1.3 (c)
-|    |         |         +--- androidx.datastore:datastore-core-okio:1.1.3 (c)
-|    |         |         \--- androidx.datastore:datastore-preferences:1.1.3 (c)
+|    |         |         +--- androidx.datastore:datastore:1.1.6 (c)
+|    |         |         +--- androidx.datastore:datastore-core:1.1.6 (c)
+|    |         |         +--- androidx.datastore:datastore-core-okio:1.1.6 (c)
+|    |         |         \--- androidx.datastore:datastore-preferences:1.1.6 (c)
 |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.20 (*)
 |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3 -> 1.10.1 (*)
-|    |         +--- androidx.datastore:datastore:1.1.3 (c)
-|    |         +--- androidx.datastore:datastore-preferences-core:1.1.3 (c)
-|    |         +--- androidx.datastore:datastore-core:1.1.3 (c)
-|    |         \--- androidx.datastore:datastore-core-okio:1.1.3 (c)
+|    |         +--- androidx.datastore:datastore:1.1.6 (c)
+|    |         +--- androidx.datastore:datastore-preferences-core:1.1.6 (c)
+|    |         +--- androidx.datastore:datastore-core:1.1.6 (c)
+|    |         \--- androidx.datastore:datastore-core-okio:1.1.6 (c)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 (*)
 +--- project :time
 |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
@@ -582,7 +582,7 @@
 +--- androidx.paging:paging-common:{strictly 3.3.6} -> 3.3.6 (c)
 +--- app.cash.sqldelight:runtime:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- app.cash.sqldelight:async-extensions:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
-+--- androidx.datastore:datastore-preferences:{strictly 1.1.3} -> 1.1.3 (c)
++--- androidx.datastore:datastore-preferences:{strictly 1.1.6} -> 1.1.6 (c)
 +--- org.jetbrains.kotlinx:kotlinx-datetime:{strictly 0.6.2} -> 0.6.2 (c)
 +--- androidx.compose.runtime:runtime:{strictly 1.8.1} -> 1.8.1 (c)
 +--- androidx.compose.runtime:runtime-saveable:{strictly 1.8.1} -> 1.8.1 (c)
@@ -619,7 +619,7 @@
 +--- androidx.paging:paging-common-android:{strictly 3.3.6} -> 3.3.6 (c)
 +--- app.cash.sqldelight:runtime-jvm:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
 +--- app.cash.sqldelight:async-extensions-jvm:{strictly 2.1.0-SNAPSHOT} -> 2.1.0-SNAPSHOT (c)
-+--- androidx.datastore:datastore-preferences-android:{strictly 1.1.3} -> 1.1.3 (c)
++--- androidx.datastore:datastore-preferences-android:{strictly 1.1.6} -> 1.1.6 (c)
 +--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:{strictly 0.6.2} -> 0.6.2 (c)
 +--- androidx.compose.runtime:runtime-android:{strictly 1.8.1} -> 1.8.1 (c)
 +--- androidx.compose.runtime:runtime-saveable-android:{strictly 1.8.1} -> 1.8.1 (c)
@@ -644,8 +644,8 @@
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:{strictly 1.10.1} -> 1.10.1 (c)
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-bom:{strictly 1.10.1} -> 1.10.1 (c)
 +--- androidx.arch.core:core-common:{strictly 2.2.0} -> 2.2.0 (c)
-+--- androidx.datastore:datastore:{strictly 1.1.3} -> 1.1.3 (c)
-+--- androidx.datastore:datastore-preferences-core:{strictly 1.1.3} -> 1.1.3 (c)
++--- androidx.datastore:datastore:{strictly 1.1.6} -> 1.1.6 (c)
++--- androidx.datastore:datastore-preferences-core:{strictly 1.1.6} -> 1.1.6 (c)
 +--- androidx.compose.ui:ui-geometry:{strictly 1.8.1} -> 1.8.1 (c)
 +--- androidx.compose.ui:ui-graphics:{strictly 1.8.1} -> 1.8.1 (c)
 +--- androidx.compose.ui:ui-unit:{strictly 1.8.1} -> 1.8.1 (c)
@@ -656,17 +656,17 @@
 +--- androidx.lifecycle:lifecycle-livedata-core-ktx:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.compose.animation:animation:{strictly 1.8.1} -> 1.8.1 (c)
 +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:{strictly 1.10.1} -> 1.10.1 (c)
-+--- androidx.datastore:datastore-android:{strictly 1.1.3} -> 1.1.3 (c)
-+--- androidx.datastore:datastore-preferences-core-jvm:{strictly 1.1.3} -> 1.1.3 (c)
++--- androidx.datastore:datastore-android:{strictly 1.1.6} -> 1.1.6 (c)
++--- androidx.datastore:datastore-preferences-core-android:{strictly 1.1.6} -> 1.1.6 (c)
 +--- androidx.compose.ui:ui-geometry-android:{strictly 1.8.1} -> 1.8.1 (c)
 +--- androidx.compose.ui:ui-graphics-android:{strictly 1.8.1} -> 1.8.1 (c)
 +--- androidx.compose.ui:ui-unit-android:{strictly 1.8.1} -> 1.8.1 (c)
 +--- androidx.compose.ui:ui-util-android:{strictly 1.8.1} -> 1.8.1 (c)
 +--- androidx.lifecycle:lifecycle-runtime-compose-android:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.compose.animation:animation-android:{strictly 1.8.1} -> 1.8.1 (c)
-+--- androidx.datastore:datastore-core:{strictly 1.1.3} -> 1.1.3 (c)
-+--- androidx.datastore:datastore-core-okio:{strictly 1.1.3} -> 1.1.3 (c)
++--- androidx.datastore:datastore-core:{strictly 1.1.6} -> 1.1.6 (c)
++--- androidx.datastore:datastore-core-okio:{strictly 1.1.6} -> 1.1.6 (c)
 +--- androidx.compose.animation:animation-core:{strictly 1.8.1} -> 1.8.1 (c)
-+--- androidx.datastore:datastore-core-android:{strictly 1.1.3} -> 1.1.3 (c)
-+--- androidx.datastore:datastore-core-okio-jvm:{strictly 1.1.3} -> 1.1.3 (c)
++--- androidx.datastore:datastore-core-android:{strictly 1.1.6} -> 1.1.6 (c)
++--- androidx.datastore:datastore-core-okio-jvm:{strictly 1.1.6} -> 1.1.6 (c)
 \--- androidx.compose.animation:animation-core-android:{strictly 1.8.1} -> 1.8.1 (c)
