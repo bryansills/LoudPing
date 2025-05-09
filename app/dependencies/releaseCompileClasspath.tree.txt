@@ -501,20 +501,20 @@
 |                   \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.0 -> 2.1.20 (*)
 +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0
 |    +--- com.squareup.retrofit2:retrofit:2.9.0 -> 2.11.0 (*)
-|    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.0 -> 1.8.0
-|    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.0
-|    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.8.0
-|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.0 (c)
-|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.0 (c)
-|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.0 (c)
-|    |         |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0 (c)
-|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.0 -> 2.1.20 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.0 -> 1.8.1
+|    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.1
+|    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.8.1
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.8.1 (c)
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1 (c)
+|    |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.1 (c)
+|    |         |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1 (c)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10 -> 1.9.0 (*)
-+--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0
-|    \--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.0
-|         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.8.0 (*)
-|         +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.0 -> 2.1.20 (*)
-|         \--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.0 (*)
++--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1
+|    \--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.8.1
+|         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.8.1 (*)
+|         +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 (*)
+|         \--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1 (*)
 +--- com.squareup.okhttp3:okhttp:4.12.0 (*)
 +--- com.slack.eithernet:eithernet:1.9.0
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.0 -> 2.1.20 (*)
@@ -554,7 +554,7 @@
 +--- androidx.activity:activity-ktx:{strictly 1.10.1} -> 1.10.1 (c)
 +--- androidx.compose.ui:ui-tooling-preview:{strictly 1.8.1} -> 1.8.1 (c)
 +--- com.google.dagger:hilt-android:{strictly 2.56.2} -> 2.56.2 (c)
-+--- org.jetbrains.kotlinx:kotlinx-serialization-json:{strictly 1.8.0} -> 1.8.0 (c)
++--- org.jetbrains.kotlinx:kotlinx-serialization-json:{strictly 1.8.1} -> 1.8.1 (c)
 +--- com.squareup.retrofit2:retrofit:{strictly 2.11.0} -> 2.11.0 (c)
 +--- com.squareup.okhttp3:okhttp:{strictly 4.12.0} -> 4.12.0 (c)
 +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:{strictly 1.0.0} -> 1.0.0 (c)
@@ -591,9 +591,9 @@
 +--- androidx.lifecycle:lifecycle-runtime-ktx:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.lifecycle:lifecycle-viewmodel-ktx:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.savedstate:savedstate-ktx:{strictly 1.2.1} -> 1.2.1 (c)
-+--- org.jetbrains.kotlinx:kotlinx-serialization-core:{strictly 1.8.0} -> 1.8.0 (c)
++--- org.jetbrains.kotlinx:kotlinx-serialization-core:{strictly 1.8.1} -> 1.8.1 (c)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:{strictly 1.9.0} -> 1.9.0 (c)
-+--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:{strictly 1.8.0} -> 1.8.0 (c)
++--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:{strictly 1.8.1} -> 1.8.1 (c)
 +--- com.squareup.okio:okio:{strictly 3.9.0} -> 3.9.0 (c)
 +--- androidx.work:work-runtime:{strictly 2.10.1} -> 2.10.1 (c)
 +--- androidx.hilt:hilt-common:{strictly 1.2.0} -> 1.2.0 (c)
@@ -626,9 +626,9 @@
 +--- androidx.compose.ui:ui-android:{strictly 1.8.1} -> 1.8.1 (c)
 +--- androidx.core:core:{strictly 1.13.1} -> 1.13.1 (c)
 +--- androidx.lifecycle:lifecycle-runtime-ktx-android:{strictly 2.8.7} -> 2.8.7 (c)
-+--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:{strictly 1.8.0} -> 1.8.0 (c)
++--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:{strictly 1.8.1} -> 1.8.1 (c)
 +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:{strictly 1.9.0} -> 1.9.0 (c)
-+--- org.jetbrains.kotlinx:kotlinx-serialization-bom:{strictly 1.8.0} -> 1.8.0 (c)
++--- org.jetbrains.kotlinx:kotlinx-serialization-bom:{strictly 1.8.1} -> 1.8.1 (c)
 +--- com.squareup.okio:okio-jvm:{strictly 3.9.0} -> 3.9.0 (c)
 +--- androidx.lifecycle:lifecycle-livedata:{strictly 2.8.7} -> 2.8.7 (c)
 +--- androidx.startup:startup-runtime:{strictly 1.1.1} -> 1.1.1 (c)
