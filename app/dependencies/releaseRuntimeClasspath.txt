@@ -138,8 +138,8 @@ androidx.vectordrawable:vectordrawable:1.1.0
 androidx.versionedparcelable:versionedparcelable:1.1.1
 androidx.viewpager2:viewpager2:1.0.0
 androidx.viewpager:viewpager:1.0.0
-androidx.work:work-runtime-ktx:2.10.0
-androidx.work:work-runtime:2.10.0
+androidx.work:work-runtime-ktx:2.10.1
+androidx.work:work-runtime:2.10.1
 app.cash.paging:paging-common-jvm:3.1.1-0.3.1
 app.cash.paging:paging-common:3.1.1-0.3.1
 app.cash.sqldelight:android-driver:2.1.0-SNAPSHOT
