@@ -6,7 +6,7 @@ target-sdk = "35"
 min-sdk = "26"
 
 agp = "8.10.0"
-kotlin = "2.1.20"
+kotlin = "2.1.21"
 spotless = "7.0.3"
 ktlint = "1.0.1"
 buildconfig = "5.6.5"
