@@ -941,15 +941,19 @@
 |    |    |    |    |    |    |    +--- androidx.annotation:annotation-experimental:1.1.0-rc01 -> 1.4.1 (*)
 |    |    |    |    |    |    |    +--- androidx.arch.core:core-runtime:2.2.0 (*)
 |    |    |    |    |    |    |    +--- androidx.room:room-common:2.6.1 (*)
-|    |    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.4.0
-|    |    |    |    |    |    |    |    +--- androidx.annotation:annotation:1.0.0 -> 1.9.1 (*)
-|    |    |    |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.21 (*)
-|    |    |    |    |    |    |    |    \--- androidx.sqlite:sqlite-framework:2.4.0 (c)
-|    |    |    |    |    |    |    +--- androidx.sqlite:sqlite-framework:2.4.0
-|    |    |    |    |    |    |    |    +--- androidx.annotation:annotation:1.2.0 -> 1.9.1 (*)
-|    |    |    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.4.0 (*)
-|    |    |    |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.21 (*)
-|    |    |    |    |    |    |    |    \--- androidx.sqlite:sqlite:2.4.0 (c)
+|    |    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.4.0 -> 2.5.1
+|    |    |    |    |    |    |    |    \--- androidx.sqlite:sqlite-android:2.5.1
+|    |    |    |    |    |    |    |         +--- androidx.annotation:annotation:1.8.1 -> 1.9.1 (*)
+|    |    |    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib -> 2.1.21 (*)
+|    |    |    |    |    |    |    |         +--- androidx.sqlite:sqlite-framework:2.5.1 (c)
+|    |    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 -> 2.1.21 (c)
+|    |    |    |    |    |    |    +--- androidx.sqlite:sqlite-framework:2.4.0 -> 2.5.1
+|    |    |    |    |    |    |    |    \--- androidx.sqlite:sqlite-framework-android:2.5.1
+|    |    |    |    |    |    |    |         +--- androidx.annotation:annotation:1.8.1 -> 1.9.1 (*)
+|    |    |    |    |    |    |    |         +--- androidx.sqlite:sqlite:2.5.1 (*)
+|    |    |    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib -> 2.1.21 (*)
+|    |    |    |    |    |    |    |         +--- androidx.sqlite:sqlite:2.5.1 (c)
+|    |    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.10 -> 2.1.21 (c)
 |    |    |    |    |    |    |    +--- androidx.room:room-common:2.6.1 (c)
 |    |    |    |    |    |    |    \--- androidx.room:room-ktx:2.6.1 (c)
 |    |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.1.21 (*)
@@ -978,11 +982,11 @@
 |    |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (*)
 |    |    |    |    +--- project :database
 |    |    |    |    |    +--- app.cash.sqldelight:android-driver:2.1.0-SNAPSHOT
-|    |    |    |    |    |    +--- androidx.sqlite:sqlite-framework:2.4.0 (*)
+|    |    |    |    |    |    +--- androidx.sqlite:sqlite-framework:2.5.1 (*)
 |    |    |    |    |    |    +--- app.cash.sqldelight:runtime:2.1.0-SNAPSHOT
 |    |    |    |    |    |    |    \--- app.cash.sqldelight:runtime-jvm:2.1.0-SNAPSHOT
 |    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.1.21 (*)
-|    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.4.0 (*)
+|    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.5.1 (*)
 |    |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.1.21 (*)
 |    |    |    |    |    +--- project :core:model (*)
 |    |    |    |    |    +--- androidx.paging:paging-common:3.3.6
