@@ -41,7 +41,7 @@ kotlinx-html = "0.12.0"
 okio = "3.12.0"
 androidDesugarJdkLibs = "2.1.5"
 sqldelight = "2.1.0" # TODO: get off snapshots!
-workmanager = "2.10.1"
+workmanager = "2.10.3"
 eithernet = "1.9.0"
 paging = "3.3.6"
 
