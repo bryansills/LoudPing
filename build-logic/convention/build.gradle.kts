@@ -1,7 +1,5 @@
 plugins {
     `kotlin-dsl`
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlin.samReceiver)
 }
 
 java {
@@ -11,6 +9,7 @@ java {
 }
 
 dependencies {
+    // needed so we can use `libs.[WHATEVER]` in this module
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 
     implementation(plugin(libs.plugins.kotlin.android))
@@ -23,6 +22,9 @@ dependencies {
     implementation(plugin(libs.plugins.kotlinx.serialization))
     implementation(plugin(libs.plugins.dependency.guard))
     implementation(plugin(libs.plugins.dependency.analysis))
+
+    // needed because Gradle runs with an old version of Kotlin
+    implementation(platform(libs.kotlin.gradle.bom))
 }
 
 private fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {
