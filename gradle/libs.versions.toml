@@ -6,15 +6,16 @@ target-sdk = "35"
 min-sdk = "26"
 
 agp = "8.10.0"
-kotlin = "2.1.21"
+kotlin = "2.3.0"
+kotlin-gradle = "2.0.21"
 spotless = "7.0.4"
 ktlint = "1.0.1"
 buildconfig = "5.6.5"
-dependency-analysis = "2.18.0"
+dependency-analysis = "3.5.1"
 dependency-guard = "0.5.0"
 
-ksp = "2.1.21-2.0.1"
-dagger = "2.56.2"
+ksp = "2.3.4"
+dagger = "2.58" # TODO: delete kotlin-metadata when upgrading to 2.59
 hilt = "1.2.0"
 
 coroutines = "1.10.2"
@@ -100,6 +101,8 @@ kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotl
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 mosaic = { module = "com.jakewharton.mosaic:mosaic-runtime", version = "0.17.0" }
 turbine = { module = "app.cash.turbine:turbine", version = "1.2.0" }
+kotlin-gradle-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin-gradle" }
+kotlin-metadata = { module = "org.jetbrains.kotlin:kotlin-metadata-jvm", version.ref = "kotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -111,7 +114,6 @@ dependency-guard = { id = "com.dropbox.dependency-guard", version.ref = "depende
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-samReceiver = { id = "org.jetbrains.kotlin.plugin.sam.with.receiver", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
