@@ -124,9 +124,10 @@ androidx.print:print:1.0.0
 androidx.profileinstaller:profileinstaller:1.4.0
 androidx.recyclerview:recyclerview:1.1.0
 androidx.resourceinspection:resourceinspection-annotation:1.0.1
-androidx.room:room-common:2.6.1
-androidx.room:room-ktx:2.6.1
-androidx.room:room-runtime:2.6.1
+androidx.room:room-common-jvm:2.7.0
+androidx.room:room-common:2.7.0
+androidx.room:room-runtime-android:2.7.0
+androidx.room:room-runtime:2.7.0
 androidx.savedstate:savedstate-android:1.4.0
 androidx.savedstate:savedstate-compose-android:1.4.0
 androidx.savedstate:savedstate-compose:1.4.0
@@ -145,8 +146,8 @@ androidx.vectordrawable:vectordrawable:1.1.0
 androidx.versionedparcelable:versionedparcelable:1.1.1
 androidx.viewpager2:viewpager2:1.0.0
 androidx.viewpager:viewpager:1.0.0
-androidx.work:work-runtime-ktx:2.10.1
-androidx.work:work-runtime:2.10.1
+androidx.work:work-runtime-ktx:2.11.0
+androidx.work:work-runtime:2.11.0
 app.cash.paging:paging-common-jvm:3.1.1-0.3.1
 app.cash.paging:paging-common:3.1.1-0.3.1
 app.cash.sqldelight:android-driver:2.1.0
