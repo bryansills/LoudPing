@@ -16,8 +16,8 @@ androidx.compose.foundation:foundation-android:1.9.0
 androidx.compose.foundation:foundation-layout-android:1.9.0
 androidx.compose.foundation:foundation-layout:1.9.0
 androidx.compose.foundation:foundation:1.9.0
-androidx.compose.material3:material3-android:1.4.0-alpha14
-androidx.compose.material3:material3:1.4.0-alpha14
+androidx.compose.material3:material3-android:1.4.0
+androidx.compose.material3:material3:1.4.0
 androidx.compose.material:material-ripple-android:1.9.0
 androidx.compose.material:material-ripple:1.9.0
 androidx.compose.runtime:runtime-android:1.9.0
@@ -56,8 +56,6 @@ androidx.datastore:datastore-preferences-core:1.1.6
 androidx.datastore:datastore-preferences:1.1.6
 androidx.datastore:datastore:1.1.6
 androidx.fragment:fragment:1.5.4
-androidx.graphics:graphics-shapes-android:1.0.1
-androidx.graphics:graphics-shapes:1.0.1
 androidx.hilt:hilt-common:1.2.0
 androidx.hilt:hilt-work:1.2.0
 androidx.lifecycle:lifecycle-common-jvm:2.9.0
