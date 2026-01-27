@@ -1277,18 +1277,18 @@
 +--- project :logger-bugsnag
 |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.0 (*)
 |    +--- project :logger (*)
-|    \--- com.bugsnag:bugsnag-android:6.13.0
-|         +--- com.bugsnag:bugsnag-android-core:6.13.0
+|    \--- com.bugsnag:bugsnag-android:6.22.0
+|         +--- com.bugsnag:bugsnag-android-core:6.22.0
 |         |    +--- androidx.annotation:annotation:1.1.0 -> 1.9.1 (*)
-|         |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.6.0 -> 2.3.0 (*)
-|         +--- com.bugsnag:bugsnag-plugin-android-anr:6.13.0
+|         |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.0 -> 2.3.0 (*)
+|         +--- com.bugsnag:bugsnag-plugin-android-anr:6.22.0
 |         |    +--- androidx.annotation:annotation:1.1.0 -> 1.9.1 (*)
-|         |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.6.0 -> 2.3.0 (*)
-|         |    \--- com.bugsnag:bugsnag-android-core:6.13.0 (*)
-|         \--- com.bugsnag:bugsnag-plugin-android-ndk:6.13.0
+|         |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.0 -> 2.3.0 (*)
+|         |    \--- com.bugsnag:bugsnag-android-core:6.22.0 (*)
+|         \--- com.bugsnag:bugsnag-plugin-android-ndk:6.22.0
 |              +--- androidx.annotation:annotation:1.1.0 -> 1.9.1 (*)
-|              +--- org.jetbrains.kotlin:kotlin-stdlib:1.6.0 -> 2.3.0 (*)
-|              \--- com.bugsnag:bugsnag-android-core:6.13.0 (*)
+|              +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.0 -> 2.3.0 (*)
+|              \--- com.bugsnag:bugsnag-android-core:6.22.0 (*)
 +--- androidx.activity:activity-compose:1.10.1 (*)
 +--- androidx.activity:activity-ktx:1.10.1 (*)
 +--- com.squareup.retrofit2:retrofit:3.0.0 (*)
@@ -1298,4 +1298,4 @@
 +--- com.slack.eithernet:eithernet:1.9.0 (*)
 +--- androidx.work:work-runtime-ktx:2.10.1 (*)
 +--- androidx.hilt:hilt-work:1.2.0 (*)
-\--- com.bugsnag:bugsnag-android:6.13.0 (*)
+\--- com.bugsnag:bugsnag-android:6.22.0 (*)
