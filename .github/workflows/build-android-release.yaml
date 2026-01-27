@@ -36,6 +36,9 @@ jobs:
         with:
           cache-disabled: true
 
+      - name: Check Dependency Guard
+        run: ./gradlew dependencyGuard
+
       - name: Generate app secrets
         run: ./gradlew :generate-app-secrets:run
         env:
