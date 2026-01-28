@@ -1,8 +1,8 @@
 package ninja.bryansills.loudping.ui.refreshtokenentry
 
-import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,7 +23,7 @@ class RefreshTokenEntryViewModel @Inject constructor(
     private val authManager: AuthManager,
     @Dispatcher(LoudPingDispatcher.Io) private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
-    val input by mutableStateOf(TextFieldState(initialText = ""))
+    var input by mutableStateOf(TextFieldValue(""))
 
     private val _uiState = MutableStateFlow(RefreshTokenUiState(isDoingWork = true, error = null))
     val uiState = _uiState.asStateFlow()
@@ -34,7 +34,7 @@ class RefreshTokenEntryViewModel @Inject constructor(
     fun submit() {
         viewModelScope.launch(ioDispatcher) {
             _uiState.update { it.copy(isDoingWork = true) }
-            val enteredText = input.text.toString()
+            val enteredText = input.text
 
             if (enteredText.isEmpty()) {
                 _uiState.update {
