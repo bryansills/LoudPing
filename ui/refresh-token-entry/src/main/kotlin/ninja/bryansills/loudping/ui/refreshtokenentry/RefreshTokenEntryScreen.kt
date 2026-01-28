@@ -3,11 +3,10 @@ package ninja.bryansills.loudping.ui.refreshtokenentry
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -52,10 +51,11 @@ fun RefreshTokenEntryScreen(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Text(text = "Please enter a valid refresh token")
-                TextField(
-                    state = viewModel.input,
+                OutlinedTextField(
+                    value = viewModel.input,
+                    onValueChange = { viewModel.input = it },
                     placeholder = { Text(text = "HAhw0Wn07GR3at...") },
-                    lineLimits = TextFieldLineLimits.SingleLine,
+                    singleLine = true,
                     isError = uiState.error != null,
                     supportingText = {
                         uiState.error?.let { errorText -> Text(text = errorText) }
