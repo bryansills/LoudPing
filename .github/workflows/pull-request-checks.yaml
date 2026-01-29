@@ -18,23 +18,9 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - uses: ./.github/actions/prepare-environment
         with:
-          ref: ${{ github.head_ref }}
-
-      - name: Copy CI gradle.properties
-        run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
-
-      - name: set up JDK
-        uses: actions/setup-java@v5
-        with:
-          distribution: 'zulu'
-          java-version: 17
-
-      - uses: gradle/actions/setup-gradle@v5
-        with:
-          cache-disabled: true
+          checkout_ref: ${{ github.head_ref }}
 
       - name: Check the project's build health
         run: ./gradlew buildHealth
