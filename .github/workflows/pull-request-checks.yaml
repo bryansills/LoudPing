@@ -24,8 +24,9 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - run: |
-         pwd
-         ls -la
+          pwd
+          ls -la
+          ls -la .github/actions/prepare-environment/
 
       - uses: ./.github/actions/prepare-environment
 
