@@ -1,20 +1,8 @@
 name: 'Prepare development environment'
 description: 'Prepare the development environment so that we can run Gradle tasks'
-inputs:
-  checkout_token:
-    description: 'Token used when checkout out the repository'
-    required: false
-    default: ${{ github.token }}
-  checkout_ref:
-    description: 'The branch, tag or SHA to checkout'
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v6
-      with:
-        token: ${{ input.checkout_token }}
-        ref: ${{ input.checkout_ref }}
-
     - name: Copy CI gradle.properties
       run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 

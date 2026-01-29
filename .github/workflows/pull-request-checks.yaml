@@ -18,9 +18,12 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - uses: ./.github/actions/prepare-environment
+      - name: Checkout
+        uses: actions/checkout@v6
         with:
-          checkout_ref: ${{ github.head_ref }}
+          ref: ${{ github.head_ref }}
+
+      - uses: ./.github/actions/prepare-environment
 
       - name: Check the project's build health
         run: ./gradlew buildHealth
