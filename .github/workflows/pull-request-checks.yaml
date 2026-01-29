@@ -9,29 +9,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-health:
+    name: Check the project's build health
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v6
+
+      - name: Prepare development environment
+        uses: ./.github/actions/prepare-environment
+
+      - name: Check the project's build health
+        run: ./gradlew buildHealth
+
+      - name: (Fail-only) Upload build reports
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: reports
+          path: |
+            **/build/reports/*
+
+  dependency-guard:
+    name: Check the project's dependencies are locked down
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
 
-    timeout-minutes: 60
+    timeout-minutes: 15
 
     steps:
-      - name: Checkout
+      - name: Checkout git repository
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.head_ref }} # needed to make a commit later
 
-      - run: |
-          pwd
-          ls -la
-          ls -la .github/actions/prepare-environment/
-
-      - uses: ./.github/actions/prepare-environment
-
-      - name: Check the project's build health
-        run: ./gradlew buildHealth
+      - name: Prepare development environment
+        uses: ./.github/actions/prepare-environment
 
       - name: Check Dependency Guard
         id: dependencyguard_verify
@@ -52,8 +70,50 @@ jobs:
           disable_globbing: true
           commit_message: "🤖 Updates baselines for Dependency Guard"
 
+      - name: (Fail-only) Upload build reports
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: reports
+          path: |
+            **/build/reports/*
+
+  host-tests:
+    name: Execute host tests
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v6
+
+      - name: Prepare development environment
+        uses: ./.github/actions/prepare-environment
+
       - name: Build and run tests
         run: ./gradlew check --continue
+
+      - name: (Fail-only) Upload build reports
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: reports
+          path: |
+            **/build/reports/*
+
+  instrumented-tests:
+    name: Execute instrumented tests
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v6
+
+      - name: Prepare development environment
+        uses: ./.github/actions/prepare-environment
 
       - name: Enable KVM group perms (for Android emulator)
         run: |
