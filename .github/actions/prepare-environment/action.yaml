@@ -4,6 +4,7 @@ runs:
   using: "composite"
   steps:
     - name: Copy CI gradle.properties
+      shell: bash
       run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
 
     - uses: actions/setup-java@v5
