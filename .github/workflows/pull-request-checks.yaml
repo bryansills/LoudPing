@@ -23,6 +23,10 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - run: |
+         pwd
+         ls -la
+
       - uses: ./.github/actions/prepare-environment
 
       - name: Check the project's build health
