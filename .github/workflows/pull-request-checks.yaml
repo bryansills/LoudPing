@@ -34,7 +34,8 @@ jobs:
             **/build/reports/*
 
   dependency-guard:
-    name: Check the project's dependencies are locked down
+    name: (Attempt to) update dependency baselines if Renovate is updating a dependency
+    if: ${{ github.actor == 'renovate[bot]' }}
     runs-on: ubuntu-latest
 
     permissions:
@@ -51,7 +52,7 @@ jobs:
       - name: Checkout git repository
         uses: actions/checkout@v6
         with:
-#          token: ${{ secrets.WORKFLOW_TRIGGER_GITHUB_PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TRIGGER_GITHUB_PERSONAL_ACCESS_TOKEN }}
           ref: ${{ github.head_ref }} # needed to make a commit later
 
       - name: Prepare development environment
