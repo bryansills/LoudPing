@@ -14,7 +14,7 @@ buildconfig = "5.7.1"
 dependency-analysis = "3.5.1"
 dependency-guard = "0.5.0"
 
-ksp = "2.3.4"
+ksp = "2.3.5"
 dagger = "2.58" # TODO: delete kotlin-metadata when upgrading to 2.59
 hilt = "1.2.0"
 
