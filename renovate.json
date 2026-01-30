@@ -9,15 +9,6 @@
             "matchUpdateTypes": ["minor", "patch"],
             "matchCurrentVersion": "!/^0/",
             "automerge": true
-        },
-        {
-            "description": "Compose compiler is tightly coupled to Kotlin version.",
-            "groupName": "Kotlin and Compose",
-            "matchPackagePrefixes": [
-                "org.jetbrains.kotlin:",
-                "com.google.devtools.ksp"
-            ],
-            "automerge": false
         }
     ]
 }
