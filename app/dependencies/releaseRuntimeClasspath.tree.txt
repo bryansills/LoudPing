@@ -929,8 +929,8 @@
 |    |    +--- project :app-theme (*)
 |    |    +--- project :android-app-res
 |    |    +--- project :foreman
-|    |    |    +--- androidx.work:work-runtime-ktx:2.11.0
-|    |    |    |    +--- androidx.work:work-runtime:2.11.0
+|    |    |    +--- androidx.work:work-runtime-ktx:2.11.1
+|    |    |    |    +--- androidx.work:work-runtime:2.11.1
 |    |    |    |    |    +--- androidx.annotation:annotation-experimental:1.4.1 (*)
 |    |    |    |    |    +--- androidx.concurrent:concurrent-futures-ktx:1.1.0
 |    |    |    |    |    |    +--- androidx.concurrent:concurrent-futures:1.1.0 (*)
@@ -994,9 +994,9 @@
 |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib -> 2.3.0 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0 -> 1.10.2 (*)
 |    |    |    |    |    +--- org.jspecify:jspecify:1.0.0
-|    |    |    |    |    +--- androidx.work:work-runtime-ktx:2.11.0 (c)
+|    |    |    |    |    +--- androidx.work:work-runtime-ktx:2.11.1 (c)
 |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.3.0 (c)
-|    |    |    |    \--- androidx.work:work-runtime:2.11.0 (c)
+|    |    |    |    \--- androidx.work:work-runtime:2.11.1 (c)
 |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.0 (*)
 |    |    |    +--- com.google.dagger:hilt-android:2.58 (*)
 |    |    |    +--- project :history-recorder
@@ -1061,7 +1061,7 @@
 |    |    |    |    +--- androidx.annotation:annotation:1.1.0 -> 1.9.1 (*)
 |    |    |    |    +--- androidx.hilt:hilt-common:1.2.0
 |    |    |    |    |    \--- com.google.dagger:hilt-core:2.49 -> 2.58 (*)
-|    |    |    |    +--- androidx.work:work-runtime:2.3.4 -> 2.11.0 (*)
+|    |    |    |    +--- androidx.work:work-runtime:2.3.4 -> 2.11.1 (*)
 |    |    |    |    \--- com.google.dagger:hilt-android:2.49 -> 2.58 (*)
 |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
 |    |    \--- androidx.compose.material:material-icons-core -> 1.7.8 (*)
@@ -1210,7 +1210,7 @@
 |    |    +--- project :android-app-res
 |    |    +--- project :foreman (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
-|    |    \--- androidx.work:work-runtime-ktx:2.11.0 (*)
+|    |    \--- androidx.work:work-runtime-ktx:2.11.1 (*)
 |    +--- project :ui:played-tracks
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.0 (*)
 |    |    +--- androidx.compose:compose-bom:2025.08.00 (*)
@@ -1312,6 +1312,6 @@
 +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1 (*)
 +--- com.squareup.okhttp3:okhttp:4.12.0 (*)
 +--- com.slack.eithernet:eithernet:1.9.0 (*)
-+--- androidx.work:work-runtime-ktx:2.11.0 (*)
++--- androidx.work:work-runtime-ktx:2.11.1 (*)
 +--- androidx.hilt:hilt-work:1.2.0 (*)
 \--- com.bugsnag:bugsnag-android:6.22.0 (*)
