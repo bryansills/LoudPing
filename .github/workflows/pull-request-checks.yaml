@@ -35,7 +35,6 @@ jobs:
 
   dependency-guard:
     name: (Attempt to) update dependency baselines if Renovate is updating a dependency
-    if: ${{ github.actor == 'renovate[bot]' }}
     runs-on: ubuntu-latest
 
     permissions:
@@ -63,9 +62,9 @@ jobs:
         continue-on-error: true
         run: ./gradlew dependencyGuard
 
-      - name: Generate new Dependency Guard baselines if verification failed and it's a PR
+      - name: Generate new Dependency Guard baselines if verification failed and it's a PR by Renovate
         id: dependencyguard_baseline
-        if: steps.dependencyguard_verify.outcome == 'failure' && github.event_name == 'pull_request'
+        if: steps.dependencyguard_verify.outcome == 'failure' && github.event_name == 'pull_request' && github.actor == 'renovate[bot]'
         run: |
           ./gradlew dependencyGuardBaseline
 
