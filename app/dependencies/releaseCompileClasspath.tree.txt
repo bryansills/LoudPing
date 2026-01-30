@@ -424,9 +424,9 @@
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.0 (*)
 +--- project :database
 |    +--- project :core:model
-|    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2
-|    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.6.2
-|    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 -> 2.3.0 (*)
+|    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.7.1-0.6.x-compat
+|    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.7.1-0.6.x-compat
+|    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.3.0 (*)
 |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.0 (*)
 |    +--- androidx.paging:paging-common:3.3.6
 |    |    \--- androidx.paging:paging-common-android:3.3.6
@@ -505,7 +505,7 @@
 |    |         \--- androidx.datastore:datastore-core-okio:1.2.0 (c)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.0 (*)
 +--- project :time
-|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.6.2 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.7.1-0.6.x-compat (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.0 (*)
 +--- project :logger
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.0 (*)
@@ -636,7 +636,7 @@
 +--- app.cash.sqldelight:runtime:{strictly 2.1.0} -> 2.1.0 (c)
 +--- app.cash.sqldelight:async-extensions:{strictly 2.1.0} -> 2.1.0 (c)
 +--- androidx.datastore:datastore-preferences:{strictly 1.2.0} -> 1.2.0 (c)
-+--- org.jetbrains.kotlinx:kotlinx-datetime:{strictly 0.6.2} -> 0.6.2 (c)
++--- org.jetbrains.kotlinx:kotlinx-datetime:{strictly 0.7.1-0.6.x-compat} -> 0.7.1-0.6.x-compat (c)
 +--- androidx.compose.runtime:runtime:{strictly 1.9.2} -> 1.9.2 (c)
 +--- androidx.compose.runtime:runtime-saveable:{strictly 1.9.2} -> 1.9.2 (c)
 +--- androidx.compose.ui:ui:{strictly 1.9.2} -> 1.9.2 (c)
@@ -677,7 +677,7 @@
 +--- app.cash.sqldelight:runtime-jvm:{strictly 2.1.0} -> 2.1.0 (c)
 +--- app.cash.sqldelight:async-extensions-jvm:{strictly 2.1.0} -> 2.1.0 (c)
 +--- androidx.datastore:datastore-preferences-android:{strictly 1.2.0} -> 1.2.0 (c)
-+--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:{strictly 0.6.2} -> 0.6.2 (c)
++--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:{strictly 0.7.1-0.6.x-compat} -> 0.7.1-0.6.x-compat (c)
 +--- androidx.compose.runtime:runtime-android:{strictly 1.9.2} -> 1.9.2 (c)
 +--- androidx.compose.runtime:runtime-saveable-android:{strictly 1.9.2} -> 1.9.2 (c)
 +--- androidx.compose.ui:ui-android:{strictly 1.9.2} -> 1.9.2 (c)
