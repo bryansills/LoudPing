@@ -16,6 +16,7 @@ jobs:
       - name: Checkout git repository
         uses: actions/checkout@v6
         with:
+          token: ${{ secrets.WORKFLOW_TRIGGER_GITHUB_PERSONAL_ACCESS_TOKEN }}
           ref: ${{ github.head_ref }} # needed to make a commit later
 
       - name: Prepare development environment
