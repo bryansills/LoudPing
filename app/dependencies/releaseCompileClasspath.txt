@@ -81,8 +81,8 @@ androidx.navigationevent:navigationevent-android:1.0.2
 androidx.navigationevent:navigationevent-compose-android:1.0.2
 androidx.navigationevent:navigationevent-compose:1.0.2
 androidx.navigationevent:navigationevent:1.0.2
-androidx.paging:paging-common-android:3.3.6
-androidx.paging:paging-common:3.3.6
+androidx.paging:paging-common-android:3.4.0
+androidx.paging:paging-common:3.4.0
 androidx.savedstate:savedstate-android:1.4.0
 androidx.savedstate:savedstate-compose-android:1.4.0
 androidx.savedstate:savedstate-compose:1.4.0
