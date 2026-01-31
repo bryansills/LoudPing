@@ -44,7 +44,7 @@ androidDesugarJdkLibs = "2.1.5"
 sqldelight = "2.1.0"
 workmanager = "2.11.1"
 eithernet = "1.9.0"
-paging = "3.3.6"
+paging = "3.4.0"
 
 [libraries]
 # Core dependencies
