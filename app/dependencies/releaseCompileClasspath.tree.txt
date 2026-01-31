@@ -455,13 +455,13 @@
 |    |         +--- androidx.arch.core:core-common:2.2.0 (*)
 |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 -> 2.3.0 (*)
 |    |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 -> 1.10.2 (*)
-|    +--- app.cash.sqldelight:runtime:2.1.0
-|    |    \--- app.cash.sqldelight:runtime-jvm:2.1.0
-|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.3.0 (*)
-|    +--- app.cash.sqldelight:async-extensions:2.1.0
-|    |    \--- app.cash.sqldelight:async-extensions-jvm:2.1.0
-|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 -> 1.10.2 (*)
-|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.20 -> 2.3.0 (*)
+|    +--- app.cash.sqldelight:runtime:2.2.1
+|    |    \--- app.cash.sqldelight:runtime-jvm:2.2.1
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.2.21 -> 2.3.0 (*)
+|    +--- app.cash.sqldelight:async-extensions:2.2.1
+|    |    \--- app.cash.sqldelight:async-extensions-jvm:2.2.1
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (*)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.2.21 -> 2.3.0 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.0 (*)
 +--- project :history-recorder
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.0 (*)
@@ -655,8 +655,8 @@
 +--- androidx.savedstate:savedstate:{strictly 1.4.0} -> 1.4.0 (c)
 +--- javax.inject:javax.inject:{strictly 1} -> 1 (c)
 +--- androidx.paging:paging-common:{strictly 3.4.0} -> 3.4.0 (c)
-+--- app.cash.sqldelight:runtime:{strictly 2.1.0} -> 2.1.0 (c)
-+--- app.cash.sqldelight:async-extensions:{strictly 2.1.0} -> 2.1.0 (c)
++--- app.cash.sqldelight:runtime:{strictly 2.2.1} -> 2.2.1 (c)
++--- app.cash.sqldelight:async-extensions:{strictly 2.2.1} -> 2.2.1 (c)
 +--- androidx.datastore:datastore-preferences:{strictly 1.2.0} -> 1.2.0 (c)
 +--- org.jetbrains.kotlinx:kotlinx-datetime:{strictly 0.7.1-0.6.x-compat} -> 0.7.1-0.6.x-compat (c)
 +--- androidx.compose.runtime:runtime:{strictly 1.10.0} -> 1.10.0 (c)
@@ -695,8 +695,8 @@
 +--- androidx.lifecycle:lifecycle-viewmodel-savedstate-android:{strictly 2.10.0} -> 2.10.0 (c)
 +--- androidx.savedstate:savedstate-android:{strictly 1.4.0} -> 1.4.0 (c)
 +--- androidx.paging:paging-common-android:{strictly 3.4.0} -> 3.4.0 (c)
-+--- app.cash.sqldelight:runtime-jvm:{strictly 2.1.0} -> 2.1.0 (c)
-+--- app.cash.sqldelight:async-extensions-jvm:{strictly 2.1.0} -> 2.1.0 (c)
++--- app.cash.sqldelight:runtime-jvm:{strictly 2.2.1} -> 2.2.1 (c)
++--- app.cash.sqldelight:async-extensions-jvm:{strictly 2.2.1} -> 2.2.1 (c)
 +--- androidx.datastore:datastore-preferences-android:{strictly 1.2.0} -> 1.2.0 (c)
 +--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:{strictly 0.7.1-0.6.x-compat} -> 0.7.1-0.6.x-compat (c)
 +--- androidx.compose.runtime:runtime-android:{strictly 1.10.0} -> 1.10.0 (c)
