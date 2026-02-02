@@ -1,10 +1,10 @@
 package ninja.bryansills.loudping.gradle.plugin
 
-import ninja.bryansills.configureAndroid
-import ninja.bryansills.configureDependencyAnalysis
-import ninja.bryansills.configureSpotless
-import ninja.bryansills.id
-import ninja.bryansills.plugins
+import ninja.bryansills.loudping.gradle.configureAndroidLibrary
+import ninja.bryansills.loudping.gradle.configureDependencyAnalysis
+import ninja.bryansills.loudping.gradle.configureSpotless
+import ninja.bryansills.loudping.gradle.util.id
+import ninja.bryansills.loudping.gradle.util.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -14,7 +14,7 @@ class JavaAndroidLibraryConventionPlugin : Plugin<Project> {
             id("com.android.library")
         }
         configureSpotless()
-        configureAndroid()
+        configureAndroidLibrary(shouldEnableKotlin = false)
         configureDependencyAnalysis()
     }
 }

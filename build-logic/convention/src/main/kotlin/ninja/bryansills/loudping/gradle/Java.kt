@@ -1,9 +1,10 @@
-package ninja.bryansills
+package ninja.bryansills.loudping.gradle
 
+import ninja.bryansills.loudping.gradle.util.java
+import ninja.bryansills.loudping.gradle.util.libs
+import ninja.bryansills.loudping.gradle.util.toInt
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.jvm.toolchain.JavaLanguageVersion
-import org.gradle.kotlin.dsl.configure
 
 internal fun Project.configureJava() {
     java {
@@ -12,5 +13,3 @@ internal fun Project.configureJava() {
         }
     }
 }
-
-private fun Project.java(action: JavaPluginExtension.() -> Unit) = extensions.configure<JavaPluginExtension>(action)

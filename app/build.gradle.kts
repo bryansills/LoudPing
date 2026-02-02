@@ -1,6 +1,6 @@
-import ninja.bryansills.loudping.gradle.plugin.buildConfigString
-import ninja.bryansills.loudping.gradle.plugin.getSecret
-import ninja.bryansills.loudping.gradle.plugin.rootProperties
+import ninja.bryansills.loudping.gradle.buildConfigString
+import ninja.bryansills.loudping.gradle.getSecret
+import ninja.bryansills.loudping.gradle.rootProperties
 
 plugins {
     id("ninja.bryansills.android.app")

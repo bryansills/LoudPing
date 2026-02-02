@@ -3,6 +3,9 @@ plugins {
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "ninja.bryansills.loudping.database"
+    }
     sourceSets {
         commonMain.dependencies {
             api(projects.core.model)
@@ -17,10 +20,6 @@ kotlin {
             implementation(libs.sqldelight.jvm.driver)
         }
     }
-}
-
-android {
-    namespace = "ninja.bryansills.loudping.database"
 }
 
 sqldelight {

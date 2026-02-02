@@ -1,13 +1,13 @@
 package ninja.bryansills.loudping.gradle.plugin
 
-import ninja.bryansills.configureComposeCompiler
-import ninja.bryansills.configureDependencyAnalysis
-import ninja.bryansills.configureKotlin
-import ninja.bryansills.configureSpotless
-import ninja.bryansills.id
-import ninja.bryansills.implementation
-import ninja.bryansills.libs
-import ninja.bryansills.plugins
+import ninja.bryansills.loudping.gradle.configureComposeCompiler
+import ninja.bryansills.loudping.gradle.configureDependencyAnalysis
+import ninja.bryansills.loudping.gradle.configureKotlinJvmOnly
+import ninja.bryansills.loudping.gradle.configureSpotless
+import ninja.bryansills.loudping.gradle.util.id
+import ninja.bryansills.loudping.gradle.util.implementation
+import ninja.bryansills.loudping.gradle.util.libs
+import ninja.bryansills.loudping.gradle.util.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -20,7 +20,7 @@ class ComposeMosaicConventionPlugin : Plugin<Project> {
             id("org.gradle.application")
         }
         configureSpotless()
-        configureKotlin()
+        configureKotlinJvmOnly()
         configureDependencyAnalysis()
         configureComposeCompiler()
         dependencies {

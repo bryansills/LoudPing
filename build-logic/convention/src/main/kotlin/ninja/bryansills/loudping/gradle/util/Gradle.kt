@@ -1,18 +1,20 @@
-package ninja.bryansills
+package ninja.bryansills.loudping.gradle.util
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.ExternalDependency
-import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.plugins.PluginContainer
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.DependencyHandlerScope
+import org.gradle.plugin.use.PluginDependency
 
 internal fun Project.plugins(action: PluginContainer.() -> Unit) = with(plugins) { action() }
 
-internal fun Project.dependencies(action: DependencyHandler.() -> Unit) = with(dependencies) { action() }
-
 internal fun PluginContainer.id(name: String) {
     apply(name)
+}
+
+internal fun PluginContainer.alias(provider: Provider<PluginDependency>) {
+    apply(provider.get().pluginId)
 }
 
 internal fun <T : ExternalDependency> DependencyHandlerScope.implementation(lib: Provider<T>) {
