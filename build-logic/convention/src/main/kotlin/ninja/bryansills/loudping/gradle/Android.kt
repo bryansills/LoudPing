@@ -3,7 +3,6 @@ package ninja.bryansills.loudping.gradle
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import com.android.build.api.dsl.LibraryExtension
-import java.io.File
 import ninja.bryansills.loudping.gradle.util.android
 import ninja.bryansills.loudping.gradle.util.androidTestRuntimeOnly
 import ninja.bryansills.loudping.gradle.util.coreLibraryDesugaring
@@ -47,6 +46,8 @@ internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true)
     android<LibraryExtension> {
         enableKotlin = shouldEnableKotlin
 
+        namespace = "ninja.bryansills.loudping." + project.name.replace("-", ".")
+
         compileSdk {
             version = release(libs.versions.compile.sdk.toInt())
         }
@@ -86,8 +87,10 @@ internal fun KotlinMultiplatformAndroidLibraryTarget.configureAndroidMultiplatfo
     project: Project,
     libs: LibrariesForLibs = project.libs
 ) {
+    namespace = "ninja.bryansills.loudping." + project.name.replace("-", ".")
+
     compileSdk = libs.versions.compile.sdk.toInt()
-    minSdk = libs.versions.compile.sdk.toInt()
+    minSdk = libs.versions.min.sdk.toInt()
     enableCoreLibraryDesugaring = true
 
     compilerOptions {
