@@ -1,11 +1,12 @@
 package ninja.bryansills.loudping.gradle.plugin
 
-import ninja.bryansills.configureSpotless
+import ninja.bryansills.loudping.gradle.ModulePaths
+import ninja.bryansills.loudping.gradle.configureSpotless
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class RootConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
-        configureSpotless()
+        configureSpotless(paths = ModulePaths.RootWithBuildLogic)
     }
 }

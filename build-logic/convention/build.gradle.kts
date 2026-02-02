@@ -1,21 +1,38 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     `kotlin-dsl`
+//    alias(libs.plugins.kotlin.samReceiver)
 }
 
 java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(libs.versions.java.version.get()))
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.version.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.java.version.get())
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget(libs.versions.java.version.get())
+        allWarningsAsErrors = true
     }
 }
+
+//samWithReceiver {
+//    annotation(HasImplicitReceiver::class.qualifiedName!!)
+//}
 
 dependencies {
     // needed so we can use `libs.[WHATEVER]` in this module
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 
+    implementation(libs.android.gradlePlugin)
+    implementation(libs.android.gradlePluginApi)
+    implementation(libs.android.tools.common)
     implementation(plugin(libs.plugins.kotlin.android))
     implementation(plugin(libs.plugins.compose.compiler))
     implementation(plugin(libs.plugins.android.application))
     implementation(plugin(libs.plugins.android.library))
+    implementation("com.android.kotlin.multiplatform.library:com.android.kotlin.multiplatform.library.gradle.plugin:9.0.0")
     implementation(plugin(libs.plugins.spotless))
     implementation(plugin(libs.plugins.ksp))
     implementation(plugin(libs.plugins.hilt.plugin))

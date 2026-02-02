@@ -1,6 +1,6 @@
 import com.github.gmazzo.buildconfig.BuildConfigExtension
-import ninja.bryansills.loudping.gradle.plugin.getSecret
-import ninja.bryansills.loudping.gradle.plugin.rootProperties
+import ninja.bryansills.loudping.gradle.getSecret
+import ninja.bryansills.loudping.gradle.rootProperties
 
 plugins {
     id("ninja.bryansills.compose.mosaic")

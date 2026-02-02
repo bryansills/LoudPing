@@ -1,4 +1,4 @@
-package ninja.bryansills
+package ninja.bryansills.loudping.gradle.util
 
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project

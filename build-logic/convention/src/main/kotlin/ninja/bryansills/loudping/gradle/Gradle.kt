@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.gradle.plugin
+package ninja.bryansills.loudping.gradle
 
 import com.android.build.api.dsl.VariantDimension
 import java.io.FileInputStream
