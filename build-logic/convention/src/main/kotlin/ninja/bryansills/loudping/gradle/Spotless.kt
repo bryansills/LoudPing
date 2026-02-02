@@ -38,14 +38,14 @@ internal fun Project.configureSpotless(paths: ModulePaths = ModulePaths.Standard
  */
 internal enum class ModulePaths(
     val kotlin: List<String>,
-    val kotlinGradle: List<String>
+    val kotlinGradle: List<String>,
 ) {
     Standard(
         kotlin = listOf("src/**/*.kt"),
-        kotlinGradle = listOf("./**/*.gradle.kts")
+        kotlinGradle = listOf("./**/*.gradle.kts"),
     ),
     RootWithBuildLogic(
         kotlin = listOf("build-logic/convention/src/**/*.kt"),
-        kotlinGradle = listOf("*.gradle.kts", "build-logic/**/*.gradle.kts")
-    )
+        kotlinGradle = listOf("*.gradle.kts", "build-logic/**/*.gradle.kts"),
+    ),
 }

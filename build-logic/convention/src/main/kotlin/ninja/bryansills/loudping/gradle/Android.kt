@@ -85,7 +85,7 @@ internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true)
 
 internal fun KotlinMultiplatformAndroidLibraryTarget.configureAndroidMultiplatform(
     project: Project,
-    libs: LibrariesForLibs = project.libs
+    libs: LibrariesForLibs = project.libs,
 ) {
     namespace = "ninja.bryansills.loudping." + project.name.replace("-", ".")
 

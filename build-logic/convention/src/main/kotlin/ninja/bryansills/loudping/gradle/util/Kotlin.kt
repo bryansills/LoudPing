@@ -10,7 +10,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
-
 internal inline fun <reified T : KotlinProjectExtension> Project.kotlin(noinline block: T.() -> Unit) {
     extensions.configure<T>(block)
 }

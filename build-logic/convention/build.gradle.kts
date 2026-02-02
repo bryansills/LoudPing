@@ -17,9 +17,9 @@ kotlin {
     }
 }
 
-//samWithReceiver {
+// samWithReceiver {
 //    annotation(HasImplicitReceiver::class.qualifiedName!!)
-//}
+// }
 
 dependencies {
     // needed so we can use `libs.[WHATEVER]` in this module
