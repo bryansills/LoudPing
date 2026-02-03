@@ -94,7 +94,8 @@ sqldelight-sqlite-dialect = { group = "app.cash.sqldelight", name = "sqlite-3-38
 androidx-browser = { group = "androidx.browser", name = "browser", version = "1.9.0" }
 workmanager = { module = "androidx.work:work-runtime-ktx", version.ref = "workmanager" }
 workmanager-hilt = { module = "androidx.hilt:hilt-work", version.ref = "hilt" }
-eithernet = { module = "com.slack.eithernet:eithernet", version.ref = "eithernet" }
+eithernet-core = { module = "com.slack.eithernet:eithernet", version.ref = "eithernet" }
+eithernet-retrofit = { module = "com.slack.eithernet:eithernet-integration-retrofit", version.ref = "eithernet" }
 paging = { module = "androidx.paging:paging-common", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 paging-sqldelight = { module = "app.cash.sqldelight:androidx-paging3-extensions", version.ref = "sqldelight" }

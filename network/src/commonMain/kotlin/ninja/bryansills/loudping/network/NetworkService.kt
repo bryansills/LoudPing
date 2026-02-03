@@ -1,5 +1,7 @@
 package ninja.bryansills.loudping.network
 
+import com.slack.eithernet.ApiResult
+import com.slack.eithernet.successOrNothing
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.network.model.PrivateUserResponse
@@ -10,25 +12,21 @@ import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
 import ninja.bryansills.loudping.network.model.track.Track
 
 interface NetworkService {
-    suspend fun getMe(): PrivateUserResponse
-    suspend fun getRecentlyPlayed(): RecentlyPlayedResponse
-    suspend fun getSavedAlbums(): SavedAlbumsResponse
+    suspend fun getMe(): ApiResult<PrivateUserResponse, Unit>
+    suspend fun getRecentlyPlayed(): ApiResult<RecentlyPlayedResponse, Unit>
+    suspend fun getSavedAlbums(): ApiResult<SavedAlbumsResponse, Unit>
 
     fun getRecentlyPlayedStream(
         startAt: Instant,
         stopAt: Instant = Instant.DISTANT_PAST,
         trimmingStrategy: RecentTrimmingStrategy = RecentTrimmingStrategy.StopAt,
-    ): Flow<RecentlyPlayedResponse>
+    ): Flow<ApiResult<RecentlyPlayedResponse, Unit>>
 
-    suspend fun getSeveralTracks(ids: List<String>): List<Track>
+    suspend fun getSeveralTracks(ids: List<String>): ApiResult<List<Track>, Unit>
 
-    suspend fun getSeveralAlbums(ids: List<String>): List<FullAlbum>
+    suspend fun getSeveralAlbums(ids: List<String>): ApiResult<List<FullAlbum>, Unit>
 }
 
 suspend fun NetworkService.getTrack(id: String): Track {
-    return this.getSeveralTracks(listOf(id)).first()
-}
-
-suspend fun NetworkService.getAlbum(id: String): FullAlbum {
-    return this.getSeveralAlbums(listOf(id)).first()
+    return this.getSeveralTracks(listOf(id)).successOrNothing { throw RuntimeException() }.first()
 }

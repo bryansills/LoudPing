@@ -1,8 +1,8 @@
 package ninja.bryansills.loudping.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.slack.eithernet.ApiResultCallAdapterFactory
-import com.slack.eithernet.ApiResultConverterFactory
+import com.slack.eithernet.integration.retrofit.ApiResultCallAdapterFactory
+import com.slack.eithernet.integration.retrofit.ApiResultConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

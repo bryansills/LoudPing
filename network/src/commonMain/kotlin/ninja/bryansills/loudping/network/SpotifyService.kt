@@ -1,8 +1,8 @@
 package ninja.bryansills.loudping.network
 
+import com.slack.eithernet.ApiResult
 import ninja.bryansills.loudping.network.model.PrivateUserResponse
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
-import ninja.bryansills.loudping.network.model.SavedAlbumsResponse
 import ninja.bryansills.loudping.network.model.SeveralAlbumsResponse
 import ninja.bryansills.loudping.network.model.SeveralTracksResponse
 import retrofit2.http.GET
@@ -11,22 +11,22 @@ import retrofit2.http.Url
 
 interface SpotifyService {
     @GET("/v1/me")
-    suspend fun getMe(): PrivateUserResponse
+    suspend fun getMe(): ApiResult<PrivateUserResponse, Unit>
 
     @GET("/v1/me/player/recently-played")
     suspend fun getRecentlyPlayed(
         @Query("limit") limit: Int = 50,
         @Query("before") beforeTimestampUnix: Long? = null,
-    ): RecentlyPlayedResponse
+    ): ApiResult<RecentlyPlayedResponse, Unit>
 
     @GET
-    suspend fun getOlderRecentlyPlayed(@Url fullUrl: String): RecentlyPlayedResponse
+    suspend fun getOlderRecentlyPlayed(@Url fullUrl: String): ApiResult<RecentlyPlayedResponse, Unit>
 
     @GET("/v1/me/albums")
     suspend fun getSavedAlbums(
         @Query("limit") limit: Int = 50,
         @Query("offset") offset: Int = 0,
-    ): SavedAlbumsResponse
+    ): ApiResult<SeveralAlbumsResponse, Unit>
 
     /**
      * @param ids A comma-separated list of the Spotify IDs.
@@ -34,7 +34,7 @@ interface SpotifyService {
      * Maximum: 50 IDs.
      */
     @GET("/v1/tracks")
-    suspend fun getSeveralTracks(@Query("ids") ids: String): SeveralTracksResponse
+    suspend fun getSeveralTracks(@Query("ids") ids: String): ApiResult<SeveralTracksResponse, Unit>
 
     /**
      * @param ids A comma-separated list of the Spotify IDs.
@@ -42,8 +42,8 @@ interface SpotifyService {
      * Maximum: 20 IDs.
      */
     @GET("/v1/albums")
-    suspend fun getSeveralAlbums(@Query("ids") ids: String): SeveralAlbumsResponse
+    suspend fun getSeveralAlbums(@Query("ids") ids: String): ApiResult<SeveralAlbumsResponse, Unit>
 
     @GET
-    suspend fun getSeveralAlbumsUrl(@Url fullUrl: String): SeveralAlbumsResponse
+    suspend fun getSeveralAlbumsUrl(@Url fullUrl: String): ApiResult<SeveralAlbumsResponse, Unit>
 }

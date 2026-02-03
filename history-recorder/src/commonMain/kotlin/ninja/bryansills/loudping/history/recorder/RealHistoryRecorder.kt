@@ -1,7 +1,9 @@
 package ninja.bryansills.loudping.history.recorder
 
+import com.slack.eithernet.successOrNothing
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.core.model.Artist
@@ -36,6 +38,7 @@ class RealHistoryRecorder(
                 stopAt = stopAt ?: Instant.DISTANT_PAST,
                 trimmingStrategy = RecentTrimmingStrategy.None,
             )
+            .map { it.successOrNothing { throw RuntimeException() } }
             .toList()
 
         val playRecords = networkResponse.toRecords()
