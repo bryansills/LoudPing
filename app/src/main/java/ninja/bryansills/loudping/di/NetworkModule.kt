@@ -9,7 +9,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import kotlinx.serialization.json.Json
+import ninja.bryansills.loudping.network.GetRecentlyPlayed
 import ninja.bryansills.loudping.network.NetworkService
+import ninja.bryansills.loudping.network.RealGetRecentlyPlayed
 import ninja.bryansills.loudping.network.RealNetworkService
 import ninja.bryansills.loudping.network.SpotifyService
 import ninja.bryansills.loudping.network.auth.AccessTokenInterceptor
@@ -109,7 +111,9 @@ interface NetworkModule {
             val retrofit = Retrofit.Builder()
                 .baseUrl(networkSneak.baseApiUrl)
                 .client(okHttpClient)
+                .addConverterFactory(ApiResultConverterFactory)
                 .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(ApiResultCallAdapterFactory)
                 .build()
 
             return retrofit.create()
@@ -121,6 +125,13 @@ interface NetworkModule {
             spotifyService: SpotifyService,
         ): NetworkService {
             return RealNetworkService(spotifyService)
+        }
+
+        @Provides
+        fun provideGetRecentlyPlayed(
+            spotifyService: SpotifyService,
+        ): GetRecentlyPlayed {
+            return RealGetRecentlyPlayed(spotifyService = spotifyService)
         }
     }
 }

@@ -3,6 +3,7 @@ package ninja.bryansills.loudping.network
 import com.slack.eithernet.ApiResult
 import ninja.bryansills.loudping.network.model.PrivateUserResponse
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
+import ninja.bryansills.loudping.network.model.SavedAlbumsResponse
 import ninja.bryansills.loudping.network.model.SeveralAlbumsResponse
 import ninja.bryansills.loudping.network.model.SeveralTracksResponse
 import retrofit2.http.GET
@@ -26,7 +27,7 @@ interface SpotifyService {
     suspend fun getSavedAlbums(
         @Query("limit") limit: Int = 50,
         @Query("offset") offset: Int = 0,
-    ): ApiResult<SeveralAlbumsResponse, Unit>
+    ): ApiResult<SavedAlbumsResponse, Unit>
 
     /**
      * @param ids A comma-separated list of the Spotify IDs.
