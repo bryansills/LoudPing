@@ -10,6 +10,7 @@ import ninja.bryansills.loudping.database.DriverFactory
 import ninja.bryansills.loudping.database.RealDatabaseService
 import ninja.bryansills.loudping.database.createDatabase
 import ninja.bryansills.loudping.history.recorder.RealHistoryRecorder
+import ninja.bryansills.loudping.network.RealGetRecentlyPlayed
 import ninja.bryansills.loudping.network.RealNetworkService
 
 fun main() {
@@ -18,8 +19,9 @@ fun main() {
     mainScope.launchBlocking {
         val spotifyService = initializeDependencies()
         val networkService = RealNetworkService(spotifyService)
+        val getRecentlyPlayed = RealGetRecentlyPlayed(spotifyService)
         val databaseService = RealDatabaseService(createDatabase(DriverFactory()))
-        val historyRecorder = RealHistoryRecorder(networkService, databaseService)
+        val historyRecorder = RealHistoryRecorder(getRecentlyPlayed, databaseService)
 
         val start = Clock.System.now()
         val end = start - 5.days
