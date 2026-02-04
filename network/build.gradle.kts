@@ -15,6 +15,7 @@ kotlin {
             implementation(libs.kotlinx.serialization.runtime.json)
             implementation(libs.okhttp)
             implementation(libs.kotlinx.datetime)
+            api(libs.eithernet.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

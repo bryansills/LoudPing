@@ -1,103 +1,40 @@
 package ninja.bryansills.loudping.network
 
-import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.isActive
-import kotlinx.datetime.Instant
+import com.slack.eithernet.ApiResult
+import com.slack.eithernet.successOrNothing
 import ninja.bryansills.loudping.network.model.PrivateUserResponse
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 import ninja.bryansills.loudping.network.model.SavedAlbumsResponse
 import ninja.bryansills.loudping.network.model.album.FullAlbum
-import ninja.bryansills.loudping.network.model.recent.PlayHistoryItem
-import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
 import ninja.bryansills.loudping.network.model.track.Track
 
 class RealNetworkService(
     private val spotifyService: SpotifyService,
 ) : NetworkService {
-    override suspend fun getMe(): PrivateUserResponse {
+    override suspend fun getMe(): ApiResult<PrivateUserResponse, Unit> {
         return spotifyService.getMe()
     }
 
-    override suspend fun getRecentlyPlayed(): RecentlyPlayedResponse {
+    override suspend fun getRecentlyPlayed(): ApiResult<RecentlyPlayedResponse, Unit> {
         return spotifyService.getRecentlyPlayed()
     }
 
-    override suspend fun getSavedAlbums(): SavedAlbumsResponse {
+    override suspend fun getSavedAlbums(): ApiResult<SavedAlbumsResponse, Unit> {
         return spotifyService.getSavedAlbums()
     }
 
-    override fun getRecentlyPlayedStream(
-        startAt: Instant,
-        stopAt: Instant,
-        trimmingStrategy: RecentTrimmingStrategy,
-    ): Flow<RecentlyPlayedResponse> = flow {
-        var currentQueryTime: Instant? = startAt
-        var nextUrl: String? = null
-        var isFirstQuery = true
-
-        while (
-            currentCoroutineContext().isActive && keepGoing(
-                currentQueryTime,
-                stopAt,
-                nextUrl,
-                isFirstQuery,
-            )
-        ) {
-            val response = if (nextUrl != null) {
-                spotifyService.getOlderRecentlyPlayed(nextUrl)
-            } else {
-                val beforeInMillis = currentQueryTime!!.toEpochMilliseconds()
-                spotifyService.getRecentlyPlayed(beforeTimestampUnix = beforeInMillis)
-            }
-
-            val trimmedResponse = when (trimmingStrategy) {
-                RecentTrimmingStrategy.None -> response
-                RecentTrimmingStrategy.StopAt -> {
-                    response.copy(items = response.items.trim(stopAt))
-                }
-            }
-            emit(trimmedResponse)
-
-            currentQueryTime = try {
-                Instant.fromEpochMilliseconds(response.cursors!!.before.toLong())
-            } catch (ex: Exception) {
-                null
-            }
-            nextUrl = response.next
-            isFirstQuery = false
-        }
-    }
-
-    override suspend fun getSeveralTracks(ids: List<String>): List<Track> {
+    override suspend fun getSeveralTracks(ids: List<String>): ApiResult<List<Track>, Unit> {
         require(ids.size <= 50) { "You can only query for 50 tracks at a time." }
-        return spotifyService.getSeveralTracks(ids.joinToString(separator = ",")).tracks
+        val networkResult = spotifyService.getSeveralTracks(ids.joinToString(separator = ",")).successOrNothing { throw RuntimeException() }
+        return ApiResult.success(networkResult.tracks)
     }
 
-    override suspend fun getSeveralAlbums(ids: List<String>): List<FullAlbum> {
+    override suspend fun getSeveralAlbums(ids: List<String>): ApiResult<List<FullAlbum>, Unit> {
         require(ids.size in 1..20) { "You can only query for up to 20 albums at a time." }
-        val networkResult = spotifyService.getSeveralAlbums(ids.joinToString(separator = ",")).albums
+        val networkResult = spotifyService.getSeveralAlbums(ids.joinToString(separator = ",")).successOrNothing { throw RuntimeException() }
 
         // find any albums that don't return the full results
 
-        return networkResult
+        return ApiResult.success(networkResult.albums)
     }
-}
-
-private fun keepGoing(
-    inProgress: Instant?,
-    stopAt: Instant,
-    nextUrl: String?,
-    isFirstQuery: Boolean,
-): Boolean {
-    return if (isFirstQuery) {
-        inProgress != null && inProgress > stopAt
-    } else {
-        nextUrl != null && inProgress != null && inProgress > stopAt
-    }
-}
-
-private fun List<PlayHistoryItem>.trim(olderThan: Instant): List<PlayHistoryItem> {
-    return this.filter { it.played_at > olderThan }
 }

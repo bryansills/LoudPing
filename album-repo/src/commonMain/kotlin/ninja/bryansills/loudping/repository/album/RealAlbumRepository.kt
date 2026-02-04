@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.repository.album
 
+import com.slack.eithernet.successOrNothing
 import ninja.bryansills.loudping.core.model.FullAlbum
 import ninja.bryansills.loudping.core.model.TrackAlbum as CoreTrackAlbum
 import ninja.bryansills.loudping.database.DatabaseService
@@ -12,7 +13,7 @@ class RealAlbumRepository(
     private val network: NetworkService,
     private val database: DatabaseService,
 ) : AlbumRepository {
-    override suspend fun getAlbumByTrackId(trackId: String, shouldQueryNetwork: Boolean): ninja.bryansills.loudping.core.model.TrackAlbum? {
+    override suspend fun getAlbumByTrackId(trackId: String, shouldQueryNetwork: Boolean): CoreTrackAlbum? {
         val cachedDatabaseValue = database.getAlbumFromTrackId(trackId)
         return cachedDatabaseValue
             ?: if (shouldQueryNetwork) {
@@ -25,7 +26,7 @@ class RealAlbumRepository(
             }
     }
 
-    override suspend fun getAlbumsByTrackIds(trackIds: List<String>): List<ninja.bryansills.loudping.core.model.TrackAlbum> {
+    override suspend fun getAlbumsByTrackIds(trackIds: List<String>): List<CoreTrackAlbum> {
         val cachedAlbums = trackIds
             .mapNotNull { trackId ->
                 val cachedDatabaseValue = database.getAlbumFromTrackId(trackId)
@@ -34,7 +35,7 @@ class RealAlbumRepository(
             .toMap()
         val stillNeedDataTrackIds = trackIds.filter { !cachedAlbums.keys.contains(it) }
         val networkTracks = if (stillNeedDataTrackIds.isNotEmpty()) {
-            network.getSeveralTracks(stillNeedDataTrackIds)
+            network.getSeveralTracks(stillNeedDataTrackIds).successOrNothing { throw RuntimeException() }
         } else {
             listOf()
         }

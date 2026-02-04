@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.repository.track
 
+import com.slack.eithernet.successOrNothing
 import kotlin.time.Duration.Companion.milliseconds
 import ninja.bryansills.loudping.core.model.Artist
 import ninja.bryansills.loudping.core.model.Track
@@ -41,7 +42,7 @@ class RealTrackRepository(
                 cachedTracks.toMultiTrackResult()
             } else {
                 val missingCachedIds = cachedTracks.mapNotNull { (id, track) -> id.takeIf { track == null } }
-                val networkTracks = network.getSeveralTracks(missingCachedIds)
+                val networkTracks = network.getSeveralTracks(missingCachedIds).successOrNothing { throw RuntimeException() }
                 val freshTracks = networkTracks.associate { networkTrack ->
                     val databaseTrack = networkTrack.toDatabase()
                     networkTrack.id to databaseTrack

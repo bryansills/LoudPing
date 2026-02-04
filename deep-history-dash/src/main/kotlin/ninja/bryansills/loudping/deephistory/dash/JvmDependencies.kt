@@ -2,8 +2,8 @@ package ninja.bryansills.loudping.deephistory.dash
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.slack.eithernet.ApiResultCallAdapterFactory
-import com.slack.eithernet.ApiResultConverterFactory
+import com.slack.eithernet.integration.retrofit.ApiResultCallAdapterFactory
+import com.slack.eithernet.integration.retrofit.ApiResultConverterFactory
 import java.io.File
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.serialization.json.Json

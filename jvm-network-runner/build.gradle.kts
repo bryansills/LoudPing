@@ -27,7 +27,7 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlinx.serialization)
-    implementation(libs.eithernet)
+    implementation(libs.eithernet.retrofit)
     implementation(libs.kotlinx.serialization.runtime.json)
     implementation(libs.okhttp)
 }

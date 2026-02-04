@@ -1,7 +1,9 @@
 package ninja.bryansills.loudping.history.recorder
 
+import com.slack.eithernet.successOrNothing
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.core.model.Artist
@@ -10,7 +12,7 @@ import ninja.bryansills.loudping.core.model.TrackAlbum
 import ninja.bryansills.loudping.core.model.TrackPlayContext
 import ninja.bryansills.loudping.core.model.TrackPlayRecord
 import ninja.bryansills.loudping.database.DatabaseService
-import ninja.bryansills.loudping.network.NetworkService
+import ninja.bryansills.loudping.network.GetRecentlyPlayed
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 import ninja.bryansills.loudping.network.model.artist.SimplifiedArtist
 import ninja.bryansills.loudping.network.model.recent.ContextType
@@ -19,7 +21,7 @@ import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
 import ninja.bryansills.loudping.network.model.track.coverImageUrl
 
 class RealHistoryRecorder(
-    private val networkService: NetworkService,
+    private val getRecentlyPlayed: GetRecentlyPlayed,
     private val databaseService: DatabaseService,
 ) : HistoryRecorder {
     override suspend operator fun invoke(
@@ -30,12 +32,12 @@ class RealHistoryRecorder(
             check(startAt > stopAt)
         }
 
-        val networkResponse = networkService
-            .getRecentlyPlayedStream(
-                startAt = startAt,
-                stopAt = stopAt ?: Instant.DISTANT_PAST,
-                trimmingStrategy = RecentTrimmingStrategy.None,
-            )
+        val networkResponse = getRecentlyPlayed(
+            startAt = startAt,
+            stopAt = stopAt ?: Instant.DISTANT_PAST,
+            trimmingStrategy = RecentTrimmingStrategy.None,
+        )
+            .map { it.successOrNothing { throw RuntimeException() } }
             .toList()
 
         val playRecords = networkResponse.toRecords()

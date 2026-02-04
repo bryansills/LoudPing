@@ -7,7 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import ninja.bryansills.loudping.database.DatabaseService
 import ninja.bryansills.loudping.history.recorder.HistoryRecorder
 import ninja.bryansills.loudping.history.recorder.RealHistoryRecorder
-import ninja.bryansills.loudping.network.NetworkService
+import ninja.bryansills.loudping.network.GetRecentlyPlayed
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -15,11 +15,11 @@ interface HistoryRecorderModule {
     companion object {
         @Provides
         fun provideHistoryRecorder(
-            networkService: NetworkService,
+            getRecentlyPlayed: GetRecentlyPlayed,
             databaseService: DatabaseService,
         ): HistoryRecorder {
             return RealHistoryRecorder(
-                networkService = networkService,
+                getRecentlyPlayed = getRecentlyPlayed,
                 databaseService = databaseService,
             )
         }
