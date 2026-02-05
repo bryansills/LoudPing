@@ -4,10 +4,9 @@ plugins {
 }
 
 android {
-    namespace = "ninja.bryansills.loudping.ui.login"
+    androidResources.enable = true
 
     buildFeatures {
-        androidResources = true
         viewBinding = true
     }
 }

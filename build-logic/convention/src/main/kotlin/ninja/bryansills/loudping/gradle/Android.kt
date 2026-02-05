@@ -71,11 +71,6 @@ internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true)
 //                    ?.any { it.resolve("res").isDirectory }
 //                    ?: false
 //        }
-
-//        buildFeatures {
-//            resValues = false
-//            shaders = false
-//        }
     }
     dependencies {
         coreLibraryDesugaring(libs.android.desugarJdkLibs)

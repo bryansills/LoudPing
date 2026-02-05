@@ -3,9 +3,6 @@ plugins {
 }
 
 kotlin {
-    androidLibrary {
-        namespace = "ninja.bryansills.loudping.database"
-    }
     sourceSets {
         commonMain.dependencies {
             api(projects.core.model)

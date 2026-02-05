@@ -3,9 +3,5 @@ plugins {
 }
 
 android {
-    namespace = "ninja.bryansills.loudping.res"
-
-    buildFeatures {
-        androidResources = true
-    }
+    androidResources.enable = true
 }
