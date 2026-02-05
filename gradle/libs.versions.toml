@@ -7,7 +7,7 @@ min-sdk = "26"
 
 androidGradlePlugin = "9.0.0"
 androidTools = "32.0.0"
-kotlin = "2.3.0"
+kotlin = "2.3.10"
 kotlin-gradle = "2.3.0"
 spotless = "8.2.1"
 ktlint = "1.0.1"
