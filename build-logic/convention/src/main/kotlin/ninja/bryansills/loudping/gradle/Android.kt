@@ -6,13 +6,13 @@ import com.android.build.api.dsl.LibraryExtension
 import ninja.bryansills.loudping.gradle.util.android
 import ninja.bryansills.loudping.gradle.util.androidTestRuntimeOnly
 import ninja.bryansills.loudping.gradle.util.coreLibraryDesugaring
+import ninja.bryansills.loudping.gradle.util.javaVersion
+import ninja.bryansills.loudping.gradle.util.jvmTarget
 import ninja.bryansills.loudping.gradle.util.libs
 import ninja.bryansills.loudping.gradle.util.toInt
 import org.gradle.accessors.dm.LibrariesForLibs
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 internal fun Project.configureAndroidApplication() {
     android<ApplicationExtension> {
@@ -26,8 +26,8 @@ internal fun Project.configureAndroidApplication() {
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.toVersion(libs.versions.java.version.toInt())
-            targetCompatibility = JavaVersion.toVersion(libs.versions.java.version.toInt())
+            sourceCompatibility = libs.javaVersion
+            targetCompatibility = libs.javaVersion
             isCoreLibraryDesugaringEnabled = true
         }
 
@@ -59,8 +59,8 @@ internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true)
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.toVersion(libs.versions.java.version.toInt())
-            targetCompatibility = JavaVersion.toVersion(libs.versions.java.version.toInt())
+            sourceCompatibility = libs.javaVersion
+            targetCompatibility = libs.javaVersion
             isCoreLibraryDesugaringEnabled = true
         }
 
@@ -89,6 +89,6 @@ internal fun KotlinMultiplatformAndroidLibraryTarget.configureAndroidMultiplatfo
     enableCoreLibraryDesugaring = true
 
     compilerOptions {
-        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.version.get()))
+        jvmTarget.set(libs.jvmTarget)
     }
 }

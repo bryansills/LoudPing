@@ -4,34 +4,34 @@ import ninja.bryansills.loudping.gradle.util.androidLibrary
 import ninja.bryansills.loudping.gradle.util.coreLibraryDesugaring
 import ninja.bryansills.loudping.gradle.util.id
 import ninja.bryansills.loudping.gradle.util.java
+import ninja.bryansills.loudping.gradle.util.javaVersion
+import ninja.bryansills.loudping.gradle.util.jvmTarget
 import ninja.bryansills.loudping.gradle.util.kotlin
 import ninja.bryansills.loudping.gradle.util.libs
 import ninja.bryansills.loudping.gradle.util.plugins
 import ninja.bryansills.loudping.gradle.util.sourceSets
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureKotlinJvmOnly() {
     java {
-        sourceCompatibility = JavaVersion.toVersion(libs.versions.java.version.get())
-        targetCompatibility = JavaVersion.toVersion(libs.versions.java.version.get())
+        sourceCompatibility = libs.javaVersion
+        targetCompatibility = libs.javaVersion
     }
 
     kotlin<KotlinJvmProjectExtension> {
         compilerOptions {
-            jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.version.get()))
+            jvmTarget.set(libs.jvmTarget)
         }
     }
 }
 internal fun Project.configureKotlinAndroid() {
     kotlin<KotlinAndroidProjectExtension> {
         compilerOptions {
-            jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.version.get()))
+            jvmTarget.set(libs.jvmTarget)
         }
     }
 }
@@ -45,7 +45,7 @@ internal fun Project.configureKotlinMultiplatform() {
     kotlin<KotlinMultiplatformExtension> {
         jvm {
             compilerOptions {
-                jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.version.get()))
+                jvmTarget.set(libs.jvmTarget)
             }
         }
         androidLibrary {
