@@ -39,22 +39,7 @@ dependencies {
     compileOnly(libs.spotless.gradlePlugin)
     compileOnly(libs.dependencyGuard.gradlePlugin)
     compileOnly(libs.dependencyAnalysis.gradlePlugin)
-//    compileOnly(plugin(libs.plugins.kotlin.android))
-//    compileOnly(plugin(libs.plugins.compose.compiler))
-//    compileOnly(plugin(libs.plugins.android.application))
-//    compileOnly(plugin(libs.plugins.android.library))
-//    compileOnly("com.android.kotlin.multiplatform.library:com.android.kotlin.multiplatform.library.gradle.plugin:9.0.0")
-//    compileOnly(plugin(libs.plugins.spotless))
-//    compileOnly(plugin(libs.plugins.ksp))
-//    compileOnly(plugin(libs.plugins.hilt.plugin))
-//    compileOnly(plugin(libs.plugins.kotlinx.serialization))
-//    compileOnly(plugin(libs.plugins.dependency.guard))
-//    compileOnly(plugin(libs.plugins.dependency.analysis))
 }
-
-// private fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {
-//    "$pluginId:$pluginId.gradle.plugin:$version"
-// }
 
 gradlePlugin {
     plugins {
