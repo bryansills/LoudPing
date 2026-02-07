@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     `kotlin-dsl`
-//    alias(libs.plugins.kotlin.samReceiver)
 }
 
 java {
@@ -17,36 +16,45 @@ kotlin {
     }
 }
 
-// samWithReceiver {
-//    annotation(HasImplicitReceiver::class.qualifiedName!!)
-// }
+tasks {
+    validatePlugins {
+        enableStricterValidation = true
+        failOnWarning = true
+    }
+}
 
 dependencies {
     // needed so we can use `libs.[WHATEVER]` in this module
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 
-    implementation(libs.android.gradlePlugin)
-    implementation(libs.android.gradlePluginApi)
-    implementation(libs.android.tools.common)
-    implementation(plugin(libs.plugins.kotlin.android))
-    implementation(plugin(libs.plugins.compose.compiler))
-    implementation(plugin(libs.plugins.android.application))
-    implementation(plugin(libs.plugins.android.library))
-    implementation("com.android.kotlin.multiplatform.library:com.android.kotlin.multiplatform.library.gradle.plugin:9.0.0")
-    implementation(plugin(libs.plugins.spotless))
-    implementation(plugin(libs.plugins.ksp))
-    implementation(plugin(libs.plugins.hilt.plugin))
-    implementation(plugin(libs.plugins.kotlinx.serialization))
-    implementation(plugin(libs.plugins.dependency.guard))
-    implementation(plugin(libs.plugins.dependency.analysis))
-
     // needed because Gradle runs with an old version of Kotlin
-    implementation(platform(libs.kotlin.gradle.bom))
+    compileOnly(platform(libs.kotlin.gradle.bom))
+
+    compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.android.gradlePluginApi)
+    compileOnly(libs.android.tools.common)
+    compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.compose.gradlePlugin)
+    compileOnly(libs.ksp.gradlePlugin)
+    compileOnly(libs.spotless.gradlePlugin)
+    compileOnly(libs.dependencyGuard.gradlePlugin)
+    compileOnly(libs.dependencyAnalysis.gradlePlugin)
+//    compileOnly(plugin(libs.plugins.kotlin.android))
+//    compileOnly(plugin(libs.plugins.compose.compiler))
+//    compileOnly(plugin(libs.plugins.android.application))
+//    compileOnly(plugin(libs.plugins.android.library))
+//    compileOnly("com.android.kotlin.multiplatform.library:com.android.kotlin.multiplatform.library.gradle.plugin:9.0.0")
+//    compileOnly(plugin(libs.plugins.spotless))
+//    compileOnly(plugin(libs.plugins.ksp))
+//    compileOnly(plugin(libs.plugins.hilt.plugin))
+//    compileOnly(plugin(libs.plugins.kotlinx.serialization))
+//    compileOnly(plugin(libs.plugins.dependency.guard))
+//    compileOnly(plugin(libs.plugins.dependency.analysis))
 }
 
-private fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {
-    "$pluginId:$pluginId.gradle.plugin:$version"
-}
+// private fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) {
+//    "$pluginId:$pluginId.gradle.plugin:$version"
+// }
 
 gradlePlugin {
     plugins {

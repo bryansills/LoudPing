@@ -48,9 +48,6 @@ workmanager = "2.11.1"
 [libraries]
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
-android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
-android-gradlePluginApi = { group = "com.android.tools.build", name = "gradle-api", version.ref = "androidGradlePlugin" }
-android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
 androidx-browser = { group = "androidx.browser", name = "browser", version = "1.9.0" }
 androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
@@ -105,6 +102,17 @@ turbine = { module = "app.cash.turbine:turbine", version = "1.2.1" }
 viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "viewmodel" }
 workmanager = { module = "androidx.work:work-runtime-ktx", version.ref = "workmanager" }
 workmanager-hilt = { module = "androidx.hilt:hilt-work", version.ref = "hilt" }
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+android-gradlePluginApi = { group = "com.android.tools.build", name = "gradle-api", version.ref = "androidGradlePlugin" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+dependencyAnalysis-gradlePlugin = { module = "com.autonomousapps.dependency-analysis:com.autonomousapps.dependency-analysis.gradle.plugin", version.ref = "dependency-analysis" }
+dependencyGuard-gradlePlugin = { module = "com.dropbox.dependency-guard:com.dropbox.dependency-guard.gradle.plugin", version.ref = "dependency-guard" }
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+spotless-gradlePlugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
