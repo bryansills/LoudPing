@@ -1,9 +1,9 @@
 [versions]
-java-version = "17"
+jvmTarget = "17"
 
-compile-sdk = "36"
-target-sdk = "36"
-min-sdk = "26"
+android-compileSdk = "36"
+android-targetSdk = "36"
+android-minSdk = "26"
 
 activity = "1.12.4"
 androidDesugarJdkLibs = "2.1.5"

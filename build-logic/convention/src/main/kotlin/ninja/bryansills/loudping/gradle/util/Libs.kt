@@ -15,7 +15,7 @@ internal fun Provider<String>.toInt(): Int {
 }
 
 internal val LibrariesForLibs.jvmTarget: JvmTarget
-    get() = JvmTarget.fromTarget(this.versions.java.version.get())
+    get() = JvmTarget.fromTarget(this.versions.jvmTarget.get())
 
 internal val LibrariesForLibs.javaVersion: JavaVersion
-    get() = JavaVersion.toVersion(this.versions.java.version.get())
+    get() = JavaVersion.toVersion(this.versions.jvmTarget.get())

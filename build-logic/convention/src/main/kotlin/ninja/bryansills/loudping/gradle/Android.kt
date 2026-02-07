@@ -16,11 +16,11 @@ import org.gradle.kotlin.dsl.dependencies
 
 internal fun Project.configureAndroidApplication() {
     android<ApplicationExtension> {
-        compileSdk { version = release(libs.versions.compile.sdk.toInt()) }
+        compileSdk { version = release(libs.versions.android.compileSdk.toInt()) }
 
         defaultConfig {
-            minSdk = libs.versions.min.sdk.toInt()
-            targetSdk = libs.versions.target.sdk.toInt()
+            minSdk = libs.versions.android.minSdk.toInt()
+            targetSdk = libs.versions.android.targetSdk.toInt()
 
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
@@ -49,11 +49,11 @@ internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true)
         namespace = loudPingNamespace
 
         compileSdk {
-            version = release(libs.versions.compile.sdk.toInt())
+            version = release(libs.versions.android.compileSdk.toInt())
         }
 
         defaultConfig {
-            minSdk = libs.versions.min.sdk.toInt()
+            minSdk = libs.versions.android.minSdk.toInt()
 
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
@@ -84,8 +84,8 @@ internal fun KotlinMultiplatformAndroidLibraryTarget.configureAndroidMultiplatfo
 ) {
     namespace = project.loudPingNamespace
 
-    compileSdk = libs.versions.compile.sdk.toInt()
-    minSdk = libs.versions.min.sdk.toInt()
+    compileSdk = libs.versions.android.compileSdk.toInt()
+    minSdk = libs.versions.android.minSdk.toInt()
     enableCoreLibraryDesugaring = true
 
     compilerOptions {

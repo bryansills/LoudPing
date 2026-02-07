@@ -5,13 +5,13 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(libs.versions.java.version.get())
-    targetCompatibility = JavaVersion.toVersion(libs.versions.java.version.get())
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget = JvmTarget.fromTarget(libs.versions.java.version.get())
+        jvmTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
         allWarningsAsErrors = true
     }
 }
