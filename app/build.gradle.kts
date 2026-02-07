@@ -3,8 +3,8 @@ import ninja.bryansills.loudping.gradle.getSecret
 import ninja.bryansills.loudping.gradle.rootProperties
 
 plugins {
-    id("ninja.bryansills.android.app")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.loudping.android.application)
+    alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.bugsnag)
 }
 

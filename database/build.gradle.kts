@@ -1,5 +1,5 @@
 plugins {
-    id("ninja.bryansills.sqldelight")
+    alias(libs.plugins.loudping.sqldelight)
 }
 
 kotlin {

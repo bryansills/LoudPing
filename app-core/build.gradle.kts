@@ -1,5 +1,5 @@
 plugins {
-    id("ninja.bryansills.android.library.compose.screen")
+    alias(libs.plugins.loudping.android.library.compose)
 }
 
 dependencies {

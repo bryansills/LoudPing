@@ -127,3 +127,16 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+
+# Convention Plugins
+loudping-android-application = { id = "loudping.android.application" }
+loudping-android-library-compose = { id = "loudping.android.library.compose" }
+loudping-android-library-java = { id = "loudping.android.library.java" }
+loudping-android-library-kotlin-dagger = { id = "loudping.android.library.kotlin.dagger" }
+loudping-android-library-kotlin-plain = { id = "loudping.android.library.kotlin" }
+loudping-jvm = { id = "loudping.jvm" }
+loudping-mosaic = { id = "loudping.mosaic" }
+loudping-multiplatform-compose = { id = "loudping.multiplatform.compose" }
+loudping-multiplatform-plain = { id = "loudping.multiplatform.plain" }
+loudping-root = { id = "loudping.root" }
+loudping-sqldelight = { id = "loudping.sqldelight" }

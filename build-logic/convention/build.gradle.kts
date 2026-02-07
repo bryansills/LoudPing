@@ -51,43 +51,47 @@ private fun plugin(provider: Provider<PluginDependency>) = with(provider.get()) 
 gradlePlugin {
     plugins {
         register("root") {
-            id = "ninja.bryansills.root"
+            id = libs.plugins.loudping.root.get().pluginId
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.RootConventionPlugin"
         }
         register("androidApp") {
-            id = "ninja.bryansills.android.app"
+            id = libs.plugins.loudping.android.application.get().pluginId
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.AndroidAppConventionPlugin"
         }
         register("javaAndroidLibrary") {
-            id = "ninja.bryansills.android.library"
+            id = libs.plugins.loudping.android.library.java.get().pluginId
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.JavaAndroidLibraryConventionPlugin"
         }
         register("kotlinAndroidLibrary") {
-            id = "ninja.bryansills.android.library.kotlin"
+            id = libs.plugins.loudping.android.library.kotlin.plain.get().pluginId
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinAndroidLibraryConventionPlugin"
         }
         register("kotlinAndroidDaggerLibrary") {
-            id = "ninja.bryansills.android.library.kotlin.dagger"
+            id = libs.plugins.loudping.android.library.kotlin.dagger.get().pluginId
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinAndroidDaggerLibraryConventionPlugin"
         }
+        register("composeAndroidScreen") {
+            id = libs.plugins.loudping.android.library.compose.get().pluginId
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeAndroidScreenConventionPlugin"
+        }
+        register("kotlinJvm") {
+            id = libs.plugins.loudping.jvm.get().pluginId
+            implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinJvmLibraryConventionPlugin"
+        }
         register("kotlinMultiplatformLibrary") {
-            id = "ninja.bryansills.multiplatform.library"
+            id = libs.plugins.loudping.multiplatform.plain.get().pluginId
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinMultiplatformLibraryConventionPlugin"
         }
         register("composeMultiplatformLibrary") {
-            id = "ninja.bryansills.multiplatform.library.compose"
+            id = libs.plugins.loudping.multiplatform.compose.get().pluginId
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeMultiplatformLibraryConventionPlugin"
         }
-        register("composeAndroidScreen") {
-            id = "ninja.bryansills.android.library.compose.screen"
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeAndroidScreenConventionPlugin"
-        }
         register("composeMosaic") {
-            id = "ninja.bryansills.compose.mosaic"
+            id = libs.plugins.loudping.mosaic.get().pluginId
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeMosaicConventionPlugin"
         }
         register("sqldelight") {
-            id = "ninja.bryansills.sqldelight"
+            id = libs.plugins.loudping.sqldelight.get().pluginId
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.SqldelightConventionPlugin"
         }
     }

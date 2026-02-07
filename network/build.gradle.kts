@@ -1,6 +1,6 @@
 plugins {
-    id("ninja.bryansills.multiplatform.library")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.loudping.multiplatform.plain)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {

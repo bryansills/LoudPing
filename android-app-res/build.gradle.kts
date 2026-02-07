@@ -1,5 +1,5 @@
 plugins {
-    id("ninja.bryansills.android.library")
+    alias(libs.plugins.loudping.android.library.java)
 }
 
 android {

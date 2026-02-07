@@ -3,7 +3,7 @@ import ninja.bryansills.loudping.gradle.getSecret
 import ninja.bryansills.loudping.gradle.rootProperties
 
 plugins {
-    id("ninja.bryansills.compose.mosaic")
+    alias(libs.plugins.loudping.mosaic)
     alias(libs.plugins.buildconfig)
 }
 

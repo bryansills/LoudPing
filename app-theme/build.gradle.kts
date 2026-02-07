@@ -1,5 +1,5 @@
 plugins {
-    id("ninja.bryansills.multiplatform.library.compose")
+    alias(libs.plugins.loudping.multiplatform.compose)
 }
 
 kotlin {

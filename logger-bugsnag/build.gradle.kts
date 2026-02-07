@@ -1,5 +1,5 @@
 plugins {
-    id("ninja.bryansills.android.library.kotlin")
+    alias(libs.plugins.loudping.android.library.kotlin.plain)
 }
 
 dependencies {
