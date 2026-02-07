@@ -22,8 +22,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import ninja.bryansills.loudping.android_app_res.R
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
-import ninja.bryansills.loudping.res.R
 
 @Composable
 fun HomeScreen(

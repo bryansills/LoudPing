@@ -46,7 +46,7 @@ internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true)
     android<LibraryExtension> {
         enableKotlin = shouldEnableKotlin
 
-        namespace = "ninja.bryansills.loudping." + project.name.replace("-", ".")
+        namespace = loudPingNamespace
 
         compileSdk {
             version = release(libs.versions.compile.sdk.toInt())
@@ -82,7 +82,7 @@ internal fun KotlinMultiplatformAndroidLibraryTarget.configureAndroidMultiplatfo
     project: Project,
     libs: LibrariesForLibs = project.libs,
 ) {
-    namespace = "ninja.bryansills.loudping." + project.name.replace("-", ".")
+    namespace = project.loudPingNamespace
 
     compileSdk = libs.versions.compile.sdk.toInt()
     minSdk = libs.versions.min.sdk.toInt()
@@ -92,3 +92,8 @@ internal fun KotlinMultiplatformAndroidLibraryTarget.configureAndroidMultiplatfo
         jvmTarget.set(libs.jvmTarget)
     }
 }
+
+private val Project.loudPingNamespace: String
+    get() {
+        return "ninja.bryansills.loudping" + project.path.replace(":", ".").replace("-", "_")
+    }
