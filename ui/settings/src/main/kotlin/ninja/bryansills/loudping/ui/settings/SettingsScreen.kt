@@ -27,8 +27,8 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format
 import kotlinx.datetime.toLocalDateTime
-import ninja.bryansills.loudping.app.theme.LoudPingTheme
 import ninja.bryansills.loudping.android_app_res.R as AppR
+import ninja.bryansills.loudping.app.theme.LoudPingTheme
 
 @Composable
 fun SettingsScreen(

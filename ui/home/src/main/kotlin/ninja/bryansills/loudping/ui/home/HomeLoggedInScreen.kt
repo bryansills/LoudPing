@@ -25,8 +25,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import ninja.bryansills.loudping.app.theme.LoudPingTheme
 import ninja.bryansills.loudping.android_app_res.R as AppR
+import ninja.bryansills.loudping.app.theme.LoudPingTheme
 
 @Composable
 internal fun HomeLoggedInScreen(
