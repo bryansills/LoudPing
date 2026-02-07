@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <application>
         <activity
-            android:name=".MainActivity"
+            android:name="ninja.bryansills.loudping.app.core.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
