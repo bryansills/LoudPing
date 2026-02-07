@@ -4,7 +4,7 @@ import ninja.bryansills.loudping.gradle.configureComposeCompiler
 import ninja.bryansills.loudping.gradle.configureDependencyAnalysis
 import ninja.bryansills.loudping.gradle.configureKotlinJvmOnly
 import ninja.bryansills.loudping.gradle.configureSpotless
-import ninja.bryansills.loudping.gradle.util.id
+import ninja.bryansills.loudping.gradle.util.alias
 import ninja.bryansills.loudping.gradle.util.implementation
 import ninja.bryansills.loudping.gradle.util.libs
 import ninja.bryansills.loudping.gradle.util.plugins
@@ -15,9 +15,9 @@ import org.gradle.kotlin.dsl.dependencies
 class ComposeMosaicConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         plugins {
-            id("org.jetbrains.kotlin.jvm")
-            id("org.jetbrains.kotlin.plugin.compose")
-            id("org.gradle.application")
+            alias(libs.plugins.kotlin.jvm)
+            alias(libs.plugins.compose.compiler)
+            alias(libs.plugins.gradle.application)
         }
         configureSpotless()
         configureKotlinJvmOnly()

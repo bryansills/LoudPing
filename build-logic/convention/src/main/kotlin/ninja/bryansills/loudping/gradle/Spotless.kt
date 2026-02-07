@@ -1,6 +1,6 @@
 package ninja.bryansills.loudping.gradle
 
-import ninja.bryansills.loudping.gradle.util.id
+import ninja.bryansills.loudping.gradle.util.alias
 import ninja.bryansills.loudping.gradle.util.libs
 import ninja.bryansills.loudping.gradle.util.plugins
 import ninja.bryansills.loudping.gradle.util.spotless
@@ -8,7 +8,7 @@ import org.gradle.api.Project
 
 internal fun Project.configureSpotless(paths: ModulePaths = ModulePaths.Standard) {
     plugins {
-        id("com.diffplug.spotless")
+        alias(libs.plugins.spotless)
     }
 
     spotless {

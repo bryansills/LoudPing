@@ -9,10 +9,6 @@ import org.gradle.plugin.use.PluginDependency
 
 internal fun Project.plugins(action: PluginContainer.() -> Unit) = with(plugins) { action() }
 
-internal fun PluginContainer.id(name: String) {
-    apply(name)
-}
-
 internal fun PluginContainer.alias(provider: Provider<PluginDependency>) {
     apply(provider.get().pluginId)
 }

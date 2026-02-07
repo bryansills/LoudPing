@@ -1,8 +1,8 @@
 package ninja.bryansills.loudping.gradle
 
+import ninja.bryansills.loudping.gradle.util.alias
 import ninja.bryansills.loudping.gradle.util.androidLibrary
 import ninja.bryansills.loudping.gradle.util.coreLibraryDesugaring
-import ninja.bryansills.loudping.gradle.util.id
 import ninja.bryansills.loudping.gradle.util.java
 import ninja.bryansills.loudping.gradle.util.javaVersion
 import ninja.bryansills.loudping.gradle.util.jvmTarget
@@ -38,8 +38,8 @@ internal fun Project.configureKotlinAndroid() {
 
 internal fun Project.configureKotlinMultiplatform() {
     plugins {
-        id("org.jetbrains.kotlin.multiplatform")
-        id("com.android.kotlin.multiplatform.library")
+        alias(libs.plugins.kotlin.multiplatform)
+        alias(libs.plugins.android.multiplatformlibrary)
     }
 
     kotlin<KotlinMultiplatformExtension> {

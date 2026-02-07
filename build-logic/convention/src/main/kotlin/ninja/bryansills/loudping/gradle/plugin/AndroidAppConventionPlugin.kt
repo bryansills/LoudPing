@@ -7,7 +7,8 @@ import ninja.bryansills.loudping.gradle.configureDependencyAnalysis
 import ninja.bryansills.loudping.gradle.configureDependencyGuard
 import ninja.bryansills.loudping.gradle.configureKotlinAndroid
 import ninja.bryansills.loudping.gradle.configureSpotless
-import ninja.bryansills.loudping.gradle.util.id
+import ninja.bryansills.loudping.gradle.util.alias
+import ninja.bryansills.loudping.gradle.util.libs
 import ninja.bryansills.loudping.gradle.util.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -15,8 +16,8 @@ import org.gradle.api.Project
 class AndroidAppConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         plugins {
-            id("com.android.application")
-            id("org.jetbrains.kotlin.plugin.compose")
+            alias(libs.plugins.android.application)
+            alias(libs.plugins.compose.compiler)
         }
         configureSpotless()
         configureKotlinAndroid()
