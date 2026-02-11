@@ -60,7 +60,7 @@ androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", vers
 androidx-test-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidx-test-runner" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-bugsnag = { module = "com.bugsnag:bugsnag-android", version = "6.23.0" }
+bugsnag = { module = "com.bugsnag:bugsnag-android", version = "6.24.0" }
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil"}
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
