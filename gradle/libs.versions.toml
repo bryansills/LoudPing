@@ -5,7 +5,7 @@ compile-sdk = "36"
 target-sdk = "36"
 min-sdk = "26"
 
-activity = "1.12.3"
+activity = "1.12.4"
 androidDesugarJdkLibs = "2.1.5"
 androidGradlePlugin = "9.0.0"
 androidTools = "32.0.0"
