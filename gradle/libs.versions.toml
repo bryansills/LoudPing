@@ -78,7 +78,7 @@ htmlunit = { module = "org.htmlunit:htmlunit", version = "4.21.0" }
 javax-inject = { module = "javax.inject:javax.inject", version = "1" }
 junit = { module = "junit:junit", version.ref = "junit" }
 jaxb3Api = { module = "jakarta.xml.bind:jakarta.xml.bind-api", version = "3.0.1" }
-jaxb3Impl = { module = "com.sun.xml.bind:jaxb-impl", version = "3.0.2" }
+jaxb3Impl = { module = "com.sun.xml.bind:jaxb-impl", version = "4.0.6" }
 kotlin-gradle-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
