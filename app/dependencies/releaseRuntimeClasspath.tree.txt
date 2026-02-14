@@ -1118,7 +1118,7 @@
 |    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.0 (*)
 |    +--- project :ui:login
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
-|    |    +--- androidx.databinding:viewbinding:9.0.0
+|    |    +--- androidx.databinding:viewbinding:9.0.1
 |    |    |    +--- androidx.annotation:annotation:1.0.0 -> 1.9.1 (*)
 |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.2.10 -> 2.3.10 (*)
 |    |    +--- com.google.dagger:hilt-android:2.59.1 (*)
