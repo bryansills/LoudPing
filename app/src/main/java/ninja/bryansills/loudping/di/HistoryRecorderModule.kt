@@ -17,11 +17,9 @@ interface HistoryRecorderModule {
         fun provideHistoryRecorder(
             getRecentlyPlayed: GetRecentlyPlayed,
             databaseService: DatabaseService,
-        ): HistoryRecorder {
-            return RealHistoryRecorder(
-                getRecentlyPlayed = getRecentlyPlayed,
-                databaseService = databaseService,
-            )
-        }
+        ): HistoryRecorder = RealHistoryRecorder(
+            getRecentlyPlayed = getRecentlyPlayed,
+            databaseService = databaseService,
+        )
     }
 }

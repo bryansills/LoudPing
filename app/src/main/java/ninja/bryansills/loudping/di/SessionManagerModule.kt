@@ -19,11 +19,9 @@ interface SessionManagerModule {
         fun provideSessionManager(
             simpleStorage: SimpleStorage,
             @ApplicationScope coroutineScope: CoroutineScope,
-        ): SessionManager {
-            return RealSessionManager(
-                simpleStorage = simpleStorage,
-                coroutineScope = coroutineScope,
-            )
-        }
+        ): SessionManager = RealSessionManager(
+            simpleStorage = simpleStorage,
+            coroutineScope = coroutineScope,
+        )
     }
 }

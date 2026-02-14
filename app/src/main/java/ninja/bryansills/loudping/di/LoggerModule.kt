@@ -14,8 +14,6 @@ interface LoggerModule {
     companion object {
         @Singleton
         @Provides
-        fun provideLogger(): Logger {
-            return BugsnagLogger()
-        }
+        fun provideLogger(): Logger = BugsnagLogger()
     }
 }

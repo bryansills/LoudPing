@@ -13,11 +13,9 @@ class Sneak(private val salt: ByteArray) {
         return deciphered.decodeToString()
     }
 
-    private fun bitwiseFlip(bytes: ByteArray): ByteArray {
-        return bytes
-            .mapIndexed { index, byte ->
-                byte.xor(salt[index.mod(salt.size)])
-            }
-            .toByteArray()
-    }
+    private fun bitwiseFlip(bytes: ByteArray): ByteArray = bytes
+        .mapIndexed { index, byte ->
+            byte.xor(salt[index.mod(salt.size)])
+        }
+        .toByteArray()
 }

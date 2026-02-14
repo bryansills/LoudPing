@@ -10,10 +10,8 @@ import kotlinx.coroutines.flow.map
 class RealSimpleStorage(
     private val dataStore: DataStore<Preferences>,
 ) : SimpleStorage {
-    override fun <Data> get(key: SimpleEntry<Data>): Flow<Data> {
-        return dataStore.data.map {
-            it[key.key] ?: key.defaultValue
-        }
+    override fun <Data> get(key: SimpleEntry<Data>): Flow<Data> = dataStore.data.map {
+        it[key.key] ?: key.defaultValue
     }
 
     override suspend fun <Data> update(
@@ -48,7 +46,5 @@ class RealSimpleStorage(
 
     override suspend fun edit(
         transform: suspend (mutablePreferences: MutablePreferences) -> Unit,
-    ): Preferences {
-        return dataStore.edit(transform)
-    }
+    ): Preferences = dataStore.edit(transform)
 }

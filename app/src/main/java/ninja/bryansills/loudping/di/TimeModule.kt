@@ -14,8 +14,6 @@ interface TimeModule {
     companion object {
         @Singleton
         @Provides
-        fun provideTimeProvider(): TimeProvider {
-            return RealTimeProvider()
-        }
+        fun provideTimeProvider(): TimeProvider = RealTimeProvider()
     }
 }

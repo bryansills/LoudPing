@@ -42,12 +42,10 @@ object AlbumTypeSerializer : KSerializer<AlbumType> {
         encoder.encodeString(string)
     }
 
-    override fun deserialize(decoder: Decoder): AlbumType {
-        return when (val string = decoder.decodeString()) {
-            AlbumType.albumKey -> AlbumType.Album
-            AlbumType.singleKey -> AlbumType.Single
-            AlbumType.compilationKey -> AlbumType.Compilation
-            else -> AlbumType.Unknown(string)
-        }
+    override fun deserialize(decoder: Decoder): AlbumType = when (val string = decoder.decodeString()) {
+        AlbumType.albumKey -> AlbumType.Album
+        AlbumType.singleKey -> AlbumType.Single
+        AlbumType.compilationKey -> AlbumType.Compilation
+        else -> AlbumType.Unknown(string)
     }
 }

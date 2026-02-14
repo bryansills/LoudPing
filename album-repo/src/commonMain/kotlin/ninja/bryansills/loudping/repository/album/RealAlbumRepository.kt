@@ -69,11 +69,9 @@ class RealAlbumRepository(
     }
 }
 
-private fun NetworkTrackAlbum.toDatabase(): CoreTrackAlbum {
-    return CoreTrackAlbum(
-        spotifyId = this.id,
-        title = this.name,
-        trackCount = this.total_tracks,
-        coverImage = this.coverImageUrl,
-    )
-}
+private fun NetworkTrackAlbum.toDatabase(): CoreTrackAlbum = CoreTrackAlbum(
+    spotifyId = this.id,
+    title = this.name,
+    trackCount = this.total_tracks,
+    coverImage = this.coverImageUrl,
+)

@@ -20,6 +20,7 @@ actual fun LoudPingTheme(
         }
 
         darkTheme -> mediumContrastDarkColorScheme
+
         else -> mediumContrastLightColorScheme
     }
 

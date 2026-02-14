@@ -116,9 +116,7 @@ class RateLimiterTest {
     }
 }
 
-private fun instantsOf(vararg timestamps: String): List<Instant> {
-    return timestamps.map { Instant.parse(it) }
-}
+private fun instantsOf(vararg timestamps: String): List<Instant> = timestamps.map { Instant.parse(it) }
 
 private class ScriptedTimeProvider(val timesToGive: List<Instant>) : TimeProvider {
     private var index = 0
@@ -135,7 +133,9 @@ private class FakeSleeper : Sleeper {
     }
 }
 
-private class SingleThreadTimeBoi(val start: Instant) : TimeProvider, Sleeper {
+private class SingleThreadTimeBoi(val start: Instant) :
+    TimeProvider,
+    Sleeper {
     var current: Instant = start
 
     override val now: Instant

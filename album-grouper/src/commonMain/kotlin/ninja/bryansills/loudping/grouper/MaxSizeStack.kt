@@ -25,9 +25,7 @@ class MaxSizeStack<Element>(
         }
     }
 
-    fun pop(): Element? {
-        return data.removeLastOrNull()
-    }
+    fun pop(): Element? = data.removeLastOrNull()
 
     fun clear() {
         data.clear()

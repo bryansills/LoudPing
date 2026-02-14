@@ -11,17 +11,11 @@ import ninja.bryansills.loudping.network.model.track.Track
 class RealNetworkService(
     private val spotifyService: SpotifyService,
 ) : NetworkService {
-    override suspend fun getMe(): ApiResult<PrivateUserResponse, Unit> {
-        return spotifyService.getMe()
-    }
+    override suspend fun getMe(): ApiResult<PrivateUserResponse, Unit> = spotifyService.getMe()
 
-    override suspend fun getRecentlyPlayed(): ApiResult<RecentlyPlayedResponse, Unit> {
-        return spotifyService.getRecentlyPlayed()
-    }
+    override suspend fun getRecentlyPlayed(): ApiResult<RecentlyPlayedResponse, Unit> = spotifyService.getRecentlyPlayed()
 
-    override suspend fun getSavedAlbums(): ApiResult<SavedAlbumsResponse, Unit> {
-        return spotifyService.getSavedAlbums()
-    }
+    override suspend fun getSavedAlbums(): ApiResult<SavedAlbumsResponse, Unit> = spotifyService.getSavedAlbums()
 
     override suspend fun getSeveralTracks(ids: List<String>): ApiResult<List<Track>, Unit> {
         require(ids.size <= 50) { "You can only query for 50 tracks at a time." }

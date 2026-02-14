@@ -40,6 +40,7 @@ fun HomeScreen(
 
         when (uiState) {
             HomeUiState.Loading -> HomeLoadingScreen(modifier = screenModifier)
+
             HomeUiState.LoggedIn -> {
                 HomeLoggedInScreen(
                     onNavigateToPlayedTracks = onNavigateToPlayedTracks,
@@ -47,6 +48,7 @@ fun HomeScreen(
                     modifier = screenModifier,
                 )
             }
+
             HomeUiState.LoggedOut -> HomeLoggedOutScreen(
                 onStartLogin = onStartLogin,
                 toRefreshTokenEntry = toRefreshTokenEntry,

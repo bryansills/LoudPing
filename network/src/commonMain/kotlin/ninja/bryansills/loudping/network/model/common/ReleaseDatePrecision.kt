@@ -42,12 +42,10 @@ object ReleaseDatePrecisionSerializer : KSerializer<ReleaseDatePrecision> {
         encoder.encodeString(string)
     }
 
-    override fun deserialize(decoder: Decoder): ReleaseDatePrecision {
-        return when (val string = decoder.decodeString()) {
-            ReleaseDatePrecision.dayKey -> ReleaseDatePrecision.Day
-            ReleaseDatePrecision.monthKey -> ReleaseDatePrecision.Month
-            ReleaseDatePrecision.yearKey -> ReleaseDatePrecision.Year
-            else -> ReleaseDatePrecision.Unknown(string)
-        }
+    override fun deserialize(decoder: Decoder): ReleaseDatePrecision = when (val string = decoder.decodeString()) {
+        ReleaseDatePrecision.dayKey -> ReleaseDatePrecision.Day
+        ReleaseDatePrecision.monthKey -> ReleaseDatePrecision.Month
+        ReleaseDatePrecision.yearKey -> ReleaseDatePrecision.Year
+        else -> ReleaseDatePrecision.Unknown(string)
     }
 }

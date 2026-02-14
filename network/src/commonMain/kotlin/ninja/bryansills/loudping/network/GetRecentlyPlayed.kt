@@ -50,6 +50,7 @@ class RealGetRecentlyPlayed(
 
             val trimmedResponse = when (trimmingStrategy) {
                 RecentTrimmingStrategy.None -> successfulResponse
+
                 RecentTrimmingStrategy.StopAt -> {
                     successfulResponse.copy(items = successfulResponse.items.trim(stopAt))
                 }
@@ -72,14 +73,10 @@ private fun keepGoing(
     stopAt: Instant,
     nextUrl: String?,
     isFirstQuery: Boolean,
-): Boolean {
-    return if (isFirstQuery) {
-        inProgress != null && inProgress > stopAt
-    } else {
-        nextUrl != null && inProgress != null && inProgress > stopAt
-    }
+): Boolean = if (isFirstQuery) {
+    inProgress != null && inProgress > stopAt
+} else {
+    nextUrl != null && inProgress != null && inProgress > stopAt
 }
 
-private fun List<PlayHistoryItem>.trim(olderThan: Instant): List<PlayHistoryItem> {
-    return this.filter { it.played_at > olderThan }
-}
+private fun List<PlayHistoryItem>.trim(olderThan: Instant): List<PlayHistoryItem> = this.filter { it.played_at > olderThan }

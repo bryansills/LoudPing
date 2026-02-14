@@ -10,9 +10,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 internal val Project.libs: LibrariesForLibs
     get() = the<LibrariesForLibs>()
 
-internal fun Provider<String>.toInt(): Int {
-    return this.get().toInt()
-}
+internal fun Provider<String>.toInt(): Int = this.get().toInt()
 
 internal val LibrariesForLibs.jvmTarget: JvmTarget
     get() = JvmTarget.fromTarget(this.versions.jvmTarget.get())

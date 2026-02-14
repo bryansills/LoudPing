@@ -35,15 +35,11 @@ interface NetworkModule {
         @Provides
         fun provideAuthorizationHeaderInterceptor(
             networkSneak: NetworkSneak,
-        ): AuthorizationHeaderInterceptor {
-            return AuthorizationHeaderInterceptor(networkSneak)
-        }
+        ): AuthorizationHeaderInterceptor = AuthorizationHeaderInterceptor(networkSneak)
 
         @Singleton
         @Provides
-        fun provideJson(): Json {
-            return Json { ignoreUnknownKeys = true }
-        }
+        fun provideJson(): Json = Json { ignoreUnknownKeys = true }
 
         @Singleton
         @Provides
@@ -77,22 +73,18 @@ interface NetworkModule {
             spotifyAuthService: SpotifyAuthService,
             timeProvider: TimeProvider,
             networkSneak: NetworkSneak,
-        ): AuthManager {
-            return RealAuthManager(
-                simpleStorage = simpleStorage,
-                spotifyAuthService = spotifyAuthService,
-                timeProvider = timeProvider,
-                networkSneak = networkSneak,
-            )
-        }
+        ): AuthManager = RealAuthManager(
+            simpleStorage = simpleStorage,
+            spotifyAuthService = spotifyAuthService,
+            timeProvider = timeProvider,
+            networkSneak = networkSneak,
+        )
 
         @Singleton
         @Provides
         fun provideAccessTokenInterceptor(
             authManager: AuthManager,
-        ): AccessTokenInterceptor {
-            return AccessTokenInterceptor(authManager)
-        }
+        ): AccessTokenInterceptor = AccessTokenInterceptor(authManager)
 
         @Singleton
         @Provides
@@ -123,15 +115,11 @@ interface NetworkModule {
         @Provides
         fun provideNetworkService(
             spotifyService: SpotifyService,
-        ): NetworkService {
-            return RealNetworkService(spotifyService)
-        }
+        ): NetworkService = RealNetworkService(spotifyService)
 
         @Provides
         fun provideGetRecentlyPlayed(
             spotifyService: SpotifyService,
-        ): GetRecentlyPlayed {
-            return RealGetRecentlyPlayed(spotifyService = spotifyService)
-        }
+        ): GetRecentlyPlayed = RealGetRecentlyPlayed(spotifyService = spotifyService)
     }
 }

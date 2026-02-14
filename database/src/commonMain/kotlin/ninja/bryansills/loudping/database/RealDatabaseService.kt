@@ -106,19 +106,17 @@ class RealDatabaseService(
             )
         }
 
-    override suspend fun getAlbumFromTrackId(trackId: String): TrackAlbum? {
-        return try {
-            val result = database.trackAlbumQueries.get_album_from_track_id(trackId).awaitAsOne()
-            TrackAlbum(
-                spotifyId = result.spotify_id,
-                title = result.title,
-                trackCount = result.track_count.toInt(),
-                coverImage = result.cover_image,
-            )
-        } catch (ex: Exception) {
-            println(ex) // TODO: better logging
-            null
-        }
+    override suspend fun getAlbumFromTrackId(trackId: String): TrackAlbum? = try {
+        val result = database.trackAlbumQueries.get_album_from_track_id(trackId).awaitAsOne()
+        TrackAlbum(
+            spotifyId = result.spotify_id,
+            title = result.title,
+            trackCount = result.track_count.toInt(),
+            coverImage = result.cover_image,
+        )
+    } catch (ex: Exception) {
+        println(ex) // TODO: better logging
+        null
     }
 
     override suspend fun insertAlbum(album: TrackAlbum, associatedTrackIds: List<String>) {
@@ -143,39 +141,37 @@ class RealDatabaseService(
         }
     }
 
-    override suspend fun getTrackForSpotifyId(trackId: String): Track? {
-        return try {
-            val tracks = database.trackQueries.get_track_from_spotify_id(spotifyTrackId = trackId).awaitAsList()
-            tracks
-                .groupBy { it.spotify_track_id }
-                .values
-                .map { rowsForTrack ->
-                    val firstRow = rowsForTrack.first()
-                    Track(
-                        spotifyId = firstRow.spotify_track_id,
-                        title = firstRow.title,
-                        trackNumber = firstRow.track_number.toInt(),
-                        discNumber = firstRow.disc_number.toInt(),
-                        duration = firstRow.duration_ms.milliseconds,
-                        album = TrackAlbum(
-                            spotifyId = firstRow.spotify_album_id,
-                            title = firstRow.album_title,
-                            trackCount = firstRow.album_track_count.toInt(),
-                            coverImage = firstRow.album_cover_image,
-                        ),
-                        artists = rowsForTrack.map { trackArtist ->
-                            Artist(
-                                spotifyId = trackArtist.spotify_artist_id,
-                                name = trackArtist.artist_name,
-                            )
-                        },
-                    )
-                }
-                .firstOrNull()
-        } catch (ex: Exception) {
-            println(ex) // TODO: better logging
-            null
-        }
+    override suspend fun getTrackForSpotifyId(trackId: String): Track? = try {
+        val tracks = database.trackQueries.get_track_from_spotify_id(spotifyTrackId = trackId).awaitAsList()
+        tracks
+            .groupBy { it.spotify_track_id }
+            .values
+            .map { rowsForTrack ->
+                val firstRow = rowsForTrack.first()
+                Track(
+                    spotifyId = firstRow.spotify_track_id,
+                    title = firstRow.title,
+                    trackNumber = firstRow.track_number.toInt(),
+                    discNumber = firstRow.disc_number.toInt(),
+                    duration = firstRow.duration_ms.milliseconds,
+                    album = TrackAlbum(
+                        spotifyId = firstRow.spotify_album_id,
+                        title = firstRow.album_title,
+                        trackCount = firstRow.album_track_count.toInt(),
+                        coverImage = firstRow.album_cover_image,
+                    ),
+                    artists = rowsForTrack.map { trackArtist ->
+                        Artist(
+                            spotifyId = trackArtist.spotify_artist_id,
+                            name = trackArtist.artist_name,
+                        )
+                    },
+                )
+            }
+            .firstOrNull()
+    } catch (ex: Exception) {
+        println(ex) // TODO: better logging
+        null
     }
 
     override suspend fun getTracksForSpotifyIds(trackIds: List<String>): List<Track> {
@@ -211,24 +207,22 @@ class RealDatabaseService(
             }
     }
 
-    override suspend fun getAlbumForSpotifyId(albumId: String): FullAlbum? {
-        return try {
-            val databaseResults = database.albumQueries.get_album_from_spotify_id(spotifyAlbumId = albumId).awaitAsList()
-            val firstRow = databaseResults.first()
-            FullAlbum(
-                spotifyId = firstRow.spotify_album_id,
-                title = firstRow.title,
-                trackCount = firstRow.track_count.toInt(),
-                coverImage = firstRow.cover_image,
-                type = firstRow.album_type ?: AlbumType.Unknown,
-                artists = TODO(),
-                tracks = TODO(),
+    override suspend fun getAlbumForSpotifyId(albumId: String): FullAlbum? = try {
+        val databaseResults = database.albumQueries.get_album_from_spotify_id(spotifyAlbumId = albumId).awaitAsList()
+        val firstRow = databaseResults.first()
+        FullAlbum(
+            spotifyId = firstRow.spotify_album_id,
+            title = firstRow.title,
+            trackCount = firstRow.track_count.toInt(),
+            coverImage = firstRow.cover_image,
+            type = firstRow.album_type ?: AlbumType.Unknown,
+            artists = TODO(),
+            tracks = TODO(),
 //                totalDuration = databaseResults.sumOf { it.track_duration }.milliseconds,
-            )
-        } catch (ex: Exception) {
-            println(ex.message)
-            null
-        }
+        )
+    } catch (ex: Exception) {
+        println(ex.message)
+        null
     }
 
     override suspend fun getAlbumsForSpotifyIds(albumIds: List<String>): List<FullAlbum> {

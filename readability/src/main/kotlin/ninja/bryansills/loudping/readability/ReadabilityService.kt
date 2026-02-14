@@ -10,7 +10,7 @@ interface ReadabilityService {
 
 class DefaultReadabilityService(
     private val webClient: WebClient,
-    private val json: Json
+    private val json: Json,
 ) : ReadabilityService {
     override fun getArticle(url: String): ReadabilityResult? {
         val page = webClient.getPage<HtmlPage>(url)

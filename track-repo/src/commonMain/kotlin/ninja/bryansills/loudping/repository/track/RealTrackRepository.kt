@@ -32,60 +32,52 @@ class RealTrackRepository(
     override suspend fun getTracksBySpotifyIds(
         trackIds: List<String>,
         shouldQueryNetworkForMissing: Boolean,
-    ): MultiTrackResult {
-        return try {
-            val cachedList = database.getTracksForSpotifyIds(trackIds)
-            val cachedTracks = trackIds.associateWith { id -> cachedList.find { it.spotifyId == id } }
-            val missingAnyTracks = cachedTracks.any { (_, track) -> track == null }
+    ): MultiTrackResult = try {
+        val cachedList = database.getTracksForSpotifyIds(trackIds)
+        val cachedTracks = trackIds.associateWith { id -> cachedList.find { it.spotifyId == id } }
+        val missingAnyTracks = cachedTracks.any { (_, track) -> track == null }
 
-            if (!shouldQueryNetworkForMissing || !missingAnyTracks) {
-                cachedTracks.toMultiTrackResult()
-            } else {
-                val missingCachedIds = cachedTracks.mapNotNull { (id, track) -> id.takeIf { track == null } }
-                val networkTracks = network.getSeveralTracks(missingCachedIds).successOrNothing { throw RuntimeException() }
-                val freshTracks = networkTracks.associate { networkTrack ->
-                    val databaseTrack = networkTrack.toDatabase()
-                    networkTrack.id to databaseTrack
-                }
-                freshTracks.values.forEach { databaseTrack -> database.insertTrack(databaseTrack) }
-                val finalMapping = trackIds.associateWith { ogTrackId ->
-                    freshTracks[ogTrackId] ?: cachedTracks[ogTrackId]
-                }
-                finalMapping.toMultiTrackResult()
+        if (!shouldQueryNetworkForMissing || !missingAnyTracks) {
+            cachedTracks.toMultiTrackResult()
+        } else {
+            val missingCachedIds = cachedTracks.mapNotNull { (id, track) -> id.takeIf { track == null } }
+            val networkTracks = network.getSeveralTracks(missingCachedIds).successOrNothing { throw RuntimeException() }
+            val freshTracks = networkTracks.associate { networkTrack ->
+                val databaseTrack = networkTrack.toDatabase()
+                networkTrack.id to databaseTrack
             }
-        } catch (ex: Exception) {
-            MultiTrackResult.Failure(ex)
+            freshTracks.values.forEach { databaseTrack -> database.insertTrack(databaseTrack) }
+            val finalMapping = trackIds.associateWith { ogTrackId ->
+                freshTracks[ogTrackId] ?: cachedTracks[ogTrackId]
+            }
+            finalMapping.toMultiTrackResult()
         }
+    } catch (ex: Exception) {
+        MultiTrackResult.Failure(ex)
     }
 }
 
-private fun NetworkTrack.toDatabase(): Track {
-    return Track(
-        spotifyId = this.id,
-        title = this.name,
-        trackNumber = this.track_number,
-        discNumber = this.disc_number,
-        duration = this.duration_ms.milliseconds,
-        album = this.album.toDatabase(),
-        artists = this.artists.map { it.toDatabase() },
-    )
-}
+private fun NetworkTrack.toDatabase(): Track = Track(
+    spotifyId = this.id,
+    title = this.name,
+    trackNumber = this.track_number,
+    discNumber = this.disc_number,
+    duration = this.duration_ms.milliseconds,
+    album = this.album.toDatabase(),
+    artists = this.artists.map { it.toDatabase() },
+)
 
-private fun NetworkTrackAlbum.toDatabase(): ninja.bryansills.loudping.core.model.TrackAlbum {
-    return ninja.bryansills.loudping.core.model.TrackAlbum(
-        spotifyId = this.id,
-        title = this.name,
-        trackCount = this.total_tracks,
-        coverImage = this.coverImageUrl,
-    )
-}
+private fun NetworkTrackAlbum.toDatabase(): ninja.bryansills.loudping.core.model.TrackAlbum = ninja.bryansills.loudping.core.model.TrackAlbum(
+    spotifyId = this.id,
+    title = this.name,
+    trackCount = this.total_tracks,
+    coverImage = this.coverImageUrl,
+)
 
-private fun SimplifiedArtist.toDatabase(): Artist {
-    return Artist(
-        spotifyId = this.id,
-        name = this.name,
-    )
-}
+private fun SimplifiedArtist.toDatabase(): Artist = Artist(
+    spotifyId = this.id,
+    name = this.name,
+)
 
 private fun Map<String, Track?>.toMultiTrackResult(): MultiTrackResult {
     val foundTracks = this.mapNotNull { (_, track) -> track }

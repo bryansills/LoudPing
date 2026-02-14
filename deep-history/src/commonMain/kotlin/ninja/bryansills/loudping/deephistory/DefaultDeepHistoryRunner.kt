@@ -79,45 +79,45 @@ class DefaultDeepHistoryRunner(
     }
 }
 
-private fun List<DeepHistoryRecord>.groupRecords(repoResult: MultiTrackResult): NetworkGroupedRecords {
-    return when (repoResult) {
-        is MultiTrackResult.Success -> {
-            val found = this.map { indRecord ->
-                val matchingTrack = repoResult.tracks.find { it.spotifyId == indRecord.base62Uri }!!
-                indRecord to matchingTrack
-            }
-
-            NetworkGroupedRecords(
-                found = found,
-                stillMissing = listOf(),
-            )
+private fun List<DeepHistoryRecord>.groupRecords(repoResult: MultiTrackResult): NetworkGroupedRecords = when (repoResult) {
+    is MultiTrackResult.Success -> {
+        val found = this.map { indRecord ->
+            val matchingTrack = repoResult.tracks.find { it.spotifyId == indRecord.base62Uri }!!
+            indRecord to matchingTrack
         }
-        is MultiTrackResult.Mixed -> {
-            val found = this.mapNotNull { indRecord ->
-                val matchingTrack = repoResult.tracks.find { it.spotifyId == indRecord.base62Uri }
-                if (matchingTrack != null) {
-                    indRecord to matchingTrack
-                } else {
-                    null
-                }
-            }
-            val stillMissing = this.mapNotNull { indRecord ->
-                val matchingTrack = repoResult.tracks.find { it.spotifyId == indRecord.base62Uri }
-                if (matchingTrack != null) {
-                    null
-                } else {
-                    check(repoResult.missingIds.contains(indRecord.base62Uri))
-                    indRecord
-                }
-            }
 
-            NetworkGroupedRecords(
-                found = found,
-                stillMissing = stillMissing,
-            )
-        }
-        is MultiTrackResult.Failure -> throw repoResult.exception
+        NetworkGroupedRecords(
+            found = found,
+            stillMissing = listOf(),
+        )
     }
+
+    is MultiTrackResult.Mixed -> {
+        val found = this.mapNotNull { indRecord ->
+            val matchingTrack = repoResult.tracks.find { it.spotifyId == indRecord.base62Uri }
+            if (matchingTrack != null) {
+                indRecord to matchingTrack
+            } else {
+                null
+            }
+        }
+        val stillMissing = this.mapNotNull { indRecord ->
+            val matchingTrack = repoResult.tracks.find { it.spotifyId == indRecord.base62Uri }
+            if (matchingTrack != null) {
+                null
+            } else {
+                check(repoResult.missingIds.contains(indRecord.base62Uri))
+                indRecord
+            }
+        }
+
+        NetworkGroupedRecords(
+            found = found,
+            stillMissing = stillMissing,
+        )
+    }
+
+    is MultiTrackResult.Failure -> throw repoResult.exception
 }
 
 data class NetworkGroupedRecords(

@@ -20,16 +20,12 @@ interface SimpleStorageModule {
     companion object {
         @Provides
         @Singleton
-        fun providesDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
-            return PreferenceDataStoreFactory.create {
-                context.preferencesDataStoreFile("loud-ping-storage")
-            }
+        fun providesDataStore(@ApplicationContext context: Context): DataStore<Preferences> = PreferenceDataStoreFactory.create {
+            context.preferencesDataStoreFile("loud-ping-storage")
         }
 
         @Provides
         @Singleton
-        fun providesSimpleStorage(dataStore: DataStore<Preferences>): SimpleStorage {
-            return RealSimpleStorage(dataStore)
-        }
+        fun providesSimpleStorage(dataStore: DataStore<Preferences>): SimpleStorage = RealSimpleStorage(dataStore)
     }
 }

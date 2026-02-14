@@ -17,8 +17,6 @@ interface ForemanModule {
 
     companion object {
         @Provides
-        fun provideWorkManager(@ApplicationContext context: Context): WorkManager {
-            return WorkManager.getInstance(context)
-        }
+        fun provideWorkManager(@ApplicationContext context: Context): WorkManager = WorkManager.getInstance(context)
     }
 }

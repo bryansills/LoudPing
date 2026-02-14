@@ -17,7 +17,8 @@ class TransformableKeyedQueryPagingSource<Key : Any, DatabaseRowType : Any, RowT
     private val pageBoundariesProvider: (anchor: Key?, limit: Long) -> Query<Key>,
     private val transacter: TransacterBase,
     private val context: CoroutineContext,
-) : PagingSource<Key, RowType>(), Query.Listener {
+) : PagingSource<Key, RowType>(),
+    Query.Listener {
 
     // Start the code from `QueryPagingSource`
     protected var currentQuery: Query<DatabaseRowType>? by Delegates.observable(null) { _, old, new ->
@@ -49,42 +50,40 @@ class TransformableKeyedQueryPagingSource<Key : Any, DatabaseRowType : Any, RowT
         return boundaries.getOrNull(keyIndex)
     }
 
-    override suspend fun load(params: LoadParams<Key>): LoadResult<Key, RowType> {
-        return withContext(context) {
-            try {
-                val getPagingSourceLoadResult: TransactionCallbacks.() -> LoadResult<Key, RowType> = {
-                    val boundaries = pageBoundaries
-                        ?: pageBoundariesProvider(params.key, params.loadSize.toLong())
-                            .executeAsList()
-                            .also { pageBoundaries = it }
-
-                    val key = params.key ?: boundaries.first()
-
-                    require(key in boundaries)
-
-                    val keyIndex = boundaries.indexOf(key)
-                    val previousKey = boundaries.getOrNull(keyIndex - 1)
-                    val nextKey = boundaries.getOrNull(keyIndex + 1)
-                    val databaseResults = queryProvider(key, nextKey)
-                        .also { currentQuery = it }
+    override suspend fun load(params: LoadParams<Key>): LoadResult<Key, RowType> = withContext(context) {
+        try {
+            val getPagingSourceLoadResult: TransactionCallbacks.() -> LoadResult<Key, RowType> = {
+                val boundaries = pageBoundaries
+                    ?: pageBoundariesProvider(params.key, params.loadSize.toLong())
                         .executeAsList()
+                        .also { pageBoundaries = it }
 
-                    val results = transform(databaseResults)
+                val key = params.key ?: boundaries.first()
 
-                    LoadResult.Page(
-                        data = results,
-                        prevKey = previousKey,
-                        nextKey = nextKey,
-                    ) as LoadResult<Key, RowType>
-                }
-                when (transacter) {
-                    is Transacter -> transacter.transactionWithResult(bodyWithReturn = getPagingSourceLoadResult)
-                    is SuspendingTransacter -> transacter.transactionWithResult(bodyWithReturn = getPagingSourceLoadResult)
-                }
-            } catch (e: Exception) {
-                if (e is IllegalArgumentException) throw e
-                LoadResult.Error<Key, RowType>(e) as LoadResult<Key, RowType>
+                require(key in boundaries)
+
+                val keyIndex = boundaries.indexOf(key)
+                val previousKey = boundaries.getOrNull(keyIndex - 1)
+                val nextKey = boundaries.getOrNull(keyIndex + 1)
+                val databaseResults = queryProvider(key, nextKey)
+                    .also { currentQuery = it }
+                    .executeAsList()
+
+                val results = transform(databaseResults)
+
+                LoadResult.Page(
+                    data = results,
+                    prevKey = previousKey,
+                    nextKey = nextKey,
+                ) as LoadResult<Key, RowType>
             }
+            when (transacter) {
+                is Transacter -> transacter.transactionWithResult(bodyWithReturn = getPagingSourceLoadResult)
+                is SuspendingTransacter -> transacter.transactionWithResult(bodyWithReturn = getPagingSourceLoadResult)
+            }
+        } catch (e: Exception) {
+            if (e is IllegalArgumentException) throw e
+            LoadResult.Error<Key, RowType>(e) as LoadResult<Key, RowType>
         }
     }
     // End the code from `KeyedQueryPagingSource`

@@ -14,5 +14,5 @@ data class ReadabilityResult(
     val dir: String?,
     val siteName: String?,
     val lang: String?,
-    val publishedTime: Instant?
+    val publishedTime: Instant?,
 )

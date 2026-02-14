@@ -141,8 +141,6 @@ private fun SettingsItem(
     }
 }
 
-private fun Instant.format(timeZone: TimeZone = TimeZone.currentSystemDefault()): String {
-    return this
-        .toLocalDateTime(timeZone)
-        .format(LocalDateTime.Formats.ISO)
-}
+private fun Instant.format(timeZone: TimeZone = TimeZone.currentSystemDefault()): String = this
+    .toLocalDateTime(timeZone)
+    .format(LocalDateTime.Formats.ISO)

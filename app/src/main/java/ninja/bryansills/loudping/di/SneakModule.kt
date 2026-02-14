@@ -18,15 +18,13 @@ object SneakModule {
 
     @OptIn(ExperimentalStdlibApi::class)
     @Provides
-    fun provideNetworkSneak(sneak: Sneak): NetworkSneak {
-        return RealNetworkSneak(
-            sneak = sneak,
-            obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
-            obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
-            obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
-            obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
-            obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
-            obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
-        )
-    }
+    fun provideNetworkSneak(sneak: Sneak): NetworkSneak = RealNetworkSneak(
+        sneak = sneak,
+        obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
+        obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
+        obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
+        obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
+        obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
+        obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
+    )
 }

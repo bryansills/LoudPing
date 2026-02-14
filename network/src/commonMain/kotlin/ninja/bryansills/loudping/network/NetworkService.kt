@@ -18,6 +18,4 @@ interface NetworkService {
     suspend fun getSeveralAlbums(ids: List<String>): ApiResult<List<FullAlbum>, Unit>
 }
 
-suspend fun NetworkService.getTrack(id: String): Track {
-    return this.getSeveralTracks(listOf(id)).successOrNothing { throw RuntimeException() }.first()
-}
+suspend fun NetworkService.getTrack(id: String): Track = this.getSeveralTracks(listOf(id)).successOrNothing { throw RuntimeException() }.first()

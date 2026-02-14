@@ -60,15 +60,13 @@ data class SettingsUiState(
     val jobDetails: List<JobDetails>,
 )
 
-private fun Map.Entry<ForemanJobs, WorkInfo>.toJobDetails(): JobDetails {
-    return JobDetails(
-        loudPingId = this.key.workManagerId,
-        internalWorkManagerId = this.value.id.toString(),
-        status = this.value.state,
-        nextAttemptAt = if (this.value.nextScheduleTimeMillis == Long.MAX_VALUE) {
-            null
-        } else {
-            Instant.fromEpochMilliseconds(this.value.nextScheduleTimeMillis)
-        },
-    )
-}
+private fun Map.Entry<ForemanJobs, WorkInfo>.toJobDetails(): JobDetails = JobDetails(
+    loudPingId = this.key.workManagerId,
+    internalWorkManagerId = this.value.id.toString(),
+    status = this.value.state,
+    nextAttemptAt = if (this.value.nextScheduleTimeMillis == Long.MAX_VALUE) {
+        null
+    } else {
+        Instant.fromEpochMilliseconds(this.value.nextScheduleTimeMillis)
+    },
+)

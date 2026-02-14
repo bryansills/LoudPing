@@ -117,17 +117,15 @@ private fun PlayedTrack(
 @Composable
 private fun Instant.relativeFormatted(
     context: Context = LocalContext.current,
-): String {
-    return DateUtils
-        .getRelativeDateTimeString(
-            context,
-            this.toEpochMilliseconds(),
-            DateUtils.MINUTE_IN_MILLIS,
-            DateUtils.WEEK_IN_MILLIS,
-            0,
-        )
-        .toString()
-}
+): String = DateUtils
+    .getRelativeDateTimeString(
+        context,
+        this.toEpochMilliseconds(),
+        DateUtils.MINUTE_IN_MILLIS,
+        DateUtils.WEEK_IN_MILLIS,
+        0,
+    )
+    .toString()
 
 private val TrackPlayRecord.formattedArtist: String
     get() {

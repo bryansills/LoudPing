@@ -14,23 +14,21 @@ fun testRecord(
     trackTitle: String = "TRACK TITLE $index",
     albumId: String = "ALBUM-ID-$index",
     timestamp: Instant = Clock.System.now(),
-): TrackPlayRecord {
-    return TrackPlayRecord(
-        track = Track(
-            spotifyId = trackId,
-            title = trackTitle,
-            trackNumber = -1,
-            discNumber = -1,
-            duration = Duration.ZERO,
-            album = TrackAlbum(
-                spotifyId = albumId,
-                title = "",
-                trackCount = -1,
-                coverImage = null,
-            ),
-            artists = listOf(),
+): TrackPlayRecord = TrackPlayRecord(
+    track = Track(
+        spotifyId = trackId,
+        title = trackTitle,
+        trackNumber = -1,
+        discNumber = -1,
+        duration = Duration.ZERO,
+        album = TrackAlbum(
+            spotifyId = albumId,
+            title = "",
+            trackCount = -1,
+            coverImage = null,
         ),
-        timestamp = timestamp,
-        context = TrackPlayContext.Unknown,
-    )
-}
+        artists = listOf(),
+    ),
+    timestamp = timestamp,
+    context = TrackPlayContext.Unknown,
+)

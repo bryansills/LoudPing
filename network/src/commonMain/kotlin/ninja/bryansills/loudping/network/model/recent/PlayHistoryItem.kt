@@ -58,12 +58,10 @@ object ContextTypeSerializer : KSerializer<ContextType> {
         encoder.encodeString(string)
     }
 
-    override fun deserialize(decoder: Decoder): ContextType {
-        return when (val string = decoder.decodeString()) {
-            ContextType.albumKey -> ContextType.Album
-            ContextType.artistKey -> ContextType.Artist
-            ContextType.playlistKey -> ContextType.Playlist
-            else -> ContextType.Unknown(string)
-        }
+    override fun deserialize(decoder: Decoder): ContextType = when (val string = decoder.decodeString()) {
+        ContextType.albumKey -> ContextType.Album
+        ContextType.artistKey -> ContextType.Artist
+        ContextType.playlistKey -> ContextType.Playlist
+        else -> ContextType.Unknown(string)
     }
 }

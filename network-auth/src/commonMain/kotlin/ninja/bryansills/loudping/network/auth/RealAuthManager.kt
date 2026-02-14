@@ -24,9 +24,7 @@ class RealAuthManager(
 ) : AuthManager {
     private val authorizeUrlSalt = networkSneak.redirectUrl.toRandomString()
 
-    private fun getFullState(timestamp: Instant): String {
-        return "$timestamp$authorizeUrlSalt".toRandomString()
-    }
+    private fun getFullState(timestamp: Instant): String = "$timestamp$authorizeUrlSalt".toRandomString()
 
     override fun getAuthorizeUrl(startTime: Instant): String {
         val result = networkSneak
@@ -62,14 +60,10 @@ class RealAuthManager(
         return setRefreshToken(successResponse.refresh_token)
     }
 
-    override suspend fun setRefreshToken(refreshToken: String): String {
-        return getValidAccessTokenInternal { refreshToken }
-    }
+    override suspend fun setRefreshToken(refreshToken: String): String = getValidAccessTokenInternal { refreshToken }
 
-    override suspend fun getValidAccessToken(): String {
-        return getValidAccessTokenInternal {
-            simpleStorage.first(Stored.RefreshToken)
-        }
+    override suspend fun getValidAccessToken(): String = getValidAccessTokenInternal {
+        simpleStorage.first(Stored.RefreshToken)
     }
 
     private suspend fun getValidAccessTokenInternal(
@@ -105,9 +99,11 @@ class RealAuthManager(
                             it.remove(Stored.AccessTokenExpiresAt.key)
                         }
                     }
+
                     429 -> {
                         resetAuthenticationState()
                     }
+
                     else -> {}
                 }
             }
@@ -141,9 +137,7 @@ class RealAuthManager(
     }
 }
 
-private inline fun String.httpUrlBuilder(block: HttpUrl.Builder.() -> Unit): HttpUrl {
-    return this.toHttpUrl().newBuilder().apply { block() }.build()
-}
+private inline fun String.httpUrlBuilder(block: HttpUrl.Builder.() -> Unit): HttpUrl = this.toHttpUrl().newBuilder().apply { block() }.build()
 
 private fun String.toRandomString(length: Int = 16): String {
     val alphabet: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')

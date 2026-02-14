@@ -17,6 +17,4 @@ interface SimpleStorage {
     ): Preferences
 }
 
-suspend fun <Data> SimpleStorage.first(key: SimpleEntry<Data>): Data {
-    return this[key].first()
-}
+suspend fun <Data> SimpleStorage.first(key: SimpleEntry<Data>): Data = this[key].first()

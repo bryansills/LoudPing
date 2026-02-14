@@ -66,51 +66,43 @@ class RealHistoryRecorder(
     }
 }
 
-private fun List<RecentlyPlayedResponse>.toRecords(): List<PlayHistoryItem> {
-    return this
-        .flatMap { networkRecord -> networkRecord.items }
-        .sortedBy { it.played_at }
-}
+private fun List<RecentlyPlayedResponse>.toRecords(): List<PlayHistoryItem> = this
+    .flatMap { networkRecord -> networkRecord.items }
+    .sortedBy { it.played_at }
 
-private fun List<PlayHistoryItem>.toDatabase(stopAt: Instant?): List<TrackPlayRecord> {
-    return this
-        .filter { it.played_at > (stopAt ?: Instant.DISTANT_PAST) }
-        .map { networkTrack ->
-            TrackPlayRecord(
-                track = Track(
-                    spotifyId = networkTrack.track.id,
-                    title = networkTrack.track.name,
-                    trackNumber = networkTrack.track.track_number,
-                    discNumber = networkTrack.track.disc_number,
-                    duration = networkTrack.track.duration_ms.milliseconds,
-                    album = TrackAlbum(
-                        spotifyId = networkTrack.track.album.id,
-                        title = networkTrack.track.album.name,
-                        trackCount = networkTrack.track.album.total_tracks,
-                        coverImage = networkTrack.track.album.coverImageUrl,
-                    ),
-                    artists = networkTrack.track.artists.toDatabase(),
+private fun List<PlayHistoryItem>.toDatabase(stopAt: Instant?): List<TrackPlayRecord> = this
+    .filter { it.played_at > (stopAt ?: Instant.DISTANT_PAST) }
+    .map { networkTrack ->
+        TrackPlayRecord(
+            track = Track(
+                spotifyId = networkTrack.track.id,
+                title = networkTrack.track.name,
+                trackNumber = networkTrack.track.track_number,
+                discNumber = networkTrack.track.disc_number,
+                duration = networkTrack.track.duration_ms.milliseconds,
+                album = TrackAlbum(
+                    spotifyId = networkTrack.track.album.id,
+                    title = networkTrack.track.album.name,
+                    trackCount = networkTrack.track.album.total_tracks,
+                    coverImage = networkTrack.track.album.coverImageUrl,
                 ),
-                timestamp = networkTrack.played_at,
-                context = networkTrack.context.type.toDatabase(),
-            )
-        }
-}
-
-private fun List<SimplifiedArtist>.toDatabase(): List<Artist> {
-    return this.map { networkArtist ->
-        Artist(
-            spotifyId = networkArtist.id,
-            name = networkArtist.name,
+                artists = networkTrack.track.artists.toDatabase(),
+            ),
+            timestamp = networkTrack.played_at,
+            context = networkTrack.context.type.toDatabase(),
         )
     }
+
+private fun List<SimplifiedArtist>.toDatabase(): List<Artist> = this.map { networkArtist ->
+    Artist(
+        spotifyId = networkArtist.id,
+        name = networkArtist.name,
+    )
 }
 
-private fun ContextType.toDatabase(): TrackPlayContext {
-    return when (this) {
-        ContextType.Album -> TrackPlayContext.Album
-        ContextType.Artist -> TrackPlayContext.Artist
-        ContextType.Playlist -> TrackPlayContext.Playlist
-        is ContextType.Unknown -> TrackPlayContext.Unknown
-    }
+private fun ContextType.toDatabase(): TrackPlayContext = when (this) {
+    ContextType.Album -> TrackPlayContext.Album
+    ContextType.Artist -> TrackPlayContext.Artist
+    ContextType.Playlist -> TrackPlayContext.Playlist
+    is ContextType.Unknown -> TrackPlayContext.Unknown
 }

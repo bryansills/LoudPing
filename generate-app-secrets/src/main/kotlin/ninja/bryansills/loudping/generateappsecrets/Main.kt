@@ -31,6 +31,4 @@ fun main() {
     }
 }
 
-fun Sneak.toObfuscatedString(raw: String): String {
-    return this.obfuscate(raw).toHexString()
-}
+fun Sneak.toObfuscatedString(raw: String): String = this.obfuscate(raw).toHexString()

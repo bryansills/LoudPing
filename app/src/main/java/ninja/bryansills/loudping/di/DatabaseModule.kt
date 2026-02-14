@@ -21,9 +21,7 @@ interface DatabaseModule {
         @Provides
         fun provideDatabaseService(
             database: Database,
-        ): DatabaseService {
-            return RealDatabaseService(database = database)
-        }
+        ): DatabaseService = RealDatabaseService(database = database)
 
         @Provides
         fun provideDatabase(@ApplicationContext context: Context): Database {
