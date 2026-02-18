@@ -12,29 +12,43 @@ import retrofit2.converter.jaxb3.JaxbConverterFactory
 import retrofit2.create
 
 fun main() {
-    retrofitStuff()
-//    readabilityStuff()
-}
-
-private fun retrofitStuff() {
     val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
-
-    mainScope.launchBlocking {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://buttz.mcghee/".toHttpUrl())
-            .addConverterFactory(JaxbConverterFactory.create())
-            .build()
-        val service = retrofit.create<RssService>()
-        val response = service.getFeed("https://www.stereogum.com/category/franchises/the-5-best-songs-of-the-week/feed/")
-        println(response)
-    }
-}
-
-private fun readabilityStuff() {
-    println("hello readability")
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://buttz.mcghee/".toHttpUrl())
+        .addConverterFactory(JaxbConverterFactory.create())
+        .build()
+    val rssService = retrofit.create<RssService>()
     val webClient = WebClient()
     webClient.options.isThrowExceptionOnScriptError = false
     val readabilityService = DefaultReadabilityService(webClient = webClient, json = Json)
-    val article = readabilityService.getArticle("https://stereogum.com/2488104/the-5-best-songs-of-the-week-612/lists/the-5-best-songs-of-the-week")
-    println("Here is the article: $article")
+
+    mainScope.launchBlocking {
+        val allTheData = feeds.associateWith { feedDetails ->
+            val rssFeed = rssService.getFeed(feedDetails.url)
+            rssFeed.channel.item.associateWith { rssItem ->
+                readabilityService.getArticle(rssItem.link)
+            }
+        }
+        println(allTheData)
+    }
 }
+
+private data class Feed(
+    val name: String,
+    val url: String,
+)
+
+private val feeds = listOf(
+    Feed(
+        name = "Stereogum - The 5 Best Songs of the Week",
+        url = "https://www.stereogum.com/category/franchises/the-5-best-songs-of-the-week/feed/",
+    ),
+    Feed(
+        name = "Pitchfork - Album Reviews",
+        url = "https://pitchfork.com/feed/feed-album-reviews/rss",
+    ),
+    Feed(
+        name = "Pitchfork - Track Reviews",
+        url = "https://pitchfork.com/feed/feed-track-reviews/rss",
+    ),
+)
