@@ -6,16 +6,18 @@ import kotlinx.html.body
 import kotlinx.html.details
 import kotlinx.html.h1
 import kotlinx.html.h2
+import kotlinx.html.h3
 import kotlinx.html.head
 import kotlinx.html.html
 import kotlinx.html.lang
+import kotlinx.html.link
 import kotlinx.html.meta
 import kotlinx.html.stream.appendHTML
 import kotlinx.html.summary
 import kotlinx.html.title
 import kotlinx.html.unsafe
 
-internal fun generatePage(
+internal fun generateDigest(
     postingDate: Instant,
     allTheData: Map<Feed, Map<RssItem, ReadabilityResult?>>,
 ) = buildHtml {
@@ -25,8 +27,16 @@ internal fun generatePage(
             val tempFormattedDate = postingDate.toString()
             +"$tempFormattedDate Music"
         }
+        link {
+            rel = "stylesheet"
+            href = "https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css"
+        }
+        link {
+            rel = "stylesheet"
+            href = "/assets/css/global.css"
+        }
     }
-    body {
+    body(classes = "post flow") {
         h1 { +"All the good music for $postingDate" }
 
         allTheData.entries.forEach { (feed, feedItems) ->
@@ -35,7 +45,7 @@ internal fun generatePage(
             feedItems.entries.forEach { (rssItem, readabilityItem) ->
                 details {
                     summary {
-                        +rssItem.title
+                        h3 { +rssItem.title }
                     }
                     unsafe {
                         raw(readabilityItem?.content ?: "Missing article contents")

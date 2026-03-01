@@ -41,7 +41,7 @@ fun main() {
 
         fs.createDirectories("build/html".toPath())
         fs.createDirectories("build/html/digest".toPath())
-        val dailyPage = generatePage(Clock.System.now(), allTheData)
+        val dailyPage = generateDigest(Clock.System.now(), allTheData)
         fs.sink("build/html/digest/index.html".toPath()).buffer().use { sink ->
             sink.writeUtf8(dailyPage)
         }
