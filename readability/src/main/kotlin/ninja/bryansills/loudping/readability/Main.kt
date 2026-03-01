@@ -1,11 +1,15 @@
 package ninja.bryansills.loudping.readability
 
+import kotlin.time.Clock
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
 import ninja.bryansills.loudping.coroutines.launchBlocking
 import okhttp3.HttpUrl.Companion.toHttpUrl
+import okio.FileSystem
+import okio.Path.Companion.toPath
+import okio.buffer
 import org.htmlunit.WebClient
 import retrofit2.Retrofit
 import retrofit2.converter.jaxb3.JaxbConverterFactory
@@ -21,27 +25,51 @@ fun main() {
     val webClient = WebClient()
     webClient.options.isThrowExceptionOnScriptError = false
     val readabilityService = DefaultReadabilityService(webClient = webClient, json = Json)
+    val fs = FileSystem.SYSTEM
 
     mainScope.launchBlocking {
-        val allTheData = feeds.associateWith { feedDetails ->
+        val allTheData = smallFeeds.associateWith { feedDetails ->
             val rssFeed = rssService.getFeed(feedDetails.url)
-            rssFeed.channel.item.associateWith { rssItem ->
-                readabilityService.getArticle(rssItem.link)
-            }
+            rssFeed
+                .channel
+                .item
+                .take(5) // TODO: REMOVE!
+                .associateWith { rssItem ->
+                    readabilityService.getArticle(rssItem.link)
+                }
         }
-        println(allTheData)
+
+        fs.createDirectories("build/html".toPath())
+        fs.createDirectories("build/html/digest".toPath())
+        val dailyPage = generatePage(Clock.System.now(), allTheData)
+        fs.sink("build/html/digest/index.html".toPath()).buffer().use { sink ->
+            sink.writeUtf8(dailyPage)
+        }
     }
 }
 
-private sealed interface FeedType {
+internal sealed interface FeedType {
     data object Rss : FeedType
     data object GraphQl : FeedType
 }
 
-private data class Feed(
+internal data class Feed(
     val name: String,
     val url: String,
     val type: FeedType,
+)
+
+private val smallFeeds = listOf(
+    Feed(
+        name = "Stereogum - New Music",
+        url = "https://www.stereogum.com/category/franchises/music/feed/",
+        type = FeedType.Rss,
+    ),
+    Feed(
+        name = "Stereogum - Premature Evaluation",
+        url = "https://www.stereogum.com/category/franchises/premature-evaluation/feed/",
+        type = FeedType.Rss,
+    ),
 )
 
 private val feeds = listOf(

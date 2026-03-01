@@ -17,4 +17,6 @@ dependencies {
     implementation(libs.jaxb3Impl)
     implementation(libs.htmlunit)
     implementation(libs.kotlinx.serialization.runtime.json)
+    implementation(libs.kotlinx.html)
+    implementation(libs.okio)
 }
