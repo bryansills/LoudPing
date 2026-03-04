@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.loudping.jvm)
     application
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.burst.plugin)
 }
 
 application {
@@ -21,4 +22,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.runtime.json)
     implementation(libs.kotlinx.html)
     implementation(libs.okio)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.burst.coroutines)
 }
