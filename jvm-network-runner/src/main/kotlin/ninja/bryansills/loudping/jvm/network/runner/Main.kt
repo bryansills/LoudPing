@@ -1,10 +1,10 @@
 package ninja.bryansills.loudping.jvm.network.runner
 
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.days
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.datetime.Clock
 import ninja.bryansills.loudping.coroutines.launchBlocking
 import ninja.bryansills.loudping.database.DriverFactory
 import ninja.bryansills.loudping.database.RealDatabaseService

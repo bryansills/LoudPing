@@ -1,8 +1,8 @@
 package ninja.bryansills.loudping.database
 
 import androidx.paging.PagingSource
+import kotlin.time.Instant
 import kotlinx.coroutines.flow.Flow
-import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.core.model.FullAlbum
 import ninja.bryansills.loudping.core.model.Track
 import ninja.bryansills.loudping.core.model.TrackAlbum

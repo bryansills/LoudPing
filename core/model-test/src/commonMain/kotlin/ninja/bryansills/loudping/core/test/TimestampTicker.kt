@@ -2,7 +2,7 @@ package ninja.bryansills.loudping.core.test
 
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 class TimestampTicker(
     initialTime: Instant = Instant.parse("2025-02-23T21:55:31Z"),

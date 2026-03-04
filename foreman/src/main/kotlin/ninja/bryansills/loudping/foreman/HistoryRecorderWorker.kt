@@ -8,9 +8,9 @@ import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import kotlin.time.Instant
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.history.recorder.HistoryRecorder
 import ninja.bryansills.loudping.logger.Logger
 import ninja.bryansills.loudping.logger.e

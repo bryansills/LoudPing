@@ -2,11 +2,11 @@ package ninja.bryansills.loudping.network
 
 import com.slack.eithernet.ApiResult
 import com.slack.eithernet.successOrNothing
+import kotlin.time.Instant
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.isActive
-import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.network.model.RecentlyPlayedResponse
 import ninja.bryansills.loudping.network.model.recent.PlayHistoryItem
 import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy

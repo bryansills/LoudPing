@@ -1,6 +1,6 @@
 package ninja.bryansills.loudping.history.recorder
 
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 sealed interface TrackHistoryResult {
     data class Standard(

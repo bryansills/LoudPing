@@ -1,8 +1,8 @@
 package ninja.bryansills.loudping.core.model.test
 
+import kotlin.time.Clock
 import kotlin.time.Duration
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import ninja.bryansills.loudping.core.model.Track
 import ninja.bryansills.loudping.core.model.TrackAlbum
 import ninja.bryansills.loudping.core.model.TrackPlayContext

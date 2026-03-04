@@ -3,9 +3,9 @@ package ninja.bryansills.loudping.network.rate
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.DurationUnit
+import kotlin.time.Instant
 import kotlin.time.toDuration
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.time.TimeProvider
 
 class RateLimiter(

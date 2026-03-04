@@ -1,0 +1,24 @@
+plugins {
+    alias(libs.plugins.loudping.jvm)
+    application
+    alias(libs.plugins.kotlinx.serialization)
+}
+
+application {
+    mainClass = "ninja.bryansills.loudping.html.digest.MainKt"
+}
+
+dependencies {
+    implementation(projects.coroutinesExt)
+    implementation(projects.html.core)
+    implementation(projects.time)
+    implementation(libs.okhttp)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.jaxb3)
+    implementation(libs.jaxb3Api)
+    implementation(libs.jaxb3Impl)
+    implementation(libs.htmlunit)
+    implementation(libs.kotlinx.serialization.runtime.json)
+    implementation(libs.kotlinx.html)
+    implementation(libs.okio)
+}

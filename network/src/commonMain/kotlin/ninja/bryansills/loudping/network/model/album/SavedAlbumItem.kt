@@ -1,6 +1,6 @@
 package ninja.bryansills.loudping.network.model.album
 
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 
 @Serializable

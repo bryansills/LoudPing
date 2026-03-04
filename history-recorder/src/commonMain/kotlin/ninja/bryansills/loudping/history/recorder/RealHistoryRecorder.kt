@@ -3,9 +3,9 @@ package ninja.bryansills.loudping.history.recorder
 import com.slack.eithernet.successOrNothing
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Instant
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
-import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.core.model.Artist
 import ninja.bryansills.loudping.core.model.Track
 import ninja.bryansills.loudping.core.model.TrackAlbum

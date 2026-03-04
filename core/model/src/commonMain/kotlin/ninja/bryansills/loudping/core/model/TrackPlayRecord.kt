@@ -1,6 +1,6 @@
 package ninja.bryansills.loudping.core.model
 
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 data class TrackPlayRecord(
     val track: Track,

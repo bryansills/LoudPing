@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
 import ninja.bryansills.loudping.core.model.TrackPlayRecord
 

@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlin.time.Instant
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.foreman.Foreman
 import ninja.bryansills.loudping.foreman.ForemanJobs
 import ninja.bryansills.loudping.network.auth.AuthManager

@@ -1,7 +1,7 @@
 package ninja.bryansills.loudping.network.auth
 
+import kotlin.time.Instant
 import kotlinx.coroutines.flow.Flow
-import kotlinx.datetime.Instant
 
 interface AuthManager {
     /**

@@ -5,9 +5,9 @@ import com.slack.eithernet.exceptionOrNull
 import com.slack.eithernet.successOrNothing
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Instant
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.session.Stored
 import ninja.bryansills.loudping.sneak.network.NetworkSneak
 import ninja.bryansills.loudping.storage.SimpleStorage

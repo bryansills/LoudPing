@@ -1,9 +1,9 @@
 package ninja.bryansills.loudping.deephistory.runner
 
+import kotlin.time.Instant
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.datetime.Instant
 import ninja.bryansills.loudping.coroutines.launchBlocking
 import ninja.bryansills.loudping.deephistory.DeepHistoryRecord
 import ninja.bryansills.loudping.deephistory.dash.initializeDependencies
