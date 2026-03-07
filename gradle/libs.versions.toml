@@ -41,7 +41,7 @@ okio = "3.16.4"
 paging = "3.4.1"
 retrofit = "3.0.0"
 spotless = "8.3.0"
-sqldelight = "2.2.1"
+sqldelight = "2.3.0-SNAPSHOT"
 viewmodel = "2.10.0"
 workmanager = "2.11.1"
 
@@ -101,7 +101,7 @@ retrofit-kotlinx-serialization = { group = "com.jakewharton.retrofit", name = "r
 retrofit-jaxb3 = { module = "com.squareup.retrofit2:converter-jaxb3", version.ref = "retrofit"}
 sqldelight-android-driver = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight"}
 sqldelight-jvm-driver = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqldelight"}
-sqldelight-sqlite-dialect = { group = "app.cash.sqldelight", name = "sqlite-3-38-dialect", version.ref = "sqldelight"}
+sqldelight-sqlite-dialect = { group = "app.cash.sqldelight", name = "sqlite-3-35-dialect", version.ref = "sqldelight"}
 turbine = { module = "app.cash.turbine:turbine", version = "1.2.1" }
 viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "viewmodel" }
 workmanager = { module = "androidx.work:work-runtime-ktx", version.ref = "workmanager" }
