@@ -36,7 +36,7 @@ jobs:
         uses: devmasx/merge-branch@master
         with:
           type: now
-          from_branch: 'main'
+          from_branch: 'origin/main'
           target_branch: 'ghpages'
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
