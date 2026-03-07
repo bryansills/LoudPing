@@ -43,15 +43,12 @@ jobs:
           git push origin ghpages
 
       - name: Generate HTML for the static site
-        run: ./gradlew :html:digest:run
-
-      - name: Copy over the icon to the artifact
-        run: cp static-pages/images/cricket.ico static-pages/build/html/favicon.ico
+        run: ./gradlew :html:builder:run
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: 'static-pages/build/html'
+          path: 'html/builder/build/html'
 
       - name: Deploy to GitHub Pages
         id: deployment
