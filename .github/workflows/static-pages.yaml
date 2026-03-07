@@ -33,12 +33,13 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Merge latest from 'main' git branch
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: 'origin/main'
-          target_branch: 'ghpages'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+
+          git merge origin/main
+
+          git push origin ghpages
 
       - name: Generate HTML for the static site
         run: ./gradlew :html:digest:run
