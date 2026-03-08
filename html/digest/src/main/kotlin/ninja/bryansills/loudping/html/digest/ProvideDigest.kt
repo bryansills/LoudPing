@@ -21,9 +21,9 @@ suspend fun ProvidesHtmlScope.provideDigest(
             }
     }
 
-    fileSystem.createDirectories("digest".toPath())
+    fileSystem.createDirectories("digest".buildPath())
     val dailyPage = generateDigest(timeProvider.now, allTheData)
-    fileSystem.sink("digest/index.html".toPath()).buffer().use { sink ->
+    fileSystem.sink("digest/index.html".buildPath()).buffer().use { sink ->
         sink.writeUtf8(dailyPage)
     }
 }

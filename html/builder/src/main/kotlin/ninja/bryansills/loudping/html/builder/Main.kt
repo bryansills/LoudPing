@@ -7,6 +7,7 @@ import kotlinx.serialization.json.Json
 import ninja.bryansills.loudping.coroutines.launchBlocking
 import ninja.bryansills.loudping.html.callback.provideCallback
 import ninja.bryansills.loudping.html.core.DefaultProvidesHtmlScope
+import ninja.bryansills.loudping.html.core.provideRoot
 import ninja.bryansills.loudping.html.digest.DefaultReadabilityService
 import ninja.bryansills.loudping.html.digest.RssService
 import ninja.bryansills.loudping.html.digest.provideDigest
@@ -33,6 +34,7 @@ fun main() {
 
     mainScope.launchBlocking {
         with(provideHtmlScope) {
+            provideRoot()
             provideCallback()
             provideDigest(
                 feeds = smallFeeds,
