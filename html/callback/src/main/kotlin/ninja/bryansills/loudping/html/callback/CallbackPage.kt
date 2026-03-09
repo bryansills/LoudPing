@@ -8,10 +8,12 @@ import kotlinx.html.svg
 import kotlinx.html.title
 import kotlinx.html.unsafe
 import ninja.bryansills.loudping.html.core.buildHtml
+import ninja.bryansills.loudping.html.core.commonHeadAttributes
 
 fun callbackPage(): String = buildHtml {
     style = "height: 100%"
     head {
+        commonHeadAttributes()
         title { +"Signing in..." }
     }
     body {

@@ -13,12 +13,14 @@ import kotlinx.html.summary
 import kotlinx.html.title
 import kotlinx.html.unsafe
 import ninja.bryansills.loudping.html.core.buildHtml
+import ninja.bryansills.loudping.html.core.commonHeadAttributes
 
 internal fun generateDigest(
     postingDate: Instant,
     allTheData: Map<Feed, Map<RssItem, ReadabilityResult?>>,
 ) = buildHtml {
     head {
+        commonHeadAttributes()
         meta { charset = "UTF-8" }
         title {
             val tempFormattedDate = postingDate.toString()
