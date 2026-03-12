@@ -27,7 +27,7 @@ class DefaultProvidesHtmlScope(
  */
 fun ProvidesHtmlScope.copyResource(
     source: Path,
-    target: Path
+    target: Path,
 ) {
     resources.source(source).use { bytesIn ->
         fileSystem.sink(target).buffer().use { bytesOut ->
