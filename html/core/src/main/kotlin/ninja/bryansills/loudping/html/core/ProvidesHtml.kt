@@ -26,14 +26,12 @@ class DefaultProvidesHtmlScope(
  * the packaging of the HTML in code.
  */
 fun ProvidesHtmlScope.copyResource(
-    sourcePath: Path,
-    destinationPath: Path
+    source: Path,
+    target: Path
 ) {
-    fileSystem.write(destinationPath) {
-        resources.source(sourcePath).buffer().use { source ->
-            while (!source.exhausted()) {
-                writeUtf8(source.readUtf8())
-            }
+    resources.source(source).use { bytesIn ->
+        fileSystem.sink(target).buffer().use { bytesOut ->
+            bytesOut.writeAll(bytesIn)
         }
     }
 }

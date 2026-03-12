@@ -49,7 +49,7 @@ internal fun Project.configureKotlinMultiplatform() {
             }
         }
         androidLibrary {
-            configureAndroidMultiplatform(this@configureKotlinMultiplatform)
+            configureAndroidMultiplatform()
         }
 
         targets.configureEach {

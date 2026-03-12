@@ -13,6 +13,7 @@ kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
         allWarningsAsErrors = true
+        freeCompilerArgs.add("-Xcontext-parameters")
     }
 }
 

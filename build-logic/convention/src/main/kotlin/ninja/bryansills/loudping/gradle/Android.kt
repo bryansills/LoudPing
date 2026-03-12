@@ -78,8 +78,8 @@ internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true)
     }
 }
 
+context(project: Project)
 internal fun KotlinMultiplatformAndroidLibraryTarget.configureAndroidMultiplatform(
-    project: Project,
     libs: LibrariesForLibs = project.libs,
 ) {
     namespace = project.loudPingNamespace
