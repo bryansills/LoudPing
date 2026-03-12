@@ -1043,9 +1043,9 @@
 |    |    |    |    |    |    +--- androidx.sqlite:sqlite-framework:2.6.2 (*)
 |    |    |    |    |    |    +--- app.cash.sqldelight:runtime:2.3.0-SNAPSHOT
 |    |    |    |    |    |    |    \--- app.cash.sqldelight:runtime-jvm:2.3.0-SNAPSHOT
-|    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.2.21 -> 2.3.10 (*)
+|    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
 |    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.6.2 (*)
-|    |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.2.21 -> 2.3.10 (*)
+|    |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
 |    |    |    |    |    +--- project :core:model (*)
 |    |    |    |    |    +--- androidx.paging:paging-common:3.4.1
 |    |    |    |    |    |    \--- androidx.paging:paging-common-android:3.4.1
@@ -1058,7 +1058,7 @@
 |    |    |    |    |    +--- app.cash.sqldelight:async-extensions:2.3.0-SNAPSHOT
 |    |    |    |    |    |    \--- app.cash.sqldelight:async-extensions-jvm:2.3.0-SNAPSHOT
 |    |    |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (*)
-|    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.2.21 -> 2.3.10 (*)
+|    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
 |    |    |    |    |    |         \--- app.cash.sqldelight:runtime:2.3.0-SNAPSHOT (*)
 |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (*)
@@ -1067,7 +1067,7 @@
 |    |    |    |    |         \--- app.cash.sqldelight:androidx-paging3-extensions-jvm:2.3.0-SNAPSHOT
 |    |    |    |    |              +--- app.cash.sqldelight:runtime:2.3.0-SNAPSHOT (*)
 |    |    |    |    |              +--- androidx.paging:paging-common:3.4.0-beta01 -> 3.4.1 (*)
-|    |    |    |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.2.21 -> 2.3.10 (*)
+|    |    |    |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
 |    |    |    |    |              \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (*)
 |    |    |    |    +--- project :network
 |    |    |    |    |    +--- com.slack.eithernet:eithernet:2.0.0 (*)
