@@ -1,9 +1,9 @@
 :root {
   --size-300: 0.75rem;
   --size-400: 1rem;
-  --size-500: 1.33rem;
-  --size-600: 1.77rem;
-  --size-700: 2.36rem;
+  --size-500: 1.3rem;
+  --size-600: 1.67rem;
+  --size-700: 2.3rem;
   --size-800: 3.15rem;
   --size-900: 4.2rem;
   --background-color: rgb(255, 220, 197);
@@ -73,9 +73,11 @@ figcaption {
 }
 
 blockquote {
-  padding-left: var(--size-600);
+  padding-left: var(--size-500);
   border-left: 5px solid;
   font-style: italic;
+  margin-left: var(--size-500);
+  margin-right: var(--size-500);
 }
 
 ::selection {
@@ -89,73 +91,39 @@ blockquote {
 
 p,
 li {
-  max-width: 60ch;
+  max-width: 80ch;
 }
 
 h1 {
-  max-width: 15ch;
+  max-width: 24ch;
 }
 
 h2,
 h3 {
-  max-width: 25ch;
+  max-width: 36ch;
 }
 
 .post {
   --flow-space: var(--size-700);
 
-  width: 80vw;
-  width: clamp(16rem, 80vw, 70rem);
+  width: 88vw;
+  width: clamp(16rem, 88vw, 70rem);
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
-.post h2 {
-  padding-top: 0.5em;
-  border-top: 4px dotted var(--accent-color);
+blockquote p {
+  font-size: var(--size-500);
 }
 
-.post h2:has(+ time) { margin-bottom: 0; }
-
-.post h2 + time {
-  margin-top: 0;
-  font-style: italic;
-  color: var(--text-color-80);
-  display: block;
+details summary {
+  list-style: none;
 }
 
-.post h1:has(+ time) { margin-bottom: 0; }
-
-.post h1 + time {
-  margin-top: 0;
-  font-style: italic;
-  color: var(--text-color-80);
-  display: block;
-}
-
-.post ul {
-  list-style-type: none;
-  padding-left: 10px;
-}
-
-.post li {
-  display: grid;
-  grid-template-columns: 20px auto;
-  justify-content: start;
-  align-items: center;
-  font-size: var(--size-400);
-}
-
-.post li + li {
-  margin-top: 0.5em;
-}
-
-.post li::before {
-  content: "→";
-  font-size: var(--size-300);
-  color: var(--text-color-70);
+details summary::-webkit-details-marker {
+  list-style: none;
 }
 
 @media (min-width: 45em) {
@@ -173,22 +141,5 @@ h3 {
 
   figcaption {
     font-size: var(--size-400);
-  }
-
-  blockquote p {
-    font-size: var(--size-600);
-    max-width: 40ch;
-  }
-
-  .post time {
-    font-size: var(--size-500);
-  }
-
-  .post ul {
-    padding-left: 20px;
-  }
-
-  .post li {
-    font-size: var(--size-500);
   }
 }
