@@ -463,11 +463,11 @@
 |    |         +--- androidx.arch.core:core-common:2.2.0 (*)
 |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 -> 2.3.10 (*)
 |    |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 -> 1.10.2 (*)
-|    +--- app.cash.sqldelight:runtime:2.3.0-SNAPSHOT
-|    |    \--- app.cash.sqldelight:runtime-jvm:2.3.0-SNAPSHOT
+|    +--- app.cash.sqldelight:runtime:2.3.1
+|    |    \--- app.cash.sqldelight:runtime-jvm:2.3.1
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
-|    +--- app.cash.sqldelight:async-extensions:2.3.0-SNAPSHOT
-|    |    \--- app.cash.sqldelight:async-extensions-jvm:2.3.0-SNAPSHOT
+|    +--- app.cash.sqldelight:async-extensions:2.3.1
+|    |    \--- app.cash.sqldelight:async-extensions-jvm:2.3.1
 |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (*)
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
