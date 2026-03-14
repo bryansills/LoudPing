@@ -10,8 +10,8 @@ import ninja.bryansills.loudping.html.core.DefaultProvidesHtmlScope
 import ninja.bryansills.loudping.html.core.provideRoot
 import ninja.bryansills.loudping.html.digest.DefaultReadabilityService
 import ninja.bryansills.loudping.html.digest.RssService
+import ninja.bryansills.loudping.html.digest.feeds
 import ninja.bryansills.loudping.html.digest.provideDigest
-import ninja.bryansills.loudping.html.digest.smallFeeds
 import ninja.bryansills.loudping.time.RealTimeProvider
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import org.htmlunit.WebClient
@@ -37,7 +37,7 @@ fun main() {
             provideRoot()
             provideCallback()
             provideDigest(
-                feeds = smallFeeds,
+                feeds = feeds,
                 rssService = rssService,
                 readabilityService = readabilityService,
                 timeProvider = RealTimeProvider(),
