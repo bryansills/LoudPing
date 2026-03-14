@@ -2,6 +2,9 @@ name: Deploy static content to Pages
 
 on:
   workflow_dispatch:
+  schedule:
+    # 5:33 AM EST / 6:33 AM EDT
+    - cron: "33 10 * * *"
 
 concurrency:
   group: "pages"

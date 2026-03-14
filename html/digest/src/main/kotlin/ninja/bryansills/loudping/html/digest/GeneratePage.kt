@@ -1,6 +1,13 @@
 package ninja.bryansills.loudping.html.digest
 
 import kotlin.time.Instant
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.format
+import kotlinx.datetime.format.DayOfWeekNames
+import kotlinx.datetime.format.MonthNames
+import kotlinx.datetime.format.char
+import kotlinx.datetime.toLocalDateTime
 import kotlinx.html.body
 import kotlinx.html.details
 import kotlinx.html.h1
@@ -18,13 +25,15 @@ import ninja.bryansills.loudping.html.core.commonHeadAttributes
 internal fun generateDigest(
     postingDate: Instant,
     allTheData: Map<Feed, Map<RssItem, ReadabilityResult?>>,
+    timeZone: TimeZone = TimeZone.of("America/Chicago")
 ) = buildHtml {
+    val formattedDate = postingDate.toLocalDateTime(timeZone).format(headlineFormat)
+
     head {
         commonHeadAttributes()
         meta { charset = "UTF-8" }
         title {
-            val tempFormattedDate = postingDate.toString()
-            +"$tempFormattedDate Music"
+            +"$formattedDate Music"
         }
         link {
             rel = "stylesheet"
@@ -36,7 +45,7 @@ internal fun generateDigest(
         }
     }
     body(classes = "post flow") {
-        h1 { +"All the good music for $postingDate" }
+        h1 { +"All the good music for $formattedDate" }
 
         allTheData.entries.forEach { (feed, feedItems) ->
             h2 { +"Feed: ${feed.name}" }
@@ -53,4 +62,13 @@ internal fun generateDigest(
             }
         }
     }
+}
+
+val headlineFormat = LocalDateTime.Format {
+    dayOfWeek(DayOfWeekNames.ENGLISH_FULL)
+    char(',')
+    char(' ')
+    monthName(MonthNames.ENGLISH_FULL)
+    char(' ')
+    day()
 }
