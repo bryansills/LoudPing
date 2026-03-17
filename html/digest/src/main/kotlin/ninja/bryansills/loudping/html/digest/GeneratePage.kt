@@ -25,7 +25,7 @@ import ninja.bryansills.loudping.html.core.commonHeadAttributes
 internal fun generateDigest(
     postingDate: Instant,
     allTheData: Map<Feed, Map<RssItem, ReadabilityResult?>>,
-    timeZone: TimeZone = TimeZone.of("America/Chicago")
+    timeZone: TimeZone = TimeZone.of("America/Chicago"),
 ) = buildHtml {
     val formattedDate = postingDate.toLocalDateTime(timeZone).format(headlineFormat)
 
