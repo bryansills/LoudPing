@@ -48,7 +48,7 @@ workmanager = "2.11.1"
 [libraries]
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
-androidx-browser = { group = "androidx.browser", name = "browser", version = "1.9.0" }
+androidx-browser = { group = "androidx.browser", name = "browser", version = "1.10.0" }
 androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 androidx-compose-icons = { group = "androidx.compose.material", name = "material-icons-core" }
