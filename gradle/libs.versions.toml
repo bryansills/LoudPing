@@ -43,7 +43,7 @@ retrofit = "3.0.0"
 spotless = "8.4.0"
 sqldelight = "2.3.2"
 viewmodel = "2.10.0"
-workmanager = "2.11.1"
+workmanager = "2.11.2"
 
 [libraries]
 activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
