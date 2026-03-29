@@ -30,9 +30,6 @@ jobs:
           ref: 'ghpages'
           fetch-depth: 0
 
-      - name: Prepare development environment
-        uses: ./.github/actions/prepare-environment
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -44,6 +41,9 @@ jobs:
           git merge origin/main
 
           git push origin ghpages
+
+      - name: Prepare development environment
+        uses: ./.github/actions/prepare-environment
 
       - name: Generate HTML for the static site
         run: ./gradlew :html:builder:run
