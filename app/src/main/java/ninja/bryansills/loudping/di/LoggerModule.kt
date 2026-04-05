@@ -11,9 +11,7 @@ import ninja.bryansills.loudping.logger.bugsnag.BugsnagLogger
 @Module
 @InstallIn(SingletonComponent::class)
 interface LoggerModule {
-    companion object {
-        @Singleton
-        @Provides
-        fun provideLogger(): Logger = BugsnagLogger()
-    }
+  companion object {
+    @Singleton @Provides fun provideLogger(): Logger = BugsnagLogger()
+  }
 }

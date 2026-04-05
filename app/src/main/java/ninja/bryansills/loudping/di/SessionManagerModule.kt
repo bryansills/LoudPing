@@ -13,15 +13,13 @@ import ninja.bryansills.loudping.storage.SimpleStorage
 @Module
 @InstallIn(SingletonComponent::class)
 interface SessionManagerModule {
-    companion object {
-        @Singleton
-        @Provides
-        fun provideSessionManager(
-            simpleStorage: SimpleStorage,
-            @ApplicationScope coroutineScope: CoroutineScope,
-        ): SessionManager = RealSessionManager(
-            simpleStorage = simpleStorage,
-            coroutineScope = coroutineScope,
-        )
-    }
+  companion object {
+    @Singleton
+    @Provides
+    fun provideSessionManager(
+      simpleStorage: SimpleStorage,
+      @ApplicationScope coroutineScope: CoroutineScope,
+    ): SessionManager =
+      RealSessionManager(simpleStorage = simpleStorage, coroutineScope = coroutineScope)
+  }
 }

@@ -6,7 +6,8 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-internal val mediumContrastLightColorScheme = lightColorScheme(
+internal val mediumContrastLightColorScheme =
+  lightColorScheme(
     primary = primaryLightMediumContrast,
     onPrimary = onPrimaryLightMediumContrast,
     primaryContainer = primaryContainerLightMediumContrast,
@@ -42,9 +43,10 @@ internal val mediumContrastLightColorScheme = lightColorScheme(
     surfaceContainer = surfaceContainerLightMediumContrast,
     surfaceContainerHigh = surfaceContainerHighLightMediumContrast,
     surfaceContainerHighest = surfaceContainerHighestLightMediumContrast,
-)
+  )
 
-internal val mediumContrastDarkColorScheme = darkColorScheme(
+internal val mediumContrastDarkColorScheme =
+  darkColorScheme(
     primary = primaryDarkMediumContrast,
     onPrimary = onPrimaryDarkMediumContrast,
     primaryContainer = primaryContainerDarkMediumContrast,
@@ -80,13 +82,13 @@ internal val mediumContrastDarkColorScheme = darkColorScheme(
     surfaceContainer = surfaceContainerDarkMediumContrast,
     surfaceContainerHigh = surfaceContainerHighDarkMediumContrast,
     surfaceContainerHighest = surfaceContainerHighestDarkMediumContrast,
-)
+  )
 
 @Composable
 expect fun LoudPingTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit,
+  darkTheme: Boolean = isSystemInDarkTheme(),
+  dynamicColor: Boolean = true,
+  content: @Composable () -> Unit,
 )
 
 typealias LoudPingTheme = MaterialTheme

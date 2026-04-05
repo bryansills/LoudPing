@@ -11,30 +11,29 @@ import androidx.navigation.NavController
 
 @Composable
 fun DarkModeStatusBarDisposableEffect(
-    navController: NavController,
-    view: View = LocalView.current,
+  navController: NavController,
+  view: View = LocalView.current,
 ) {
-    DisposableEffect(navController, view) {
-        val window: Window = (view.context as Activity).window
-        val insetsController = WindowCompat.getInsetsController(window, view)
+  DisposableEffect(navController, view) {
+    val window: Window = (view.context as Activity).window
+    val insetsController = WindowCompat.getInsetsController(window, view)
 
-        val listener = NavController.OnDestinationChangedListener { _, destination, arguments ->
-            val shouldHaveDarkStatusBar = arguments?.getBoolean(DarkModeStatusBarNavArg) ?: false
-            val hasLightStatusBar = insetsController.isAppearanceLightStatusBars
+    val listener =
+      NavController.OnDestinationChangedListener { _, destination, arguments ->
+        val shouldHaveDarkStatusBar = arguments?.getBoolean(DarkModeStatusBarNavArg) ?: false
+        val hasLightStatusBar = insetsController.isAppearanceLightStatusBars
 
-            if (hasLightStatusBar && shouldHaveDarkStatusBar) {
-                insetsController.isAppearanceLightStatusBars = false
-            }
-            if (!hasLightStatusBar && !shouldHaveDarkStatusBar) {
-                insetsController.isAppearanceLightStatusBars = true
-            }
+        if (hasLightStatusBar && shouldHaveDarkStatusBar) {
+          insetsController.isAppearanceLightStatusBars = false
         }
-        navController.addOnDestinationChangedListener(listener)
-
-        onDispose {
-            navController.removeOnDestinationChangedListener(listener)
+        if (!hasLightStatusBar && !shouldHaveDarkStatusBar) {
+          insetsController.isAppearanceLightStatusBars = true
         }
-    }
+      }
+    navController.addOnDestinationChangedListener(listener)
+
+    onDispose { navController.removeOnDestinationChangedListener(listener) }
+  }
 }
 
 val DarkModeStatusBarNavArg = "hasDarkModeStatusBar"

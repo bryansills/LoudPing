@@ -8,17 +8,17 @@ import kotlinx.html.link
 import kotlinx.html.stream.appendHTML
 
 fun buildHtml(block: HTML.() -> Unit): String = buildString {
-    appendLine("<!DOCTYPE html>")
-    appendHTML().html {
-        lang = "en"
-        block()
-    }
+  appendLine("<!DOCTYPE html>")
+  appendHTML().html {
+    lang = "en"
+    block()
+  }
 }
 
 fun HEAD.commonHeadAttributes() {
-    link {
-        rel = "icon"
-        href = "/assets/image/cricket.ico"
-        type = "image/x-icon"
-    }
+  link {
+    rel = "icon"
+    href = "/assets/image/cricket.ico"
+    type = "image/x-icon"
+  }
 }

@@ -17,63 +17,42 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureKotlinJvmOnly() {
-    java {
-        sourceCompatibility = libs.javaVersion
-        targetCompatibility = libs.javaVersion
-    }
+  java {
+    sourceCompatibility = libs.javaVersion
+    targetCompatibility = libs.javaVersion
+  }
 
-    kotlin<KotlinJvmProjectExtension> {
-        compilerOptions {
-            jvmTarget.set(libs.jvmTarget)
-        }
-    }
+  kotlin<KotlinJvmProjectExtension> { compilerOptions { jvmTarget.set(libs.jvmTarget) } }
 }
+
 internal fun Project.configureKotlinAndroid() {
-    kotlin<KotlinAndroidProjectExtension> {
-        compilerOptions {
-            jvmTarget.set(libs.jvmTarget)
-        }
-    }
+  kotlin<KotlinAndroidProjectExtension> { compilerOptions { jvmTarget.set(libs.jvmTarget) } }
 }
 
 internal fun Project.configureKotlinMultiplatform() {
-    plugins {
-        alias(libs.plugins.kotlin.multiplatform)
-        alias(libs.plugins.android.multiplatformlibrary)
+  plugins {
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.multiplatformlibrary)
+  }
+
+  kotlin<KotlinMultiplatformExtension> {
+    jvm { compilerOptions { jvmTarget.set(libs.jvmTarget) } }
+    androidLibrary { configureAndroidMultiplatform() }
+
+    targets.configureEach {
+      compilations.configureEach {
+        compileTaskProvider.configure {
+          compilerOptions { freeCompilerArgs.add("-Xexpect-actual-classes") }
+        }
+      }
     }
 
-    kotlin<KotlinMultiplatformExtension> {
-        jvm {
-            compilerOptions {
-                jvmTarget.set(libs.jvmTarget)
-            }
-        }
-        androidLibrary {
-            configureAndroidMultiplatform()
-        }
-
-        targets.configureEach {
-            compilations.configureEach {
-                compileTaskProvider.configure {
-                    compilerOptions {
-                        freeCompilerArgs.add("-Xexpect-actual-classes")
-                    }
-                }
-            }
-        }
-
-        sourceSets {
-            commonMain.dependencies {
-                implementation(libs.coroutines)
-            }
-            commonTest.dependencies {
-                implementation(libs.kotlin.test)
-            }
-        }
+    sourceSets {
+      commonMain.dependencies { implementation(libs.coroutines) }
+      commonTest.dependencies { implementation(libs.kotlin.test) }
     }
+  }
 
-    // Have to apply desugaring here for some reason...
-    dependencies {
-        coreLibraryDesugaring(libs.android.desugarJdkLibs)
-    }
+  // Have to apply desugaring here for some reason...
+  dependencies { coreLibraryDesugaring(libs.android.desugarJdkLibs) }
 }
