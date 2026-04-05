@@ -6,7 +6,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.core.model)
-            implementation(projects.database)
+            implementation(projects.database.core)
             implementation(projects.network)
             implementation(libs.kotlinx.datetime)
         }

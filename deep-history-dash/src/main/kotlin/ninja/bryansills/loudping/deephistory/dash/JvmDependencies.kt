@@ -10,7 +10,7 @@ import kotlinx.serialization.json.Json
 import ninja.bryansills.loudping.database.DatabaseService
 import ninja.bryansills.loudping.database.DriverFactory
 import ninja.bryansills.loudping.database.RealDatabaseService
-import ninja.bryansills.loudping.database.createDatabase
+import ninja.bryansills.loudping.database.LoudPingDatabase
 import ninja.bryansills.loudping.deephistory.DeepHistoryDataProvider
 import ninja.bryansills.loudping.deephistory.DeepHistoryRunner
 import ninja.bryansills.loudping.deephistory.DefaultDeepHistoryRunner
@@ -117,7 +117,7 @@ suspend fun initializeDependencies(): JvmDependencies {
     val networkService = RealNetworkService(spotifyService = spotifyService)
 
     val driverFactory = DriverFactory(url = "jdbc:sqlite:deep-history.db")
-    val sqlDatabase = createDatabase(driverFactory)
+    val sqlDatabase = LoudPingDatabase(driverFactory)
     val databaseService = RealDatabaseService(database = sqlDatabase)
 
     val trackRepo = RealTrackRepository(

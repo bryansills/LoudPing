@@ -10,12 +10,6 @@ kotlin {
             api(libs.paging)
             implementation(libs.paging.sqldelight)
         }
-        androidMain.dependencies {
-            implementation(libs.sqldelight.android.driver)
-        }
-        jvmMain.dependencies {
-            implementation(libs.sqldelight.jvm.driver)
-        }
     }
 }
 

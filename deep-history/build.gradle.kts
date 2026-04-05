@@ -7,7 +7,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(projects.core.model)
-            implementation(projects.database)
+            implementation(projects.database.core)
             implementation(projects.trackRepo)
             implementation(libs.kotlinx.serialization.runtime.json)
             api(libs.kotlinx.datetime)

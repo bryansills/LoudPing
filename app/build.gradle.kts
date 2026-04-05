@@ -106,7 +106,8 @@ android {
 dependencies {
     implementation(projects.appCore)
     implementation(projects.di)
-    implementation(projects.database)
+    implementation(projects.database.android)
+    implementation(projects.database.core)
     implementation(projects.historyRecorder)
     implementation(projects.network)
     implementation(projects.networkAuth)

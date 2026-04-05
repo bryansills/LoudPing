@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation(projects.core.model)
-    implementation(projects.database)
+    implementation(projects.database.core)
     implementation(projects.appTheme)
     implementation(libs.kotlinx.datetime)
     implementation(libs.paging)
