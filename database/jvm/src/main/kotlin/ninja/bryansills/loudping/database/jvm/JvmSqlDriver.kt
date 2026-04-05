@@ -6,6 +6,7 @@ import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import java.util.Properties
 import ninja.bryansills.loudping.database.Database
 
+@Suppress("ktlint:standard:function-naming")
 fun JvmSqlDriver(url: String = JdbcSqliteDriver.IN_MEMORY): SqlDriver = JdbcSqliteDriver(
     url = url,
     schema = Database.Schema.synchronous(),

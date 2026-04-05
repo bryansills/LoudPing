@@ -8,9 +8,9 @@ import java.io.File
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.serialization.json.Json
 import ninja.bryansills.loudping.database.DatabaseService
-import ninja.bryansills.loudping.database.DriverFactory
-import ninja.bryansills.loudping.database.RealDatabaseService
 import ninja.bryansills.loudping.database.LoudPingDatabase
+import ninja.bryansills.loudping.database.RealDatabaseService
+import ninja.bryansills.loudping.database.jvm.JvmSqlDriver
 import ninja.bryansills.loudping.deephistory.DeepHistoryDataProvider
 import ninja.bryansills.loudping.deephistory.DeepHistoryRunner
 import ninja.bryansills.loudping.deephistory.DefaultDeepHistoryRunner
@@ -116,8 +116,8 @@ suspend fun initializeDependencies(): JvmDependencies {
     val spotifyService = mainRetrofit.create<SpotifyService>()
     val networkService = RealNetworkService(spotifyService = spotifyService)
 
-    val driverFactory = DriverFactory(url = "jdbc:sqlite:deep-history.db")
-    val sqlDatabase = LoudPingDatabase(driverFactory)
+    val sqlDriver = JvmSqlDriver(url = "jdbc:sqlite:deep-history.db")
+    val sqlDatabase = LoudPingDatabase(sqlDriver)
     val databaseService = RealDatabaseService(database = sqlDatabase)
 
     val trackRepo = RealTrackRepository(
