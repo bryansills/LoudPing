@@ -15,86 +15,81 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
 internal fun Project.configureAndroidApplication() {
-    android<ApplicationExtension> {
-        compileSdk { version = release(libs.versions.android.compileSdk.toInt()) }
+  android<ApplicationExtension> {
+    compileSdk { version = release(libs.versions.android.compileSdk.toInt()) }
 
-        defaultConfig {
-            minSdk = libs.versions.android.minSdk.toInt()
-            targetSdk = libs.versions.android.targetSdk.toInt()
+    defaultConfig {
+      minSdk = libs.versions.android.minSdk.toInt()
+      targetSdk = libs.versions.android.targetSdk.toInt()
 
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        }
-
-        compileOptions {
-            sourceCompatibility = libs.javaVersion
-            targetCompatibility = libs.javaVersion
-            isCoreLibraryDesugaringEnabled = true
-        }
-
-        buildFeatures {
-            resValues = false
-            shaders = false
-        }
+      testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    dependencies {
-        coreLibraryDesugaring(libs.android.desugarJdkLibs)
-        androidTestRuntimeOnly(libs.androidx.test.runner)
+
+    compileOptions {
+      sourceCompatibility = libs.javaVersion
+      targetCompatibility = libs.javaVersion
+      isCoreLibraryDesugaringEnabled = true
     }
+
+    buildFeatures {
+      resValues = false
+      shaders = false
+    }
+  }
+  dependencies {
+    coreLibraryDesugaring(libs.android.desugarJdkLibs)
+    androidTestRuntimeOnly(libs.androidx.test.runner)
+  }
 }
 
 internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true) {
-    android<LibraryExtension> {
-        enableKotlin = shouldEnableKotlin
+  android<LibraryExtension> {
+    enableKotlin = shouldEnableKotlin
 
-        namespace = loudPingNamespace
+    namespace = loudPingNamespace
 
-        compileSdk {
-            version = release(libs.versions.android.compileSdk.toInt())
-        }
+    compileSdk { version = release(libs.versions.android.compileSdk.toInt()) }
 
-        defaultConfig {
-            minSdk = libs.versions.android.minSdk.toInt()
+    defaultConfig {
+      minSdk = libs.versions.android.minSdk.toInt()
 
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        }
-
-        compileOptions {
-            sourceCompatibility = libs.javaVersion
-            targetCompatibility = libs.javaVersion
-            isCoreLibraryDesugaringEnabled = true
-        }
-
-//        androidResources {
-//            // TODO: Do this without doing file IO on configuration
-//            enable = File("src")
-//                    .listFiles()
-//                    ?.any { it.resolve("res").isDirectory }
-//                    ?: false
-//        }
+      testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    dependencies {
-        coreLibraryDesugaring(libs.android.desugarJdkLibs)
-        androidTestRuntimeOnly(libs.androidx.test.runner)
+
+    compileOptions {
+      sourceCompatibility = libs.javaVersion
+      targetCompatibility = libs.javaVersion
+      isCoreLibraryDesugaringEnabled = true
     }
+
+    //        androidResources {
+    //            // TODO: Do this without doing file IO on configuration
+    //            enable = File("src")
+    //                    .listFiles()
+    //                    ?.any { it.resolve("res").isDirectory }
+    //                    ?: false
+    //        }
+  }
+  dependencies {
+    coreLibraryDesugaring(libs.android.desugarJdkLibs)
+    androidTestRuntimeOnly(libs.androidx.test.runner)
+  }
 }
 
 context(project: Project)
 internal fun KotlinMultiplatformAndroidLibraryTarget.configureAndroidMultiplatform(
-    libs: LibrariesForLibs = project.libs,
+  libs: LibrariesForLibs = project.libs
 ) {
-    namespace = project.loudPingNamespace
+  namespace = project.loudPingNamespace
 
-    compileSdk = libs.versions.android.compileSdk.toInt()
-    minSdk =
-      libs.versions.android.minSdk.toInt()
-    enableCoreLibraryDesugaring = true
+  compileSdk = libs.versions.android.compileSdk.toInt()
+  minSdk = libs.versions.android.minSdk.toInt()
+  enableCoreLibraryDesugaring = true
 
-    compilerOptions {
-        jvmTarget.set(libs.jvmTarget)
-    }
+  compilerOptions { jvmTarget.set(libs.jvmTarget) }
 }
 
 private val Project.loudPingNamespace: String
-    get() {
-        return "ninja.bryansills.loudping" + project.path.replace(":", ".").replace("-", "_")
-    }
+  get() {
+    return "ninja.bryansills.loudping" + project.path.replace(":", ".").replace("-", "_")
+  }

@@ -1,2 +1,3 @@
 #!/bin/sh
-./scripts/ktfmt.sh --touched
+# Runs Ktfmt on all touched files. If there are new changes, you got to add them to the commit.
+./scripts/ktfmt.sh --touched --set-exit-if-changed
