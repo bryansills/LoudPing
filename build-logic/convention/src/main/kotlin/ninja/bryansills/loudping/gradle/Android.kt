@@ -85,7 +85,8 @@ internal fun KotlinMultiplatformAndroidLibraryTarget.configureAndroidMultiplatfo
     namespace = project.loudPingNamespace
 
     compileSdk = libs.versions.android.compileSdk.toInt()
-    minSdk = libs.versions.android.minSdk.toInt()
+    minSdk =
+      libs.versions.android.minSdk.toInt()
     enableCoreLibraryDesugaring = true
 
     compilerOptions {
