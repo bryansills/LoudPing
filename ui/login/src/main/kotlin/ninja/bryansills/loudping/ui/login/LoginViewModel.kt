@@ -38,11 +38,10 @@ constructor(
   fun setAuthorizationCode(code: String, state: String) {
     if (authJob == null && progress == LoginProgress.LoggingIn) {
       progress = LoginProgress.Accessing
-      authJob =
-        viewModelScope.launch {
-          val accessToken = authManager.setAuthorizationCode(state, code, startTime)
-          loginCompleteChannel.send(accessToken)
-        }
+      authJob = viewModelScope.launch {
+        val accessToken = authManager.setAuthorizationCode(state, code, startTime)
+        loginCompleteChannel.send(accessToken)
+      }
     }
   }
 

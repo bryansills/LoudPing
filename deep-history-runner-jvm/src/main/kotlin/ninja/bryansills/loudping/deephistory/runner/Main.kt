@@ -95,12 +95,11 @@ private fun processData(records: List<DeepHistoryRecord>) {
     println("${it.master_metadata_album_artist_name} - ${it.master_metadata_track_name}")
   }
 
-  val badData =
-    records.filter {
-      it.master_metadata_track_name == null ||
-        it.master_metadata_album_artist_name == null ||
-        it.master_metadata_album_album_name == null ||
-        it.spotify_track_uri == null
-    }
+  val badData = records.filter {
+    it.master_metadata_track_name == null ||
+      it.master_metadata_album_artist_name == null ||
+      it.master_metadata_album_album_name == null ||
+      it.spotify_track_uri == null
+  }
   badData.forEach { println(it) }
 }

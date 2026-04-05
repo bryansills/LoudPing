@@ -15,17 +15,16 @@ class RealSimpleStorage(private val dataStore: DataStore<Preferences>) : SimpleS
     key: SimpleEntry<Data>,
     transform: suspend (t: Data) -> Data?,
   ): Data {
-    val editedPrefs =
-      dataStore.edit { mutablePreferences ->
-        val oldValue = mutablePreferences[key.key] ?: key.defaultValue
-        val newValue = transform(oldValue)
+    val editedPrefs = dataStore.edit { mutablePreferences ->
+      val oldValue = mutablePreferences[key.key] ?: key.defaultValue
+      val newValue = transform(oldValue)
 
-        if (newValue != null) {
-          mutablePreferences[key.key] = newValue
-        } else {
-          mutablePreferences.remove(key.key)
-        }
+      if (newValue != null) {
+        mutablePreferences[key.key] = newValue
+      } else {
+        mutablePreferences.remove(key.key)
       }
+    }
 
     return editedPrefs[key.key] ?: key.defaultValue
   }

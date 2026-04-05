@@ -47,11 +47,10 @@ class RealAlbumRepository(
         listOf()
       }
 
-    val freshAlbums =
-      networkTracks.associate { networkTrack ->
-        val databaseAlbum = networkTrack.album.toDatabase()
-        networkTrack.id to databaseAlbum
-      }
+    val freshAlbums = networkTracks.associate { networkTrack ->
+      val databaseAlbum = networkTrack.album.toDatabase()
+      networkTrack.id to databaseAlbum
+    }
 
     freshAlbums.entries.forEach { (trackId, databaseAlbum) ->
       database.insertAlbum(album = databaseAlbum, associatedTrackIds = listOf(trackId))

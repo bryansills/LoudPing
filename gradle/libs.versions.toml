@@ -86,6 +86,8 @@ kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",
 kotlinx-html = { group = "org.jetbrains.kotlinx", name = "kotlinx-html-jvm", version.ref = "kotlinx-html" }
 kotlinx-serialization-runtime-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization-runtime"}
 kotlinx-serialization-runtime-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-runtime"}
+# Remember to update `./scripts/ktfmt.sh` too
+ktfmt = { module = "com.facebook:ktfmt", version = "0.62.0" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 mosaic = { module = "com.jakewharton.mosaic:mosaic-runtime", version = "0.18.0" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}

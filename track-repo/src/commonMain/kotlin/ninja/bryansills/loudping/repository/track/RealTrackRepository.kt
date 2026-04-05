@@ -41,18 +41,19 @@ class RealTrackRepository(
       if (!shouldQueryNetworkForMissing || !missingAnyTracks) {
         cachedTracks.toMultiTrackResult()
       } else {
-        val missingCachedIds =
-          cachedTracks.mapNotNull { (id, track) -> id.takeIf { track == null } }
+        val missingCachedIds = cachedTracks.mapNotNull { (id, track) ->
+          id.takeIf { track == null }
+        }
         val networkTracks =
           network.getSeveralTracks(missingCachedIds).successOrNothing { throw RuntimeException() }
-        val freshTracks =
-          networkTracks.associate { networkTrack ->
-            val databaseTrack = networkTrack.toDatabase()
-            networkTrack.id to databaseTrack
-          }
+        val freshTracks = networkTracks.associate { networkTrack ->
+          val databaseTrack = networkTrack.toDatabase()
+          networkTrack.id to databaseTrack
+        }
         freshTracks.values.forEach { databaseTrack -> database.insertTrack(databaseTrack) }
-        val finalMapping =
-          trackIds.associateWith { ogTrackId -> freshTracks[ogTrackId] ?: cachedTracks[ogTrackId] }
+        val finalMapping = trackIds.associateWith { ogTrackId ->
+          freshTracks[ogTrackId] ?: cachedTracks[ogTrackId]
+        }
         finalMapping.toMultiTrackResult()
       }
     } catch (ex: Exception) {

@@ -123,8 +123,9 @@ class RateLimiterTest {
   }
 }
 
-private fun instantsOf(vararg timestamps: String): List<Instant> =
-  timestamps.map { Instant.parse(it) }
+private fun instantsOf(vararg timestamps: String): List<Instant> = timestamps.map {
+  Instant.parse(it)
+}
 
 private class ScriptedTimeProvider(val timesToGive: List<Instant>) : TimeProvider {
   private var index = 0

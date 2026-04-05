@@ -21,7 +21,9 @@ interface SimpleStorageModule {
     @Provides
     @Singleton
     fun providesDataStore(@ApplicationContext context: Context): DataStore<Preferences> =
-      PreferenceDataStoreFactory.create { context.preferencesDataStoreFile("loud-ping-storage") }
+      PreferenceDataStoreFactory.create {
+        context.preferencesDataStoreFile("loud-ping-storage")
+      }
 
     @Provides
     @Singleton

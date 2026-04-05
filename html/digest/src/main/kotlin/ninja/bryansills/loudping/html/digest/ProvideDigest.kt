@@ -11,8 +11,9 @@ suspend fun ProvidesHtmlScope.provideDigest(
   readabilityService: ReadabilityService,
   timeProvider: TimeProvider,
 ) {
-  val fullFeeds =
-    feeds.associateWith { details -> details to rssService.getFeed(details.url).cleanIt() }
+  val fullFeeds = feeds.associateWith { details ->
+    details to rssService.getFeed(details.url).cleanIt()
+  }
   val today = timeProvider.now
   val yesterday = today - 1.days
   val fullData =

@@ -17,10 +17,9 @@ class LazyJavaResourcesDeepHistoryDataProvider(
         "json" == path.name.split(".").lastOrNull()?.lowercase()
       }
 
-    val jsonText =
-      jsonPaths.map { path ->
-        fileSystem.source(path).use { fileSource -> fileSource.buffer().readUtf8() }
-      }
+    val jsonText = jsonPaths.map { path ->
+      fileSystem.source(path).use { fileSource -> fileSource.buffer().readUtf8() }
+    }
 
     jsonText.flatMap { text -> json.decodeFromString<List<DeepHistoryRecord>>(text) }
   }

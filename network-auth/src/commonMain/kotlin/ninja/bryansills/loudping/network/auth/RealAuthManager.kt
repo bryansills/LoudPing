@@ -62,10 +62,9 @@ class RealAuthManager(
         redirectUri = networkSneak.redirectUrl,
       )
 
-    val successResponse =
-      apiResponse.successOrNothing { failure ->
-        throw failure.exceptionOrNull() ?: RuntimeException(failure.toString())
-      }
+    val successResponse = apiResponse.successOrNothing { failure ->
+      throw failure.exceptionOrNull() ?: RuntimeException(failure.toString())
+    }
 
     return setRefreshToken(successResponse.refresh_token)
   }
@@ -102,26 +101,25 @@ class RealAuthManager(
         clientId = networkSneak.clientId,
       )
 
-    val successResponse =
-      apiResponse.successOrNothing { failure ->
-        (failure as? ApiResult.Failure.HttpFailure)?.let { httpFailure ->
-          when (httpFailure.code) {
-            401 -> {
-              simpleStorage.edit {
-                it.remove(Stored.AccessToken.key)
-                it.remove(Stored.AccessTokenExpiresAt.key)
-              }
+    val successResponse = apiResponse.successOrNothing { failure ->
+      (failure as? ApiResult.Failure.HttpFailure)?.let { httpFailure ->
+        when (httpFailure.code) {
+          401 -> {
+            simpleStorage.edit {
+              it.remove(Stored.AccessToken.key)
+              it.remove(Stored.AccessTokenExpiresAt.key)
             }
-
-            429 -> {
-              resetAuthenticationState()
-            }
-
-            else -> {}
           }
+
+          429 -> {
+            resetAuthenticationState()
+          }
+
+          else -> {}
         }
-        throw failure.exceptionOrNull() ?: RuntimeException(failure.toString())
       }
+      throw failure.exceptionOrNull() ?: RuntimeException(failure.toString())
+    }
 
     simpleStorage.edit {
       it[Stored.RefreshToken.key] = refreshToken

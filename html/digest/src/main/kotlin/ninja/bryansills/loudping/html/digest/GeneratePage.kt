@@ -58,12 +58,11 @@ internal fun generateDigest(
   }
 }
 
-val headlineFormat =
-  LocalDateTime.Format {
-    dayOfWeek(DayOfWeekNames.ENGLISH_FULL)
-    char(',')
-    char(' ')
-    monthName(MonthNames.ENGLISH_FULL)
-    char(' ')
-    day()
-  }
+val headlineFormat = LocalDateTime.Format {
+  dayOfWeek(DayOfWeekNames.ENGLISH_FULL)
+  char(',')
+  char(' ')
+  monthName(MonthNames.ENGLISH_FULL)
+  char(' ')
+  day()
+}
