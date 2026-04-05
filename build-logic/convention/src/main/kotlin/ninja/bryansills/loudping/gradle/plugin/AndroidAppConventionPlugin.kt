@@ -6,7 +6,6 @@ import ninja.bryansills.loudping.gradle.configureDagger
 import ninja.bryansills.loudping.gradle.configureDependencyAnalysis
 import ninja.bryansills.loudping.gradle.configureDependencyGuard
 import ninja.bryansills.loudping.gradle.configureKotlinAndroid
-import ninja.bryansills.loudping.gradle.configureSpotless
 import ninja.bryansills.loudping.gradle.util.alias
 import ninja.bryansills.loudping.gradle.util.libs
 import ninja.bryansills.loudping.gradle.util.plugins
@@ -14,17 +13,17 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class AndroidAppConventionPlugin : Plugin<Project> {
-    override fun apply(target: Project) = with(target) {
-        plugins {
-            alias(libs.plugins.android.application)
-            alias(libs.plugins.compose.compiler)
-        }
-        configureSpotless()
-        configureKotlinAndroid()
-        configureAndroidApplication()
-        configureDependencyGuard()
-        configureDependencyAnalysis()
-        configureComposeAndroid()
-        configureDagger()
+  override fun apply(target: Project) =
+    with(target) {
+      plugins {
+        alias(libs.plugins.android.application)
+        alias(libs.plugins.compose.compiler)
+      }
+      configureKotlinAndroid()
+      configureAndroidApplication()
+      configureDependencyGuard()
+      configureDependencyAnalysis()
+      configureComposeAndroid()
+      configureDagger()
     }
 }

@@ -12,14 +12,12 @@ import ninja.bryansills.loudping.network.GetRecentlyPlayed
 @Module
 @InstallIn(SingletonComponent::class)
 interface HistoryRecorderModule {
-    companion object {
-        @Provides
-        fun provideHistoryRecorder(
-            getRecentlyPlayed: GetRecentlyPlayed,
-            databaseService: DatabaseService,
-        ): HistoryRecorder = RealHistoryRecorder(
-            getRecentlyPlayed = getRecentlyPlayed,
-            databaseService = databaseService,
-        )
-    }
+  companion object {
+    @Provides
+    fun provideHistoryRecorder(
+      getRecentlyPlayed: GetRecentlyPlayed,
+      databaseService: DatabaseService,
+    ): HistoryRecorder =
+      RealHistoryRecorder(getRecentlyPlayed = getRecentlyPlayed, databaseService = databaseService)
+  }
 }

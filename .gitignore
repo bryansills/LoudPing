@@ -12,3 +12,4 @@ secrets.properties
 *.preferences_pb
 .kotlin
 deep-history.db
+/bin

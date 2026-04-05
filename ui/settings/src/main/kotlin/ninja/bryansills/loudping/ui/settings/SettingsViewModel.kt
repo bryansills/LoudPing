@@ -15,58 +15,56 @@ import ninja.bryansills.loudping.network.auth.AuthManager
 import ninja.bryansills.loudping.network.auth.RawAuthValues
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(
-    private val authManager: AuthManager,
-    private val foreman: Foreman,
-) : ViewModel() {
-    val uiState = combine(
-        authManager.rawValues,
-        foreman.jobStatus,
-    ) { rawAuthValues, jobInfoMap ->
+class SettingsViewModel
+@Inject
+constructor(private val authManager: AuthManager, private val foreman: Foreman) : ViewModel() {
+  val uiState =
+    combine(authManager.rawValues, foreman.jobStatus) { rawAuthValues, jobInfoMap ->
         SettingsUiState(
-            rawAuthValues = rawAuthValues,
-            jobDetails = jobInfoMap.entries.map { it.toJobDetails() },
+          rawAuthValues = rawAuthValues,
+          jobDetails = jobInfoMap.entries.map { it.toJobDetails() },
         )
-    }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(1000),
-            initialValue = SettingsUiState(
-                rawAuthValues = RawAuthValues(
-                    accessToken = "",
-                    accessTokenExpiresAt = Instant.DISTANT_PAST,
-                    refreshToken = "",
-                ),
-                jobDetails = listOf(),
-            ),
-        )
+      }
+      .stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(1000),
+        initialValue =
+          SettingsUiState(
+            rawAuthValues =
+              RawAuthValues(
+                accessToken = "",
+                accessTokenExpiresAt = Instant.DISTANT_PAST,
+                refreshToken = "",
+              ),
+            jobDetails = listOf(),
+          ),
+      )
 }
 
 data class JobDetails(
-    val loudPingId: String,
-    val internalWorkManagerId: String,
-    val status: WorkInfo.State,
-    val nextAttemptAt: Instant?,
+  val loudPingId: String,
+  val internalWorkManagerId: String,
+  val status: WorkInfo.State,
+  val nextAttemptAt: Instant?,
 )
 
 sealed interface JobStatus {
-    data object Good : JobStatus
+  data object Good : JobStatus
 
-    data class Stopped(val reason: String) : JobStatus
+  data class Stopped(val reason: String) : JobStatus
 }
 
-data class SettingsUiState(
-    val rawAuthValues: RawAuthValues,
-    val jobDetails: List<JobDetails>,
-)
+data class SettingsUiState(val rawAuthValues: RawAuthValues, val jobDetails: List<JobDetails>)
 
-private fun Map.Entry<ForemanJobs, WorkInfo>.toJobDetails(): JobDetails = JobDetails(
+private fun Map.Entry<ForemanJobs, WorkInfo>.toJobDetails(): JobDetails =
+  JobDetails(
     loudPingId = this.key.workManagerId,
     internalWorkManagerId = this.value.id.toString(),
     status = this.value.state,
-    nextAttemptAt = if (this.value.nextScheduleTimeMillis == Long.MAX_VALUE) {
+    nextAttemptAt =
+      if (this.value.nextScheduleTimeMillis == Long.MAX_VALUE) {
         null
-    } else {
+      } else {
         Instant.fromEpochMilliseconds(this.value.nextScheduleTimeMillis)
-    },
-)
+      },
+  )

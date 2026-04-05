@@ -23,52 +23,46 @@ import ninja.bryansills.loudping.html.core.buildHtml
 import ninja.bryansills.loudping.html.core.commonHeadAttributes
 
 internal fun generateDigest(
-    postingDate: Instant,
-    allTheData: Map<Feed, Map<RssItem, ReadabilityResult?>>,
-    timeZone: TimeZone = TimeZone.of("America/Chicago"),
+  postingDate: Instant,
+  allTheData: Map<Feed, Map<RssItem, ReadabilityResult?>>,
+  timeZone: TimeZone = TimeZone.of("America/Chicago"),
 ) = buildHtml {
-    val formattedDate = postingDate.toLocalDateTime(timeZone).format(headlineFormat)
+  val formattedDate = postingDate.toLocalDateTime(timeZone).format(headlineFormat)
 
-    head {
-        commonHeadAttributes()
-        meta { charset = "UTF-8" }
-        title {
-            +"$formattedDate Music"
-        }
-        link {
-            rel = "stylesheet"
-            href = "https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css"
-        }
-        link {
-            rel = "stylesheet"
-            href = "/assets/css/global.css"
-        }
+  head {
+    commonHeadAttributes()
+    meta { charset = "UTF-8" }
+    title { +"$formattedDate Music" }
+    link {
+      rel = "stylesheet"
+      href = "https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css"
     }
-    body(classes = "post flow") {
-        h1 { +"All the good music for $formattedDate" }
-
-        allTheData.entries.forEach { (feed, feedItems) ->
-            h2 { +"Feed: ${feed.name}" }
-
-            feedItems.entries.forEach { (rssItem, readabilityItem) ->
-                details {
-                    summary {
-                        h3 { +rssItem.title }
-                    }
-                    unsafe {
-                        raw(readabilityItem?.content ?: "Missing article contents")
-                    }
-                }
-            }
-        }
+    link {
+      rel = "stylesheet"
+      href = "/assets/css/global.css"
     }
+  }
+  body(classes = "post flow") {
+    h1 { +"All the good music for $formattedDate" }
+
+    allTheData.entries.forEach { (feed, feedItems) ->
+      h2 { +"Feed: ${feed.name}" }
+
+      feedItems.entries.forEach { (rssItem, readabilityItem) ->
+        details {
+          summary { h3 { +rssItem.title } }
+          unsafe { raw(readabilityItem?.content ?: "Missing article contents") }
+        }
+      }
+    }
+  }
 }
 
 val headlineFormat = LocalDateTime.Format {
-    dayOfWeek(DayOfWeekNames.ENGLISH_FULL)
-    char(',')
-    char(' ')
-    monthName(MonthNames.ENGLISH_FULL)
-    char(' ')
-    day()
+  dayOfWeek(DayOfWeekNames.ENGLISH_FULL)
+  char(',')
+  char(' ')
+  monthName(MonthNames.ENGLISH_FULL)
+  char(' ')
+  day()
 }

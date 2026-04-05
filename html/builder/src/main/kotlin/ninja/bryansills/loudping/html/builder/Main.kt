@@ -20,28 +20,29 @@ import retrofit2.converter.jaxb3.JaxbConverterFactory
 import retrofit2.create
 
 fun main() {
-    val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
-    val provideHtmlScope = DefaultProvidesHtmlScope(basePath = "build/html")
+  val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+  val provideHtmlScope = DefaultProvidesHtmlScope(basePath = "build/html")
 
-    val retrofit = Retrofit.Builder()
-        .baseUrl("https://buttz.mcghee/".toHttpUrl())
-        .addConverterFactory(JaxbConverterFactory.create())
-        .build()
-    val rssService = retrofit.create<RssService>()
-    val webClient = WebClient()
-    webClient.options.isThrowExceptionOnScriptError = false
-    val readabilityService = DefaultReadabilityService(webClient = webClient, json = Json)
+  val retrofit =
+    Retrofit.Builder()
+      .baseUrl("https://buttz.mcghee/".toHttpUrl())
+      .addConverterFactory(JaxbConverterFactory.create())
+      .build()
+  val rssService = retrofit.create<RssService>()
+  val webClient = WebClient()
+  webClient.options.isThrowExceptionOnScriptError = false
+  val readabilityService = DefaultReadabilityService(webClient = webClient, json = Json)
 
-    mainScope.launchBlocking {
-        with(provideHtmlScope) {
-            provideRoot()
-            provideCallback()
-            provideDigest(
-                feeds = feeds,
-                rssService = rssService,
-                readabilityService = readabilityService,
-                timeProvider = RealTimeProvider(),
-            )
-        }
+  mainScope.launchBlocking {
+    with(provideHtmlScope) {
+      provideRoot()
+      provideCallback()
+      provideDigest(
+        feeds = feeds,
+        rssService = rssService,
+        readabilityService = readabilityService,
+        timeProvider = RealTimeProvider(),
+      )
     }
+  }
 }

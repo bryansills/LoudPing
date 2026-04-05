@@ -8,13 +8,11 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
 internal fun Project.configureNavigation() {
-    plugins {
-        alias(libs.plugins.kotlinx.serialization)
-    }
-    dependencies {
-        implementation(libs.androidx.compose.navigation)
-        implementation(libs.hilt.navigation.compose)
-        implementation(libs.viewmodel)
-        implementation(libs.kotlinx.serialization.runtime.json)
-    }
+  plugins { alias(libs.plugins.kotlinx.serialization) }
+  dependencies {
+    implementation(libs.androidx.compose.navigation)
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.viewmodel)
+    implementation(libs.kotlinx.serialization.runtime.json)
+  }
 }

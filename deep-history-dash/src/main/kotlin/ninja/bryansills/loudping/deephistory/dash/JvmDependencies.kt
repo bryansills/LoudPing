@@ -40,108 +40,108 @@ import retrofit2.create
 
 @OptIn(ExperimentalStdlibApi::class)
 suspend fun initializeDependencies(): JvmDependencies {
-    val sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
-    val networkSneak = RealNetworkSneak(
-        sneak = sneak,
-        obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
-        obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
-        obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
-        obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
-        obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
-        obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
+  val sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
+  val networkSneak =
+    RealNetworkSneak(
+      sneak = sneak,
+      obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
+      obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
+      obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
+      obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
+      obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
+      obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
     )
 
-    val dataStore = PreferenceDataStoreFactory.create {
-        File("deep-history-jvm.preferences_pb")
-    }
-    val simpleStorage = RealSimpleStorage(dataStore)
-    // preload SimpleStorage with the bundled refresh token
-    simpleStorage.edit { it[Stored.RefreshToken.key] = BuildConfig.JvmRefreshToken }
+  val dataStore = PreferenceDataStoreFactory.create { File("deep-history-jvm.preferences_pb") }
+  val simpleStorage = RealSimpleStorage(dataStore)
+  // preload SimpleStorage with the bundled refresh token
+  simpleStorage.edit { it[Stored.RefreshToken.key] = BuildConfig.JvmRefreshToken }
 
-    val timeProvider = RealTimeProvider()
+  val timeProvider = RealTimeProvider()
 
-    val json = Json {
-        ignoreUnknownKeys = true
-    }
-    val converterFactory = json.asConverterFactory(
-        "application/json; charset=UTF8".toMediaType(),
+  val json = Json { ignoreUnknownKeys = true }
+  val converterFactory = json.asConverterFactory("application/json; charset=UTF8".toMediaType())
+
+  val authorizationHeaderInterceptor = AuthorizationHeaderInterceptor(networkSneak)
+
+  val authOkHttpClient =
+    OkHttpClient.Builder()
+      .addInterceptor(
+        HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY }
+      )
+      .addInterceptor(authorizationHeaderInterceptor)
+      .build()
+
+  val authRetrofit =
+    Retrofit.Builder()
+      .baseUrl(networkSneak.baseAuthApiUrl)
+      .client(authOkHttpClient)
+      .addConverterFactory(ApiResultConverterFactory)
+      .addConverterFactory(converterFactory)
+      .addCallAdapterFactory(ApiResultCallAdapterFactory)
+      .build()
+
+  val spotifyAuthService = authRetrofit.create<SpotifyAuthService>()
+
+  val authManager =
+    RealAuthManager(
+      simpleStorage = simpleStorage,
+      spotifyAuthService = spotifyAuthService,
+      timeProvider = timeProvider,
+      networkSneak = networkSneak,
     )
 
-    val authorizationHeaderInterceptor = AuthorizationHeaderInterceptor(networkSneak)
-
-    val authOkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY })
-        .addInterceptor(authorizationHeaderInterceptor)
-        .build()
-
-    val authRetrofit = Retrofit.Builder()
-        .baseUrl(networkSneak.baseAuthApiUrl)
-        .client(authOkHttpClient)
-        .addConverterFactory(ApiResultConverterFactory)
-        .addConverterFactory(converterFactory)
-        .addCallAdapterFactory(ApiResultCallAdapterFactory)
-        .build()
-
-    val spotifyAuthService = authRetrofit.create<SpotifyAuthService>()
-
-    val authManager = RealAuthManager(
-        simpleStorage = simpleStorage,
-        spotifyAuthService = spotifyAuthService,
-        timeProvider = timeProvider,
-        networkSneak = networkSneak,
+  val accessTokenInterceptor = AccessTokenInterceptor(authManager)
+  val rateLimitInterceptor =
+    RateLimitInterceptor(
+      rateLimiter =
+        RateLimiter(
+          timeProvider = timeProvider,
+          sleeper = Sleeper.Default,
+          permitsPerWindow = 5,
+          windowSize = 1.seconds,
+        )
     )
 
-    val accessTokenInterceptor = AccessTokenInterceptor(authManager)
-    val rateLimitInterceptor = RateLimitInterceptor(
-        rateLimiter = RateLimiter(
-            timeProvider = timeProvider,
-            sleeper = Sleeper.Default,
-            permitsPerWindow = 5,
-            windowSize = 1.seconds,
-        ),
-    )
+  val mainOkHttpClient =
+    OkHttpClient.Builder()
+      //        .addInterceptor(HttpLoggingInterceptor().also { it.level =
+      // HttpLoggingInterceptor.Level.BODY })
+      .addInterceptor(accessTokenInterceptor)
+      .addInterceptor(rateLimitInterceptor)
+      .build()
 
-    val mainOkHttpClient = OkHttpClient.Builder()
-//        .addInterceptor(HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY })
-        .addInterceptor(accessTokenInterceptor)
-        .addInterceptor(rateLimitInterceptor)
-        .build()
+  val mainRetrofit =
+    Retrofit.Builder()
+      .baseUrl(networkSneak.baseApiUrl)
+      .client(mainOkHttpClient)
+      .addConverterFactory(converterFactory)
+      .build()
 
-    val mainRetrofit = Retrofit.Builder()
-        .baseUrl(networkSneak.baseApiUrl)
-        .client(mainOkHttpClient)
-        .addConverterFactory(converterFactory)
-        .build()
+  val spotifyService = mainRetrofit.create<SpotifyService>()
+  val networkService = RealNetworkService(spotifyService = spotifyService)
 
-    val spotifyService = mainRetrofit.create<SpotifyService>()
-    val networkService = RealNetworkService(spotifyService = spotifyService)
+  val sqlDriver = JvmSqlDriver(url = "jdbc:sqlite:deep-history.db")
+  val sqlDatabase = LoudPingDatabase(sqlDriver)
+  val databaseService = RealDatabaseService(database = sqlDatabase)
 
-    val sqlDriver = JvmSqlDriver(url = "jdbc:sqlite:deep-history.db")
-    val sqlDatabase = LoudPingDatabase(sqlDriver)
-    val databaseService = RealDatabaseService(database = sqlDatabase)
+  val trackRepo = RealTrackRepository(network = networkService, database = databaseService)
+  val deepHistoryRunner =
+    DefaultDeepHistoryRunner(trackRepository = trackRepo, databaseService = databaseService)
 
-    val trackRepo = RealTrackRepository(
-        network = networkService,
-        database = databaseService,
-    )
-    val deepHistoryRunner = DefaultDeepHistoryRunner(
-        trackRepository = trackRepo,
-        databaseService = databaseService,
-    )
-
-    return JvmDependencies(
-        network = networkService,
-        database = databaseService,
-        trackRepo = trackRepo,
-        deepHistoryRunner = deepHistoryRunner,
-        deepHistoryDataProvider = LazyJavaResourcesDeepHistoryDataProvider(),
-    )
+  return JvmDependencies(
+    network = networkService,
+    database = databaseService,
+    trackRepo = trackRepo,
+    deepHistoryRunner = deepHistoryRunner,
+    deepHistoryDataProvider = LazyJavaResourcesDeepHistoryDataProvider(),
+  )
 }
 
 data class JvmDependencies(
-    val network: NetworkService,
-    val database: DatabaseService,
-    val trackRepo: TrackRepository,
-    val deepHistoryRunner: DeepHistoryRunner,
-    val deepHistoryDataProvider: DeepHistoryDataProvider,
+  val network: NetworkService,
+  val database: DatabaseService,
+  val trackRepo: TrackRepository,
+  val deepHistoryRunner: DeepHistoryRunner,
+  val deepHistoryDataProvider: DeepHistoryDataProvider,
 )

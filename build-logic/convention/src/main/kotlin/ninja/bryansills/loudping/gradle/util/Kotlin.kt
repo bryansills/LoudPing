@@ -10,16 +10,18 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
-internal inline fun <reified T : KotlinProjectExtension> Project.kotlin(noinline block: T.() -> Unit) {
-    extensions.configure<T>(block)
+internal inline fun <reified T : KotlinProjectExtension> Project.kotlin(
+  noinline block: T.() -> Unit
+) {
+  extensions.configure<T>(block)
 }
 
 internal fun KotlinMultiplatformExtension.sourceSets(
-    configure: Action<NamedDomainObjectContainer<KotlinSourceSet>>,
+  configure: Action<NamedDomainObjectContainer<KotlinSourceSet>>
 ): Unit = (this as ExtensionAware).extensions.configure("sourceSets", configure)
 
 internal fun Project.androidLibrary(block: KotlinMultiplatformAndroidLibraryTarget.() -> Unit) {
-    kotlin<KotlinMultiplatformExtension> {
-        extensions.configure<KotlinMultiplatformAndroidLibraryTarget>(block)
-    }
+  kotlin<KotlinMultiplatformExtension> {
+    extensions.configure<KotlinMultiplatformAndroidLibraryTarget>(block)
+  }
 }

@@ -17,17 +17,16 @@ import ninja.bryansills.loudping.database.android.AndroidSqlDriver
 @Module
 @InstallIn(SingletonComponent::class)
 interface DatabaseModule {
-    companion object {
-        @Singleton
-        @Provides
-        fun provideDatabaseService(
-            database: Database,
-        ): DatabaseService = RealDatabaseService(database = database)
+  companion object {
+    @Singleton
+    @Provides
+    fun provideDatabaseService(database: Database): DatabaseService =
+      RealDatabaseService(database = database)
 
-        @Provides
-        fun provideDatabase(sqlDriver: SqlDriver): Database = LoudPingDatabase(sqlDriver)
+    @Provides fun provideDatabase(sqlDriver: SqlDriver): Database = LoudPingDatabase(sqlDriver)
 
-        @Provides
-        fun provideSqlDriver(@ApplicationContext context: Context): SqlDriver = AndroidSqlDriver(context)
-    }
+    @Provides
+    fun provideSqlDriver(@ApplicationContext context: Context): SqlDriver =
+      AndroidSqlDriver(context)
+  }
 }

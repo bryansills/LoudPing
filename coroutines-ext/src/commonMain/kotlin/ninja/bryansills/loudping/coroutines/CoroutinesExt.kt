@@ -11,16 +11,16 @@ import kotlinx.coroutines.runBlocking
  * waiting for work to finish.
  */
 fun CoroutineScope.launchBlocking(block: suspend CoroutineScope.() -> Unit) {
-    try {
-        runBlocking(this.coroutineContext) {
-            block()
-            this.cancel("Time to die.")
-        }
-    } catch (ex: Exception) {
-        if (ex !is CancellationException) {
-            ex.printStackTrace()
-        }
+  try {
+    runBlocking(this.coroutineContext) {
+      block()
+      this.cancel("Time to die.")
     }
+  } catch (ex: Exception) {
+    if (ex !is CancellationException) {
+      ex.printStackTrace()
+    }
+  }
 
-    exitProcess(0)
+  exitProcess(0)
 }

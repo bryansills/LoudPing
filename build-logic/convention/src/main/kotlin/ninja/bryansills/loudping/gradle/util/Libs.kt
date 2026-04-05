@@ -8,12 +8,12 @@ import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 internal val Project.libs: LibrariesForLibs
-    get() = the<LibrariesForLibs>()
+  get() = the<LibrariesForLibs>()
 
 internal fun Provider<String>.toInt(): Int = this.get().toInt()
 
 internal val LibrariesForLibs.jvmTarget: JvmTarget
-    get() = JvmTarget.fromTarget(this.versions.jvmTarget.get())
+  get() = JvmTarget.fromTarget(this.versions.jvmTarget.get())
 
 internal val LibrariesForLibs.javaVersion: JavaVersion
-    get() = JavaVersion.toVersion(this.versions.jvmTarget.get())
+  get() = JavaVersion.toVersion(this.versions.jvmTarget.get())

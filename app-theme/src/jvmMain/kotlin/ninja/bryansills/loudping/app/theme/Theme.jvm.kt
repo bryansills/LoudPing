@@ -5,19 +5,16 @@ import androidx.compose.runtime.Composable
 
 @Composable
 actual fun LoudPingTheme(
-    darkTheme: Boolean,
-    dynamicColor: Boolean,
-    content: @Composable () -> Unit,
+  darkTheme: Boolean,
+  dynamicColor: Boolean,
+  content: @Composable () -> Unit,
 ) {
-    val colorScheme = if (darkTheme) {
-        mediumContrastDarkColorScheme
+  val colorScheme =
+    if (darkTheme) {
+      mediumContrastDarkColorScheme
     } else {
-        mediumContrastLightColorScheme
+      mediumContrastLightColorScheme
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = AppTypography,
-        content = content,
-    )
+  MaterialTheme(colorScheme = colorScheme, typography = AppTypography, content = content)
 }

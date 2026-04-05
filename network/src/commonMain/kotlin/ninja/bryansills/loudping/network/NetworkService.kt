@@ -9,13 +9,16 @@ import ninja.bryansills.loudping.network.model.album.FullAlbum
 import ninja.bryansills.loudping.network.model.track.Track
 
 interface NetworkService {
-    suspend fun getMe(): ApiResult<PrivateUserResponse, Unit>
-    suspend fun getRecentlyPlayed(): ApiResult<RecentlyPlayedResponse, Unit>
-    suspend fun getSavedAlbums(): ApiResult<SavedAlbumsResponse, Unit>
+  suspend fun getMe(): ApiResult<PrivateUserResponse, Unit>
 
-    suspend fun getSeveralTracks(ids: List<String>): ApiResult<List<Track>, Unit>
+  suspend fun getRecentlyPlayed(): ApiResult<RecentlyPlayedResponse, Unit>
 
-    suspend fun getSeveralAlbums(ids: List<String>): ApiResult<List<FullAlbum>, Unit>
+  suspend fun getSavedAlbums(): ApiResult<SavedAlbumsResponse, Unit>
+
+  suspend fun getSeveralTracks(ids: List<String>): ApiResult<List<Track>, Unit>
+
+  suspend fun getSeveralAlbums(ids: List<String>): ApiResult<List<FullAlbum>, Unit>
 }
 
-suspend fun NetworkService.getTrack(id: String): Track = this.getSeveralTracks(listOf(id)).successOrNothing { throw RuntimeException() }.first()
+suspend fun NetworkService.getTrack(id: String): Track =
+  this.getSeveralTracks(listOf(id)).successOrNothing { throw RuntimeException() }.first()

@@ -7,4 +7,5 @@ import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import ninja.bryansills.loudping.database.Database
 
 @Suppress("ktlint:standard:function-naming")
-fun AndroidSqlDriver(context: Context): SqlDriver = AndroidSqliteDriver(Database.Schema.synchronous(), context, "loud-ping.db")
+fun AndroidSqlDriver(context: Context): SqlDriver =
+  AndroidSqliteDriver(Database.Schema.synchronous(), context, "loud-ping.db")

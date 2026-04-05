@@ -10,29 +10,35 @@ import org.gradle.plugin.use.PluginDependency
 internal fun PluginAware.plugins(action: PluginContainer.() -> Unit) = with(plugins) { action() }
 
 internal fun PluginContainer.alias(provider: Provider<PluginDependency>) {
-    apply(provider.get().pluginId)
+  apply(provider.get().pluginId)
 }
 
 internal fun <T : ExternalDependency> DependencyHandlerScope.implementation(lib: Provider<T>) {
-    "implementation"(lib)
+  "implementation"(lib)
 }
 
-internal fun <T : ExternalDependency> DependencyHandlerScope.androidTestImplementation(lib: Provider<T>) {
-    "androidTestImplementation"(lib)
+internal fun <T : ExternalDependency> DependencyHandlerScope.androidTestImplementation(
+  lib: Provider<T>
+) {
+  "androidTestImplementation"(lib)
 }
 
 internal fun <T : ExternalDependency> DependencyHandlerScope.debugImplementation(lib: Provider<T>) {
-    "debugImplementation"(lib)
+  "debugImplementation"(lib)
 }
 
-internal fun <T : ExternalDependency> DependencyHandlerScope.coreLibraryDesugaring(lib: Provider<T>) {
-    "coreLibraryDesugaring"(lib)
+internal fun <T : ExternalDependency> DependencyHandlerScope.coreLibraryDesugaring(
+  lib: Provider<T>
+) {
+  "coreLibraryDesugaring"(lib)
 }
 
-internal fun <T : ExternalDependency> DependencyHandlerScope.androidTestRuntimeOnly(lib: Provider<T>) {
-    "androidTestRuntimeOnly"(lib)
+internal fun <T : ExternalDependency> DependencyHandlerScope.androidTestRuntimeOnly(
+  lib: Provider<T>
+) {
+  "androidTestRuntimeOnly"(lib)
 }
 
 internal fun <T : ExternalDependency> DependencyHandlerScope.ksp(lib: Provider<T>) {
-    "ksp"(lib)
+  "ksp"(lib)
 }

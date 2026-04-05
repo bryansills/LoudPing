@@ -9,12 +9,12 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
 internal fun Project.configureDagger() {
-    plugins {
-        alias(libs.plugins.ksp)
-        alias(libs.plugins.hilt.plugin)
-    }
-    dependencies {
-        implementation(libs.hilt.android)
-        ksp(libs.hilt.compiler)
-    }
+  plugins {
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt.plugin)
+  }
+  dependencies {
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+  }
 }

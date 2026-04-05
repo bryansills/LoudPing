@@ -37,7 +37,6 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
-    compileOnly(libs.spotless.gradlePlugin)
     compileOnly(libs.dependencyGuard.gradlePlugin)
     compileOnly(libs.dependencyAnalysis.gradlePlugin)
 }

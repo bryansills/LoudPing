@@ -33,14 +33,12 @@ kotlinx-html = "0.12.0"
 kotlinx-retrofit = "1.0.0"
 kotlinx-serialization-runtime = "1.10.0"
 ksp = "2.3.6"
-ktlint = "1.8.0"
 material = "1.13.0"
 navigation-compose = "2.9.7"
 okhttp = "5.3.2"
 okio = "3.17.0"
 paging = "3.4.2"
 retrofit = "3.0.0"
-spotless = "8.4.0"
 sqldelight = "2.3.2"
 viewmodel = "2.10.0"
 workmanager = "2.11.2"
@@ -88,6 +86,8 @@ kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",
 kotlinx-html = { group = "org.jetbrains.kotlinx", name = "kotlinx-html-jvm", version.ref = "kotlinx-html" }
 kotlinx-serialization-runtime-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization-runtime"}
 kotlinx-serialization-runtime-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-runtime"}
+# Remember to update `./scripts/ktfmt.sh` too
+ktfmt = { module = "com.facebook:ktfmt", version = "0.62.0" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 mosaic = { module = "com.jakewharton.mosaic:mosaic-runtime", version = "0.18.0" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
@@ -116,7 +116,6 @@ dependencyAnalysis-gradlePlugin = { module = "com.autonomousapps.dependency-anal
 dependencyGuard-gradlePlugin = { module = "com.dropbox.dependency-guard:com.dropbox.dependency-guard.gradle.plugin", version.ref = "dependency-guard" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
-spotless-gradlePlugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -137,7 +136,6 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 
 # Convention Plugins

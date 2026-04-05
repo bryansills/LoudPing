@@ -7,9 +7,10 @@ import java.util.Properties
 import ninja.bryansills.loudping.database.Database
 
 @Suppress("ktlint:standard:function-naming")
-fun JvmSqlDriver(url: String = JdbcSqliteDriver.IN_MEMORY): SqlDriver = JdbcSqliteDriver(
+fun JvmSqlDriver(url: String = JdbcSqliteDriver.IN_MEMORY): SqlDriver =
+  JdbcSqliteDriver(
     url = url,
     schema = Database.Schema.synchronous(),
     migrateEmptySchema = true,
     properties = Properties().apply { put("foreign_keys", "true") },
-)
+  )

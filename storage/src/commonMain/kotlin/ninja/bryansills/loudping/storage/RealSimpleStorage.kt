@@ -7,44 +7,41 @@ import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class RealSimpleStorage(
-    private val dataStore: DataStore<Preferences>,
-) : SimpleStorage {
-    override fun <Data> get(key: SimpleEntry<Data>): Flow<Data> = dataStore.data.map {
-        it[key.key] ?: key.defaultValue
+class RealSimpleStorage(private val dataStore: DataStore<Preferences>) : SimpleStorage {
+  override fun <Data> get(key: SimpleEntry<Data>): Flow<Data> =
+    dataStore.data.map { it[key.key] ?: key.defaultValue }
+
+  override suspend fun <Data> update(
+    key: SimpleEntry<Data>,
+    transform: suspend (t: Data) -> Data?,
+  ): Data {
+    val editedPrefs = dataStore.edit { mutablePreferences ->
+      val oldValue = mutablePreferences[key.key] ?: key.defaultValue
+      val newValue = transform(oldValue)
+
+      if (newValue != null) {
+        mutablePreferences[key.key] = newValue
+      } else {
+        mutablePreferences.remove(key.key)
+      }
     }
 
-    override suspend fun <Data> update(
-        key: SimpleEntry<Data>,
-        transform: suspend (t: Data) -> Data?,
-    ): Data {
-        val editedPrefs = dataStore.edit { mutablePreferences ->
-            val oldValue = mutablePreferences[key.key] ?: key.defaultValue
-            val newValue = transform(oldValue)
+    return editedPrefs[key.key] ?: key.defaultValue
+  }
 
-            if (newValue != null) {
-                mutablePreferences[key.key] = newValue
-            } else {
-                mutablePreferences.remove(key.key)
-            }
-        }
+  override suspend fun <Data> clear(key: SimpleEntry<Data>): Boolean {
+    var didRemove = false
 
-        return editedPrefs[key.key] ?: key.defaultValue
+    dataStore.edit { mutablePreferences ->
+      didRemove = mutablePreferences[key.key] != null
+
+      mutablePreferences.remove(key.key)
     }
 
-    override suspend fun <Data> clear(key: SimpleEntry<Data>): Boolean {
-        var didRemove = false
+    return didRemove
+  }
 
-        dataStore.edit { mutablePreferences ->
-            didRemove = mutablePreferences[key.key] != null
-
-            mutablePreferences.remove(key.key)
-        }
-
-        return didRemove
-    }
-
-    override suspend fun edit(
-        transform: suspend (mutablePreferences: MutablePreferences) -> Unit,
-    ): Preferences = dataStore.edit(transform)
+  override suspend fun edit(
+    transform: suspend (mutablePreferences: MutablePreferences) -> Unit
+  ): Preferences = dataStore.edit(transform)
 }

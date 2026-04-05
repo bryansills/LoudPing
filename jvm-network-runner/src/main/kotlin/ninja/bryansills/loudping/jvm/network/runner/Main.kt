@@ -14,21 +14,21 @@ import ninja.bryansills.loudping.network.RealGetRecentlyPlayed
 import ninja.bryansills.loudping.network.RealNetworkService
 
 fun main() {
-    val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+  val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
-    mainScope.launchBlocking {
-        val spotifyService = initializeDependencies()
-        val networkService = RealNetworkService(spotifyService)
-        val getRecentlyPlayed = RealGetRecentlyPlayed(spotifyService)
-        val sqlDriver = JvmSqlDriver()
-        val sqlDatabase = LoudPingDatabase(sqlDriver)
-        val databaseService = RealDatabaseService(sqlDatabase)
-        val historyRecorder = RealHistoryRecorder(getRecentlyPlayed, databaseService)
+  mainScope.launchBlocking {
+    val spotifyService = initializeDependencies()
+    val networkService = RealNetworkService(spotifyService)
+    val getRecentlyPlayed = RealGetRecentlyPlayed(spotifyService)
+    val sqlDriver = JvmSqlDriver()
+    val sqlDatabase = LoudPingDatabase(sqlDriver)
+    val databaseService = RealDatabaseService(sqlDatabase)
+    val historyRecorder = RealHistoryRecorder(getRecentlyPlayed, databaseService)
 
-        val start = Clock.System.now()
-        val end = start - 5.days
+    val start = Clock.System.now()
+    val end = start - 5.days
 
-        val syncedTo = historyRecorder(start, end)
-        println("Synced tracks all the way back to $syncedTo")
-    }
+    val syncedTo = historyRecorder(start, end)
+    println("Synced tracks all the way back to $syncedTo")
+  }
 }
