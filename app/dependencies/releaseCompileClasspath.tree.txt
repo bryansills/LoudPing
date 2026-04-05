@@ -451,7 +451,9 @@
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20 (*)
 +--- project :di
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20 (*)
-+--- project :database
++--- project :database:android
+|    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20 (*)
++--- project :database:core
 |    +--- project :core:model
 |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.7.1-0.6.x-compat
 |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.7.1-0.6.x-compat

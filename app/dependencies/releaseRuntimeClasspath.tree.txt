@@ -1039,14 +1039,7 @@
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.7.1-0.6.x-compat (*)
 |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20 (*)
 |    |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (*)
-|    |    |    |    +--- project :database
-|    |    |    |    |    +--- app.cash.sqldelight:android-driver:2.3.2
-|    |    |    |    |    |    +--- androidx.sqlite:sqlite-framework:2.6.2 (*)
-|    |    |    |    |    |    +--- app.cash.sqldelight:runtime:2.3.2
-|    |    |    |    |    |    |    \--- app.cash.sqldelight:runtime-jvm:2.3.2
-|    |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 -> 2.3.20 (*)
-|    |    |    |    |    |    +--- androidx.sqlite:sqlite:2.6.2 (*)
-|    |    |    |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 -> 2.3.20 (*)
+|    |    |    |    +--- project :database:core
 |    |    |    |    |    +--- project :core:model (*)
 |    |    |    |    |    +--- androidx.paging:paging-common:3.4.2
 |    |    |    |    |    |    \--- androidx.paging:paging-common-android:3.4.2
@@ -1055,7 +1048,9 @@
 |    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.0.21 -> 2.3.20 (*)
 |    |    |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 -> 1.10.2 (*)
 |    |    |    |    |    |         \--- androidx.paging:paging-compose:3.4.2 (c)
-|    |    |    |    |    +--- app.cash.sqldelight:runtime:2.3.2 (*)
+|    |    |    |    |    +--- app.cash.sqldelight:runtime:2.3.2
+|    |    |    |    |    |    \--- app.cash.sqldelight:runtime-jvm:2.3.2
+|    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 -> 2.3.20 (*)
 |    |    |    |    |    +--- app.cash.sqldelight:async-extensions:2.3.2
 |    |    |    |    |    |    \--- app.cash.sqldelight:async-extensions-jvm:2.3.2
 |    |    |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (*)
@@ -1252,7 +1247,7 @@
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.0 (*)
 |    |    +--- project :core:model (*)
-|    |    +--- project :database (*)
+|    |    +--- project :database:core (*)
 |    |    +--- project :app-theme (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.7.1-0.6.x-compat (*)
 |    |    +--- androidx.paging:paging-common:3.4.2 (*)
@@ -1310,7 +1305,15 @@
 |         +--- io.coil-kt:coil:2.7.0 (*)
 |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.0 -> 2.3.20 (*)
 +--- project :di (*)
-+--- project :database (*)
++--- project :database:android
+|    +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20 (*)
+|    +--- project :database:core (*)
+|    \--- app.cash.sqldelight:android-driver:2.3.2
+|         +--- androidx.sqlite:sqlite-framework:2.6.2 (*)
+|         +--- app.cash.sqldelight:runtime:2.3.2 (*)
+|         +--- androidx.sqlite:sqlite:2.6.2 (*)
+|         \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 -> 2.3.20 (*)
++--- project :database:core (*)
 +--- project :history-recorder (*)
 +--- project :network (*)
 +--- project :network-auth (*)
