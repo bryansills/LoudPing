@@ -13,38 +13,38 @@ config:
 graph TB
   subgraph :core
     direction TB
-    :core:model[model]:::unknown
+    :core:model[model]:::multiplatform-library
   end
   subgraph :database
     direction TB
-    :database:android[android]:::unknown
+    :database:android[android]:::android-kotlin
     :database:core[core]:::unknown
   end
   subgraph :ui
     direction TB
-    :ui:destinations[destinations]:::unknown
-    :ui:home[home]:::unknown
-    :ui:login[login]:::unknown
-    :ui:played-tracks[played-tracks]:::unknown
-    :ui:refresh-token-entry[refresh-token-entry]:::unknown
-    :ui:settings[settings]:::unknown
+    :ui:destinations[destinations]:::compose-library
+    :ui:home[home]:::compose-library
+    :ui:login[login]:::android-dagger
+    :ui:played-tracks[played-tracks]:::compose-library
+    :ui:refresh-token-entry[refresh-token-entry]:::compose-library
+    :ui:settings[settings]:::compose-library
   end
-  :time[time]:::unknown
-  :storage[storage]:::unknown
-  :sneak-network[sneak-network]:::unknown
-  :sneak[sneak]:::unknown
-  :session[session]:::unknown
-  :network-auth[network-auth]:::unknown
-  :network[network]:::unknown
-  :logger-bugsnag[logger-bugsnag]:::unknown
-  :logger[logger]:::unknown
-  :history-recorder[history-recorder]:::unknown
-  :foreman[foreman]:::unknown
-  :di[di]:::unknown
-  :app-theme[app-theme]:::unknown
-  :app-core[app-core]:::unknown
-  :app[app]:::unknown
-  :android-app-res[android-app-res]:::unknown
+  :time[time]:::multiplatform-library
+  :storage[storage]:::multiplatform-library
+  :sneak-network[sneak-network]:::multiplatform-library
+  :sneak[sneak]:::multiplatform-library
+  :session[session]:::multiplatform-library
+  :network-auth[network-auth]:::multiplatform-library
+  :network[network]:::multiplatform-library
+  :logger-bugsnag[logger-bugsnag]:::android-kotlin
+  :logger[logger]:::multiplatform-library
+  :history-recorder[history-recorder]:::multiplatform-library
+  :foreman[foreman]:::android-dagger
+  :di[di]:::jvm-library
+  :app-theme[app-theme]:::multiplatform-compose
+  :app-core[app-core]:::compose-library
+  :app[app]:::android-application
+  :android-app-res[android-app-res]:::android-java
 
   :app -.-> :app-core
   :app -.-> :database:android
@@ -99,10 +99,13 @@ graph TB
   :ui:settings -.-> :network-auth
 
 classDef android-application fill:#CAFFBF,stroke:#000,stroke-width:2px,color:#000;
-classDef android-feature fill:#FFD6A5,stroke:#000,stroke-width:2px,color:#000;
-classDef android-library fill:#9BF6FF,stroke:#000,stroke-width:2px,color:#000;
-classDef android-test fill:#A0C4FF,stroke:#000,stroke-width:2px,color:#000;
+classDef compose-library fill:#FFD6A5,stroke:#000,stroke-width:2px,color:#000;
+classDef android-dagger fill:#9BF6FF,stroke:#000,stroke-width:2px,color:#000;
+classDef android-kotlin fill:#A0C4FF,stroke:#000,stroke-width:2px,color:#000;
+classDef android-java fill:#C4A0FF,stroke:#000,stroke-width:2px,color:#000;
 classDef jvm-library fill:#BDB2FF,stroke:#000,stroke-width:2px,color:#000;
+classDef multiplatform-compose fill:#5FB2FF,stroke:#000,stroke-width:2px,color:#000;
+classDef multiplatform-library fill:#BD5FFF,stroke:#000,stroke-width:2px,color:#000;
 classDef unknown fill:#FFADAD,stroke:#000,stroke-width:2px,color:#000;
 ```
 
@@ -111,18 +114,25 @@ classDef unknown fill:#FFADAD,stroke:#000,stroke-width:2px,color:#000;
 ```mermaid
 graph TB
   application[application]:::android-application
-  feature[feature]:::android-feature
-  library[library]:::android-library
+  compose library[compose library]:::compose-library
+  dagger library[dagger library]:::android-dagger
+  android kotlin library[android kotlin library]:::android-kotlin
+  android java library[android java library]:::android-java
   jvm[jvm]:::jvm-library
+  multiplatform compose[multiplatform compose]:::multiplatform-compose
+  multiplatform[multiplatform]:::multiplatform-library
 
   application -.-> feature
   library --> jvm
 
 classDef android-application fill:#CAFFBF,stroke:#000,stroke-width:2px,color:#000;
-classDef android-feature fill:#FFD6A5,stroke:#000,stroke-width:2px,color:#000;
-classDef android-library fill:#9BF6FF,stroke:#000,stroke-width:2px,color:#000;
-classDef android-test fill:#A0C4FF,stroke:#000,stroke-width:2px,color:#000;
+classDef compose-library fill:#FFD6A5,stroke:#000,stroke-width:2px,color:#000;
+classDef android-dagger fill:#9BF6FF,stroke:#000,stroke-width:2px,color:#000;
+classDef android-kotlin fill:#A0C4FF,stroke:#000,stroke-width:2px,color:#000;
+classDef android-java fill:#C4A0FF,stroke:#000,stroke-width:2px,color:#000;
 classDef jvm-library fill:#BDB2FF,stroke:#000,stroke-width:2px,color:#000;
+classDef multiplatform-compose fill:#5FB2FF,stroke:#000,stroke-width:2px,color:#000;
+classDef multiplatform-library fill:#BD5FFF,stroke:#000,stroke-width:2px,color:#000;
 classDef unknown fill:#FFADAD,stroke:#000,stroke-width:2px,color:#000;
 ```
 

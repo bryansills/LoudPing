@@ -100,29 +100,44 @@ private class Graph(
 /** Declaration order is important, as only the first match will be retained. */
 internal enum class PluginType(val id: String, val ref: String, val style: String) {
   AndroidApplication(
-    id = "nowinandroid.android.application",
+    id = "loudping.android.application",
     ref = "android-application",
     style = "fill:#CAFFBF,stroke:#000,stroke-width:2px,color:#000",
   ),
-  AndroidFeature(
-    id = "nowinandroid.android.feature",
-    ref = "android-feature",
+  ComposeLibrary(
+    id = "loudping.android.library.compose",
+    ref = "compose-library",
     style = "fill:#FFD6A5,stroke:#000,stroke-width:2px,color:#000",
   ),
-  AndroidLibrary(
-    id = "nowinandroid.android.library",
-    ref = "android-library",
+  AndroidDagger(
+    id = "loudping.android.library.kotlin.dagger",
+    ref = "android-dagger",
     style = "fill:#9BF6FF,stroke:#000,stroke-width:2px,color:#000",
   ),
-  AndroidTest(
-    id = "nowinandroid.android.test",
-    ref = "android-test",
+  AndroidKotlin(
+    id = "loudping.android.library.kotlin",
+    ref = "android-kotlin",
     style = "fill:#A0C4FF,stroke:#000,stroke-width:2px,color:#000",
   ),
+  AndroidJava(
+    id = "loudping.android.library.java",
+    ref = "android-java",
+    style = "fill:#C4A0FF,stroke:#000,stroke-width:2px,color:#000",
+  ),
   Jvm(
-    id = "nowinandroid.jvm.library",
+    id = "loudping.jvm",
     ref = "jvm-library",
     style = "fill:#BDB2FF,stroke:#000,stroke-width:2px,color:#000",
+  ),
+  MultiplatformCompose(
+    id = "loudping.multiplatform.compose",
+    ref = "multiplatform-compose",
+    style = "fill:#5FB2FF,stroke:#000,stroke-width:2px,color:#000",
+  ),
+  Multiplatform(
+    id = "loudping.multiplatform.plain",
+    ref = "multiplatform-library",
+    style = "fill:#BD5FFF,stroke:#000,stroke-width:2px,color:#000",
   ),
   Unknown(id = "?", ref = "unknown", style = "fill:#FFADAD,stroke:#000,stroke-width:2px,color:#000"),
 }
@@ -254,9 +269,13 @@ private abstract class GraphDumpTask : DefaultTask() {
     appendLine("graph TB")
     listOf(
         "application" to PluginType.AndroidApplication,
-        "feature" to PluginType.AndroidFeature,
-        "library" to PluginType.AndroidLibrary,
+        "compose library" to PluginType.ComposeLibrary,
+        "dagger library" to PluginType.AndroidDagger,
+        "android kotlin library" to PluginType.AndroidKotlin,
+        "android java library" to PluginType.AndroidJava,
         "jvm" to PluginType.Jvm,
+        "multiplatform compose" to PluginType.MultiplatformCompose,
+        "multiplatform" to PluginType.Multiplatform,
       )
       .forEach { (name, type) -> appendLine(name.alias(indent = 2, type)) }
     appendLine()
