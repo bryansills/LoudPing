@@ -114,12 +114,12 @@ classDef unknown fill:#FFADAD,stroke:#000,stroke-width:2px,color:#000;
 ```mermaid
 graph TB
   application[application]:::android-application
-  compose library[compose library]:::compose-library
-  dagger library[dagger library]:::android-dagger
-  android kotlin library[android kotlin library]:::android-kotlin
-  android java library[android java library]:::android-java
+  composelibrary[composelibrary]:::compose-library
+  daggerlibrary[daggerlibrary]:::android-dagger
+  androidkotlinlibrary[androidkotlinlibrary]:::android-kotlin
+  androidjavalibrary[androidjavalibrary]:::android-java
   jvm[jvm]:::jvm-library
-  multiplatform compose[multiplatform compose]:::multiplatform-compose
+  multiplatformcompose[multiplatformcompose]:::multiplatform-compose
   multiplatform[multiplatform]:::multiplatform-library
 
   application -.-> feature

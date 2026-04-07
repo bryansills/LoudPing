@@ -269,12 +269,12 @@ private abstract class GraphDumpTask : DefaultTask() {
     appendLine("graph TB")
     listOf(
         "application" to PluginType.AndroidApplication,
-        "compose library" to PluginType.ComposeLibrary,
-        "dagger library" to PluginType.AndroidDagger,
-        "android kotlin library" to PluginType.AndroidKotlin,
-        "android java library" to PluginType.AndroidJava,
+        "composelibrary" to PluginType.ComposeLibrary,
+        "daggerlibrary" to PluginType.AndroidDagger,
+        "androidkotlinlibrary" to PluginType.AndroidKotlin,
+        "androidjavalibrary" to PluginType.AndroidJava,
         "jvm" to PluginType.Jvm,
-        "multiplatform compose" to PluginType.MultiplatformCompose,
+        "multiplatformcompose" to PluginType.MultiplatformCompose,
         "multiplatform" to PluginType.Multiplatform,
       )
       .forEach { (name, type) -> appendLine(name.alias(indent = 2, type)) }
