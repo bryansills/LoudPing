@@ -8,7 +8,7 @@
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: SIMPLE
+    nodePlacementStrategy: NETWORK_SIMPLEX
 ---
 graph TB
   subgraph :core

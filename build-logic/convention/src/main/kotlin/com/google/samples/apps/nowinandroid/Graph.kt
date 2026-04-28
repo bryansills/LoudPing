@@ -196,7 +196,7 @@ private abstract class GraphDumpTask : DefaultTask() {
       config:
         layout: elk
         elk:
-          nodePlacementStrategy: SIMPLE
+          nodePlacementStrategy: NETWORK_SIMPLEX
       ---
       """
         .trimIndent()
