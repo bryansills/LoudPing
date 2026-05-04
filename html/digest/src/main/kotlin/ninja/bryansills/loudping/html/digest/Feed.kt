@@ -65,26 +65,26 @@ val feeds =
       url = "https://www.thesinglesjukebox.com/?feed=rss2",
       type = FeedType.Rss,
     ),
-    //    Feed(
-    //        name = "Chicago Reader - Features",
-    //        url = "https://chicagoreader.com/category/music/music-feature/feed/",
-    //        type = FeedType.Rss,
-    //    ),
-    //    Feed(
-    //        name = "Chicago Reader - Gossip Wolf",
-    //        url = "https://chicagoreader.com/category/music/gossip-wolf/feed/",
-    //        type = FeedType.Rss,
-    //    ),
-    //    Feed(
-    //        name = "Chicago Reader - Concert Previews",
-    //        url = "https://chicagoreader.com/category/music/concert-preview/feed/",
-    //        type = FeedType.Rss,
-    //    ),
-    //    Feed(
-    //        name = "Chicago Reader - Chicagoans of Note",
-    //        url = "https://chicagoreader.com/category/music/chicagoans-of-note/feed/",
-    //        type = FeedType.Rss,
-    //    ),
+    Feed(
+      name = "Chicago Reader - Features",
+      url = "https://chicagoreader.com/category/music/music-feature/feed/",
+      type = FeedType.Rss,
+    ),
+    Feed(
+      name = "Chicago Reader - Gossip Wolf",
+      url = "https://chicagoreader.com/category/music/gossip-wolf/feed/",
+      type = FeedType.Rss,
+    ),
+    Feed(
+      name = "Chicago Reader - Concert Previews",
+      url = "https://chicagoreader.com/category/music/concert-preview/feed/",
+      type = FeedType.Rss,
+    ),
+    Feed(
+      name = "Chicago Reader - Chicagoans of Note",
+      url = "https://chicagoreader.com/category/music/chicagoans-of-note/feed/",
+      type = FeedType.Rss,
+    ),
     //    Feed(
     //        name = "Resident Advisor - Albums",
     //        url = "https://ra.co/reviews/albums",
