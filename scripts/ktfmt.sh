@@ -26,6 +26,7 @@ OPTIONS:
   --plain                 Print only the number of autoformatted files
   --all                   Format entire codebase (required if no directory/file specified)
   --touched               Format only files changed since the parent branch (includes working tree changes)
+  --staged                Format only files staged for commit
 
 ARGUMENTS:
   DIRECTORY               Optional: Format only files in this directory (e.g., app/src/main/kotlin)
@@ -173,11 +174,26 @@ get_touched_kotlin_files_as_lines() {
   done <<< "$all_files"
 }
 
+# Function to get staged Kotlin files using git (outputs one file per line)
+get_staged_kotlin_files_as_lines() {
+  # Get committed changes
+  local staged_files
+  staged_files=$(git diff --name-only --cached --diff-filter=AM -- "*.kt" "*.kts" 2>/dev/null || echo "")
+
+  # Filter to only include files in src directories (excluding src-gen) and output one per line
+  while IFS= read -r file; do
+    if [ -f "$file" ] && [[ "$file" == */src/* ]] && [[ "$file" != */src-gen/* ]]; then
+      echo "$file"
+    fi
+  done <<< "$staged_files"
+}
+
 # Parse arguments
 verbose=false
 plain=false
 format_all=false
 format_touched=false
+format_staged=false
 dry_run=false
 set_exit_if_changed=false
 target_paths=()
@@ -213,6 +229,10 @@ while [ $# -gt 0 ]; do
       format_touched=true
       shift
       ;;
+    --staged)
+      format_staged=true
+      shift
+      ;;
     -*)
       error "Error: Unknown option: $arg"
       error "Run 'scripts/ktfmt.sh --help' for usage information."
@@ -237,8 +257,12 @@ if [ "$verbose" = true ] && [ "$plain" = true ]; then
   exit 1
 fi
 
-if [ "$format_all" = true ] && [ "$format_touched" = true ]; then
-  error "Error: Cannot specify both --all and --touched."
+preset_filter_count=0
+if [ "$format_all" = true ]; then ((preset_filter_count++)); fi
+if [ "$format_touched" = true ]; then ((preset_filter_count++)); fi
+if [ "$format_staged" = true ]; then ((preset_filter_count++)); fi
+if [ "$preset_filter_count" -gt 1 ]; then
+  error "Error: Cannot more than one of: --all, --touched, or --staged."
   exit 1
 fi
 
@@ -252,9 +276,14 @@ if [ "$format_touched" = true ] && [ ${#target_paths[@]} -gt 0 ]; then
   exit 1
 fi
 
-# Validate that either --all, --touched, or paths are provided
-if [ "$format_all" = false ] && [ "$format_touched" = false ] && [ ${#target_paths[@]} -eq 0 ]; then
-  error "Error: Either specify --all flag, --touched flag, or provide a directory/file path."
+if [ "$format_staged" = true ] && [ ${#target_paths[@]} -gt 0 ]; then
+  error "Error: Cannot specify both --staged and a directory/file path."
+  exit 1
+fi
+
+# Validate that either --all, --touched, --staged, or paths are provided
+if [ "$preset_filter_count" -eq 0 ] && [ ${#target_paths[@]} -eq 0 ]; then
+  error "Error: Either specify --all flag, --touched flag, --staged flag, or provide a directory/file path."
   exit 1
 fi
 
@@ -312,6 +341,28 @@ if [ "$format_touched" = true ]; then
       log "  $file"
     done
   fi
+elif [ "$format_staged" = true ]; then
+  log "Finding staged Kotlin files..."
+
+  # Store the function output directly into an array (compatible with Bash 3.2+)
+  files=()
+  while IFS= read -r line; do
+    files+=("$line")
+  done < <(get_staged_kotlin_files_as_lines)
+
+  if [ ${#files[@]} -eq 0 ]; then
+    log "No staged Kotlin files found."
+    exit 0
+  fi
+
+  log "Found ${#files[@]} staged Kotlin file(s)."
+
+  if [ "$verbose" = true ]; then
+    log "Files to format:"
+    for file in "${files[@]}"; do
+      log "  $file"
+    done
+  fi
 elif [ ${#target_paths[@]} -gt 0 ]; then
   for target_path in "${target_paths[@]}"; do
     if [ -d "$target_path" ]; then
@@ -354,7 +405,7 @@ elif [ "$format_touched" = true ]; then
 fi
 
 # Process files based on how they were selected
-if [ $is_directory = true ] || [ "$format_touched" = true ]; then
+if [ $is_directory = true ] || [ "$format_touched" = true ] || [ "$format_staged" = true ]; then
   # Calculate the number of chunks needed (max 8,000 files per chunk)
   max_files_per_chunk=8000
   total_files=${#files[@]}
