@@ -26,11 +26,12 @@ data class RawItem(
   @XmlElement(required = true) var title: String = "",
   @XmlElement(required = true) var link: String = "",
   @XmlElement(required = true) var pubDate: String = "",
+  @XmlElement(name = "dc:creator", nillable = true, required = false) var author: String? = "",
 )
 
 data class RssFeed(val title: String, val description: String, val items: List<RssItem>)
 
-data class RssItem(val title: String, val link: String, val pubDate: Instant)
+data class RssItem(val title: String, val link: String, val pubDate: Instant, val author: String?)
 
 internal fun RawResponse.cleanIt(): RssFeed =
   RssFeed(
@@ -40,7 +41,12 @@ internal fun RawResponse.cleanIt(): RssFeed =
   )
 
 internal fun RawItem.cleanIt(): RssItem =
-  RssItem(title = this.title, link = this.link, pubDate = this.pubDate.rfc1123Instant())
+  RssItem(
+    title = this.title,
+    link = this.link,
+    pubDate = this.pubDate.rfc1123Instant(),
+    author = this.author?.takeIf { it.isNotBlank() },
+  )
 
 private fun String.rfc1123Instant(): Instant {
   val zoned = ZonedDateTime.parse(this, DateTimeFormatter.RFC_1123_DATE_TIME)

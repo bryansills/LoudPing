@@ -24,7 +24,10 @@ suspend fun ProvidesHtmlScope.provideDigest(
             .filter { it.pubDate > yesterday }
             .associateWith { rssItem -> readabilityService.getArticle(rssItem.link) }
 
-        details to feedsWithRead
+        details to
+          feedsWithRead.map { (rssItem, readabilityItem) ->
+            createFeedItem(details, rssItem, readabilityItem)
+          }
       }
       .filter { (_, fullMap) -> fullMap.isNotEmpty() }
 
@@ -32,5 +35,33 @@ suspend fun ProvidesHtmlScope.provideDigest(
   val dailyPage = generateDigest(timeProvider.now, fullData)
   fileSystem.sink("digest/index.html".buildPath()).buffer().use { sink ->
     sink.writeUtf8(dailyPage)
+  }
+}
+
+private fun createFeedItem(
+  feed: Feed,
+  rssItem: RssItem,
+  readabilityItem: ReadabilityResult?,
+): FeedItem {
+  return when (feed.format) {
+    ArticleFormat.Regular -> {
+      FeedItem.Article(
+        url = rssItem.link,
+        title = readabilityItem?.title ?: rssItem.title,
+        timestamp = readabilityItem?.publishedTime ?: rssItem.pubDate,
+        author = readabilityItem?.byline ?: rssItem.author,
+        contents = readabilityItem?.content,
+      )
+    }
+    is ArticleFormat.Review -> {
+      FeedItem.Review(
+        url = rssItem.link,
+        title = readabilityItem?.title ?: rssItem.title,
+        artist = "TODO()",
+        timestamp = readabilityItem?.publishedTime ?: rssItem.pubDate,
+        author = readabilityItem?.byline ?: rssItem.author,
+        contents = readabilityItem?.content,
+      )
+    }
   }
 }

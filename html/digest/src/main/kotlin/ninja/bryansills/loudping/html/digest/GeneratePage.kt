@@ -24,7 +24,7 @@ import ninja.bryansills.loudping.html.core.commonHeadAttributes
 
 internal fun generateDigest(
   postingDate: Instant,
-  allTheData: Map<Feed, Map<RssItem, ReadabilityResult?>>,
+  allTheData: Map<Feed, List<FeedItem>>,
   timeZone: TimeZone = TimeZone.of("America/Chicago"),
 ) = buildHtml {
   val formattedDate = postingDate.toLocalDateTime(timeZone).format(headlineFormat)
@@ -48,10 +48,10 @@ internal fun generateDigest(
     allTheData.entries.forEach { (feed, feedItems) ->
       h2 { +"Feed: ${feed.name}" }
 
-      feedItems.entries.forEach { (rssItem, readabilityItem) ->
+      feedItems.forEach { item ->
         details {
-          summary { h3 { +rssItem.title } }
-          unsafe { raw(readabilityItem?.content ?: "Missing article contents") }
+          summary { h3 { +item.summaryContent() } }
+          unsafe { raw(item.mainContent()) }
         }
       }
     }
@@ -65,4 +65,21 @@ val headlineFormat = LocalDateTime.Format {
   monthName(MonthNames.ENGLISH_FULL)
   char(' ')
   day()
+}
+
+private fun FeedItem.summaryContent(): String {
+  return when (this) {
+    is FeedItem.Article -> this.title
+    is FeedItem.Review -> this.title
+  }
+}
+
+private fun FeedItem.mainContent(): String {
+  val articleContents =
+    when (this) {
+      is FeedItem.Article -> this.contents
+      is FeedItem.Review -> this.contents
+    }
+
+  return articleContents ?: "Missing article contents"
 }
