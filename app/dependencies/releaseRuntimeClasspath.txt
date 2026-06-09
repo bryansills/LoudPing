@@ -2,8 +2,8 @@ androidx.activity:activity-compose:1.13.0
 androidx.activity:activity-ktx:1.13.0
 androidx.activity:activity:1.13.0
 androidx.annotation:annotation-experimental:1.4.1
-androidx.annotation:annotation-jvm:1.9.1
-androidx.annotation:annotation:1.9.1
+androidx.annotation:annotation-jvm:1.10.0
+androidx.annotation:annotation:1.10.0
 androidx.appcompat:appcompat-resources:1.7.1
 androidx.appcompat:appcompat:1.7.1
 androidx.arch.core:core-common:2.2.0
@@ -180,10 +180,10 @@ com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0
 com.slack.eithernet:eithernet-integration-retrofit:2.0.0
 com.slack.eithernet:eithernet-jvm:2.0.0
 com.slack.eithernet:eithernet:2.0.0
-com.squareup.okhttp3:okhttp-android:5.3.2
-com.squareup.okhttp3:okhttp:5.3.2
-com.squareup.okio:okio-jvm:3.16.4
-com.squareup.okio:okio:3.16.4
+com.squareup.okhttp3:okhttp-android:5.4.0
+com.squareup.okhttp3:okhttp:5.4.0
+com.squareup.okio:okio-jvm:3.17.0
+com.squareup.okio:okio:3.17.0
 com.squareup.retrofit2:retrofit:3.0.0
 io.coil-kt:coil-base:2.7.0
 io.coil-kt:coil-compose-base:2.7.0
