@@ -14,19 +14,23 @@ interface RssService {
 }
 
 @XmlRootElement(name = "rss")
-data class RawResponse(@XmlElement(required = true) var channel: RawChannel = RawChannel())
+data class RawResponse(
+  @JvmField @field:XmlElement(required = true) var channel: RawChannel = RawChannel()
+)
 
 data class RawChannel(
-  @XmlElement(required = true) var title: String = "",
-  @XmlElement(required = true) var description: String = "",
-  @XmlElement(name = "item") var item: MutableList<RawItem> = mutableListOf(),
+  @JvmField @field:XmlElement(required = true) var title: String = "",
+  @JvmField @field:XmlElement(required = true) var description: String = "",
+  @JvmField @field:XmlElement(name = "item") var item: MutableList<RawItem> = mutableListOf(),
 )
 
 data class RawItem(
-  @XmlElement(required = true) var title: String = "",
-  @XmlElement(required = true) var link: String = "",
-  @XmlElement(required = true) var pubDate: String = "",
-  @XmlElement(name = "dc:creator", nillable = true, required = false) var author: String? = "",
+  @JvmField @field:XmlElement(required = true) var title: String = "",
+  @JvmField @field:XmlElement(required = true) var link: String = "",
+  @JvmField @field:XmlElement(required = true) var pubDate: String = "",
+  @JvmField
+  @field:XmlElement(name = "dc:creator", nillable = true, required = false)
+  var author: String? = "",
 )
 
 data class RssFeed(val title: String, val description: String, val items: List<RssItem>)
