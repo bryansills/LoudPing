@@ -6,6 +6,12 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+buildscript {
+    dependencies {
+      // TODO: delete this whole `buildscript` block once Dagger and DAGP update their Kotlin stuff
+      classpath("org.jetbrains.kotlin:kotlin-metadata-jvm:2.4.0")
+    }
+}
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
