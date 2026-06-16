@@ -4,7 +4,7 @@ set -euo pipefail
 # Taken from this blog post: https://engineering.block.xyz/blog/adopting-ktfmt-and-detekt
 # Specifically this link: https://gist.github.com/vRallev/e9c3c59bba95521f98ffbb487ec44427
 
-KTFMT_VERSION="0.62"
+KTFMT_VERSION="0.63"
 
 show_help() {
   cat << EOF
