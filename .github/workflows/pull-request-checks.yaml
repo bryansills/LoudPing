@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout git repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Prepare development environment
         uses: ./.github/actions/prepare-environment
@@ -49,7 +49,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
 
       - name: Checkout git repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.WORKFLOW_TRIGGER_GITHUB_PERSONAL_ACCESS_TOKEN }}
           ref: ${{ github.head_ref }} # needed to make a commit later
@@ -92,7 +92,7 @@ jobs:
 
     steps:
       - name: Checkout git repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Prepare development environment
         uses: ./.github/actions/prepare-environment
@@ -116,7 +116,7 @@ jobs:
 
     steps:
       - name: Checkout git repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Prepare development environment
         uses: ./.github/actions/prepare-environment
