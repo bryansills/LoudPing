@@ -447,14 +447,14 @@
 |    +--- androidx.savedstate:savedstate:1.2.0 -> 1.3.2 (*)
 |    +--- javax.inject:javax.inject:1
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.2.20 -> 2.4.0 (*)
-+--- project :app-core
++--- project ':app-core'
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :di
++--- project ':di'
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :database:android
++--- project ':database:android'
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :database:core
-|    +--- project :core:model
++--- project ':database:core'
+|    +--- project ':core:model'
 |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.8.0-0.6.x-compat
 |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.8.0-0.6.x-compat
 |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.4.0 (*)
@@ -473,22 +473,22 @@
 |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 (*)
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 -> 2.4.0 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :history-recorder
++--- project ':history-recorder'
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :network
++--- project ':network'
 |    +--- com.slack.eithernet:eithernet:2.0.0
 |    |    \--- com.slack.eithernet:eithernet-jvm:2.0.0
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.0 -> 2.4.0 (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :network-auth
++--- project ':network-auth'
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :session
++--- project ':session'
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :sneak-network
++--- project ':sneak-network'
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :sneak
++--- project ':sneak'
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :storage
++--- project ':storage'
 |    +--- androidx.datastore:datastore-preferences:1.2.1
 |    |    \--- androidx.datastore:datastore-preferences-android:1.2.1
 |    |         +--- androidx.datastore:datastore:1.2.1
@@ -538,12 +538,12 @@
 |    |         +--- androidx.datastore:datastore-core:1.2.1 (c)
 |    |         \--- androidx.datastore:datastore-core-okio:1.2.1 (c)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :time
++--- project ':time'
 |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.8.0-0.6.x-compat (*)
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :logger
++--- project ':logger'
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-+--- project :logger-bugsnag
++--- project ':logger-bugsnag'
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 +--- androidx.activity:activity-compose:1.13.0
 |    +--- androidx.activity:activity:1.13.0 (*)
