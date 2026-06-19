@@ -709,7 +709,7 @@
 |    +--- androidx.savedstate:savedstate:1.2.0 -> 1.4.0 (*)
 |    +--- javax.inject:javax.inject:1
 |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.2.20 -> 2.4.0 (*)
-+--- project :app-core
++--- project ':app-core'
 |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    +--- androidx.compose:compose-bom:2026.06.00 (*)
 |    +--- androidx.compose.material3:material3 -> 1.4.0 (*)
@@ -821,10 +821,10 @@
 |    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.11.0 (*)
 |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.20 -> 2.4.0 (*)
 |    |         \--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0 (*)
-|    +--- project :session
+|    +--- project ':session'
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
-|    |    \--- project :storage
+|    |    \--- project ':storage'
 |    |         +--- androidx.datastore:datastore-preferences:1.2.1
 |    |         |    \--- androidx.datastore:datastore-preferences-android:1.2.1
 |    |         |         +--- androidx.datastore:datastore:1.2.1
@@ -902,23 +902,23 @@
 |    |         |         \--- androidx.datastore:datastore-preferences-external-protobuf:1.2.1 (c)
 |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
-|    +--- project :network-auth
+|    +--- project ':network-auth'
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
-|    |    +--- project :storage (*)
-|    |    +--- project :time
+|    |    +--- project ':storage' (*)
+|    |    +--- project ':time'
 |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.8.0-0.6.x-compat
 |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.8.0-0.6.x-compat
 |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.4.0 (*)
 |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
-|    |    +--- project :sneak-network
+|    |    +--- project ':sneak-network'
 |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
-|    |    |    \--- project :sneak
+|    |    |    \--- project ':sneak'
 |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    |         \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
-|    |    +--- project :session (*)
+|    |    +--- project ':session' (*)
 |    |    +--- com.squareup.retrofit2:retrofit:3.0.0
 |    |    |    +--- com.squareup.okhttp3:okhttp:4.12.0 -> 5.4.0
 |    |    |    |    \--- com.squareup.okhttp3:okhttp-android:5.4.0
@@ -942,15 +942,15 @@
 |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.0 -> 2.4.0 (*)
 |    |              +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 -> 1.11.0 (*)
 |    |              \--- com.squareup.okio:okio:3.9.0 -> 3.17.0 (*)
-|    +--- project :time (*)
-|    +--- project :android-app-res
-|    +--- project :app-theme
+|    +--- project ':time' (*)
+|    +--- project ':android-app-res'
+|    +--- project ':app-theme'
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
 |    |    +--- androidx.compose:compose-bom:2026.06.00 (*)
 |    |    +--- androidx.compose.ui:ui -> 1.11.3 (*)
 |    |    \--- androidx.compose.material3:material3 -> 1.4.0 (*)
-|    +--- project :ui:home
+|    +--- project ':ui:home'
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    +--- androidx.compose:compose-bom:2026.06.00 (*)
 |    |    +--- androidx.compose.material3:material3 -> 1.4.0 (*)
@@ -960,10 +960,10 @@
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.3.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0 (*)
-|    |    +--- project :session (*)
-|    |    +--- project :app-theme (*)
-|    |    +--- project :android-app-res
-|    |    +--- project :foreman
+|    |    +--- project ':session' (*)
+|    |    +--- project ':app-theme' (*)
+|    |    +--- project ':android-app-res'
+|    |    +--- project ':foreman'
 |    |    |    +--- androidx.work:work-runtime-ktx:2.11.2
 |    |    |    |    +--- androidx.work:work-runtime:2.11.2
 |    |    |    |    |    +--- androidx.annotation:annotation-experimental:1.4.1 (*)
@@ -1034,15 +1034,15 @@
 |    |    |    |    \--- androidx.work:work-runtime:2.11.2 (c)
 |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    |    +--- com.google.dagger:hilt-android:2.59.2 (*)
-|    |    |    +--- project :history-recorder
+|    |    |    +--- project ':history-recorder'
 |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
-|    |    |    |    +--- project :core:model
+|    |    |    |    +--- project ':core:model'
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.8.0-0.6.x-compat (*)
 |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
-|    |    |    |    +--- project :database:core
-|    |    |    |    |    +--- project :core:model (*)
+|    |    |    |    +--- project ':database:core'
+|    |    |    |    |    +--- project ':core:model' (*)
 |    |    |    |    |    +--- androidx.paging:paging-common:3.5.0
 |    |    |    |    |    |    \--- androidx.paging:paging-common-android:3.5.0
 |    |    |    |    |    |         +--- androidx.annotation:annotation:1.9.1 -> 1.10.0 (*)
@@ -1067,22 +1067,22 @@
 |    |    |    |    |              +--- androidx.paging:paging-common:3.4.2 -> 3.5.0 (*)
 |    |    |    |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 -> 2.4.0 (*)
 |    |    |    |    |              \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 -> 1.11.0 (*)
-|    |    |    |    +--- project :network
+|    |    |    |    +--- project ':network'
 |    |    |    |    |    +--- com.slack.eithernet:eithernet:2.0.0 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
-|    |    |    |    |    +--- project :network-auth (*)
-|    |    |    |    |    +--- project :sneak-network (*)
-|    |    |    |    |    +--- project :time (*)
+|    |    |    |    |    +--- project ':network-auth' (*)
+|    |    |    |    |    +--- project ':sneak-network' (*)
+|    |    |    |    |    +--- project ':time' (*)
 |    |    |    |    |    +--- com.squareup.retrofit2:retrofit:3.0.0 (*)
 |    |    |    |    |    +--- com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0 (*)
 |    |    |    |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0 (*)
 |    |    |    |    |    +--- com.squareup.okhttp3:okhttp:5.4.0 (*)
 |    |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.8.0-0.6.x-compat (*)
 |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-datetime:0.8.0-0.6.x-compat (*)
-|    |    |    +--- project :storage (*)
-|    |    |    +--- project :time (*)
-|    |    |    +--- project :logger
+|    |    |    +--- project ':storage' (*)
+|    |    |    +--- project ':time' (*)
+|    |    |    +--- project ':logger'
 |    |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
 |    |    |    +--- androidx.hilt:hilt-work:1.3.0
@@ -1099,7 +1099,7 @@
 |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 2.4.0 (*)
 |    |              \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 2.4.0
 |    |                   \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-|    +--- project :ui:destinations
+|    +--- project ':ui:destinations'
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    +--- androidx.compose:compose-bom:2026.06.00 (*)
 |    |    +--- androidx.compose.material3:material3 -> 1.4.0 (*)
@@ -1109,16 +1109,16 @@
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.3.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0 (*)
 |    |    \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0 (*)
-|    +--- project :ui:login
+|    +--- project ':ui:login'
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    +--- androidx.databinding:viewbinding:9.2.1
 |    |    |    +--- androidx.annotation:annotation:1.0.0 -> 1.10.0 (*)
 |    |    |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.2.10 -> 2.4.0 (*)
 |    |    +--- com.google.dagger:hilt-android:2.59.2 (*)
-|    |    +--- project :session (*)
-|    |    +--- project :network-auth (*)
-|    |    +--- project :time (*)
-|    |    +--- project :app-theme (*)
+|    |    +--- project ':session' (*)
+|    |    +--- project ':network-auth' (*)
+|    |    +--- project ':time' (*)
+|    |    +--- project ':app-theme' (*)
 |    |    +--- androidx.activity:activity-ktx:1.13.0 (*)
 |    |    +--- androidx.appcompat:appcompat:1.7.1
 |    |    |    +--- androidx.activity:activity:1.8.0 -> 1.13.0 (*)
@@ -1225,7 +1225,7 @@
 |    |    |    \--- org.jspecify:jspecify:1.0.0
 |    |    \--- org.jetbrains.kotlin:kotlin-parcelize-runtime:2.4.0
 |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-|    +--- project :ui:settings
+|    +--- project ':ui:settings'
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    +--- androidx.compose:compose-bom:2026.06.00 (*)
 |    |    +--- androidx.compose.material3:material3 -> 1.4.0 (*)
@@ -1235,13 +1235,13 @@
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.3.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0 (*)
-|    |    +--- project :network-auth (*)
-|    |    +--- project :app-theme (*)
-|    |    +--- project :android-app-res
-|    |    +--- project :foreman (*)
+|    |    +--- project ':network-auth' (*)
+|    |    +--- project ':app-theme' (*)
+|    |    +--- project ':android-app-res'
+|    |    +--- project ':foreman' (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.8.0-0.6.x-compat (*)
 |    |    \--- androidx.work:work-runtime-ktx:2.11.2 (*)
-|    +--- project :ui:played-tracks
+|    +--- project ':ui:played-tracks'
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    +--- androidx.compose:compose-bom:2026.06.00 (*)
 |    |    +--- androidx.compose.material3:material3 -> 1.4.0 (*)
@@ -1251,9 +1251,9 @@
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.3.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0 (*)
-|    |    +--- project :core:model (*)
-|    |    +--- project :database:core (*)
-|    |    +--- project :app-theme (*)
+|    |    +--- project ':core:model' (*)
+|    |    +--- project ':database:core' (*)
+|    |    +--- project ':app-theme' (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.8.0-0.6.x-compat (*)
 |    |    +--- androidx.paging:paging-common:3.5.0 (*)
 |    |    \--- androidx.paging:paging-compose:3.5.0
@@ -1263,7 +1263,7 @@
 |    |              +--- androidx.paging:paging-common:3.5.0 (*)
 |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.4.0 (*)
 |    |              \--- androidx.paging:paging-common:3.5.0 (c)
-|    +--- project :ui:refresh-token-entry
+|    +--- project ':ui:refresh-token-entry'
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    +--- androidx.compose:compose-bom:2026.06.00 (*)
 |    |    +--- androidx.compose.material3:material3 -> 1.4.0 (*)
@@ -1273,13 +1273,13 @@
 |    |    +--- androidx.hilt:hilt-navigation-compose:1.3.0 (*)
 |    |    +--- androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0 (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0 (*)
-|    |    +--- project :network-auth (*)
-|    |    +--- project :app-theme (*)
-|    |    +--- project :android-app-res
-|    |    +--- project :di
+|    |    +--- project ':network-auth' (*)
+|    |    +--- project ':app-theme' (*)
+|    |    +--- project ':android-app-res'
+|    |    +--- project ':di'
 |    |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
 |    |    |    \--- javax.inject:javax.inject:1
-|    |    \--- project :ui:destinations (*)
+|    |    \--- project ':ui:destinations' (*)
 |    +--- androidx.activity:activity-compose:1.13.0 (*)
 |    +--- androidx.activity:activity-ktx:1.13.0 (*)
 |    +--- io.coil-kt:coil:2.7.0
@@ -1309,28 +1309,28 @@
 |         |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.0 -> 2.4.0 (*)
 |         +--- io.coil-kt:coil:2.7.0 (*)
 |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.0.0 -> 2.4.0 (*)
-+--- project :di (*)
-+--- project :database:android
++--- project ':di' (*)
++--- project ':database:android'
 |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-|    +--- project :database:core (*)
+|    +--- project ':database:core' (*)
 |    \--- app.cash.sqldelight:android-driver:2.3.2
 |         +--- androidx.sqlite:sqlite-framework:2.6.2 (*)
 |         +--- app.cash.sqldelight:runtime:2.3.2 (*)
 |         +--- androidx.sqlite:sqlite:2.6.2 (*)
 |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 -> 2.4.0 (*)
-+--- project :database:core (*)
-+--- project :history-recorder (*)
-+--- project :network (*)
-+--- project :network-auth (*)
-+--- project :session (*)
-+--- project :sneak-network (*)
-+--- project :sneak (*)
-+--- project :storage (*)
-+--- project :time (*)
-+--- project :logger (*)
-+--- project :logger-bugsnag
++--- project ':database:core' (*)
++--- project ':history-recorder' (*)
++--- project ':network' (*)
++--- project ':network-auth' (*)
++--- project ':session' (*)
++--- project ':sneak-network' (*)
++--- project ':sneak' (*)
++--- project ':storage' (*)
++--- project ':time' (*)
++--- project ':logger' (*)
++--- project ':logger-bugsnag'
 |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.0 (*)
-|    +--- project :logger (*)
+|    +--- project ':logger' (*)
 |    \--- com.bugsnag:bugsnag-android:6.26.1
 |         +--- com.bugsnag:bugsnag-android-core:6.26.1
 |         |    +--- androidx.annotation:annotation:1.1.0 -> 1.10.0 (*)
