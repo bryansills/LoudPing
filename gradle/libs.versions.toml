@@ -1,8 +1,8 @@
 [versions]
 jvmTarget = "17"
 
-android-compileSdk = "36"
-android-targetSdk = "36"
+android-compileSdk = "37"
+android-targetSdk = "37"
 android-minSdk = "26"
 
 activity = "1.13.0"
