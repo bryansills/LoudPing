@@ -1,8 +1,8 @@
 [versions]
 jvmTarget = "17"
 
-android-compileSdk = "36"
-android-targetSdk = "36"
+android-compileSdk = "37"
+android-targetSdk = "37"
 android-minSdk = "26"
 
 activity = "1.13.0"
@@ -42,7 +42,7 @@ okio = "3.17.0"
 paging = "3.5.0"
 retrofit = "3.0.0"
 sqldelight = "2.3.2"
-viewmodel = "2.10.0"
+viewmodel = "2.11.0"
 workmanager = "2.11.2"
 
 [libraries]
