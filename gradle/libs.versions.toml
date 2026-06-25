@@ -24,7 +24,7 @@ dagger = "2.59.2"
 datastore = "1.2.1"
 datetime = "0.8.0-0.6.x-compat"
 # Check to see if you can delete kotlinJvmMetadata...
-dependency-analysis = "3.15.0"
+dependency-analysis = "3.16.0"
 dependency-guard = "0.5.0"
 eithernet = "2.0.0"
 espressoCore = "3.7.0"
