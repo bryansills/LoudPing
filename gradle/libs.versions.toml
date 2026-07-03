@@ -127,7 +127,7 @@ android-application = { id = "com.android.application", version.ref = "androidGr
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-lint = { id = "com.android.lint", version.ref = "androidGradlePlugin" }
 android-multiplatformlibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidGradlePlugin" }
-bugsnag = { id = "com.bugsnag.gradle", version = "1.1.0" }
+bugsnag = { id = "com.bugsnag.gradle", version = "1.1.1" }
 buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }
 burst-plugin = { id = "app.cash.burst", version.ref = "burst" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
