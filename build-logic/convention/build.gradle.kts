@@ -1,7 +1,11 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    `kotlin-dsl`
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.android.lint)
+    alias(libs.plugins.kotlin.samWithReceiver)
+    alias(libs.plugins.kotlin.assignment)
+    id("java-gradle-plugin")
 }
 
 java {
@@ -13,8 +17,14 @@ kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
         allWarningsAsErrors = true
-        freeCompilerArgs.add("-Xcontext-parameters")
     }
+}
+
+samWithReceiver {
+  annotation(HasImplicitReceiver::class.qualifiedName!!)
+}
+assignment {
+  annotation(SupportsKotlinAssignmentOverloading::class.qualifiedName!!)
 }
 
 tasks {
@@ -35,10 +45,12 @@ dependencies {
     compileOnly(libs.android.gradlePluginApi)
     compileOnly(libs.android.tools.common)
     compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(gradleKotlinDsl())
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.dependencyGuard.gradlePlugin)
     compileOnly(libs.dependencyAnalysis.gradlePlugin)
+    lintChecks(libs.androidx.lint.gradle)
 }
 
 gradlePlugin {
