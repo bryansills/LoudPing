@@ -9,7 +9,7 @@ pluginManagement {
 buildscript {
     dependencies {
       // TODO: delete this whole `buildscript` block once Dagger and DAGP update their Kotlin stuff
-      classpath("org.jetbrains.kotlin:kotlin-metadata-jvm:2.4.0")
+      classpath("org.jetbrains.kotlin:kotlin-metadata-jvm:2.4.10")
     }
 }
 plugins {
