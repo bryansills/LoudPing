@@ -294,7 +294,7 @@ KTFMT_JAR="bin/ktfmt-${KTFMT_VERSION}-with-dependencies.jar"
 if [ ! -f "$KTFMT_JAR" ]; then
   log "Downloading ktfmt jar..."
   mkdir -p bin
-  DOWNLOAD_URL="https://github.com/facebook/ktfmt/releases/download/v${KTFMT_VERSION}/ktfmt-${KTFMT_VERSION}-with-dependencies.jar"
+  DOWNLOAD_URL="https://github.com/Kotlin/ktfmt/releases/download/v${KTFMT_VERSION}/ktfmt-${KTFMT_VERSION}-with-dependencies.jar"
 
   if command -v curl &> /dev/null; then
     curl -L -o "$KTFMT_JAR" "$DOWNLOAD_URL"

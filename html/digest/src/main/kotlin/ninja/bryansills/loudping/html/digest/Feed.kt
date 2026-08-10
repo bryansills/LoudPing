@@ -26,7 +26,7 @@ data class ReviewParsingOptions(
    * Right now just for Pitchfork album reviews and indicates fancy work to extract all the relevant
    * info.
    */
-  val alternateDomainName: String? = null
+  val alternateHostName: String? = null
 )
 
 val feeds =
@@ -102,9 +102,7 @@ val feeds =
       url = "https://pitchfork.com/feed/feed-album-reviews/rss",
       backend = PublicationBackend.Rss,
       format =
-        ArticleFormat.Review(
-          options = ReviewParsingOptions(alternateDomainName = "sspitchfork.com")
-        ),
+        ArticleFormat.Review(options = ReviewParsingOptions(alternateHostName = "sspitchfork.com")),
     ),
     Feed(
       name = "Pitchfork - Track Reviews",

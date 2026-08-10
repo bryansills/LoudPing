@@ -1,67 +1,16 @@
 package ninja.bryansills.loudping.html.digest
 
-import kotlin.time.Duration.Companion.days
 import ninja.bryansills.loudping.html.core.ProvidesHtmlScope
 import ninja.bryansills.loudping.time.TimeProvider
 import okio.buffer
 
 suspend fun ProvidesHtmlScope.provideDigest(
-  feeds: List<Feed>,
-  rssService: RssService,
-  readabilityService: ReadabilityService,
+  digestBuilder: DigestBuilder,
   timeProvider: TimeProvider,
 ) {
-  val fullFeeds = feeds.associateWith { details ->
-    details to rssService.getFeed(details.url).cleanIt()
-  }
-  val today = timeProvider.now
-  val yesterday = today - 1.days
-  val fullData =
-    fullFeeds.values
-      .associate { (details, feeds) ->
-        val feedsWithRead =
-          feeds.items
-            .filter { it.pubDate > yesterday }
-            .associateWith { rssItem -> readabilityService.getArticle(rssItem.link) }
-
-        details to
-          feedsWithRead.map { (rssItem, readabilityItem) ->
-            createFeedItem(details, rssItem, readabilityItem)
-          }
-      }
-      .filter { (_, fullMap) -> fullMap.isNotEmpty() }
-
   fileSystem.createDirectories("digest".buildPath())
-  val dailyPage = generateDigest(timeProvider.now, fullData)
+  val dailyPage = generateDigest(timeProvider.now, digestBuilder.build())
   fileSystem.sink("digest/index.html".buildPath()).buffer().use { sink ->
     sink.writeUtf8(dailyPage)
-  }
-}
-
-private fun createFeedItem(
-  feed: Feed,
-  rssItem: RssItem,
-  readabilityItem: ReadabilityResult?,
-): FeedItem {
-  return when (feed.format) {
-    ArticleFormat.Regular -> {
-      FeedItem.Article(
-        url = rssItem.link,
-        title = readabilityItem?.title ?: rssItem.title,
-        timestamp = readabilityItem?.publishedTime ?: rssItem.pubDate,
-        author = readabilityItem?.byline ?: rssItem.author,
-        contents = readabilityItem?.content,
-      )
-    }
-    is ArticleFormat.Review -> {
-      FeedItem.Review(
-        url = rssItem.link,
-        title = readabilityItem?.title ?: rssItem.title,
-        artist = "TODO()",
-        timestamp = readabilityItem?.publishedTime ?: rssItem.pubDate,
-        author = readabilityItem?.byline ?: rssItem.author,
-        contents = readabilityItem?.content,
-      )
-    }
   }
 }
