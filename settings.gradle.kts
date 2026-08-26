@@ -14,7 +14,7 @@ buildscript {
 }
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
-    id("com.autonomousapps.build-health") version "3.18.0"
+    id("com.autonomousapps.build-health") version "3.19.1"
     id("com.autonomousapps.dedebug") version "0.1"
     id("com.android.application") version "9.3.1" apply false
     id("com.android.library") version "9.3.1" apply false
