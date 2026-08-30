@@ -1046,13 +1046,13 @@
 |    |    |    |    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0 (*)
 |    |    |    |    +--- project ':database:core'
 |    |    |    |    |    +--- project ':core:model' (*)
-|    |    |    |    |    +--- androidx.paging:paging-common:3.5.0
-|    |    |    |    |    |    \--- androidx.paging:paging-common-android:3.5.0
+|    |    |    |    |    +--- androidx.paging:paging-common:3.5.1
+|    |    |    |    |    |    \--- androidx.paging:paging-common-android:3.5.1
 |    |    |    |    |    |         +--- androidx.annotation:annotation:1.9.1 -> 1.10.0 (*)
 |    |    |    |    |    |         +--- androidx.arch.core:core-common:2.2.0 (*)
 |    |    |    |    |    |         +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.4.10 (*)
 |    |    |    |    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0 -> 1.11.0 (*)
-|    |    |    |    |    |         \--- androidx.paging:paging-compose:3.5.0 (c)
+|    |    |    |    |    |         \--- androidx.paging:paging-compose:3.5.1 (c)
 |    |    |    |    |    +--- app.cash.sqldelight:runtime:2.3.2
 |    |    |    |    |    |    \--- app.cash.sqldelight:runtime-jvm:2.3.2
 |    |    |    |    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 -> 2.4.10 (*)
@@ -1067,7 +1067,7 @@
 |    |    |    |    |    \--- app.cash.sqldelight:androidx-paging3-extensions:2.3.2
 |    |    |    |    |         \--- app.cash.sqldelight:androidx-paging3-extensions-jvm:2.3.2
 |    |    |    |    |              +--- app.cash.sqldelight:runtime:2.3.2 (*)
-|    |    |    |    |              +--- androidx.paging:paging-common:3.4.2 -> 3.5.0 (*)
+|    |    |    |    |              +--- androidx.paging:paging-common:3.4.2 -> 3.5.1 (*)
 |    |    |    |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 -> 2.4.10 (*)
 |    |    |    |    |              \--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2 -> 1.11.0 (*)
 |    |    |    |    +--- project ':network'
@@ -1262,14 +1262,14 @@
 |    |    +--- project ':database:core' (*)
 |    |    +--- project ':app-theme' (*)
 |    |    +--- org.jetbrains.kotlinx:kotlinx-datetime:0.8.0-0.6.x-compat (*)
-|    |    +--- androidx.paging:paging-common:3.5.0 (*)
-|    |    \--- androidx.paging:paging-compose:3.5.0
-|    |         \--- androidx.paging:paging-compose-android:3.5.0
+|    |    +--- androidx.paging:paging-common:3.5.1 (*)
+|    |    \--- androidx.paging:paging-compose:3.5.1
+|    |         \--- androidx.paging:paging-compose-android:3.5.1
 |    |              +--- androidx.compose.runtime:runtime:1.9.0 -> 1.11.4 (*)
 |    |              +--- androidx.compose.ui:ui:1.10.0 -> 1.11.4 (*)
-|    |              +--- androidx.paging:paging-common:3.5.0 (*)
+|    |              +--- androidx.paging:paging-common:3.5.1 (*)
 |    |              +--- org.jetbrains.kotlin:kotlin-stdlib:2.1.20 -> 2.4.10 (*)
-|    |              \--- androidx.paging:paging-common:3.5.0 (c)
+|    |              \--- androidx.paging:paging-common:3.5.1 (c)
 |    +--- project ':ui:refresh-token-entry'
 |    |    +--- org.jetbrains.kotlin:kotlin-stdlib:2.4.10 (*)
 |    |    +--- androidx.compose:compose-bom:2026.06.01 (*)
