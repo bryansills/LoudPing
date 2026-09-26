@@ -41,7 +41,7 @@ okhttp = "5.5.0"
 okio = "3.18.2"
 paging = "3.5.1"
 retrofit = "3.0.0"
-sqldelight = "2.3.2"
+sqldelight = "2.4.0"
 viewmodel = "2.11.0"
 workmanager = "2.11.2"
 
