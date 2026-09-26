@@ -19,7 +19,7 @@ plugins {
     id("com.android.application") version "9.4.1" apply false
     id("com.android.library") version "9.4.1" apply false
     id("com.android.kotlin.multiplatform.library") version "9.4.1" apply false
-    id("com.github.gmazzo.buildconfig") version "6.1.1" apply false
+    id("com.github.gmazzo.buildconfig") version "6.1.2" apply false
     id("org.jetbrains.kotlin.plugin.compose") version "2.4.20" apply false
     id("org.jetbrains.compose") version "1.12.1" apply false
     id("com.dropbox.dependency-guard") version "0.5.0" apply false
