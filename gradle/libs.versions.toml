@@ -155,5 +155,6 @@ loudping-jvm = { id = "loudping.jvm" }
 loudping-mosaic = { id = "loudping.mosaic" }
 loudping-multiplatform-compose = { id = "loudping.multiplatform.compose" }
 loudping-multiplatform-plain = { id = "loudping.multiplatform.plain" }
+loudping-publishing = { id = "loudping.publishing" }
 loudping-root = { id = "loudping.root" }
 loudping-sqldelight = { id = "loudping.sqldelight" }

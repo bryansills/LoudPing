@@ -4,7 +4,6 @@ import ninja.bryansills.loudping.gradle.configureAndroidApplication
 import ninja.bryansills.loudping.gradle.configureComposeAndroid
 import ninja.bryansills.loudping.gradle.configureDagger
 import ninja.bryansills.loudping.gradle.configureDependencyAnalysis
-import ninja.bryansills.loudping.gradle.configureDependencyGuard
 import ninja.bryansills.loudping.gradle.configureKotlinAndroid
 import ninja.bryansills.loudping.gradle.util.alias
 import ninja.bryansills.loudping.gradle.util.libs
@@ -21,7 +20,6 @@ class AndroidAppConventionPlugin : Plugin<Project> {
       }
       configureKotlinAndroid()
       configureAndroidApplication()
-      configureDependencyGuard()
       configureDependencyAnalysis()
       configureComposeAndroid()
       configureDagger()

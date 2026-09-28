@@ -95,9 +95,13 @@ gradlePlugin {
             id = libs.plugins.loudping.mosaic.get().pluginId
             implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeMosaicConventionPlugin"
         }
-        register("sqldelight") {
-            id = libs.plugins.loudping.sqldelight.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.SqldelightConventionPlugin"
-        }
+      register("sqldelight") {
+        id = libs.plugins.loudping.sqldelight.get().pluginId
+        implementationClass = "ninja.bryansills.loudping.gradle.plugin.SqldelightConventionPlugin"
+      }
+      register("publishing") {
+        id = libs.plugins.loudping.publishing.get().pluginId
+        implementationClass = "ninja.bryansills.loudping.gradle.plugin.PublishingConventionPlugin"
+      }
     }
 }

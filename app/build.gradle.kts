@@ -4,6 +4,7 @@ import ninja.bryansills.loudping.gradle.rootProperties
 
 plugins {
     alias(libs.plugins.loudping.android.application)
+    alias(libs.plugins.loudping.publishing)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.bugsnag)
 }
