@@ -15,69 +15,103 @@ android {
     defaultConfig {
         applicationId = "ninja.bryansills.loudping"
 
-        val rootLocalProperties = rootProject.rootProperties("local.properties")
-        val appVersionName =
-            rootLocalProperties.getSecret(
-                "version.name",
-                fallback = "0.0.69",
-            )
-        val appVersionParts = appVersionName.split(".").map { it.toInt() }
-        val appVersionCode = (10_000 * appVersionParts[0]) + (100 * appVersionParts[1]) + appVersionParts[2]
+//        val rootLocalProperties = rootProject.rootProperties("local.properties")
+//        val appVersionName =
+//            rootLocalProperties.getSecret(
+//                "version.name",
+//                fallback = "0.0.69",
+//            )
+//        val appVersionParts = appVersionName.split(".").map { it.toInt() }
+//        val appVersionCode = (10_000 * appVersionParts[0]) + (100 * appVersionParts[1]) + appVersionParts[2]
+//
+//      versionCode = appVersionCode
+//      versionName = appVersionName
 
-        versionCode = appVersionCode
-        versionName = appVersionName
+      versionCode = 69
+      versionName = "0.0.69"
 
-        val rootSecrets = rootProject.rootProperties("secrets.properties")
-        buildConfigString(
-            "SneakSalt",
-            rootSecrets.getSecret("sneak.salt"),
-        )
-        buildConfigString(
-            "SneakClientId",
-            rootSecrets.getSecret("sneak.clientid"),
-        )
-        buildConfigString(
-            "SneakClientSecret",
-            rootSecrets.getSecret("sneak.clientsecret"),
-        )
-        buildConfigString(
-            "SneakRedirectUrl",
-            rootSecrets.getSecret("sneak.redirecturl"),
-        )
-        buildConfigString(
-            "SneakBaseApiUrl",
-            rootSecrets.getSecret("sneak.baseapiurl"),
-        )
-        buildConfigString(
-            "SneakBaseAuthApiUrl",
-            rootSecrets.getSecret("sneak.baseauthapiurl"),
-        )
-        buildConfigString(
-            "SneakAuthorizeUrl",
-            rootSecrets.getSecret("sneak.authorizeurl"),
-        )
+//      val rootSecrets = rootProject.rootProperties("secrets.properties")
+//      buildConfigString(
+//        "SneakSalt",
+//        rootSecrets.getSecret("sneak.salt"),
+//      )
+//      buildConfigString(
+//        "SneakClientId",
+//        rootSecrets.getSecret("sneak.clientid"),
+//      )
+//      buildConfigString(
+//        "SneakClientSecret",
+//        rootSecrets.getSecret("sneak.clientsecret"),
+//      )
+//      buildConfigString(
+//        "SneakRedirectUrl",
+//        rootSecrets.getSecret("sneak.redirecturl"),
+//      )
+//      buildConfigString(
+//        "SneakBaseApiUrl",
+//        rootSecrets.getSecret("sneak.baseapiurl"),
+//      )
+//      buildConfigString(
+//        "SneakBaseAuthApiUrl",
+//        rootSecrets.getSecret("sneak.baseauthapiurl"),
+//      )
+//      buildConfigString(
+//        "SneakAuthorizeUrl",
+//        rootSecrets.getSecret("sneak.authorizeurl"),
+//      )
+//
+//      manifestPlaceholders["BUGSNAG_API_KEY"] = rootSecrets.getSecret("bugsnag.api.key")
 
-        manifestPlaceholders["BUGSNAG_API_KEY"] = rootSecrets.getSecret("bugsnag.api.key")
+      buildConfigString(
+        "SneakSalt",
+        "sneak.salt",
+      )
+      buildConfigString(
+        "SneakClientId",
+        "sneak.clientid",
+      )
+      buildConfigString(
+        "SneakClientSecret",
+        "sneak.clientsecret",
+      )
+      buildConfigString(
+        "SneakRedirectUrl",
+        "sneak.redirecturl",
+      )
+      buildConfigString(
+        "SneakBaseApiUrl",
+        "sneak.baseapiurl",
+      )
+      buildConfigString(
+        "SneakBaseAuthApiUrl",
+        "sneak.baseauthapiurl",
+      )
+      buildConfigString(
+        "SneakAuthorizeUrl",
+        "sneak.authorizeurl",
+      )
+
+      manifestPlaceholders["BUGSNAG_API_KEY"] = "bugsnag.api.key"
     }
 
     signingConfigs {
         getByName("debug") {
-            storeFile = rootProject.file("release/app-debug.jks")
+            storeFile = file("./signing/app-debug.jks")
             storePassword = "android"
             keyAlias = "androiddebugkey"
             keyPassword = "android"
         }
 
         create("release") {
-            if (rootProject.file("release/loudping-signing.jks").exists()) {
-                storeFile = rootProject.file("release/loudping-signing.jks")
-
-                val keystoreProperties = rootProject.rootProperties("release/keystore.properties")
-
-                storePassword = keystoreProperties.getSecret("release.store.password")
-                keyAlias = keystoreProperties.getSecret("release.key.alias")
-                keyPassword = keystoreProperties.getSecret("release.key.password")
-            }
+//            if (rootProject.file("release/loudping-signing.jks").exists()) {
+//                storeFile = rootProject.file("release/loudping-signing.jks")
+//
+//                val keystoreProperties = rootProject.rootProperties("release/keystore.properties")
+//
+//                storePassword = keystoreProperties.getSecret("release.store.password")
+//                keyAlias = keystoreProperties.getSecret("release.key.alias")
+//                keyPassword = keystoreProperties.getSecret("release.key.password")
+//            }
         }
     }
 

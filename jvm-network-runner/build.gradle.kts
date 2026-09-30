@@ -1,6 +1,5 @@
+
 import com.github.gmazzo.buildconfig.BuildConfigExtension
-import ninja.bryansills.loudping.gradle.getSecret
-import ninja.bryansills.loudping.gradle.rootProperties
 
 plugins {
     alias(libs.plugins.loudping.jvm)
@@ -36,16 +35,25 @@ buildConfig {
     packageName("ninja.bryansills.loudping.jvm.network.runner")
     useKotlinOutput { internalVisibility = true }
 
-    val rootSecrets = rootProject.rootProperties("secrets.properties")
+//  val rootSecrets = rootProject.rootProperties("secrets.properties")
+//
+//  string("JvmRefreshToken", rootSecrets.getSecret("jvm.refresh.token"))
+//  string("SneakSalt", rootSecrets.getSecret("sneak.salt"))
+//  string("SneakClientId", rootSecrets.getSecret("sneak.clientid"))
+//  string("SneakClientSecret", rootSecrets.getSecret("sneak.clientsecret"))
+//  string("SneakRedirectUrl", rootSecrets.getSecret("sneak.redirecturl"))
+//  string("SneakBaseApiUrl", rootSecrets.getSecret("sneak.baseapiurl"))
+//  string("SneakBaseAuthApiUrl", rootSecrets.getSecret("sneak.baseauthapiurl"))
+//  string("SneakAuthorizeUrl", rootSecrets.getSecret("sneak.authorizeurl"))
 
-    string("JvmRefreshToken", rootSecrets.getSecret("jvm.refresh.token"))
-    string("SneakSalt", rootSecrets.getSecret("sneak.salt"))
-    string("SneakClientId", rootSecrets.getSecret("sneak.clientid"))
-    string("SneakClientSecret", rootSecrets.getSecret("sneak.clientsecret"))
-    string("SneakRedirectUrl", rootSecrets.getSecret("sneak.redirecturl"))
-    string("SneakBaseApiUrl", rootSecrets.getSecret("sneak.baseapiurl"))
-    string("SneakBaseAuthApiUrl", rootSecrets.getSecret("sneak.baseauthapiurl"))
-    string("SneakAuthorizeUrl", rootSecrets.getSecret("sneak.authorizeurl"))
+    buildConfigField("JvmRefreshToken", "jvm.refresh.token")
+    buildConfigField("SneakSalt", "sneak.salt")
+    buildConfigField("SneakClientId", "sneak.clientid")
+    buildConfigField("SneakClientSecret", "sneak.clientsecret")
+    buildConfigField("SneakRedirectUrl", "sneak.redirecturl")
+    buildConfigField("SneakBaseApiUrl", "sneak.baseapiurl")
+    buildConfigField("SneakBaseAuthApiUrl", "sneak.baseauthapiurl")
+    buildConfigField("SneakAuthorizeUrl", "sneak.authorizeurl")
 }
 
 fun BuildConfigExtension.string(key: String, value: String) {
