@@ -9,6 +9,8 @@ import ninja.bryansills.loudping.html.callback.provideCallback
 import ninja.bryansills.loudping.html.core.DefaultProvidesHtmlScope
 import ninja.bryansills.loudping.html.core.provideRoot
 import ninja.bryansills.loudping.html.digest.DefaultDigestBuilder
+import ninja.bryansills.loudping.html.digest.DefaultFeedItemBuilder
+import ninja.bryansills.loudping.html.digest.DefaultFeedItemDataFetcher
 import ninja.bryansills.loudping.html.digest.DefaultReadabilityService
 import ninja.bryansills.loudping.html.digest.RssService
 import ninja.bryansills.loudping.html.digest.feeds
@@ -33,13 +35,16 @@ fun main() {
   val webClient = WebClient()
   webClient.options.isThrowExceptionOnScriptError = false
   val readabilityService = DefaultReadabilityService(webClient = webClient, json = Json)
+  val feedItemDataFetcher = DefaultFeedItemDataFetcher(readabilityService = readabilityService)
+  val feedItemBuilder = DefaultFeedItemBuilder()
   val timeProvider = RealTimeProvider()
   val digestBuilder =
     DefaultDigestBuilder(
-      feeds = feeds,
+      feedMetadataList = feeds,
       rssService = rssService,
-      readabilityService = readabilityService,
       timeProvider = timeProvider,
+      feedItemDataFetcher = feedItemDataFetcher,
+      feedItemBuilder = feedItemBuilder,
     )
 
   mainScope.launchBlocking {
