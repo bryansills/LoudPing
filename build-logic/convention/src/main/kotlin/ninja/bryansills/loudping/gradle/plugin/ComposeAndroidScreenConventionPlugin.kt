@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.gradle.plugin
 
+import androidx.build.configureLint
 import ninja.bryansills.loudping.gradle.configureAndroidLibrary
 import ninja.bryansills.loudping.gradle.configureComposeAndroid
 import ninja.bryansills.loudping.gradle.configureDagger
@@ -25,5 +26,6 @@ class ComposeAndroidScreenConventionPlugin : Plugin<Project> {
       configureComposeAndroid()
       configureDagger()
       configureNavigation()
+      configureLint()
     }
 }

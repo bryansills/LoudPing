@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.gradle.plugin
 
+import androidx.build.configureLint
 import ninja.bryansills.loudping.gradle.configureAndroidApplication
 import ninja.bryansills.loudping.gradle.configureComposeAndroid
 import ninja.bryansills.loudping.gradle.configureDagger
@@ -23,5 +24,6 @@ class AndroidAppConventionPlugin : Plugin<Project> {
       configureDependencyAnalysis()
       configureComposeAndroid()
       configureDagger()
+      configureLint()
     }
 }

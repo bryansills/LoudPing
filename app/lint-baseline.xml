@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 9.4.1" type="baseline" client="gradle" dependencies="true" name="AGP (9.4.1)" variant="all" version="9.4.1">
+
+    <issue
+        id="StopShip"
+        message="`TODO` call found; points to code which must be fixed prior to release"
+        errorLine1="        artists = TODO(),"
+        errorLine2="                  ~~~~~~">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/database/RealDatabaseService.kt"
+            line="221"
+            column="19"/>
+    </issue>
+
+    <issue
+        id="StopShip"
+        message="`TODO` call found; points to code which must be fixed prior to release"
+        errorLine1="        tracks = TODO(),"
+        errorLine2="                 ~~~~~~">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/database/RealDatabaseService.kt"
+            line="222"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="StopShip"
+        message="`TODO` call found; points to code which must be fixed prior to release"
+        errorLine1="          artists = TODO(),"
+        errorLine2="                    ~~~~~~">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/database/RealDatabaseService.kt"
+            line="245"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="StopShip"
+        message="`TODO` call found; points to code which must be fixed prior to release"
+        errorLine1="          tracks = TODO(),"
+        errorLine2="                   ~~~~~~">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/database/RealDatabaseService.kt"
+            line="246"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="NotShrinkingResources"
+        message="If enabling minification, also set isShrinkResources = true"
+        errorLine1="            isMinifyEnabled = true"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle.kts"
+            line="132"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `keepGoing` of class `GetRecentlyPlayedKt` requires synthetic accessor"
+        errorLine1="        keepGoing(currentQueryTime, stopAt, nextUrl, isFirstQuery)"
+        errorLine2="        ~~~~~~~~~">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/network/GetRecentlyPlayed.kt"
+            line="34"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `trim` of class `GetRecentlyPlayedKt` requires synthetic accessor"
+        errorLine1="            successfulResponse.copy(items = successfulResponse.items.trim(stopAt))"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/network/GetRecentlyPlayed.kt"
+            line="51"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `toRandomString` of class `RealAuthManagerKt` requires synthetic accessor"
+        errorLine1="  private val authorizeUrlSalt = networkSneak.redirectUrl.toRandomString()"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
+            line="25"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `toRandomString` of class `RealAuthManagerKt` requires synthetic accessor"
+        errorLine1="    &quot;$timestamp$authorizeUrlSalt&quot;.toRandomString()"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
+            line="28"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `httpUrlBuilder` of class `RealAuthManagerKt` requires synthetic accessor"
+        errorLine1="      networkSneak.authorizeUrl"
+        errorLine2="      ^">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
+            line="32"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `toRecords` of class `RealHistoryRecorderKt` requires synthetic accessor"
+        errorLine1="    val playRecords = networkResponse.toRecords()"
+        errorLine2="                      ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/history/recorder/RealHistoryRecorder.kt"
+            line="44"
+            column="23"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `toDatabase` of class `RealHistoryRecorderKt` requires synthetic accessor"
+        errorLine1="    val databaseEntries = playRecords.toDatabase(stopAt)"
+        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/commonMain/kotlin/ninja/bryansills/loudping/history/recorder/RealHistoryRecorder.kt"
+            line="55"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `toJobDetails` of class `SettingsViewModelKt` requires synthetic accessor"
+        errorLine1="          jobDetails = jobInfoMap.entries.map { it.toJobDetails() },"
+        errorLine2="                                                ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/kotlin/ninja/bryansills/loudping/ui/settings/SettingsViewModel.kt"
+            line="25"
+            column="49"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.login_content` appears to be unused"
+        errorLine1="            android:id=&quot;@+id/login_content&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="../ui/login/src/main/res/layout/activity_login.xml"
+            line="13"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedIds"
+        message="The resource `R.id.login_button` appears to be unused"
+        errorLine1="                android:id=&quot;@+id/login_button&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="../ui/login/src/main/res/layout/activity_login.xml"
+            line="29"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        message="Use the KTX extension function `String.toUri` instead?"
+        errorLine1="    return customTabsIntent.intent.apply { setData(Uri.parse(stringUri)) }"
+        errorLine2="                                                   ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/kotlin/ninja/bryansills/loudping/ui/login/LoginActivity.kt"
+            line="85"
+            column="52"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;One day, we might have a real login...&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;One day, we might have a real login...&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_login.xml"
+            line="24"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Connect with Spotify&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;Connect with Spotify&quot;/>"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_login.xml"
+            line="32"
+            column="17"/>
+    </issue>
+
+</issues>

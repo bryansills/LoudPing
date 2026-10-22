@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.gradle.plugin
 
+import androidx.build.configureLint
 import ninja.bryansills.loudping.gradle.configureComposeCompiler
 import ninja.bryansills.loudping.gradle.configureDependencyAnalysis
 import ninja.bryansills.loudping.gradle.configureKotlinMultiplatform
@@ -19,5 +20,6 @@ class ComposeMultiplatformLibraryConventionPlugin : Plugin<Project> {
       configureKotlinMultiplatform()
       configureDependencyAnalysis()
       configureComposeCompiler()
+      configureLint()
     }
 }

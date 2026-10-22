@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.gradle.plugin
 
+import androidx.build.configureLint
 import ninja.bryansills.loudping.gradle.configureAndroidLibrary
 import ninja.bryansills.loudping.gradle.configureDependencyAnalysis
 import ninja.bryansills.loudping.gradle.util.alias
@@ -14,5 +15,6 @@ class JavaAndroidLibraryConventionPlugin : Plugin<Project> {
       plugins { alias(libs.plugins.android.library) }
       configureAndroidLibrary(shouldEnableKotlin = false)
       configureDependencyAnalysis()
+      configureLint()
     }
 }
