@@ -97,13 +97,15 @@ val feeds =
       backend = PublicationBackend.Rss,
       format = ArticleFormat.Regular,
     ),
-    Feed(
-      name = "Pitchfork - Album Reviews",
-      url = "https://pitchfork.com/feed/feed-album-reviews/rss",
-      backend = PublicationBackend.Rss,
-      format =
-        ArticleFormat.Review(options = ReviewParsingOptions(alternateHostName = "sspitchfork.com")),
-    ),
+    // TODO: actually parse Pitchfork reviews well
+    //    Feed(
+    //      name = "Pitchfork - Album Reviews",
+    //      url = "https://pitchfork.com/feed/feed-album-reviews/rss",
+    //      backend = PublicationBackend.Rss,
+    //      format =
+    //        ArticleFormat.Review(options = ReviewParsingOptions(alternateHostName =
+    // "sspitchfork.com")),
+    //    ),
     Feed(
       name = "Pitchfork - Track Reviews",
       url = "https://pitchfork.com/feed/feed-track-reviews/rss",
