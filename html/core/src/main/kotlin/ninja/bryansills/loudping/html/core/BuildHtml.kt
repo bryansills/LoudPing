@@ -18,7 +18,7 @@ fun buildHtml(block: HTML.() -> Unit): String = buildString {
 fun HEAD.commonHeadAttributes() {
   link {
     rel = "icon"
-    href = "/assets/image/cricket.ico"
+    href = "../assets/image/cricket.ico"
     type = "image/x-icon"
   }
 }

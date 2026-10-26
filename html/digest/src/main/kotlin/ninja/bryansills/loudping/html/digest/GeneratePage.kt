@@ -41,7 +41,7 @@ internal fun generateDigest(
     }
     link {
       rel = "stylesheet"
-      href = "/assets/css/global.css"
+      href = "../assets/css/global.css"
     }
   }
   body(classes = "post flow") {
