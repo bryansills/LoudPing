@@ -74,7 +74,7 @@ private fun FeedItem.summary() {
   val itemTitle = this.title
   val itemSubtitle = this.author?.let { "by $it" }
 
-  summary.h3 { +itemTitle }
+  summary.h3 { unsafe { raw(itemTitle) } }
   itemSubtitle?.let { summary.h4 { +it } }
 }
 

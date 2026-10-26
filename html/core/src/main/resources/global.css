@@ -150,4 +150,15 @@ details summary h3 ~ h4 {
   figcaption {
     font-size: var(--size-400);
   }
+
+  div#readability-page-1 figure {
+    margin-left: 0;
+  }
+
+  div#readability-page-1 img {
+    float: left;
+    max-width: min(55rem, 40%);
+    height: auto;
+    padding-right: 1rem;
+  }
 }
