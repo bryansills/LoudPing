@@ -4,37 +4,42 @@ import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 
 interface FeedItemDataFetcher {
-  fun getData(feed: Feed, rssItem: RssItem): FeedItemData?
+  fun getData(itemUrl: String, processingMethod: ItemProcessingMethod): ReadabilityResult?
 }
-
-data class FeedItemData(
-  val rssItem: RssItem,
-  val readabilityItem: ReadabilityResult?,
-)
 
 class DefaultFeedItemDataFetcher(private val readabilityService: ReadabilityService) :
   FeedItemDataFetcher {
-  override fun getData(feed: Feed, rssItem: RssItem): FeedItemData? {
-    val itemUrl = getItemUrl(feed, rssItem)
-    val readabilityItem = readabilityService.getArticle(itemUrl)
-    return FeedItemData(rssItem, readabilityItem)
+  override fun getData(
+    itemUrl: String,
+    processingMethod: ItemProcessingMethod,
+  ): ReadabilityResult? {
+    return when (processingMethod) {
+      ItemProcessingMethod.RssOnly -> null
+      is ItemProcessingMethod.HtmlUnit -> {
+        val formattedUrl = processingMethod.formatUrl(itemUrl)
+        readabilityService.getArticle(formattedUrl)
+      }
+      is ItemProcessingMethod.KSoup -> null
+    }
   }
 }
 
-private fun getItemUrl(feed: Feed, rssItem: RssItem): String {
-  return when (feed.format) {
-    ArticleFormat.Regular -> rssItem.link
-    is ArticleFormat.Review -> {
-      if (feed.format.options.alternateHostName != null) {
-        val rssUrl = rssItem.link.toHttpUrl()
-        val swappedUrl = rssUrl.build {
-          host(feed.format.options.alternateHostName)
-        }
-        swappedUrl.toString()
-      } else {
-        rssItem.link
-      }
+private fun ItemProcessingMethod.formatUrl(itemUrl: String): String {
+  val alternateHostName =
+    when (this) {
+      is ItemProcessingMethod.HtmlUnit -> this.alternateHostName
+      is ItemProcessingMethod.KSoup -> this.alternateHostName
+      ItemProcessingMethod.RssOnly -> null
     }
+
+  return if (alternateHostName == null) {
+    itemUrl
+  } else {
+    val rssUrl = itemUrl.toHttpUrl()
+    val swappedUrl = rssUrl.build {
+      host(alternateHostName)
+    }
+    swappedUrl.toString()
   }
 }
 

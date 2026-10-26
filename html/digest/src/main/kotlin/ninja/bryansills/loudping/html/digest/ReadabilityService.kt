@@ -11,8 +11,12 @@ interface ReadabilityService {
 class DefaultReadabilityService(private val webClient: WebClient, private val json: Json) :
   ReadabilityService {
   override fun getArticle(url: String): ReadabilityResult? {
-    val page = webClient.getPage<HtmlPage>(url)
-    val article = page.executeJavaScript(ReadabilityJs).javaScriptResult as String
-    return json.decodeFromString(article)
+    return try {
+      val page = webClient.getPage<HtmlPage>(url)
+      val article = page.executeJavaScript(ReadabilityJs).javaScriptResult as String
+      json.decodeFromString(article)
+    } catch (_: Throwable) {
+      null
+    }
   }
 }

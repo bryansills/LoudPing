@@ -4,30 +4,40 @@ interface FeedItemBuilder {
   fun create(
     feed: Feed,
     rssItem: RssItem,
-    readabilityItem: ReadabilityResult?,
+    cleanedData: Map<ItemProcessingMethod, ReadabilityResult?>,
   ): FeedItem
 }
 
 class DefaultFeedItemBuilder : FeedItemBuilder {
-  override fun create(feed: Feed, rssItem: RssItem, readabilityItem: ReadabilityResult?): FeedItem {
-    return when (feed.format) {
-      ArticleFormat.Regular -> {
+  override fun create(
+    feed: Feed,
+    rssItem: RssItem,
+    cleanedData: Map<ItemProcessingMethod, ReadabilityResult?>,
+  ): FeedItem {
+    val title = cleanedData.entries.firstNotNullOfOrNull { (_, cleaned) -> cleaned?.title }
+    val timestamp =
+      cleanedData.entries.firstNotNullOfOrNull { (_, cleaned) -> cleaned?.publishedTime }
+    val author = cleanedData.entries.firstNotNullOfOrNull { (_, cleaned) -> cleaned?.byline }
+    val contents = cleanedData.entries.firstNotNullOfOrNull { (_, cleaned) -> cleaned?.content }
+
+    return when (feed.outputStyle) {
+      OutputStyle.Regular -> {
         FeedItem.Article(
           url = rssItem.link,
-          title = readabilityItem?.title ?: rssItem.title,
-          timestamp = readabilityItem?.publishedTime ?: rssItem.pubDate,
-          author = readabilityItem?.byline ?: rssItem.author,
-          contents = readabilityItem?.content,
+          title = title ?: rssItem.title,
+          timestamp = timestamp ?: rssItem.pubDate,
+          author = author ?: rssItem.author,
+          contents = contents,
         )
       }
-      is ArticleFormat.Review -> {
+      OutputStyle.Review -> {
         FeedItem.Review(
           url = rssItem.link,
-          title = readabilityItem?.title ?: rssItem.title,
+          title = title ?: rssItem.title,
           artist = "TODO()",
-          timestamp = readabilityItem?.publishedTime ?: rssItem.pubDate,
-          author = readabilityItem?.byline ?: rssItem.author,
-          contents = readabilityItem?.content,
+          timestamp = timestamp ?: rssItem.pubDate,
+          author = author ?: rssItem.author,
+          contents = contents,
         )
       }
     }

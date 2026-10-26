@@ -46,7 +46,7 @@ class RssServiceTest {
         .build()
     val rssService = retrofit.create<RssService>()
 
-    val networkResult = rssService.getFeed(feeds.first().url)
+    val networkResult = rssService.getFeed(feeds.first().backend.url)
 
     assert(networkResult.channel.item.isNotEmpty()) { "The feed has some articles!" }
   }

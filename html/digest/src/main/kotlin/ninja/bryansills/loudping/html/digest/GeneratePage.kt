@@ -8,11 +8,13 @@ import kotlinx.datetime.format.DayOfWeekNames
 import kotlinx.datetime.format.MonthNames
 import kotlinx.datetime.format.char
 import kotlinx.datetime.toLocalDateTime
+import kotlinx.html.SUMMARY
 import kotlinx.html.body
 import kotlinx.html.details
 import kotlinx.html.h1
 import kotlinx.html.h2
 import kotlinx.html.h3
+import kotlinx.html.h4
 import kotlinx.html.head
 import kotlinx.html.link
 import kotlinx.html.meta
@@ -50,7 +52,7 @@ internal fun generateDigest(
 
       feedItems.forEach { item ->
         details {
-          summary { h3 { +item.summaryContent() } }
+          summary { item.summary() }
           unsafe { raw(item.mainContent()) }
         }
       }
@@ -67,11 +69,13 @@ val headlineFormat = LocalDateTime.Format {
   day()
 }
 
-private fun FeedItem.summaryContent(): String {
-  return when (this) {
-    is FeedItem.Article -> this.title
-    is FeedItem.Review -> this.title
-  }
+context(summary: SUMMARY)
+private fun FeedItem.summary() {
+  val itemTitle = this.title
+  val itemSubtitle = this.author?.let { "by $it" }
+
+  summary.h3 { +itemTitle }
+  itemSubtitle?.let { summary.h4 { +it } }
 }
 
 private fun FeedItem.mainContent(): String {
