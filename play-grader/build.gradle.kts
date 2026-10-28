@@ -1,13 +1,9 @@
 plugins {
-    alias(libs.plugins.loudping.multiplatform.plain)
+  alias(libs.plugins.loudping.jvm)
 }
 
-kotlin {
-    sourceSets {
-        commonMain.dependencies {
-            api(projects.core.model)
-            api(projects.albumGrouper)
-            implementation(projects.albumRepo)
-        }
-    }
+dependencies {
+  api(projects.core.model)
+  api(projects.albumGrouper)
+  implementation(projects.albumRepo)
 }

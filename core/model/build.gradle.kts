@@ -1,11 +1,7 @@
 plugins {
-    alias(libs.plugins.loudping.multiplatform.plain)
+  alias(libs.plugins.loudping.jvm)
 }
 
-kotlin {
-    sourceSets {
-        commonMain.dependencies {
-            api(libs.kotlinx.datetime)
-        }
-    }
+dependencies {
+  api(libs.kotlinx.datetime)
 }

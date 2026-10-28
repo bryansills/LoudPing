@@ -4,7 +4,11 @@ set -euo pipefail
 # Taken from this blog post: https://engineering.block.xyz/blog/adopting-ktfmt-and-detekt
 # Specifically this link: https://gist.github.com/vRallev/e9c3c59bba95521f98ffbb487ec44427
 
-KTFMT_VERSION="0.64"
+KTFMT_VERSION="$(sed -n 's/^ktfmt = "\(.*\)"$/\1/p' gradle/libs.versions.toml)"
+if [[ -z "$KTFMT_VERSION" ]]; then
+  echo "Could not find ktfmt version in gradle/libs.versions.toml" >&2
+  exit 1
+fi
 
 show_help() {
   cat << EOF
@@ -15,8 +19,6 @@ without invoking Gradle.
 
 This script chunks the operation to avoid "argument list too long" errors when
 formatting the entire codebase.
-
-Only files within */src/* directories are formatted, e.g. */src-gen/* is explicitly excluded.
 
 OPTIONS:
   -h, --help              Show this help message and exit
@@ -180,11 +182,8 @@ get_staged_kotlin_files_as_lines() {
   local staged_files
   staged_files=$(git diff --name-only --cached --diff-filter=AM -- "*.kt" "*.kts" 2>/dev/null || echo "")
 
-  # Filter to only include files in src directories (excluding src-gen) and output one per line
   while IFS= read -r file; do
-    if [ -f "$file" ] && [[ "$file" == */src/* ]] && [[ "$file" != */src-gen/* ]]; then
-      echo "$file"
-    fi
+    echo "$file"
   done <<< "$staged_files"
 }
 
@@ -387,9 +386,8 @@ if [ $format_all = true ]; then
 fi
 
 if [ $is_directory = true ]; then
-  # Find all .kt files in src directories (excluding src-gen)
-  # Only search within **/src/** directories to avoid formatting generated files in src-gen
-  files=($(find "$search_dir" -type d -name "src-gen" -prune -o -type f -path "*/src/*" -name "*.kt" -print))
+  # Find all relevant files in directories
+  files=($(git ls-files "$search_dir/*.kt" "$search_dir/*.gradle.kts"))
 
   # Check if any .kt files were found
   if [ ${#files[@]} -eq 0 ]; then

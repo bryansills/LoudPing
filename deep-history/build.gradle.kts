@@ -1,16 +1,12 @@
 plugins {
-    alias(libs.plugins.loudping.multiplatform.plain)
-    alias(libs.plugins.kotlinx.serialization)
+  alias(libs.plugins.loudping.jvm)
+  alias(libs.plugins.kotlinx.serialization)
 }
 
-kotlin {
-    sourceSets {
-        commonMain.dependencies {
-            api(projects.core.model)
-            implementation(projects.database.core)
-            implementation(projects.trackRepo)
-            implementation(libs.kotlinx.serialization.runtime.json)
-            api(libs.kotlinx.datetime)
-        }
-    }
+dependencies {
+  api(projects.core.model)
+  api(libs.kotlinx.datetime)
+  implementation(projects.database.core)
+  implementation(projects.trackRepo)
+  implementation(libs.kotlinx.serialization.runtime.json)
 }

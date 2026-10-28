@@ -1,15 +1,12 @@
 plugins {
-    alias(libs.plugins.loudping.multiplatform.plain)
+  alias(libs.plugins.loudping.jvm)
 }
 
-kotlin {
-    sourceSets {
-        commonMain.dependencies {
-            api(projects.core.model)
-        }
-        commonTest.dependencies {
-            implementation(projects.core.modelTest)
-            implementation(libs.turbine)
-        }
-    }
+dependencies {
+  api(projects.core.model)
+  implementation(libs.coroutines)
+  testImplementation(projects.core.modelTest)
+  testImplementation(libs.kotlin.test)
+  testImplementation(libs.kotlin.test.junit)
+  testImplementation(libs.turbine)
 }
