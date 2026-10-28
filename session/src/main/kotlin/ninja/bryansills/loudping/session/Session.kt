@@ -1,9 +1,9 @@
 package ninja.bryansills.loudping.session
 
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 sealed interface Session {
   data object LoggedOut : Session
 
-  data class LoggedIn(val id: UUID) : Session
+  data class LoggedIn(val id: Uuid) : Session
 }

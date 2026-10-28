@@ -1,6 +1,6 @@
 package ninja.bryansills.loudping.session
 
-import java.util.UUID
+import kotlin.uuid.Uuid
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,7 +16,7 @@ class RealSessionManager(
     simpleStorage[Stored.RefreshToken]
       .map { refreshToken ->
         if (refreshToken.isNotBlank()) {
-          Session.LoggedIn(UUID.randomUUID())
+          Session.LoggedIn(Uuid.random())
         } else {
           Session.LoggedOut
         }
