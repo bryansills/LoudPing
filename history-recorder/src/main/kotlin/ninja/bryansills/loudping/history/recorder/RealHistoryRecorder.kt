@@ -47,7 +47,7 @@ class RealHistoryRecorder(
     if (hasPlaybackGap) {
       val oldestPlayedAt = playRecords.minByOrNull { it.played_at }
       databaseService.insertTrackPlayGap(
-        start = stopAt!! + 5.seconds,
+        start = stopAt + 5.seconds,
         end = oldestPlayedAt!!.played_at,
       )
     }
