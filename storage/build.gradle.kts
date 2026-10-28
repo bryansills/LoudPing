@@ -1,11 +1,8 @@
 plugins {
-    alias(libs.plugins.loudping.multiplatform.plain)
+    alias(libs.plugins.loudping.jvm)
 }
 
-kotlin {
-    sourceSets {
-        commonMain.dependencies {
-            api(libs.datastore)
-        }
-    }
+dependencies {
+    api(libs.datastore)
+    implementation(libs.coroutines)
 }

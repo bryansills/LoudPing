@@ -1,3 +1,3 @@
 plugins {
-    alias(libs.plugins.loudping.multiplatform.plain)
+    alias(libs.plugins.loudping.jvm)
 }
