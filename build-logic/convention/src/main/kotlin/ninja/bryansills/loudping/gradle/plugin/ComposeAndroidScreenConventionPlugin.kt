@@ -4,7 +4,6 @@ import androidx.build.configureLint
 import ninja.bryansills.loudping.gradle.configureAndroidLibrary
 import ninja.bryansills.loudping.gradle.configureComposeAndroid
 import ninja.bryansills.loudping.gradle.configureDagger
-import ninja.bryansills.loudping.gradle.configureDependencyAnalysis
 import ninja.bryansills.loudping.gradle.configureKotlinAndroid
 import ninja.bryansills.loudping.gradle.configureNavigation
 import ninja.bryansills.loudping.gradle.util.alias
@@ -22,7 +21,6 @@ class ComposeAndroidScreenConventionPlugin : Plugin<Project> {
       }
       configureKotlinAndroid()
       configureAndroidLibrary()
-      configureDependencyAnalysis()
       configureComposeAndroid()
       configureDagger()
       configureNavigation()
