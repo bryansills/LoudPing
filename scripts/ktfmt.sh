@@ -183,7 +183,9 @@ get_staged_kotlin_files_as_lines() {
   staged_files=$(git diff --name-only --cached --diff-filter=AM -- "*.kt" "*.kts" 2>/dev/null || echo "")
 
   while IFS= read -r file; do
-    echo "$file"
+    if [ -f "$file" ]; then
+      echo "$file"
+    fi
   done <<< "$staged_files"
 }
 
@@ -246,7 +248,7 @@ while [ $# -gt 0 ]; do
 done
 
 # Show help if no arguments provided
-if [ "$verbose" = false ] && [ "$plain" = false ] && [ "$format_all" = false ] && [ "$format_touched" = false ] && [ ${#target_paths[@]} -eq 0 ] && [ "$dry_run" = false ] && [ "$set_exit_if_changed" = false ]; then
+if [ "$verbose" = false ] && [ "$plain" = false ] && [ "$format_all" = false ] && [ "$format_touched" = false ] && [ "$format_staged" = false ] && [ ${#target_paths[@]} -eq 0 ] && [ "$dry_run" = false ] && [ "$set_exit_if_changed" = false ]; then
   show_help
 fi
 

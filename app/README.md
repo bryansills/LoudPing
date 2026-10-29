@@ -13,7 +13,7 @@ config:
 graph TB
   subgraph :core
     direction TB
-    :core:model[model]:::multiplatform-library
+    :core:model[model]:::jvm-library
   end
   subgraph :database
     direction TB
@@ -22,23 +22,23 @@ graph TB
   end
   subgraph :ui
     direction TB
-    :ui:destinations[destinations]:::compose-library
+    :ui:destinations[destinations]:::jvm-library
     :ui:home[home]:::compose-library
     :ui:login[login]:::android-dagger
     :ui:played-tracks[played-tracks]:::compose-library
     :ui:refresh-token-entry[refresh-token-entry]:::compose-library
     :ui:settings[settings]:::compose-library
   end
-  :time[time]:::multiplatform-library
-  :storage[storage]:::multiplatform-library
-  :sneak-network[sneak-network]:::multiplatform-library
-  :sneak[sneak]:::multiplatform-library
-  :session[session]:::multiplatform-library
-  :network-auth[network-auth]:::multiplatform-library
-  :network[network]:::multiplatform-library
+  :time[time]:::jvm-library
+  :storage[storage]:::jvm-library
+  :sneak-network[sneak-network]:::jvm-library
+  :sneak[sneak]:::jvm-library
+  :session[session]:::jvm-library
+  :network-auth[network-auth]:::jvm-library
+  :network[network]:::jvm-library
   :logger-bugsnag[logger-bugsnag]:::android-kotlin
-  :logger[logger]:::multiplatform-library
-  :history-recorder[history-recorder]:::multiplatform-library
+  :logger[logger]:::jvm-library
+  :history-recorder[history-recorder]:::jvm-library
   :foreman[foreman]:::android-dagger
   :di[di]:::jvm-library
   :app-theme[app-theme]:::multiplatform-compose
@@ -60,11 +60,7 @@ graph TB
   :app -.-> :sneak-network
   :app -.-> :storage
   :app -.-> :time
-  :app-core -.-> :android-app-res
   :app-core -.-> :app-theme
-  :app-core -.-> :network-auth
-  :app-core -.-> :session
-  :app-core -.-> :time
   :app-core -.-> :ui:destinations
   :app-core -.-> :ui:home
   :app-core -.-> :ui:login
@@ -72,31 +68,38 @@ graph TB
   :app-core -.-> :ui:refresh-token-entry
   :app-core -.-> :ui:settings
   :database:android -.-> :database:core
-  :foreman -.-> :history-recorder
-  :foreman -.-> :logger
-  :foreman -.-> :storage
-  :foreman -.-> :time
-  :logger-bugsnag -.-> :logger
+  :foreman --> :history-recorder
+  :foreman --> :logger
+  :foreman --> :storage
+  :foreman --> :time
+  :history-recorder -.-> :core:model
+  :history-recorder --> :database:core
+  :history-recorder --> :network
+  :logger-bugsnag --> :logger
+  :network --> :time
+  :network-auth -.-> :session
+  :network-auth --> :sneak-network
+  :network-auth --> :storage
+  :network-auth --> :time
+  :session --> :storage
+  :sneak-network --> :sneak
   :ui:home -.-> :android-app-res
   :ui:home -.-> :app-theme
-  :ui:home -.-> :foreman
-  :ui:home -.-> :session
+  :ui:home --> :foreman
+  :ui:home --> :session
   :ui:login -.-> :app-theme
-  :ui:login -.-> :network-auth
-  :ui:login -.-> :session
-  :ui:login -.-> :time
+  :ui:login --> :network-auth
+  :ui:login --> :time
   :ui:played-tracks -.-> :app-theme
-  :ui:played-tracks -.-> :core:model
-  :ui:played-tracks -.-> :database:core
-  :ui:refresh-token-entry -.-> :android-app-res
-  :ui:refresh-token-entry -.-> :app-theme
-  :ui:refresh-token-entry -.-> :di
-  :ui:refresh-token-entry -.-> :network-auth
+  :ui:played-tracks --> :core:model
+  :ui:played-tracks --> :database:core
+  :ui:refresh-token-entry --> :di
+  :ui:refresh-token-entry --> :network-auth
   :ui:refresh-token-entry -.-> :ui:destinations
   :ui:settings -.-> :android-app-res
   :ui:settings -.-> :app-theme
-  :ui:settings -.-> :foreman
-  :ui:settings -.-> :network-auth
+  :ui:settings --> :foreman
+  :ui:settings --> :network-auth
 
 classDef android-application fill:#CAFFBF,stroke:#000,stroke-width:2px,color:#000;
 classDef compose-library fill:#FFD6A5,stroke:#000,stroke-width:2px,color:#000;
