@@ -48,12 +48,12 @@
     <issue
         id="NotShrinkingResources"
         message="If enabling minification, also set isShrinkResources = true"
-        errorLine1="            isMinifyEnabled = true"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="      isMinifyEnabled = true"
+        errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="build.gradle.kts"
             line="132"
-            column="13"/>
+            column="7"/>
     </issue>
 
     <issue
@@ -62,7 +62,7 @@
         errorLine1="        keepGoing(currentQueryTime, stopAt, nextUrl, isFirstQuery)"
         errorLine2="        ~~~~~~~~~">
         <location
-            file="src/commonMain/kotlin/ninja/bryansills/loudping/network/GetRecentlyPlayed.kt"
+            file="src/main/kotlin/ninja/bryansills/loudping/network/GetRecentlyPlayed.kt"
             line="34"
             column="9"/>
     </issue>
@@ -73,9 +73,42 @@
         errorLine1="            successfulResponse.copy(items = successfulResponse.items.trim(stopAt))"
         errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/commonMain/kotlin/ninja/bryansills/loudping/network/GetRecentlyPlayed.kt"
+            file="src/main/kotlin/ninja/bryansills/loudping/network/GetRecentlyPlayed.kt"
             line="51"
             column="45"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `instantsOf` of class `RateLimiterTestKt` requires synthetic accessor"
+        errorLine1="      instantsOf("
+        errorLine2="      ~~~~~~~~~~">
+        <location
+            file="src/test/kotlin/ninja/bryansills/loudping/network/rate/RateLimiterTest.kt"
+            line="18"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `instantsOf` of class `RateLimiterTestKt` requires synthetic accessor"
+        errorLine1="      instantsOf("
+        errorLine2="      ~~~~~~~~~~">
+        <location
+            file="src/test/kotlin/ninja/bryansills/loudping/network/rate/RateLimiterTest.kt"
+            line="45"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `instantsOf` of class `RateLimiterTestKt` requires synthetic accessor"
+        errorLine1="      instantsOf("
+        errorLine2="      ~~~~~~~~~~">
+        <location
+            file="src/test/kotlin/ninja/bryansills/loudping/network/rate/RateLimiterTest.kt"
+            line="77"
+            column="7"/>
     </issue>
 
     <issue
@@ -84,7 +117,7 @@
         errorLine1="  private val authorizeUrlSalt = networkSneak.redirectUrl.toRandomString()"
         errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/commonMain/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
+            file="src/main/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
             line="25"
             column="34"/>
     </issue>
@@ -95,7 +128,7 @@
         errorLine1="    &quot;$timestamp$authorizeUrlSalt&quot;.toRandomString()"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/commonMain/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
+            file="src/main/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
             line="28"
             column="5"/>
     </issue>
@@ -106,7 +139,7 @@
         errorLine1="      networkSneak.authorizeUrl"
         errorLine2="      ^">
         <location
-            file="src/commonMain/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
+            file="src/main/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
             line="32"
             column="7"/>
     </issue>
@@ -117,7 +150,7 @@
         errorLine1="    val playRecords = networkResponse.toRecords()"
         errorLine2="                      ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/commonMain/kotlin/ninja/bryansills/loudping/history/recorder/RealHistoryRecorder.kt"
+            file="src/main/kotlin/ninja/bryansills/loudping/history/recorder/RealHistoryRecorder.kt"
             line="44"
             column="23"/>
     </issue>
@@ -128,7 +161,7 @@
         errorLine1="    val databaseEntries = playRecords.toDatabase(stopAt)"
         errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/commonMain/kotlin/ninja/bryansills/loudping/history/recorder/RealHistoryRecorder.kt"
+            file="src/main/kotlin/ninja/bryansills/loudping/history/recorder/RealHistoryRecorder.kt"
             line="55"
             column="27"/>
     </issue>
