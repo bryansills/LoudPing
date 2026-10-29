@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
   api(projects.core.model)
-  implementation(projects.database.core)
-  implementation(projects.network)
+  api(projects.database.core)
+  api(projects.network)
+  implementation(libs.eithernet.core)
 }

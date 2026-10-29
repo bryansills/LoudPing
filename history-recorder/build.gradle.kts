@@ -1,10 +1,11 @@
 plugins {
-    alias(libs.plugins.loudping.jvm)
+  alias(libs.plugins.loudping.jvm)
 }
 
 dependencies {
+  api(projects.database.core)
+  api(projects.network)
   implementation(projects.core.model)
-  implementation(projects.database.core)
-  implementation(projects.network)
-  implementation(libs.kotlinx.datetime)
+  implementation(libs.eithernet.core)
+  implementation(libs.coroutines)
 }

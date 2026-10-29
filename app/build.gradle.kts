@@ -1,171 +1,178 @@
 import ninja.bryansills.loudping.gradle.buildConfigString
-import ninja.bryansills.loudping.gradle.getSecret
-import ninja.bryansills.loudping.gradle.rootProperties
 
 plugins {
-    alias(libs.plugins.loudping.android.application)
-    alias(libs.plugins.loudping.publishing)
-    alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.bugsnag)
+  alias(libs.plugins.loudping.android.application)
+  alias(libs.plugins.loudping.publishing)
+  alias(libs.plugins.kotlinx.serialization)
+  alias(libs.plugins.bugsnag)
 }
 
 android {
-    namespace = "ninja.bryansills.loudping"
+  namespace = "ninja.bryansills.loudping"
 
-    defaultConfig {
-        applicationId = "ninja.bryansills.loudping"
+  defaultConfig {
+    applicationId = "ninja.bryansills.loudping"
 
-//        val rootLocalProperties = rootProject.rootProperties("local.properties")
-//        val appVersionName =
-//            rootLocalProperties.getSecret(
-//                "version.name",
-//                fallback = "0.0.69",
-//            )
-//        val appVersionParts = appVersionName.split(".").map { it.toInt() }
-//        val appVersionCode = (10_000 * appVersionParts[0]) + (100 * appVersionParts[1]) + appVersionParts[2]
-//
-//      versionCode = appVersionCode
-//      versionName = appVersionName
+    //        val rootLocalProperties = rootProject.rootProperties("local.properties")
+    //        val appVersionName =
+    //            rootLocalProperties.getSecret(
+    //                "version.name",
+    //                fallback = "0.0.69",
+    //            )
+    //        val appVersionParts = appVersionName.split(".").map { it.toInt() }
+    //        val appVersionCode = (10_000 * appVersionParts[0]) + (100 * appVersionParts[1]) +
+    // appVersionParts[2]
+    //
+    //      versionCode = appVersionCode
+    //      versionName = appVersionName
 
-      versionCode = 69
-      versionName = "0.0.69"
+    versionCode = 69
+    versionName = "0.0.69"
 
-//      val rootSecrets = rootProject.rootProperties("secrets.properties")
-//      buildConfigString(
-//        "SneakSalt",
-//        rootSecrets.getSecret("sneak.salt"),
-//      )
-//      buildConfigString(
-//        "SneakClientId",
-//        rootSecrets.getSecret("sneak.clientid"),
-//      )
-//      buildConfigString(
-//        "SneakClientSecret",
-//        rootSecrets.getSecret("sneak.clientsecret"),
-//      )
-//      buildConfigString(
-//        "SneakRedirectUrl",
-//        rootSecrets.getSecret("sneak.redirecturl"),
-//      )
-//      buildConfigString(
-//        "SneakBaseApiUrl",
-//        rootSecrets.getSecret("sneak.baseapiurl"),
-//      )
-//      buildConfigString(
-//        "SneakBaseAuthApiUrl",
-//        rootSecrets.getSecret("sneak.baseauthapiurl"),
-//      )
-//      buildConfigString(
-//        "SneakAuthorizeUrl",
-//        rootSecrets.getSecret("sneak.authorizeurl"),
-//      )
-//
-//      manifestPlaceholders["BUGSNAG_API_KEY"] = rootSecrets.getSecret("bugsnag.api.key")
+    //      val rootSecrets = rootProject.rootProperties("secrets.properties")
+    //      buildConfigString(
+    //        "SneakSalt",
+    //        rootSecrets.getSecret("sneak.salt"),
+    //      )
+    //      buildConfigString(
+    //        "SneakClientId",
+    //        rootSecrets.getSecret("sneak.clientid"),
+    //      )
+    //      buildConfigString(
+    //        "SneakClientSecret",
+    //        rootSecrets.getSecret("sneak.clientsecret"),
+    //      )
+    //      buildConfigString(
+    //        "SneakRedirectUrl",
+    //        rootSecrets.getSecret("sneak.redirecturl"),
+    //      )
+    //      buildConfigString(
+    //        "SneakBaseApiUrl",
+    //        rootSecrets.getSecret("sneak.baseapiurl"),
+    //      )
+    //      buildConfigString(
+    //        "SneakBaseAuthApiUrl",
+    //        rootSecrets.getSecret("sneak.baseauthapiurl"),
+    //      )
+    //      buildConfigString(
+    //        "SneakAuthorizeUrl",
+    //        rootSecrets.getSecret("sneak.authorizeurl"),
+    //      )
+    //
+    //      manifestPlaceholders["BUGSNAG_API_KEY"] = rootSecrets.getSecret("bugsnag.api.key")
 
-      buildConfigString(
-        "SneakSalt",
-        "sneak.salt",
-      )
-      buildConfigString(
-        "SneakClientId",
-        "sneak.clientid",
-      )
-      buildConfigString(
-        "SneakClientSecret",
-        "sneak.clientsecret",
-      )
-      buildConfigString(
-        "SneakRedirectUrl",
-        "sneak.redirecturl",
-      )
-      buildConfigString(
-        "SneakBaseApiUrl",
-        "sneak.baseapiurl",
-      )
-      buildConfigString(
-        "SneakBaseAuthApiUrl",
-        "sneak.baseauthapiurl",
-      )
-      buildConfigString(
-        "SneakAuthorizeUrl",
-        "sneak.authorizeurl",
-      )
+    buildConfigString(
+      "SneakSalt",
+      "sneak.salt",
+    )
+    buildConfigString(
+      "SneakClientId",
+      "sneak.clientid",
+    )
+    buildConfigString(
+      "SneakClientSecret",
+      "sneak.clientsecret",
+    )
+    buildConfigString(
+      "SneakRedirectUrl",
+      "sneak.redirecturl",
+    )
+    buildConfigString(
+      "SneakBaseApiUrl",
+      "sneak.baseapiurl",
+    )
+    buildConfigString(
+      "SneakBaseAuthApiUrl",
+      "sneak.baseauthapiurl",
+    )
+    buildConfigString(
+      "SneakAuthorizeUrl",
+      "sneak.authorizeurl",
+    )
 
-      manifestPlaceholders["BUGSNAG_API_KEY"] = "bugsnag.api.key"
+    manifestPlaceholders["BUGSNAG_API_KEY"] = "bugsnag.api.key"
+  }
+
+  signingConfigs {
+    getByName("debug") {
+      storeFile = file("./signing/app-debug.jks")
+      storePassword = "android"
+      keyAlias = "androiddebugkey"
+      keyPassword = "android"
     }
 
-    signingConfigs {
-        getByName("debug") {
-            storeFile = file("./signing/app-debug.jks")
-            storePassword = "android"
-            keyAlias = "androiddebugkey"
-            keyPassword = "android"
-        }
-
-        create("release") {
-//            if (rootProject.file("release/loudping-signing.jks").exists()) {
-//                storeFile = rootProject.file("release/loudping-signing.jks")
-//
-//                val keystoreProperties = rootProject.rootProperties("release/keystore.properties")
-//
-//                storePassword = keystoreProperties.getSecret("release.store.password")
-//                keyAlias = keystoreProperties.getSecret("release.key.alias")
-//                keyPassword = keystoreProperties.getSecret("release.key.password")
-//            }
-        }
+    create("release") {
+      //            if (rootProject.file("release/loudping-signing.jks").exists()) {
+      //                storeFile = rootProject.file("release/loudping-signing.jks")
+      //
+      //                val keystoreProperties =
+      // rootProject.rootProperties("release/keystore.properties")
+      //
+      //                storePassword = keystoreProperties.getSecret("release.store.password")
+      //                keyAlias = keystoreProperties.getSecret("release.key.alias")
+      //                keyPassword = keystoreProperties.getSecret("release.key.password")
+      //            }
     }
+  }
 
-    buildTypes {
-        val release =
-            getByName("release") {
-                signingConfig = signingConfigs.findByName("release")
-                proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-                isMinifyEnabled = true
-            }
+  buildTypes {
+    val release =
+      getByName("release") {
+        signingConfig = signingConfigs.findByName("release")
+        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        isMinifyEnabled = true
+      }
 
-        create("benchmark") {
-            initWith(release)
-            matchingFallbacks.add("release")
+    create("benchmark") {
+      initWith(release)
+      matchingFallbacks.add("release")
 
-            signingConfig = signingConfigs.getByName("debug")
-            proguardFiles("benchmark-rules.pro")
-            isMinifyEnabled = true
-        }
+      signingConfig = signingConfigs.getByName("debug")
+      proguardFiles("benchmark-rules.pro")
+      isMinifyEnabled = true
     }
+  }
 
-    buildFeatures {
-        buildConfig = true
-    }
+  buildFeatures {
+    buildConfig = true
+  }
 }
 
 dependencies {
-    implementation(projects.appCore)
-    implementation(projects.di)
-    implementation(projects.database.android)
-    implementation(projects.database.core)
-    implementation(projects.historyRecorder)
-    implementation(projects.network)
-    implementation(projects.networkAuth)
-    implementation(projects.session)
-    implementation(projects.sneakNetwork)
-    implementation(projects.sneak)
-    implementation(projects.storage)
-    implementation(projects.time)
-    implementation(projects.logger)
-    implementation(projects.loggerBugsnag)
+  implementation(projects.appCore)
+  implementation(projects.di)
+  implementation(projects.database.android)
+  implementation(projects.database.core)
+  implementation(projects.historyRecorder)
+  implementation(projects.network)
+  implementation(projects.networkAuth)
+  implementation(projects.session)
+  implementation(projects.sneakNetwork)
+  implementation(projects.sneak)
+  implementation(projects.storage)
+  implementation(projects.time)
+  implementation(projects.logger)
+  implementation(projects.loggerBugsnag)
 
-    implementation(libs.androidx.compose.activity)
-    implementation(libs.activity.ktx)
-
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.kotlinx.serialization)
-    implementation(libs.kotlinx.serialization.runtime.json)
-    implementation(libs.okhttp)
-    implementation(libs.eithernet.core)
-    implementation(libs.eithernet.retrofit)
-
-    implementation(libs.workmanager)
-    implementation(libs.workmanager.hilt)
-
-    implementation(libs.bugsnag)
+  implementation(libs.retrofit)
+  implementation(libs.retrofit.kotlinx.serialization)
+  implementation(libs.kotlinx.serialization.runtime.json)
+  implementation(libs.okhttp)
+  implementation(libs.eithernet.retrofit)
+  implementation(libs.workmanager.hilt)
+  implementation(libs.compose.runtime)
+  implementation(libs.datastore.core)
+  implementation(libs.datastore.preferences.core)
+  implementation(libs.datastore.preferences)
+  implementation(libs.androidx.fragment)
+  implementation(libs.androidx.viewmodel.savedstate)
+  implementation(libs.workmanager)
+  implementation(libs.sqldelight.runtime)
+  implementation(libs.bugsnag.core)
+  implementation(libs.dagger)
+  implementation(libs.hilt.core)
+  implementation(libs.javax.inject)
+  implementation(libs.coroutines)
+  implementation(libs.kotlinx.datetime)
+  implementation(libs.kotlinx.serialization.runtime.core)
 }

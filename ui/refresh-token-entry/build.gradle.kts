@@ -1,11 +1,27 @@
 plugins {
-    alias(libs.plugins.loudping.android.library.compose)
+  alias(libs.plugins.loudping.android.library.compose)
 }
 
 dependencies {
-    implementation(projects.networkAuth)
-    implementation(projects.appTheme)
-    implementation(projects.androidAppRes)
-    implementation(projects.di)
-    implementation(projects.ui.destinations)
+  api(projects.networkAuth)
+  api(projects.di)
+  api(libs.compose.foundation.layout)
+  api(libs.compose.runtime)
+  api(libs.androidx.viewmodel.core)
+  api(libs.androidx.navigation.common)
+  api(libs.dagger)
+  api(libs.javax.inject)
+  api(libs.coroutines)
+  api(libs.compose.ui.text)
+
+  implementation(projects.ui.destinations)
+  implementation(libs.compose.foundation)
+  implementation(libs.compose.ui)
+  implementation(libs.compose.ui.graphics)
+  implementation(libs.compose.ui.unit)
+  implementation(libs.hilt.viewmodel.compose)
+  implementation(libs.androidx.lifecycle.common)
+  implementation(libs.androidx.lifecycle.runtime.compose)
+  implementation(libs.androidx.viewmodel.compose)
+  implementation(libs.hilt.core)
 }

@@ -5,8 +5,8 @@ plugins {
 
 dependencies {
   api(projects.core.model)
-  api(libs.kotlinx.datetime)
-  implementation(projects.database.core)
-  implementation(projects.trackRepo)
-  implementation(libs.kotlinx.serialization.runtime.json)
+  api(projects.database.core)
+  api(projects.trackRepo)
+  api(libs.coroutines)
+  api(libs.kotlinx.serialization.runtime.core)
 }

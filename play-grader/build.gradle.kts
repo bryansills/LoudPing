@@ -3,7 +3,6 @@ plugins {
 }
 
 dependencies {
-  api(projects.core.model)
   api(projects.albumGrouper)
-  implementation(projects.albumRepo)
+  api(projects.albumRepo)
 }

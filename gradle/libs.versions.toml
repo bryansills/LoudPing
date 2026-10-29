@@ -9,15 +9,16 @@ activity = "1.13.0"
 androidDesugarJdkLibs = "2.1.5"
 androidGradlePlugin = "9.4.1"
 androidTools = "32.4.1"
+androidx-core = "1.19.1"
 androidx-junit = "1.3.0"
 androidxLintGradle = "1.0.0"
 androidx-test-runner = "1.7.0"
 appcompat = "1.8.0"
+bugsnag = "6.27.1"
 burst = "2.13.0"
 coil = "2.7.0"
 compose-bom = "2026.09.00"
 compose-multiplatform = "1.12.2"
-coreKtx = "1.19.1"
 coroutines = "1.11.0"
 # Check to see if you can delete kotlinJvmMetadata...
 dagger = "2.60.1"
@@ -36,48 +37,77 @@ kotlinx-retrofit = "1.0.0"
 kotlinx-serialization-runtime = "1.11.0"
 ksp = "2.3.12"
 ktfmt = "0.65"
+lifecycle = "2.11.0"
 material = "1.14.0"
-navigation-compose = "2.10.2"
+navigation = "2.10.2"
 okhttp = "5.5.0"
 okio = "3.18.2"
 paging = "3.5.2"
 retrofit = "3.0.0"
 sqldelight = "2.4.0"
-viewmodel = "2.11.0"
 workmanager = "2.12.0"
 
 [libraries]
-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+androidx-activity = { module = "androidx.activity:activity", version.ref = "activity" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
+androidx-annotation = { module = "androidx.annotation:annotation", version = "1.9.1" }
 androidx-browser = { group = "androidx.browser", name = "browser", version = "1.10.0" }
-androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
-androidx-compose-icons = { group = "androidx.compose.material", name = "material-icons-core" }
-androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
-androidx-compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
-androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version = "1.4.0" }
+androidx-core = { module = "androidx.core:core", version.ref = "androidx-core" }
+androidx-fragment = { module = "androidx.fragment:fragment", version = "1.5.1" }
+androidx-lifecycle-common = { module = "androidx.lifecycle:lifecycle-common", version.ref = "lifecycle" }
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-lint-gradle = { group = "androidx.lint", name = "lint-gradle", version.ref = "androidxLintGradle" }
+androidx-navigation-common = { module = "androidx.navigation:navigation-common", version.ref = "navigation" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+androidx-navigation-runtime = { module = "androidx.navigation:navigation-runtime", version.ref = "navigation" }
+androidx-sqlite = { module = "androidx.sqlite:sqlite", version = "2.7.1" }
 androidx-test-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidx-test-runner" }
+androidx-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-viewmodel-core = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
+androidx-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-bugsnag = { module = "com.bugsnag:bugsnag-android", version = "6.27.1" }
+bugsnag = { module = "com.bugsnag:bugsnag-android", version.ref = "bugsnag" }
+bugsnag-anr = { module = "com.bugsnag:bugsnag-plugin-android-anr", version.ref = "bugsnag" }
+bugsnag-core = { module = "com.bugsnag:bugsnag-android-core", version.ref = "bugsnag" }
+bugsnag-ndk = { module = "com.bugsnag:bugsnag-plugin-android-ndk", version.ref = "bugsnag" }
 burst-coroutines = { module = "app.cash.burst:burst-coroutines", version.ref = "burst" }
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil"}
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+compose-animation = { module = "androidx.compose.animation:animation" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-desktop-runtime = { module = "org.jetbrains.compose.runtime:runtime-desktop", version = "1.8.2" }
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
+compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
+compose-icons = { group = "androidx.compose.material", name = "material-icons-core" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-runtime = { module = "androidx.compose.runtime:runtime" }
+compose-runtime-saveable = { module = "androidx.compose.runtime:runtime-saveable" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+compose-ui-text = { module = "androidx.compose.ui:ui-text" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-unit = { module = "androidx.compose.ui:ui-unit" }
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore"}
+dagger = { module = "com.google.dagger:dagger", version.ref = "dagger"}
+datastore-core = { module = "androidx.datastore:datastore-core", version.ref = "datastore"}
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore"}
+datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore"}
 eithernet-core = { module = "com.slack.eithernet:eithernet", version.ref = "eithernet" }
 eithernet-retrofit = { module = "com.slack.eithernet:eithernet-integration-retrofit", version.ref = "eithernet" }
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger" }
-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "dagger" }
+hilt-compiler-core = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "dagger" }
+hilt-compiler-androidx = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt" }
+hilt-common = { module = "androidx.hilt:hilt-common", version.ref = "hilt" }
+hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "dagger" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt" }
+hilt-viewmodel-compose = { module = "androidx.hilt:hilt-lifecycle-viewmodel-compose", version.ref = "hilt" }
 htmlunit = { module = "org.htmlunit:htmlunit", version = "5.6.0" }
 javax-inject = { module = "javax.inject:javax.inject", version = "1" }
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -100,15 +130,17 @@ okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 paging = { module = "androidx.paging:paging-common", version.ref = "paging" }
 paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 paging-sqldelight = { module = "app.cash.sqldelight:androidx-paging3-extensions", version.ref = "sqldelight" }
+parcelize-runtime = { module = "org.jetbrains.kotlin:kotlin-parcelize-runtime", version.ref = "kotlin" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-kotlinx-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kotlinx-retrofit"}
 retrofit-jaxb3 = { module = "com.squareup.retrofit2:converter-jaxb3", version.ref = "retrofit"}
 sqldelight-android-driver = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight"}
+sqldelight-async = { module = "app.cash.sqldelight:async-extensions", version.ref = "sqldelight"}
 sqldelight-jvm-driver = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqldelight"}
+sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight"}
 sqldelight-sqlite-dialect = { group = "app.cash.sqldelight", name = "sqlite-3-35-dialect", version.ref = "sqldelight"}
 turbine = { module = "app.cash.turbine:turbine", version = "1.2.1" }
-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "viewmodel" }
-workmanager = { module = "androidx.work:work-runtime-ktx", version.ref = "workmanager" }
+workmanager = { module = "androidx.work:work-runtime", version.ref = "workmanager" }
 workmanager-hilt = { module = "androidx.hilt:hilt-work", version.ref = "hilt" }
 
 # Dependencies of the included build-logic

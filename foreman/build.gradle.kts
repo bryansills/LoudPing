@@ -1,14 +1,19 @@
 plugins {
-    alias(libs.plugins.loudping.android.library.kotlin.dagger)
+  alias(libs.plugins.loudping.android.library.kotlin.dagger)
 }
 
 dependencies {
-    implementation(projects.historyRecorder)
-    implementation(projects.storage)
-    implementation(projects.time)
-    implementation(projects.logger)
-    api(libs.workmanager)
-    ksp(libs.androidx.hilt.compiler)
-    implementation(libs.workmanager.hilt)
-    implementation(libs.kotlinx.datetime)
+  ksp(libs.hilt.compiler.androidx)
+  api(projects.historyRecorder)
+  api(projects.storage)
+  api(projects.time)
+  api(projects.logger)
+  api(libs.workmanager.hilt)
+  api(libs.workmanager)
+  api(libs.dagger)
+  api(libs.javax.inject)
+  api(libs.coroutines)
+  implementation(libs.hilt.core)
+  implementation(libs.datastore.preferences.core)
+  implementation(libs.hilt.common)
 }

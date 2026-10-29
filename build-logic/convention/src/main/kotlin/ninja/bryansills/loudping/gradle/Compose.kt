@@ -32,12 +32,12 @@ internal fun Project.configureComposeAndroid() {
   configureComposeCompiler()
 
   dependencies {
-    val composeBom = libs.androidx.compose.bom
+    val composeBom = libs.compose.bom
     implementation(platform(composeBom))
     androidTestImplementation(platform(composeBom))
 
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.preview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.preview)
+    debugImplementation(libs.compose.ui.tooling)
   }
 }

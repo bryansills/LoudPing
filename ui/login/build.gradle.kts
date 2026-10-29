@@ -1,25 +1,35 @@
 plugins {
-    alias(libs.plugins.loudping.android.library.kotlin.dagger)
-    alias(libs.plugins.parcelize)
+  alias(libs.plugins.loudping.android.library.kotlin.dagger)
+  alias(libs.plugins.parcelize)
 }
 
 android {
-    androidResources.enable = true
+  androidResources.enable = true
 
-    buildFeatures {
-        viewBinding = true
-    }
+  buildFeatures {
+    viewBinding = true
+  }
 }
 
 dependencies {
-    implementation(projects.session)
-    implementation(projects.networkAuth)
-    implementation(projects.time)
-    implementation(projects.appTheme)
+  implementation(platform(libs.compose.bom))
 
-    implementation(libs.activity.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    implementation(libs.viewmodel)
-    implementation(libs.androidx.browser)
+  api(projects.networkAuth)
+  api(projects.time)
+  api(libs.appcompat)
+  api(libs.androidx.activity)
+  api(libs.androidx.viewmodel.savedstate)
+  api(libs.dagger)
+  api(libs.hilt.core)
+  api(libs.javax.inject)
+  api(libs.coroutines)
+
+  implementation(projects.appTheme)
+  implementation(libs.material)
+  implementation(libs.androidx.browser)
+  implementation(libs.androidx.annotation)
+  implementation(libs.androidx.core)
+  implementation(libs.androidx.lifecycle.common)
+  implementation(libs.androidx.lifecycle.runtime)
+  implementation(libs.parcelize.runtime)
 }

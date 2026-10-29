@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
   api(projects.core.model)
-  implementation(libs.turbine)
+  api(libs.turbine)
+  api(libs.coroutines)
   implementation(libs.coroutines.test)
 }

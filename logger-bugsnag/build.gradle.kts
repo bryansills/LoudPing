@@ -1,8 +1,10 @@
 plugins {
-    alias(libs.plugins.loudping.android.library.kotlin.plain)
+  alias(libs.plugins.loudping.android.library.kotlin.plain)
 }
 
 dependencies {
-    implementation(projects.logger)
-    implementation(libs.bugsnag)
+  api(projects.logger)
+  implementation(libs.bugsnag.core)
+  runtimeOnly(libs.bugsnag.anr)
+  runtimeOnly(libs.bugsnag.ndk)
 }

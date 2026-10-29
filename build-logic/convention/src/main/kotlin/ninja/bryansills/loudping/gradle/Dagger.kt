@@ -15,7 +15,7 @@ internal fun Project.configureDagger() {
   }
   dependencies {
     implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler.core)
     // TODO: delete this once Hilt upgrades its internal Kotlin
     ksp(libs.kotlinJvmMetadata)
   }

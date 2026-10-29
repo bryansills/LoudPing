@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.loudping.jvm)
+  alias(libs.plugins.loudping.jvm)
 }
 
 dependencies {
-  implementation(projects.sneak)
+  api(projects.sneak)
 }

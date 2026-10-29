@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.loudping.jvm)
+  alias(libs.plugins.loudping.jvm)
 }
 
 dependencies {
-    implementation(libs.javax.inject)
+  api(libs.javax.inject)
 }

@@ -1,35 +1,34 @@
 plugins {
-    alias(libs.plugins.loudping.jvm)
-    application
-    alias(libs.plugins.buildconfig)
+  alias(libs.plugins.loudping.jvm)
+  application
+  alias(libs.plugins.buildconfig)
 }
 
 application {
-    mainClass = "ninja.bryansills.loudping.html.callback.MainKt"
+  mainClass = "ninja.bryansills.loudping.html.callback.MainKt"
 }
 
 dependencies {
-    implementation(projects.sneak)
-    implementation(projects.html.core)
-    implementation(libs.kotlinx.html)
-    implementation(libs.okio)
+  implementation(projects.html.core)
+  implementation(libs.kotlinx.html)
+  implementation(libs.okio)
 }
 
 buildConfig {
-    packageName("ninja.bryansills.loudping")
-    useKotlinOutput { internalVisibility = true }
+  packageName("ninja.bryansills.loudping")
+  useKotlinOutput { internalVisibility = true }
 
-//    loadSecrets()
+  //    loadSecrets()
 
-    buildConfigField("Salt", """"saltString"""")
-    buildConfigField("TokenUrl", """"tokenUrl"""")
-    buildConfigField("ClientId", """"clientId"""")
-    buildConfigField("ClientOther", """"clientOther"""")
-    buildConfigField("RedirectUrl", """"redirectUrl"""")
-    buildConfigField("StartUrl", """"startUrl"""")
+  buildConfigField("Salt", """"saltString"""")
+  buildConfigField("TokenUrl", """"tokenUrl"""")
+  buildConfigField("ClientId", """"clientId"""")
+  buildConfigField("ClientOther", """"clientOther"""")
+  buildConfigField("RedirectUrl", """"redirectUrl"""")
+  buildConfigField("StartUrl", """"startUrl"""")
 }
 
-//fun BuildConfigExtension.loadSecrets() {
+// fun BuildConfigExtension.loadSecrets() {
 //    val properties = rootProject.rootProperties("local.properties")
 //
 //    val saltString = properties.getSecret("sneak.salt")
@@ -49,4 +48,4 @@ buildConfig {
 //
 //    val startUrl = properties.getSecret("start.url")
 //    buildConfigField("String", "StartUrl", """"$startUrl"""")
-//}
+// }

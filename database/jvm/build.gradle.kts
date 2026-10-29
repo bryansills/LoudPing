@@ -1,8 +1,10 @@
 plugins {
-    alias(libs.plugins.loudping.jvm)
+  alias(libs.plugins.loudping.jvm)
 }
 
 dependencies {
-    implementation(projects.database.core)
-    implementation(libs.sqldelight.jvm.driver)
+  api(libs.sqldelight.runtime)
+  implementation(projects.database.core)
+  implementation(libs.sqldelight.jvm.driver)
+  implementation(libs.sqldelight.async)
 }

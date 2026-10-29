@@ -1,8 +1,9 @@
 plugins {
-    alias(libs.plugins.loudping.jvm)
+  alias(libs.plugins.loudping.jvm)
 }
 
 dependencies {
-  implementation(projects.storage)
-  implementation(libs.coroutines)
+  api(projects.storage)
+  api(libs.coroutines)
+  implementation(libs.datastore.preferences.core)
 }

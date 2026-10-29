@@ -1,61 +1,66 @@
-
 import com.github.gmazzo.buildconfig.BuildConfigExtension
 
 plugins {
-    alias(libs.plugins.loudping.jvm)
-    application
-    alias(libs.plugins.buildconfig)
+  alias(libs.plugins.loudping.jvm)
+  application
+  alias(libs.plugins.buildconfig)
 }
 
 application {
-    mainClass = "ninja.bryansills.loudping.jvm.network.runner.MainKt"
+  mainClass = "ninja.bryansills.loudping.jvm.network.runner.MainKt"
 }
 
 dependencies {
-    implementation(projects.coroutinesExt)
-    implementation(projects.database.core)
-    implementation(projects.database.jvm)
-    implementation(projects.historyRecorder)
-    implementation(projects.network)
-    implementation(projects.networkAuth)
-    implementation(projects.session)
-    implementation(projects.sneak)
-    implementation(projects.sneakNetwork)
-    implementation(projects.storage)
-    implementation(projects.time)
+  implementation(projects.coroutinesExt)
+  implementation(projects.database.core)
+  implementation(projects.database.jvm)
+  implementation(projects.historyRecorder)
+  implementation(projects.network)
+  implementation(projects.networkAuth)
+  implementation(projects.session)
+  implementation(projects.sneak)
+  implementation(projects.sneakNetwork)
+  implementation(projects.storage)
+  implementation(projects.time)
 
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.kotlinx.serialization)
-    implementation(libs.eithernet.retrofit)
-    implementation(libs.kotlinx.serialization.runtime.json)
-    implementation(libs.okhttp)
+  implementation(libs.retrofit)
+  implementation(libs.retrofit.kotlinx.serialization)
+  implementation(libs.eithernet.retrofit)
+  implementation(libs.kotlinx.serialization.runtime.json)
+  implementation(libs.okhttp)
+  implementation(libs.datastore.core)
+  implementation(libs.datastore.preferences.core)
+  implementation(libs.sqldelight.runtime)
+  implementation(libs.coroutines)
+  implementation(libs.kotlinx.datetime)
+  implementation(libs.kotlinx.serialization.runtime.core)
 }
 
 buildConfig {
-    packageName("ninja.bryansills.loudping.jvm.network.runner")
-    useKotlinOutput { internalVisibility = true }
+  packageName("ninja.bryansills.loudping.jvm.network.runner")
+  useKotlinOutput { internalVisibility = true }
 
-//  val rootSecrets = rootProject.rootProperties("secrets.properties")
-//
-//  string("JvmRefreshToken", rootSecrets.getSecret("jvm.refresh.token"))
-//  string("SneakSalt", rootSecrets.getSecret("sneak.salt"))
-//  string("SneakClientId", rootSecrets.getSecret("sneak.clientid"))
-//  string("SneakClientSecret", rootSecrets.getSecret("sneak.clientsecret"))
-//  string("SneakRedirectUrl", rootSecrets.getSecret("sneak.redirecturl"))
-//  string("SneakBaseApiUrl", rootSecrets.getSecret("sneak.baseapiurl"))
-//  string("SneakBaseAuthApiUrl", rootSecrets.getSecret("sneak.baseauthapiurl"))
-//  string("SneakAuthorizeUrl", rootSecrets.getSecret("sneak.authorizeurl"))
+  //  val rootSecrets = rootProject.rootProperties("secrets.properties")
+  //
+  //  string("JvmRefreshToken", rootSecrets.getSecret("jvm.refresh.token"))
+  //  string("SneakSalt", rootSecrets.getSecret("sneak.salt"))
+  //  string("SneakClientId", rootSecrets.getSecret("sneak.clientid"))
+  //  string("SneakClientSecret", rootSecrets.getSecret("sneak.clientsecret"))
+  //  string("SneakRedirectUrl", rootSecrets.getSecret("sneak.redirecturl"))
+  //  string("SneakBaseApiUrl", rootSecrets.getSecret("sneak.baseapiurl"))
+  //  string("SneakBaseAuthApiUrl", rootSecrets.getSecret("sneak.baseauthapiurl"))
+  //  string("SneakAuthorizeUrl", rootSecrets.getSecret("sneak.authorizeurl"))
 
-    buildConfigField("JvmRefreshToken", "jvm.refresh.token")
-    buildConfigField("SneakSalt", "sneak.salt")
-    buildConfigField("SneakClientId", "sneak.clientid")
-    buildConfigField("SneakClientSecret", "sneak.clientsecret")
-    buildConfigField("SneakRedirectUrl", "sneak.redirecturl")
-    buildConfigField("SneakBaseApiUrl", "sneak.baseapiurl")
-    buildConfigField("SneakBaseAuthApiUrl", "sneak.baseauthapiurl")
-    buildConfigField("SneakAuthorizeUrl", "sneak.authorizeurl")
+  buildConfigField("JvmRefreshToken", "jvm.refresh.token")
+  buildConfigField("SneakSalt", "sneak.salt")
+  buildConfigField("SneakClientId", "sneak.clientid")
+  buildConfigField("SneakClientSecret", "sneak.clientsecret")
+  buildConfigField("SneakRedirectUrl", "sneak.redirecturl")
+  buildConfigField("SneakBaseApiUrl", "sneak.baseapiurl")
+  buildConfigField("SneakBaseAuthApiUrl", "sneak.baseauthapiurl")
+  buildConfigField("SneakAuthorizeUrl", "sneak.authorizeurl")
 }
 
 fun BuildConfigExtension.string(key: String, value: String) {
-    this.buildConfigField("String", key, "\"$value\"")
+  this.buildConfigField("String", key, "\"$value\"")
 }
