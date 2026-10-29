@@ -171,6 +171,7 @@ dependencies {
   implementation(libs.bugsnag.core)
   implementation(libs.dagger)
   implementation(libs.hilt.core)
+  implementation(libs.hilt.android)
   implementation(libs.javax.inject)
   implementation(libs.coroutines)
   implementation(libs.kotlinx.datetime)

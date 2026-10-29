@@ -23,6 +23,7 @@ dependencies {
   api(libs.hilt.core)
   api(libs.javax.inject)
   api(libs.coroutines)
+  api(libs.hilt.android)
 
   implementation(projects.appTheme)
   implementation(libs.material)

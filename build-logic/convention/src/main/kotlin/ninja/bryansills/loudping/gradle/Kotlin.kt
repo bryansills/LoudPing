@@ -9,7 +9,6 @@ import ninja.bryansills.loudping.gradle.util.jvmTarget
 import ninja.bryansills.loudping.gradle.util.kotlin
 import ninja.bryansills.loudping.gradle.util.libs
 import ninja.bryansills.loudping.gradle.util.plugins
-import ninja.bryansills.loudping.gradle.util.sourceSets
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
@@ -45,11 +44,6 @@ internal fun Project.configureKotlinMultiplatform() {
           compilerOptions { freeCompilerArgs.add("-Xexpect-actual-classes") }
         }
       }
-    }
-
-    sourceSets {
-      commonMain.dependencies { implementation(libs.coroutines) }
-      commonTest.dependencies { implementation(libs.kotlin.test) }
     }
   }
 

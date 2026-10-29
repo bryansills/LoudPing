@@ -6,6 +6,7 @@ kotlin {
   sourceSets {
     commonMain.dependencies {
       api(projects.core.model)
+      api(libs.coroutines)
       api(libs.kotlinx.datetime)
       api(libs.paging)
     }

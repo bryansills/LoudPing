@@ -13,6 +13,7 @@ dependencies {
   api(libs.dagger)
   api(libs.javax.inject)
   api(libs.coroutines)
+  api(libs.hilt.android)
   implementation(libs.hilt.core)
   implementation(libs.datastore.preferences.core)
   implementation(libs.hilt.common)

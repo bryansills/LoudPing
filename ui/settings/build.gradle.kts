@@ -10,6 +10,7 @@ dependencies {
   api(libs.androidx.viewmodel.core)
   api(libs.workmanager)
   api(libs.dagger)
+  implementation(libs.hilt.android)
   api(libs.javax.inject)
   api(libs.coroutines)
 
@@ -23,5 +24,7 @@ dependencies {
   implementation(libs.compose.ui.unit)
   implementation(libs.hilt.viewmodel.compose)
   implementation(libs.androidx.viewmodel.compose)
+  implementation(libs.hilt.navigation.compose)
   implementation(libs.hilt.core)
+  implementation(libs.compose.material3)
 }

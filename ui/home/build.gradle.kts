@@ -11,6 +11,7 @@ dependencies {
   api(libs.javax.inject)
   api(libs.coroutines)
   api(libs.dagger)
+  implementation(libs.hilt.android)
   api(libs.androidx.viewmodel.core)
 
   implementation(projects.appTheme)
@@ -19,10 +20,14 @@ dependencies {
   implementation(libs.compose.foundation)
   implementation(libs.compose.ui.graphics)
   implementation(libs.compose.ui.text)
+  implementation(libs.compose.ui.tooling)
   implementation(libs.compose.ui.unit)
   implementation(libs.hilt.viewmodel.compose)
   implementation(libs.androidx.lifecycle.common)
   implementation(libs.androidx.lifecycle.runtime.compose)
   implementation(libs.androidx.viewmodel.compose)
+  implementation(libs.hilt.navigation.compose)
   implementation(libs.hilt.core)
+  implementation(libs.compose.material3)
+  implementation(libs.compose.preview)
 }

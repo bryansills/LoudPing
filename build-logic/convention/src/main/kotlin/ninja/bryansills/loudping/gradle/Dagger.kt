@@ -1,7 +1,6 @@
 package ninja.bryansills.loudping.gradle
 
 import ninja.bryansills.loudping.gradle.util.alias
-import ninja.bryansills.loudping.gradle.util.implementation
 import ninja.bryansills.loudping.gradle.util.ksp
 import ninja.bryansills.loudping.gradle.util.libs
 import ninja.bryansills.loudping.gradle.util.plugins
@@ -14,7 +13,6 @@ internal fun Project.configureDagger() {
     alias(libs.plugins.hilt.plugin)
   }
   dependencies {
-    implementation(libs.hilt.android)
     ksp(libs.hilt.compiler.core)
     // TODO: delete this once Hilt upgrades its internal Kotlin
     ksp(libs.kotlinJvmMetadata)

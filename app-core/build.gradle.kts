@@ -11,6 +11,7 @@ dependencies {
   api(libs.androidx.navigation.common)
   api(libs.androidx.navigation.runtime)
   api(libs.hilt.core)
+  api(libs.hilt.android)
   implementation(projects.appTheme)
   implementation(projects.ui.home)
   implementation(projects.ui.destinations)
@@ -21,6 +22,7 @@ dependencies {
 
   implementation(libs.androidx.annotation)
   implementation(libs.androidx.activity.compose)
+  implementation(libs.androidx.navigation.compose)
   implementation(libs.compose.ui)
   implementation(libs.androidx.core)
 }

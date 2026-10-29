@@ -3,6 +3,15 @@ plugins {
 }
 
 dependencyAnalysis {
-  // TODO: fix the problems identified by this library
-  //     issues { all { onAny { severity("fail") } } }
+  useTypesafeProjectAccessors(true)
+  issues {
+    all { onAny { severity("fail") } }
+    project(":app-theme") {
+      onUnusedDependencies { severity("ignore") }
+      onUsedTransitiveDependencies { severity("ignore") }
+    }
+    project(":database:core") {
+      onUsedTransitiveDependencies { severity("ignore") }
+    }
+  }
 }
