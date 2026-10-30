@@ -35,6 +35,7 @@ internal fun Project.configureComposeAndroid() {
     val composeBom = libs.compose.bom
     implementation(platform(composeBom))
     androidTestImplementation(platform(composeBom))
+    //    implementation(libs.compose.preview)
     debugImplementation(libs.compose.ui.tooling)
   }
 }

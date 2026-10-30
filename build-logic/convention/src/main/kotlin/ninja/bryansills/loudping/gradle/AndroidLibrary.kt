@@ -1,46 +1,17 @@
 package ninja.bryansills.loudping.gradle
 
-import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import com.android.build.api.dsl.LibraryExtension
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import ninja.bryansills.loudping.gradle.util.android
 import ninja.bryansills.loudping.gradle.util.androidTestRuntimeOnly
 import ninja.bryansills.loudping.gradle.util.coreLibraryDesugaring
 import ninja.bryansills.loudping.gradle.util.javaVersion
-import ninja.bryansills.loudping.gradle.util.jvmTarget
 import ninja.bryansills.loudping.gradle.util.libs
+import ninja.bryansills.loudping.gradle.util.loudPingNamespace
 import ninja.bryansills.loudping.gradle.util.toInt
-import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-internal fun Project.configureAndroidApplication() {
-  android<ApplicationExtension> {
-    compileSdk { version = release(libs.versions.android.compileSdk.toInt()) }
-
-    defaultConfig {
-      minSdk = libs.versions.android.minSdk.toInt()
-      targetSdk = libs.versions.android.targetSdk.toInt()
-
-      testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    compileOptions {
-      sourceCompatibility = libs.javaVersion
-      targetCompatibility = libs.javaVersion
-      isCoreLibraryDesugaringEnabled = true
-    }
-
-    buildFeatures {
-      resValues = false
-      shaders = false
-    }
-  }
-  dependencies {
-    coreLibraryDesugaring(libs.android.desugarJdkLibs)
-    androidTestRuntimeOnly(libs.androidx.test.runner)
-  }
-}
 
 internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true) {
   android<LibraryExtension> {
@@ -62,6 +33,10 @@ internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true)
       isCoreLibraryDesugaringEnabled = true
     }
 
+    // Needed to make Compose Previews happy
+    // See https://issuetracker.google.com/issues/567301321 to confirm this is still needed
+//    testOptions.unitTests.isIncludeAndroidResources = layout.projectDirectory.dir("src/test").asFile.exists()
+
     //        androidResources {
     //            // TODO: Do this without doing file IO on configuration
     //            enable = File("src")
@@ -70,26 +45,20 @@ internal fun Project.configureAndroidLibrary(shouldEnableKotlin: Boolean = true)
     //                    ?: false
     //        }
   }
+
   dependencies {
     coreLibraryDesugaring(libs.android.desugarJdkLibs)
     androidTestRuntimeOnly(libs.androidx.test.runner)
   }
+
+  // Needed to make Compose Previews happy
+  // See https://issuetracker.google.com/issues/567301321 to confirm this is still needed
+//  androidComponents.beforeVariants(androidComponents.selector().withBuildType("release")) { variantBuilder ->
+//    (variantBuilder as? HasHostTestsBuilder)?.hostTests?.get(HostTestBuilder.UNIT_TEST_TYPE)?.enable = true
+//  }
 }
 
-context(project: Project)
-internal fun KotlinMultiplatformAndroidLibraryTarget.configureAndroidMultiplatform(
-  libs: LibrariesForLibs = project.libs
-) {
-  namespace = project.loudPingNamespace
-
-  compileSdk = libs.versions.android.compileSdk.toInt()
-  minSdk = libs.versions.android.minSdk.toInt()
-  enableCoreLibraryDesugaring = true
-
-  compilerOptions { jvmTarget.set(libs.jvmTarget) }
-}
-
-private val Project.loudPingNamespace: String
+private val Project.androidComponents: LibraryAndroidComponentsExtension
   get() {
-    return "ninja.bryansills.loudping" + project.path.replace(":", ".").replace("-", "_")
+    return this.extensions.getByType(LibraryAndroidComponentsExtension::class.java)
   }
