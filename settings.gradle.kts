@@ -33,7 +33,7 @@ plugins {
   id("org.jetbrains.kotlin.plugin.parcelize") version "2.4.21" apply false
   id("app.cash.sqldelight") version "2.4.0" apply false
   id("com.bugsnag.gradle") version "1.2.0" apply false
-  id("app.cash.burst") version "2.13.0" apply false
+  id("app.cash.burst") version "2.14.0" apply false
 }
 
 dependencyResolutionManagement {
