@@ -18,7 +18,7 @@ internal fun <T : ExternalDependency> DependencyHandlerScope.implementation(lib:
 }
 
 internal fun <T : ExternalDependency> DependencyHandlerScope.androidTestImplementation(
-  lib: Provider<T>
+  lib: Provider<T>,
 ) {
   "androidTestImplementation"(lib)
 }
@@ -28,17 +28,21 @@ internal fun <T : ExternalDependency> DependencyHandlerScope.debugImplementation
 }
 
 internal fun <T : ExternalDependency> DependencyHandlerScope.coreLibraryDesugaring(
-  lib: Provider<T>
+  lib: Provider<T>,
 ) {
   "coreLibraryDesugaring"(lib)
 }
 
 internal fun <T : ExternalDependency> DependencyHandlerScope.androidTestRuntimeOnly(
-  lib: Provider<T>
+  lib: Provider<T>,
 ) {
   "androidTestRuntimeOnly"(lib)
 }
 
 internal fun <T : ExternalDependency> DependencyHandlerScope.ksp(lib: Provider<T>) {
   "ksp"(lib)
+}
+
+internal fun <T : ExternalDependency> DependencyHandlerScope.lintChecks(lib: Provider<T>) {
+  "lintChecks"(lib)
 }

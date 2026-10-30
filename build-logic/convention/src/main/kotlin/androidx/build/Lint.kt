@@ -161,7 +161,7 @@ private fun Project.configureNonAndroidProjectForLint() = afterEvaluate {
   configureLint(project.extensions.getByType(), isApp = false)
 }
 
-private fun Project.configureLint(lint: Lint, isApp: Boolean) {
+internal fun Project.configureLint(lint: Lint, isApp: Boolean) {
   lint.apply {
     abortOnError = isApp
     baseline = lintBaseline.get().asFile
@@ -180,6 +180,8 @@ private fun Project.configureLint(lint: Lint, isApp: Boolean) {
         "AndroidGradlePluginVersion",
         "GradleDependency",
         "NewerVersionAvailable",
+        // Not relevant for Compose now that strong skipping is a thing
+        "ComposeUnstableCollections",
       )
   }
 }

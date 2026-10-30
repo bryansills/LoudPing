@@ -5,10 +5,12 @@ import ninja.bryansills.loudping.gradle.configureKotlinJvmOnly
 import ninja.bryansills.loudping.gradle.util.alias
 import ninja.bryansills.loudping.gradle.util.implementation
 import ninja.bryansills.loudping.gradle.util.libs
+import ninja.bryansills.loudping.gradle.util.lintChecks
 import ninja.bryansills.loudping.gradle.util.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
 
 class ComposeMosaicConventionPlugin : Plugin<Project> {
   override fun apply(target: Project) =
@@ -17,9 +19,13 @@ class ComposeMosaicConventionPlugin : Plugin<Project> {
         alias(libs.plugins.kotlin.jvm)
         alias(libs.plugins.compose.compiler)
         alias(libs.plugins.gradle.application)
+        alias(libs.plugins.android.lint)
       }
       configureKotlinJvmOnly()
-      configureLint()
-      dependencies { implementation(libs.mosaic) }
+      configureLint(project.extensions.getByType(), isApp = false)
+      dependencies {
+        implementation(libs.mosaic)
+        lintChecks(libs.compose.lint)
+      }
     }
 }

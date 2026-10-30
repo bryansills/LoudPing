@@ -4,9 +4,11 @@ import androidx.build.configureLint
 import ninja.bryansills.loudping.gradle.configureKotlinMultiplatform
 import ninja.bryansills.loudping.gradle.util.alias
 import ninja.bryansills.loudping.gradle.util.libs
+import ninja.bryansills.loudping.gradle.util.lintChecks
 import ninja.bryansills.loudping.gradle.util.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
 
 class ComposeMultiplatformLibraryConventionPlugin : Plugin<Project> {
   override fun apply(target: Project) =
@@ -17,5 +19,8 @@ class ComposeMultiplatformLibraryConventionPlugin : Plugin<Project> {
       }
       configureKotlinMultiplatform()
       configureLint()
+      dependencies {
+        lintChecks(libs.compose.lint)
+      }
     }
 }

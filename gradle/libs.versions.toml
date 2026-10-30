@@ -82,6 +82,7 @@ compose-desktop-runtime = { module = "org.jetbrains.compose.runtime:runtime-desk
 compose-foundation = { module = "androidx.compose.foundation:foundation" }
 compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
 compose-icons = { group = "androidx.compose.material", name = "material-icons-core" }
+compose-lint = { module = "com.slack.lint.compose:compose-lint-checks", version = "1.6.1" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-runtime = { module = "androidx.compose.runtime:runtime" }
