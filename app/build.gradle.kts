@@ -119,8 +119,10 @@ android {
     val release =
       getByName("release") {
         signingConfig = signingConfigs.findByName("release")
-        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        isMinifyEnabled = true
+        optimization {
+          enable = true
+          packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")
+        }
       }
 
     create("benchmark") {
@@ -128,8 +130,10 @@ android {
       matchingFallbacks.add("release")
 
       signingConfig = signingConfigs.getByName("debug")
-      proguardFiles("benchmark-rules.pro")
-      isMinifyEnabled = true
+      optimization {
+        enable = true
+        packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")
+      }
     }
   }
 

@@ -1,7 +1,6 @@
 package ninja.bryansills.loudping.gradle.plugin
 
 import androidx.build.configureLint
-import ninja.bryansills.loudping.gradle.configureComposeCompiler
 import ninja.bryansills.loudping.gradle.configureKotlinJvmOnly
 import ninja.bryansills.loudping.gradle.util.alias
 import ninja.bryansills.loudping.gradle.util.implementation
@@ -20,7 +19,6 @@ class ComposeMosaicConventionPlugin : Plugin<Project> {
         alias(libs.plugins.gradle.application)
       }
       configureKotlinJvmOnly()
-      configureComposeCompiler()
       configureLint()
       dependencies { implementation(libs.mosaic) }
     }

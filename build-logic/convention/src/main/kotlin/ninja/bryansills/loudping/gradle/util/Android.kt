@@ -10,12 +10,12 @@ import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal inline fun <reified AndroidExtension : CommonExtension> Project.android(
-  action: AndroidExtension.() -> Unit
+  action: AndroidExtension.() -> Unit,
 ) {
   extensions.getByType(CommonExtension::class).apply {
     (this as? AndroidExtension)?.action()
       ?: throw RuntimeException(
-        "Tried to configure ${AndroidExtension::class.qualifiedName}, but was actually ${this::class.qualifiedName}?"
+        "Tried to configure ${AndroidExtension::class.qualifiedName}, but was actually ${this::class.qualifiedName}?",
       )
   }
 }
@@ -31,4 +31,9 @@ internal val Project.agpKmpExtension: KotlinMultiplatformAndroidLibraryTarget
     return (multiplatformExtension as ExtensionAware)
       .extensions
       .getByType(KotlinMultiplatformAndroidLibraryTarget::class.java)
+  }
+
+internal val Project.loudPingNamespace: String
+  get() {
+    return "ninja.bryansills.loudping" + project.path.replace(":", ".").replace("-", "_")
   }
