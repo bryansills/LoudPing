@@ -78,7 +78,7 @@ coil = { group = "io.coil-kt", name = "coil", version.ref = "coil"}
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
 compose-animation = { module = "androidx.compose.animation:animation" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
-compose-desktop-runtime = { module = "org.jetbrains.compose.runtime:runtime-desktop", version = "1.8.2" }
+compose-desktop-runtime = { module = "org.jetbrains.compose.runtime:runtime-desktop", version = "1.12.2" }
 compose-foundation = { module = "androidx.compose.foundation:foundation" }
 compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
 compose-icons = { group = "androidx.compose.material", name = "material-icons-core" }
