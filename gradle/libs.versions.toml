@@ -3,7 +3,7 @@ jvmTarget = "17"
 
 android-compileSdk = "37"
 android-targetSdk = "37"
-android-minSdk = "26"
+android-minSdk = "28"
 
 activity = "1.13.0"
 androidDesugarJdkLibs = "2.1.5"
