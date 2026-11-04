@@ -3,7 +3,6 @@ plugins {
 }
 
 dependencies {
-  api(libs.androidx.activity)
   api(libs.compose.animation)
   api(libs.compose.runtime)
   api(libs.compose.runtime.saveable)
