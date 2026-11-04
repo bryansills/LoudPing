@@ -8,7 +8,7 @@ application {
 }
 
 dependencies {
-  implementation(projects.coroutinesExt)
+  implementation(projects.core.coroutinesExt)
   implementation(projects.html.callback)
   implementation(projects.html.core)
   implementation(projects.html.digest)

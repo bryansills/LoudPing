@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
   api(projects.networkAuth)
-  api(projects.di)
+  api(projects.core.di)
   api(libs.compose.foundation.layout)
   api(libs.compose.runtime)
   api(libs.androidx.viewmodel.core)

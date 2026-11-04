@@ -39,6 +39,7 @@ ksp = "2.3.13"
 ktfmt = "0.65"
 lifecycle = "2.11.0"
 material = "1.14.0"
+metro = "1.5.1"
 navigation = "2.10.2"
 okhttp = "5.5.0"
 okio = "3.18.2"
@@ -125,6 +126,10 @@ kotlinx-serialization-runtime-core = { group = "org.jetbrains.kotlinx", name = "
 kotlinx-serialization-runtime-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-runtime"}
 ktfmt = { module = "org.jetbrains.kotlinx:ktfmt", version.ref = "ktfmt" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
+metro-android = { module = "dev.zacsweers.metro:metrox-android", version.ref = "metro" }
+metro-runtime = { module = "dev.zacsweers.metro:runtime", version.ref = "metro" }
+metro-viewmodel = { module = "dev.zacsweers.metro:metrox-viewmodel", version.ref = "metro" }
+metro-viewmodel-compose = { module = "dev.zacsweers.metro:metrox-viewmodel-compose", version.ref = "metro" }
 mosaic = { module = "com.jakewharton.mosaic:mosaic-runtime", version = "0.18.0" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp"}
@@ -176,6 +181,7 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 kotlin-samWithReceiver = { id = "org.jetbrains.kotlin.plugin.sam.with.receiver", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+metro = { id = "dev.zacsweers.metro", version.ref = "metro" }
 parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 

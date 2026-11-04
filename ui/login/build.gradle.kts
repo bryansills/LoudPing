@@ -25,7 +25,7 @@ dependencies {
   api(libs.coroutines)
   api(libs.hilt.android)
 
-  implementation(projects.appTheme)
+  implementation(projects.ui.theme)
   implementation(libs.material)
   implementation(libs.androidx.browser)
   implementation(libs.androidx.annotation)

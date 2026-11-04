@@ -143,8 +143,8 @@ android {
 }
 
 dependencies {
-  implementation(projects.appCore)
-  implementation(projects.di)
+  implementation(projects.appRoot)
+  implementation(projects.core.di)
   implementation(projects.database.android)
   implementation(projects.database.core)
   implementation(projects.historyRecorder)

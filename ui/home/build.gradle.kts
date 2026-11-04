@@ -14,8 +14,8 @@ dependencies {
   implementation(libs.hilt.android)
   api(libs.androidx.viewmodel.core)
 
-  implementation(projects.appTheme)
-  implementation(projects.androidAppRes)
+  implementation(projects.ui.theme)
+  implementation(projects.ui.androidAppRes)
   implementation(libs.compose.icons)
   implementation(libs.compose.foundation)
   implementation(libs.compose.ui.graphics)

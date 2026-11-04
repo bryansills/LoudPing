@@ -14,7 +14,7 @@ dependencies {
   api(libs.javax.inject)
   api(libs.coroutines)
 
-  implementation(projects.appTheme)
+  implementation(projects.ui.theme)
   implementation(libs.paging)
   implementation(libs.paging.compose)
   implementation(libs.compose.foundation.layout)
