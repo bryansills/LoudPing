@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping.app.core
+package ninja.bryansills.loudping.app
 
 import android.app.Activity
 import androidx.compose.runtime.Composable
