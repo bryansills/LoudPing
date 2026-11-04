@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
-import ninja.bryansills.loudping.app.core.App
+import ninja.bryansills.loudping.app.App
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
