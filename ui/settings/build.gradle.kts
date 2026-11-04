@@ -14,8 +14,8 @@ dependencies {
   api(libs.javax.inject)
   api(libs.coroutines)
 
-  implementation(projects.appTheme)
-  implementation(projects.androidAppRes)
+  implementation(projects.ui.theme)
+  implementation(projects.ui.androidAppRes)
   implementation(libs.kotlinx.datetime)
   implementation(libs.compose.foundation)
   implementation(libs.compose.foundation.layout)

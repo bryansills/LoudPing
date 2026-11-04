@@ -12,7 +12,7 @@ dependencies {
   api(libs.androidx.navigation.runtime)
   api(libs.hilt.core)
   api(libs.hilt.android)
-  implementation(projects.appTheme)
+  implementation(projects.ui.theme)
   implementation(projects.ui.home)
   implementation(projects.ui.destinations)
   implementation(projects.ui.login)
