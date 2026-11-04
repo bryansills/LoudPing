@@ -5,6 +5,7 @@ plugins {
   alias(libs.plugins.loudping.publishing)
   alias(libs.plugins.kotlinx.serialization)
   alias(libs.plugins.bugsnag)
+  alias(libs.plugins.metro)
 }
 
 android {
@@ -145,6 +146,7 @@ android {
 dependencies {
   implementation(projects.appRoot)
   implementation(projects.core.di)
+  implementation(projects.data.foremanMetro)
   implementation(projects.database.android)
   implementation(projects.database.core)
   implementation(projects.historyRecorder)
@@ -176,6 +178,10 @@ dependencies {
   implementation(libs.kotlinx.datetime)
   implementation(libs.kotlinx.serialization.runtime.core)
   implementation(libs.kotlinx.serialization.runtime.json)
+  implementation(libs.metro.android)
+  implementation(libs.metro.runtime)
+  implementation(libs.metro.viewmodel)
+  implementation(libs.metro.viewmodel.compose)
   implementation(libs.okhttp)
   implementation(libs.retrofit)
   implementation(libs.retrofit.kotlinx.serialization)

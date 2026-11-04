@@ -1,5 +1,6 @@
 plugins {
   alias(libs.plugins.loudping.android.library.compose)
+  alias(libs.plugins.metro)
 }
 
 dependencies {
@@ -24,4 +25,5 @@ dependencies {
   implementation(libs.androidx.navigation.compose)
   implementation(libs.compose.ui)
   implementation(libs.androidx.core)
+  implementation(libs.metro.runtime)
 }
