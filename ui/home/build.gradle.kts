@@ -10,6 +10,8 @@ dependencies {
   api(libs.compose.runtime)
   api(libs.compose.ui)
   api(libs.coroutines)
+  api(libs.metro.runtime)
+  api(libs.metro.viewmodel)
 
   implementation(projects.ui.theme)
   implementation(projects.ui.androidAppRes)
@@ -24,7 +26,5 @@ dependencies {
   implementation(libs.compose.ui.text)
   implementation(libs.compose.ui.tooling)
   implementation(libs.compose.ui.unit)
-  implementation(libs.metro.runtime)
-  implementation(libs.metro.viewmodel)
   implementation(libs.metro.viewmodel.compose)
 }

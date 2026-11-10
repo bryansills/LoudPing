@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-  implementation(libs.metro.runtime)
-  implementation(libs.workmanager)
+  api(libs.metro.runtime)
+  api(libs.workmanager)
 }

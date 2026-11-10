@@ -6,8 +6,8 @@ plugins {
 dependencies {
   api(projects.database.core)
   api(projects.network)
+  api(libs.metro.runtime)
   implementation(projects.core.model)
   implementation(libs.eithernet.core)
   implementation(libs.coroutines)
-  implementation(libs.metro.runtime)
 }

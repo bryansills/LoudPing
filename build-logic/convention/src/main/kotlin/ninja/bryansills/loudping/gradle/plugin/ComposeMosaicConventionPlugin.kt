@@ -24,6 +24,7 @@ class ComposeMosaicConventionPlugin : Plugin<Project> {
       configureKotlinJvmOnly()
       configureLint(project.extensions.getByType(), isApp = false, isCompose = true)
       dependencies {
+        implementation(platform(libs.compose.bom))
         implementation(libs.mosaic)
         lintChecks(libs.compose.lint)
       }

@@ -9,6 +9,8 @@ dependencies {
   api(libs.compose.runtime)
   api(libs.compose.ui)
   api(libs.coroutines)
+  api(libs.metro.runtime)
+  api(libs.metro.viewmodel)
   api(libs.workmanager)
 
   implementation(projects.ui.theme)
@@ -21,7 +23,5 @@ dependencies {
   implementation(libs.compose.ui.text)
   implementation(libs.compose.ui.unit)
   implementation(libs.kotlinx.datetime)
-  implementation(libs.metro.runtime)
-  implementation(libs.metro.viewmodel)
   implementation(libs.metro.viewmodel.compose)
 }

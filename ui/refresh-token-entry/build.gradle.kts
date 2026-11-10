@@ -11,6 +11,8 @@ dependencies {
   api(libs.compose.runtime)
   api(libs.compose.ui.text)
   api(libs.coroutines)
+  api(libs.metro.runtime)
+  api(libs.metro.viewmodel)
 
   implementation(projects.ui.destinations)
   implementation(libs.androidx.lifecycle.common)
@@ -22,7 +24,5 @@ dependencies {
   implementation(libs.compose.ui)
   implementation(libs.compose.ui.graphics)
   implementation(libs.compose.ui.unit)
-  implementation(libs.metro.runtime)
-  implementation(libs.metro.viewmodel)
   implementation(libs.metro.viewmodel.compose)
 }

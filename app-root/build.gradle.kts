@@ -1,13 +1,10 @@
 plugins {
   alias(libs.plugins.loudping.compose.screen)
-  alias(libs.plugins.metro)
 }
 
 dependencies {
   api(libs.compose.animation)
   api(libs.compose.runtime)
-  api(libs.compose.runtime.saveable)
-  api(libs.androidx.viewmodel.core)
   api(libs.androidx.navigation.common)
   api(libs.androidx.navigation.runtime)
   implementation(projects.ui.theme)
@@ -18,10 +15,7 @@ dependencies {
   implementation(projects.ui.playedTracks)
   implementation(projects.ui.refreshTokenEntry)
 
-  implementation(libs.androidx.annotation)
-  implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.navigation.compose)
   implementation(libs.compose.ui)
   implementation(libs.androidx.core)
-  implementation(libs.metro.runtime)
 }

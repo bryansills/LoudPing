@@ -4,13 +4,13 @@ plugins {
 }
 
 dependencies {
+  api(projects.data.foremanMetro)
   api(projects.historyRecorder)
+  api(projects.logger)
   api(projects.storage)
   api(projects.time)
-  api(projects.logger)
-  api(projects.data.foremanMetro)
-  api(libs.workmanager)
   api(libs.coroutines)
+  api(libs.metro.runtime)
+  api(libs.workmanager)
   implementation(libs.datastore.preferences.core)
-  implementation(libs.metro.runtime)
 }

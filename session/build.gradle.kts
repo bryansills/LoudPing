@@ -4,9 +4,9 @@ plugins {
 }
 
 dependencies {
+  api(projects.core.di)
   api(projects.storage)
   api(libs.coroutines)
-  implementation(projects.core.di)
+  api(libs.metro.runtime)
   implementation(libs.datastore.preferences.core)
-  implementation(libs.metro.runtime)
 }

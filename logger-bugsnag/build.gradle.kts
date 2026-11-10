@@ -5,8 +5,8 @@ plugins {
 
 dependencies {
   api(projects.logger)
+  api(libs.metro.runtime)
   implementation(libs.bugsnag.core)
-  implementation(libs.metro.runtime)
   runtimeOnly(libs.bugsnag.anr)
   runtimeOnly(libs.bugsnag.ndk)
 }
