@@ -2,6 +2,9 @@ package ninja.bryansills.loudping.network
 
 import com.slack.eithernet.ApiResult
 import com.slack.eithernet.successOrNothing
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesBinding
+import dev.zacsweers.metro.Inject
 import kotlin.time.Instant
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.Flow
@@ -19,6 +22,8 @@ interface GetRecentlyPlayed {
   ): Flow<ApiResult<RecentlyPlayedResponse, Unit>>
 }
 
+@ContributesBinding(AppScope::class)
+@Inject
 class RealGetRecentlyPlayed(private val spotifyService: SpotifyService) : GetRecentlyPlayed {
   override fun invoke(
     startAt: Instant,

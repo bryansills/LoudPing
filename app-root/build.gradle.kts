@@ -1,0 +1,21 @@
+plugins {
+  alias(libs.plugins.loudping.compose.screen)
+}
+
+dependencies {
+  api(libs.compose.animation)
+  api(libs.compose.runtime)
+  api(libs.androidx.navigation.common)
+  api(libs.androidx.navigation.runtime)
+  implementation(projects.ui.theme)
+  implementation(projects.ui.home)
+  implementation(projects.ui.destinations)
+  implementation(projects.ui.login)
+  implementation(projects.ui.settings)
+  implementation(projects.ui.playedTracks)
+  implementation(projects.ui.refreshTokenEntry)
+
+  implementation(libs.androidx.navigation.compose)
+  implementation(libs.compose.ui)
+  implementation(libs.androidx.core)
+}

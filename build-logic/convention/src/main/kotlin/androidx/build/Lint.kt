@@ -38,22 +38,23 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinBasePlugin
  * comprehend) example can be found here:
  * https://github.com/niyajali/hedvig-android/blob/develop/build-logic/convention/src/main/kotlin/HedvigLintConventionPlugin.kt
  */
-fun Project.configureLint() {
+fun Project.configureLint(isCompose: Boolean) {
   project.plugins.configureEach {
     when (this) {
-      is AppPlugin -> configureAndroidProjectForLint(isApp = true)
-      is LibraryPlugin -> configureAndroidProjectForLint(isApp = false)
+      is AppPlugin -> configureAndroidProjectForLint(isApp = true, isCompose = isCompose)
+      is LibraryPlugin -> configureAndroidProjectForLint(isApp = false, isCompose = isCompose)
       is KotlinMultiplatformAndroidPlugin ->
         configureAndroidMultiplatformProjectForLint(
           agpKmpExtension,
           extensions.getByType<KotlinMultiplatformAndroidComponentsExtension>(),
+          isCompose = isCompose,
         )
       // Only configure non-multiplatform Java projects via JavaPlugin. Multiplatform
       // projects targeting Java (e.g. `jvm { withJava() }`) are configured via
       // KotlinBasePlugin.
       is JavaPlugin ->
         if (project.multiplatformExtension == null) {
-          configureNonAndroidProjectForLint()
+          configureNonAndroidProjectForLint(isCompose = isCompose)
         }
       // Only configure non-Android multiplatform projects via KotlinBasePlugin.
       // Multiplatform projects targeting Android (e.g. `id("com.android.library")`) are
@@ -65,26 +66,27 @@ fun Project.configureLint() {
             !project.plugins.hasPlugin(LibraryPlugin::class.java) &&
             !project.plugins.hasPlugin(KotlinMultiplatformAndroidPlugin::class.java)
         ) {
-          configureNonAndroidProjectForLint()
+          configureNonAndroidProjectForLint(isCompose = isCompose)
         }
     }
   }
 }
 
 /** Android Lint configuration entry point for Android projects. */
-private fun Project.configureAndroidProjectForLint(isApp: Boolean) =
+private fun Project.configureAndroidProjectForLint(isApp: Boolean, isCompose: Boolean) =
   extensions.findByType(LintLifecycleExtension::class.java)!!.finalizeDsl { lint ->
-    configureLint(lint, isApp = isApp)
+    configureLint(lint, isApp = isApp, isCompose = isCompose)
   }
 
 private fun Project.configureAndroidMultiplatformProjectForLint(
   extension: KotlinMultiplatformAndroidLibraryTarget,
   componentsExtension: KotlinMultiplatformAndroidComponentsExtension,
+  isCompose: Boolean,
 ) {
   componentsExtension.finalizeDsl {
     apply(mapOf("plugin" to "com.android.lint"))
 
-    configureLint(extension.lint, isApp = false)
+    configureLint(extension.lint, isApp = false, isCompose = isCompose)
   }
   // TODO (b/442881540): remove this workaround
   mergeMultiplatformBaselines()
@@ -151,17 +153,17 @@ private fun Project.mergeMultiplatformBaselines() {
 }
 
 /** Android Lint configuration entry point for non-Android projects. */
-private fun Project.configureNonAndroidProjectForLint() = afterEvaluate {
+private fun Project.configureNonAndroidProjectForLint(isCompose: Boolean) = afterEvaluate {
   // For Android projects, the Android Gradle Plugin is responsible for applying the lint plugin;
   // however, we need to apply it ourselves for non-Android projects.
   apply(mapOf("plugin" to "com.android.lint"))
 
   // For Android projects, we can run lint configuration last using `DslLifecycle.finalizeDsl`;
   // however, we need to run it using `Project.afterEvaluate` for non-Android projects.
-  configureLint(project.extensions.getByType(), isApp = false)
+  configureLint(project.extensions.getByType(), isApp = false, isCompose = isCompose)
 }
 
-internal fun Project.configureLint(lint: Lint, isApp: Boolean) {
+internal fun Project.configureLint(lint: Lint, isApp: Boolean, isCompose: Boolean) {
   lint.apply {
     abortOnError = isApp
     baseline = lintBaseline.get().asFile
@@ -174,14 +176,19 @@ internal fun Project.configureLint(lint: Lint, isApp: Boolean) {
     noLines = false
     showAll = true
     warningsAsErrors = true
-    disable +=
-      listOf(
-        // Handled by Renovate
-        "AndroidGradlePluginVersion",
-        "GradleDependency",
-        "NewerVersionAvailable",
-        // Not relevant for Compose now that strong skipping is a thing
-        "ComposeUnstableCollections",
-      )
+    disable += buildList {
+      // Handled by Renovate
+      add("AndroidGradlePluginVersion")
+      add("GradleDependency")
+      add("NewerVersionAvailable")
+
+      // Not relevant for Compose now that strong skipping is a thing
+      if (isCompose) {
+        add("ComposeUnstableCollections")
+      }
+
+      // Metro does constructor injection
+      add("Instantiatable")
+    }
   }
 }

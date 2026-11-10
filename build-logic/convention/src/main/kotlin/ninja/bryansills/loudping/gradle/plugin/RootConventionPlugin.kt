@@ -31,11 +31,20 @@ private fun Project.configureDagp() {
       all { onAny { severity("fail") } }
 
       // KMP and CMP do some stuff that doesn't jive well with DAGP. Ignoring the issues for now.
-      project(":app-theme") {
+      project(":database:core") {
+        onUsedTransitiveDependencies { severity("ignore") }
+      }
+      project(":ui:theme") {
         onUnusedDependencies { severity("ignore") }
         onUsedTransitiveDependencies { severity("ignore") }
       }
-      project(":database:core") {
+
+      // My Metro integration is still a bit messy. Ignoring dependency issues for now.
+      project(":app-root") {
+        onUnusedDependencies { severity("ignore") }
+      }
+      project(":core:di") {
+        onUnusedDependencies { severity("ignore") }
         onUsedTransitiveDependencies { severity("ignore") }
       }
     }

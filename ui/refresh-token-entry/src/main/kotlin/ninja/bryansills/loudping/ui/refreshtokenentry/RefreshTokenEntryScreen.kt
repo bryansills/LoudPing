@@ -11,10 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.dialog
+import dev.zacsweers.metrox.viewmodel.metroViewModel
 
 fun NavGraphBuilder.refreshTokenEntry(onDismiss: () -> Unit) {
   dialog<RefreshTokenEntry> { RefreshTokenEntryScreen(onDismiss = onDismiss) }
@@ -23,7 +23,7 @@ fun NavGraphBuilder.refreshTokenEntry(onDismiss: () -> Unit) {
 @Composable
 fun RefreshTokenEntryScreen(
   onDismiss: () -> Unit,
-  viewModel: RefreshTokenEntryViewModel = hiltViewModel(),
+  viewModel: RefreshTokenEntryViewModel = metroViewModel(),
 ) {
   val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -51,7 +51,12 @@ fun RefreshTokenEntryScreen(
           isError = uiState.error != null,
           supportingText = { uiState.error?.let { errorText -> Text(text = errorText) } },
           shape =
-            RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 4.dp, bottomEnd = 4.dp),
+            RoundedCornerShape(
+              topStart = 8.dp,
+              topEnd = 8.dp,
+              bottomStart = 4.dp,
+              bottomEnd = 4.dp,
+            ),
         )
       }
     },

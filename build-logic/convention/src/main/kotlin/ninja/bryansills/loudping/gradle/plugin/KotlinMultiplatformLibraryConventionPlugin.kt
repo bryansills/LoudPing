@@ -9,6 +9,6 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
   override fun apply(target: Project) =
     with(target) {
       configureKotlinMultiplatform()
-      configureLint()
+      configureLint(isCompose = false)
     }
 }

@@ -13,6 +13,6 @@ class KotlinJvmLibraryConventionPlugin : Plugin<Project> {
     with(target) {
       plugins { alias(libs.plugins.kotlin.jvm) }
       configureKotlinJvmOnly()
-      configureLint()
+      configureLint(isCompose = false)
     }
 }

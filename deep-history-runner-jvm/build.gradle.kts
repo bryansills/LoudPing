@@ -14,7 +14,7 @@ dependencies {
   implementation(projects.deepHistoryDash)
   implementation(projects.deepHistory)
   implementation(projects.database.core)
-  implementation(projects.coroutinesExt)
+  implementation(projects.core.coroutinesExt)
   implementation(libs.coroutines)
   implementation(projects.core.model)
 }

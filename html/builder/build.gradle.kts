@@ -8,7 +8,7 @@ application {
 }
 
 dependencies {
-  implementation(projects.coroutinesExt)
+  implementation(projects.core.coroutinesExt)
   implementation(projects.html.callback)
   implementation(projects.html.core)
   implementation(projects.html.digest)
@@ -17,7 +17,7 @@ dependencies {
   implementation(libs.retrofit)
   implementation(libs.retrofit.jaxb3)
   implementation(libs.htmlunit)
-  implementation(libs.kotlinx.serialization.runtime.json)
+  implementation(libs.kotlinx.serialization.json)
   implementation(libs.okio)
   implementation(libs.coroutines)
   runtimeOnly(libs.jaxb3Impl)

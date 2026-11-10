@@ -15,6 +15,6 @@ class KotlinAndroidLibraryConventionPlugin : Plugin<Project> {
       plugins { alias(libs.plugins.android.library) }
       configureKotlinAndroid()
       configureAndroidLibrary()
-      configureLint()
+      configureLint(isCompose = false)
     }
 }

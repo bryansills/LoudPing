@@ -1,12 +1,15 @@
 package ninja.bryansills.loudping.network.auth
 
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesBinding
+import dev.zacsweers.metro.Inject
 import kotlin.io.encoding.Base64
-import kotlin.io.encoding.ExperimentalEncodingApi
 import ninja.bryansills.loudping.sneak.network.NetworkSneak
 import okhttp3.Interceptor
 import okhttp3.Response
 
-@OptIn(ExperimentalEncodingApi::class)
+@ContributesBinding(AppScope::class)
+@Inject
 class AuthorizationHeaderInterceptor(private val networkSneak: NetworkSneak) : Interceptor {
   override fun intercept(chain: Interceptor.Chain): Response {
     val rawValue = "${networkSneak.clientId}:${networkSneak.clientSecret}".toByteArray()

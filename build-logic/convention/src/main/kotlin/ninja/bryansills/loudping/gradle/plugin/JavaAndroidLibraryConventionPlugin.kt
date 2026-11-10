@@ -13,6 +13,6 @@ class JavaAndroidLibraryConventionPlugin : Plugin<Project> {
     with(target) {
       plugins { alias(libs.plugins.android.library) }
       configureAndroidLibrary(shouldEnableKotlin = false)
-      configureLint()
+      configureLint(isCompose = false)
     }
 }

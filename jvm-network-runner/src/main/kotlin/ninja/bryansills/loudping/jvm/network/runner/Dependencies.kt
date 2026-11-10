@@ -1,7 +1,6 @@
 package ninja.bryansills.loudping.jvm.network.runner
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.slack.eithernet.integration.retrofit.ApiResultCallAdapterFactory
 import com.slack.eithernet.integration.retrofit.ApiResultConverterFactory
 import java.io.File
@@ -20,6 +19,7 @@ import ninja.bryansills.sneak.Sneak
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 
 @OptIn(ExperimentalStdlibApi::class)

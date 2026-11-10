@@ -1,9 +1,13 @@
 package ninja.bryansills.loudping.ui.home
 
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import ninja.bryansills.loudping.foreman.Foreman
 
-@HiltViewModel
-class HomeLoggedInViewModel @Inject constructor(private val foreman: Foreman) : ViewModel()
+@Inject
+@ViewModelKey
+@ContributesIntoMap(AppScope::class)
+class HomeLoggedInViewModel(private val foreman: Foreman) : ViewModel()

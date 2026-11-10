@@ -18,7 +18,7 @@ class ComposeMultiplatformLibraryConventionPlugin : Plugin<Project> {
         alias(libs.plugins.compose.multiplatform)
       }
       configureKotlinMultiplatform()
-      configureLint()
+      configureLint(isCompose = true)
       dependencies {
         lintChecks(libs.compose.lint)
       }

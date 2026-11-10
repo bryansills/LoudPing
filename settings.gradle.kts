@@ -21,16 +21,17 @@ plugins {
   id("com.android.application") version "9.5.0" apply false
   id("com.android.library") version "9.5.0" apply false
   id("com.android.kotlin.multiplatform.library") version "9.5.0" apply false
-  id("com.github.gmazzo.buildconfig") version "6.1.2" apply false
-  id("org.jetbrains.kotlin.plugin.compose") version "2.4.21" apply false
   id("org.jetbrains.compose") version "1.12.2" apply false
-  id("com.dropbox.dependency-guard") version "0.5.0" apply false
-  id("com.google.dagger.hilt.android") version "2.60.1" apply false
   id("org.jetbrains.kotlin.jvm") version "2.4.21" apply false
   id("org.jetbrains.kotlin.multiplatform") version "2.4.21" apply false
   id("org.jetbrains.kotlin.plugin.serialization") version "2.4.21" apply false
-  id("com.google.devtools.ksp") version "2.3.13" apply false
+  id("org.jetbrains.kotlin.plugin.compose") version "2.4.21" apply false
   id("org.jetbrains.kotlin.plugin.parcelize") version "2.4.21" apply false
+  id("com.google.dagger.hilt.android") version "2.60.1" apply false
+  id("com.google.devtools.ksp") version "2.3.13" apply false
+  id("dev.zacsweers.metro") version "1.5.1" apply false
+  id("com.dropbox.dependency-guard") version "0.5.0" apply false
+  id("com.github.gmazzo.buildconfig") version "6.1.2" apply false
   id("app.cash.sqldelight") version "2.4.1" apply false
   id("com.bugsnag.gradle") version "1.2.0" apply false
   id("app.cash.burst") version "2.14.0" apply false
@@ -49,45 +50,47 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "LoudPing"
 
 include(
-  ":app",
-  ":app-core",
-  ":sneak",
-  ":storage",
-  ":session",
-  ":di",
-  ":network",
-  ":network-auth",
-  ":time",
-  ":sneak-network",
-  ":generate-app-secrets",
-  ":android-app-res",
-  ":jvm-network-runner",
-  ":database:core",
-  ":database:android",
-  ":database:jvm",
-  ":history-recorder",
-  ":app-theme",
-  ":ui:home",
-  ":ui:destinations",
-  ":ui:login",
-  ":ui:settings",
-  ":foreman",
-  ":ui:played-tracks",
-  ":ui:refresh-token-entry",
-  ":logger",
-  ":logger-bugsnag",
-  ":deep-history",
-  ":deep-history-runner-jvm",
-  ":coroutines-ext",
-  ":album-repo",
-  ":track-repo",
-  ":deep-history-dash",
   ":album-grouper",
+  ":album-repo",
+  ":app",
+  ":app-root",
+  ":core:coroutines-ext",
+  ":core:di",
   ":core:model",
   ":core:model-test",
-  ":play-grader",
+  ":data:foreman-metro",
+  ":data:network-di",
+  ":database:android",
+  ":database:core",
+  ":database:jvm",
+  ":deep-history",
+  ":deep-history-dash",
+  ":deep-history-runner-jvm",
+  ":foreman",
+  ":generate-app-secrets",
+  ":history-recorder",
   ":html:builder",
   ":html:callback",
   ":html:core",
   ":html:digest",
+  ":jvm-network-runner",
+  ":logger",
+  ":logger-bugsnag",
+  ":network",
+  ":network-auth",
+  ":play-grader",
+  ":session",
+  ":sneak",
+  ":sneak-network",
+  ":storage",
+  ":time",
+  ":track-repo",
+  ":ui:android-app-res",
+  ":ui:destinations",
+  ":ui:home",
+  ":ui:login",
+  ":ui:played-tracks",
+  ":ui:refresh-token-entry",
+  ":ui:settings",
+  ":ui:theme",
 )

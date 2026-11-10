@@ -23,9 +23,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import dev.zacsweers.metrox.viewmodel.metroViewModel
 import kotlin.time.Instant
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
 import ninja.bryansills.loudping.core.model.TrackPlayRecord
@@ -33,7 +33,7 @@ import ninja.bryansills.loudping.core.model.TrackPlayRecord
 @Composable
 fun PlayedTracksScreen(
   modifier: Modifier = Modifier,
-  viewModel: PlayedTracksViewModel = hiltViewModel(),
+  viewModel: PlayedTracksViewModel = metroViewModel(),
 ) {
   Scaffold(modifier = modifier) { paddingValues ->
     val screenModifier = Modifier.padding(paddingValues).fillMaxSize()
@@ -62,7 +62,7 @@ fun PlayedTracksScreen(
       if (pagingItems.loadState.append == LoadState.Loading) {
         item {
           CircularProgressIndicator(
-            modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.CenterHorizontally)
+            modifier = Modifier.fillMaxWidth().wrapContentWidth(Alignment.CenterHorizontally),
           )
         }
       }
@@ -86,7 +86,7 @@ private fun PlayedTrack(
       modifier =
         Modifier.clip(LoudPingTheme.shapes.small)
           .background(LoudPingTheme.colorScheme.secondary)
-          .size(56.dp)
+          .size(56.dp),
     )
 
     Column(modifier = Modifier.weight(1f)) {
