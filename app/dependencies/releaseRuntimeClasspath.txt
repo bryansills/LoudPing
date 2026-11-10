@@ -87,8 +87,6 @@ androidx.fragment:fragment:1.9.1
 androidx.graphics:graphics-path:1.0.1
 androidx.graphics:graphics-shapes-android:1.0.1
 androidx.graphics:graphics-shapes:1.0.1
-androidx.hilt:hilt-common:1.4.0
-androidx.hilt:hilt-work:1.4.0
 androidx.interpolator:interpolator:1.0.0
 androidx.lifecycle:lifecycle-common-java8:2.11.0
 androidx.lifecycle:lifecycle-common-jvm:2.11.0
@@ -165,11 +163,6 @@ com.bugsnag:bugsnag-android-core:6.28.0
 com.bugsnag:bugsnag-plugin-android-anr:6.28.0
 com.bugsnag:bugsnag-plugin-android-ndk:6.28.0
 com.google.android.material:material:1.14.0
-com.google.code.findbugs:jsr305:3.0.2
-com.google.dagger:dagger-lint-aar:2.59
-com.google.dagger:dagger:2.60.1
-com.google.dagger:hilt-android:2.59
-com.google.dagger:hilt-core:2.59
 com.google.errorprone:error_prone_annotations:2.15.0
 com.google.guava:listenablefuture:1.0
 com.slack.eithernet:eithernet-integration-retrofit:2.0.0
@@ -188,8 +181,6 @@ dev.zacsweers.metro:metrox-viewmodel-jvm:1.5.1
 dev.zacsweers.metro:metrox-viewmodel:1.5.1
 dev.zacsweers.metro:runtime-jvm:1.5.1
 dev.zacsweers.metro:runtime:1.5.1
-jakarta.inject:jakarta.inject-api:2.0.1
-javax.inject:javax.inject:1
 org.jetbrains.androidx.lifecycle:lifecycle-common-jvm:2.11.0
 org.jetbrains.androidx.lifecycle:lifecycle-common:2.11.0
 org.jetbrains.androidx.lifecycle:lifecycle-runtime-android:2.11.0
