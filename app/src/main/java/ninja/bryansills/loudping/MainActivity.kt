@@ -1,18 +1,24 @@
 package ninja.bryansills.loudping
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metrox.android.ActivityKey
 import dev.zacsweers.metrox.viewmodel.LocalMetroViewModelFactory
+import dev.zacsweers.metrox.viewmodel.MetroViewModelFactory
 import ninja.bryansills.loudping.app.App
 
-@AndroidEntryPoint
+@ContributesIntoMap(AppScope::class, binding<Activity>())
+@ActivityKey
 class MainActivity(
-  private val viewModelFactory: LoudPingViewModelFactory,
+  private val viewModelFactory: MetroViewModelFactory,
 ) : ComponentActivity() {
   override val defaultViewModelProviderFactory: ViewModelProvider.Factory
     get() = viewModelFactory

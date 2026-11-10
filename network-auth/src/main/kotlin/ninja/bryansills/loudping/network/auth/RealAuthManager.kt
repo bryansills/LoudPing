@@ -3,6 +3,10 @@ package ninja.bryansills.loudping.network.auth
 import com.slack.eithernet.ApiResult
 import com.slack.eithernet.exceptionOrNull
 import com.slack.eithernet.successOrNothing
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesBinding
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.SingleIn
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
@@ -16,6 +20,9 @@ import ninja.bryansills.loudping.time.TimeProvider
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 
+@ContributesBinding(AppScope::class)
+@Inject
+@SingleIn(AppScope::class)
 class RealAuthManager(
   private val simpleStorage: SimpleStorage,
   private val spotifyAuthService: SpotifyAuthService,
@@ -78,7 +85,7 @@ class RealAuthManager(
   }
 
   private suspend fun getValidAccessTokenInternal(
-    provideRefreshToken: suspend () -> String
+    provideRefreshToken: suspend () -> String,
   ): String {
     val currentAccessToken = simpleStorage.first(Stored.AccessToken)
     val currentAccessTokenExpiresAt =

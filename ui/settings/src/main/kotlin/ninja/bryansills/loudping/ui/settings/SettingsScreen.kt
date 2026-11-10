@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.ui.settings
 
+import android.content.ClipData
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,17 +13,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ClipboardManager
-import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.ClipEntry
+import androidx.compose.ui.platform.Clipboard
+import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import dev.zacsweers.metrox.viewmodel.metroViewModel
 import kotlin.time.Instant
+import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format
@@ -33,9 +36,10 @@ import ninja.bryansills.loudping.ui.android_app_res.R as AppR
 @Composable
 fun SettingsScreen(
   modifier: Modifier = Modifier,
-  settingsViewModel: SettingsViewModel = hiltViewModel(),
-  clipboardManager: ClipboardManager = LocalClipboardManager.current,
+  settingsViewModel: SettingsViewModel = metroViewModel(),
+  clipboardManager: Clipboard = LocalClipboard.current,
 ) {
+  val coroutineScope = rememberCoroutineScope()
   Scaffold(modifier = modifier) { paddingValues ->
     Column(modifier = Modifier.padding(paddingValues).fillMaxSize()) {
       val uiState by settingsViewModel.uiState.collectAsState()
@@ -43,7 +47,18 @@ fun SettingsScreen(
         headline = stringResource(AppR.string.refresh_token),
         value = uiState.rawAuthValues.refreshToken,
         onCopyToClipboard = {
-          clipboardManager.setText(AnnotatedString(uiState.rawAuthValues.refreshToken))
+          coroutineScope.launch {
+            val refreshTokenValue = uiState.rawAuthValues.refreshToken
+            val trimmedValue =
+              if (refreshTokenValue.length >= 6) {
+                "${refreshTokenValue.take(6)}..."
+              } else {
+                refreshTokenValue
+              }
+            clipboardManager.setClipEntry(
+              ClipEntry(ClipData.newPlainText(trimmedValue, refreshTokenValue)),
+            )
+          }
         },
         modifier = Modifier.fillMaxWidth(),
       )
@@ -56,7 +71,18 @@ fun SettingsScreen(
             uiState.rawAuthValues.accessTokenExpiresAt.format(),
           ),
         onCopyToClipboard = {
-          clipboardManager.setText(AnnotatedString(uiState.rawAuthValues.accessToken))
+          coroutineScope.launch {
+            val accessTokenValue = uiState.rawAuthValues.accessToken
+            val trimmedValue =
+              if (accessTokenValue.length >= 6) {
+                "${accessTokenValue.take(6)}..."
+              } else {
+                accessTokenValue
+              }
+            clipboardManager.setClipEntry(
+              ClipEntry(ClipData.newPlainText(trimmedValue, accessTokenValue)),
+            )
+          }
         },
         modifier = Modifier.fillMaxWidth(),
       )

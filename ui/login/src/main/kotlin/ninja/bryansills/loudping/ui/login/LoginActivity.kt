@@ -1,7 +1,7 @@
 package ninja.bryansills.loudping.ui.login
 
+import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,19 +12,31 @@ import androidx.activity.viewModels
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import dagger.hilt.android.AndroidEntryPoint
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metrox.android.ActivityKey
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ninja.bryansills.loudping.app.theme.primaryAsColorInt
 import ninja.bryansills.loudping.app.theme.primaryDarkAsColorInt
+import ninja.bryansills.loudping.di.LoudPingViewModelFactory
 import ninja.bryansills.loudping.ui.login.databinding.ActivityLoginBinding
 
-@AndroidEntryPoint
-class LoginActivity : ComponentActivity() {
+@ContributesIntoMap(AppScope::class, binding<Activity>())
+@ActivityKey
+class LoginActivity(
+  private val viewModelFactory: LoudPingViewModelFactory,
+) : ComponentActivity() {
+
+  override val defaultViewModelProviderFactory: ViewModelProvider.Factory
+    get() = viewModelFactory
 
   private lateinit var binding: ActivityLoginBinding
   private val viewModel: LoginViewModel by viewModels()
@@ -55,7 +67,11 @@ class LoginActivity : ComponentActivity() {
       launchCustomTab.launch(
         input = createCustomTabIntent(viewModel.loginUrl),
         options =
-          ActivityOptionsCompat.makeCustomAnimation(this, R.anim.enter_from_bottom, R.anim.fade_out),
+          ActivityOptionsCompat.makeCustomAnimation(
+            this,
+            R.anim.enter_from_bottom,
+            R.anim.fade_out,
+          ),
       )
     }
 
@@ -82,7 +98,7 @@ class LoginActivity : ComponentActivity() {
         .setExitAnimations(this, R.anim.fade_in, R.anim.exit_to_bottom)
         .build()
 
-    return customTabsIntent.intent.apply { setData(Uri.parse(stringUri)) }
+    return customTabsIntent.intent.apply { data = stringUri.toUri() }
   }
 
   override fun onNewIntent(intent: Intent) {

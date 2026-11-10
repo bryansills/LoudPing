@@ -1,107 +1,113 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.android.lint)
-    alias(libs.plugins.kotlin.samWithReceiver)
-    alias(libs.plugins.kotlin.assignment)
-    id("java-gradle-plugin")
+  alias(libs.plugins.kotlin.jvm)
+  alias(libs.plugins.android.lint)
+  alias(libs.plugins.kotlin.samWithReceiver)
+  alias(libs.plugins.kotlin.assignment)
+  id("java-gradle-plugin")
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
-    targetCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
+  sourceCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
+  targetCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
 }
 
 kotlin {
-    compilerOptions {
-        jvmTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
-        allWarningsAsErrors = true
-    }
+  compilerOptions {
+    jvmTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
+    allWarningsAsErrors = true
+  }
 }
 
 samWithReceiver {
   annotation(HasImplicitReceiver::class.qualifiedName!!)
 }
+
 assignment {
   annotation(SupportsKotlinAssignmentOverloading::class.qualifiedName!!)
 }
 
 tasks {
-    validatePlugins {
-        enableStricterValidation = true
-        failOnWarning = true
-    }
+  validatePlugins {
+    enableStricterValidation = true
+    failOnWarning = true
+  }
 }
 
 dependencies {
-    // needed so we can use `libs.[WHATEVER]` in this module
-    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+  // needed so we can use `libs.[WHATEVER]` in this module
+  implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 
-    // needed because Gradle runs with an old version of Kotlin
-    compileOnly(platform(libs.kotlin.gradle.bom))
+  // needed because Gradle runs with an old version of Kotlin
+  compileOnly(platform(libs.kotlin.gradle.bom))
 
-    compileOnly(libs.android.gradlePlugin)
-    compileOnly(libs.android.gradlePluginApi)
-    compileOnly(libs.android.tools.common)
-    compileOnly(libs.kotlin.gradlePlugin)
-    compileOnly(gradleKotlinDsl())
-    compileOnly(libs.compose.gradlePlugin)
-    compileOnly(libs.ksp.gradlePlugin)
-    compileOnly(libs.dependencyGuard.gradlePlugin)
-    compileOnly(libs.dependencyAnalysis.gradlePlugin)
-    lintChecks(libs.androidx.lint.gradle)
+  compileOnly(libs.android.gradlePlugin)
+  compileOnly(libs.android.gradlePluginApi)
+  compileOnly(libs.android.tools.common)
+  compileOnly(libs.kotlin.gradlePlugin)
+  compileOnly(gradleKotlinDsl())
+  compileOnly(libs.compose.gradlePlugin)
+  compileOnly(libs.dependencyGuard.gradlePlugin)
+  compileOnly(libs.dependencyAnalysis.gradlePlugin)
+  lintChecks(libs.androidx.lint.gradle)
 }
 
 gradlePlugin {
-    plugins {
-        register("root") {
-            id = libs.plugins.loudping.root.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.RootConventionPlugin"
-        }
-        register("androidApp") {
-            id = libs.plugins.loudping.android.application.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.AndroidAppConventionPlugin"
-        }
-        register("javaAndroidLibrary") {
-            id = libs.plugins.loudping.android.library.java.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.JavaAndroidLibraryConventionPlugin"
-        }
-        register("kotlinAndroidLibrary") {
-            id = libs.plugins.loudping.android.library.kotlin.plain.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinAndroidLibraryConventionPlugin"
-        }
-        register("kotlinAndroidDaggerLibrary") {
-            id = libs.plugins.loudping.android.library.kotlin.dagger.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinAndroidDaggerLibraryConventionPlugin"
-        }
-        register("composeAndroidScreen") {
-            id = libs.plugins.loudping.android.library.compose.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeAndroidScreenConventionPlugin"
-        }
-        register("kotlinJvm") {
-            id = libs.plugins.loudping.jvm.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinJvmLibraryConventionPlugin"
-        }
-        register("kotlinMultiplatformLibrary") {
-            id = libs.plugins.loudping.multiplatform.plain.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.KotlinMultiplatformLibraryConventionPlugin"
-        }
-        register("composeMultiplatformLibrary") {
-            id = libs.plugins.loudping.multiplatform.compose.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeMultiplatformLibraryConventionPlugin"
-        }
-        register("composeMosaic") {
-            id = libs.plugins.loudping.mosaic.get().pluginId
-            implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeMosaicConventionPlugin"
-        }
-      register("sqldelight") {
-        id = libs.plugins.loudping.sqldelight.get().pluginId
-        implementationClass = "ninja.bryansills.loudping.gradle.plugin.SqldelightConventionPlugin"
-      }
-      register("publishing") {
-        id = libs.plugins.loudping.publishing.get().pluginId
-        implementationClass = "ninja.bryansills.loudping.gradle.plugin.PublishingConventionPlugin"
-      }
+  plugins {
+    register("root") {
+      id = libs.plugins.loudping.root.get().pluginId
+      implementationClass = "ninja.bryansills.loudping.gradle.plugin.RootConventionPlugin"
     }
+    register("androidApp") {
+      id = libs.plugins.loudping.android.application.get().pluginId
+      implementationClass = "ninja.bryansills.loudping.gradle.plugin.AndroidAppConventionPlugin"
+    }
+    register("javaAndroidLibrary") {
+      id = libs.plugins.loudping.android.library.java.get().pluginId
+      implementationClass =
+        "ninja.bryansills.loudping.gradle.plugin.JavaAndroidLibraryConventionPlugin"
+    }
+    register("kotlinAndroidLibrary") {
+      id = libs.plugins.loudping.android.library.kotlin.plain.get().pluginId
+      implementationClass =
+        "ninja.bryansills.loudping.gradle.plugin.KotlinAndroidLibraryConventionPlugin"
+    }
+    register("composeAndroidScreen") {
+      id = libs.plugins.loudping.android.library.compose.get().pluginId
+      implementationClass =
+        "ninja.bryansills.loudping.gradle.plugin.ComposeAndroidScreenConventionPlugin"
+    }
+    register("composeScreen") {
+      id = libs.plugins.loudping.compose.screen.get().pluginId
+      implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeScreenConventionPlugin"
+    }
+    register("kotlinJvm") {
+      id = libs.plugins.loudping.jvm.get().pluginId
+      implementationClass =
+        "ninja.bryansills.loudping.gradle.plugin.KotlinJvmLibraryConventionPlugin"
+    }
+    register("kotlinMultiplatformLibrary") {
+      id = libs.plugins.loudping.multiplatform.plain.get().pluginId
+      implementationClass =
+        "ninja.bryansills.loudping.gradle.plugin.KotlinMultiplatformLibraryConventionPlugin"
+    }
+    register("composeMultiplatformLibrary") {
+      id = libs.plugins.loudping.multiplatform.compose.get().pluginId
+      implementationClass =
+        "ninja.bryansills.loudping.gradle.plugin.ComposeMultiplatformLibraryConventionPlugin"
+    }
+    register("composeMosaic") {
+      id = libs.plugins.loudping.mosaic.get().pluginId
+      implementationClass = "ninja.bryansills.loudping.gradle.plugin.ComposeMosaicConventionPlugin"
+    }
+    register("sqldelight") {
+      id = libs.plugins.loudping.sqldelight.get().pluginId
+      implementationClass = "ninja.bryansills.loudping.gradle.plugin.SqldelightConventionPlugin"
+    }
+    register("publishing") {
+      id = libs.plugins.loudping.publishing.get().pluginId
+      implementationClass = "ninja.bryansills.loudping.gradle.plugin.PublishingConventionPlugin"
+    }
+  }
 }

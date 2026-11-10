@@ -3,8 +3,10 @@ package ninja.bryansills.loudping.ui.settings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.WorkInfo
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import kotlin.time.Instant
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
@@ -14,10 +16,11 @@ import ninja.bryansills.loudping.foreman.ForemanJobs
 import ninja.bryansills.loudping.network.auth.AuthManager
 import ninja.bryansills.loudping.network.auth.RawAuthValues
 
-@HiltViewModel
-class SettingsViewModel
 @Inject
-constructor(private val authManager: AuthManager, private val foreman: Foreman) : ViewModel() {
+@ViewModelKey
+@ContributesIntoMap(AppScope::class)
+class SettingsViewModel(private val authManager: AuthManager, private val foreman: Foreman) :
+  ViewModel() {
   val uiState =
     combine(authManager.rawValues, foreman.jobStatus) { rawAuthValues, jobInfoMap ->
         SettingsUiState(

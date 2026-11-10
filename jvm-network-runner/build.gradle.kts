@@ -24,9 +24,9 @@ dependencies {
   implementation(projects.time)
 
   implementation(libs.retrofit)
-  implementation(libs.retrofit.kotlinx.serialization)
+  implementation(libs.retrofit.kotlinx)
   implementation(libs.eithernet.retrofit)
-  implementation(libs.kotlinx.serialization.runtime.json)
+  implementation(libs.kotlinx.serialization.json)
   implementation(libs.okhttp)
   implementation(libs.datastore.core)
   implementation(libs.datastore.preferences.core)

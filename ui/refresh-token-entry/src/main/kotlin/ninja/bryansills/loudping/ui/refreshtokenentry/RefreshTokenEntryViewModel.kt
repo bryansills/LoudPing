@@ -6,8 +6,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,10 +21,10 @@ import ninja.bryansills.loudping.di.Dispatcher
 import ninja.bryansills.loudping.di.LoudPingDispatcher
 import ninja.bryansills.loudping.network.auth.AuthManager
 
-@HiltViewModel
-class RefreshTokenEntryViewModel
 @Inject
-constructor(
+@ViewModelKey
+@ContributesIntoMap(AppScope::class)
+class RefreshTokenEntryViewModel(
   private val authManager: AuthManager,
   @Dispatcher(LoudPingDispatcher.Io) private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {

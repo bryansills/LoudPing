@@ -1,5 +1,5 @@
 plugins {
-  alias(libs.plugins.loudping.android.library.compose)
+  alias(libs.plugins.loudping.compose.screen)
   alias(libs.plugins.metro)
 }
 
@@ -10,8 +10,6 @@ dependencies {
   api(libs.androidx.viewmodel.core)
   api(libs.androidx.navigation.common)
   api(libs.androidx.navigation.runtime)
-  api(libs.hilt.core)
-  api(libs.hilt.android)
   implementation(projects.ui.theme)
   implementation(projects.ui.home)
   implementation(projects.ui.destinations)

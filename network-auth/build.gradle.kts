@@ -1,6 +1,7 @@
 plugins {
   alias(libs.plugins.loudping.jvm)
   alias(libs.plugins.kotlinx.serialization)
+  alias(libs.plugins.metro)
 }
 
 dependencies {
@@ -14,4 +15,5 @@ dependencies {
   api(libs.kotlinx.serialization.runtime.core)
   implementation(projects.session)
   implementation(libs.datastore.preferences.core)
+  implementation(libs.metro.runtime)
 }

@@ -24,7 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import dev.zacsweers.metrox.viewmodel.metroViewModel
 import ninja.bryansills.loudping.app.theme.LoudPingTheme
 import ninja.bryansills.loudping.ui.android_app_res.R as AppR
 
@@ -33,7 +33,7 @@ internal fun HomeLoggedInScreen(
   onNavigateToPlayedTracks: () -> Unit,
   onNavigateToSettings: () -> Unit,
   modifier: Modifier = Modifier,
-  viewModel: HomeLoggedInViewModel = hiltViewModel(),
+  viewModel: HomeLoggedInViewModel = metroViewModel(),
 ) {
   Box(modifier = modifier.fillMaxSize().padding(16.dp)) {
     AlbumsBox(

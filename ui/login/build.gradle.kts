@@ -1,5 +1,6 @@
 plugins {
-  alias(libs.plugins.loudping.android.library.kotlin.dagger)
+  alias(libs.plugins.loudping.android.library.kotlin.plain)
+  alias(libs.plugins.metro)
   alias(libs.plugins.parcelize)
 }
 
@@ -19,18 +20,18 @@ dependencies {
   api(libs.appcompat)
   api(libs.androidx.activity)
   api(libs.androidx.viewmodel.savedstate)
-  api(libs.dagger)
-  api(libs.hilt.core)
-  api(libs.javax.inject)
   api(libs.coroutines)
-  api(libs.hilt.android)
 
+  implementation(projects.core.di)
   implementation(projects.ui.theme)
-  implementation(libs.material)
-  implementation(libs.androidx.browser)
   implementation(libs.androidx.annotation)
+  implementation(libs.androidx.browser)
   implementation(libs.androidx.core)
   implementation(libs.androidx.lifecycle.common)
   implementation(libs.androidx.lifecycle.runtime)
+  implementation(libs.material)
+  implementation(libs.metro.android)
+  implementation(libs.metro.runtime)
+  implementation(libs.metro.viewmodel)
   implementation(libs.parcelize.runtime)
 }

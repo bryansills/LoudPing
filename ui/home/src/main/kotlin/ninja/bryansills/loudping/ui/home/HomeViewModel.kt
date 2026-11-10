@@ -2,16 +2,20 @@ package ninja.bryansills.loudping.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import ninja.bryansills.loudping.session.Session
 import ninja.bryansills.loudping.session.SessionManager
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(private val sessionManager: SessionManager) : ViewModel() {
+@Inject
+@ViewModelKey
+@ContributesIntoMap(AppScope::class)
+class HomeViewModel(private val sessionManager: SessionManager) : ViewModel() {
   val uiState =
     sessionManager.currentSession
       .map { session ->

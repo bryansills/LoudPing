@@ -3,9 +3,16 @@ package ninja.bryansills.loudping.ui.login
 import android.os.Parcelable
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import androidx.lifecycle.viewmodel.CreationExtras
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.Assisted
+import dev.zacsweers.metro.AssistedFactory
+import dev.zacsweers.metro.AssistedInject
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metrox.viewmodel.ViewModelAssistedFactory
+import dev.zacsweers.metrox.viewmodel.ViewModelAssistedFactoryKey
 import kotlin.time.Instant
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
@@ -15,11 +22,9 @@ import kotlinx.parcelize.Parcelize
 import ninja.bryansills.loudping.network.auth.AuthManager
 import ninja.bryansills.loudping.time.TimeProvider
 
-@HiltViewModel
-class LoginViewModel
-@Inject
-constructor(
-  private val savedStateHandle: SavedStateHandle,
+@AssistedInject
+class LoginViewModel(
+  @Assisted private val savedStateHandle: SavedStateHandle,
   private val authManager: AuthManager,
   private val timeProvider: TimeProvider,
 ) : ViewModel() {
@@ -47,6 +52,17 @@ constructor(
 
   private val loginCompleteChannel = Channel<String>(capacity = Channel.CONFLATED)
   val loginComplete = loginCompleteChannel.receiveAsFlow()
+
+  @AssistedFactory
+  @ViewModelAssistedFactoryKey(LoginViewModel::class)
+  @ContributesIntoMap(AppScope::class)
+  fun interface Factory : ViewModelAssistedFactory {
+    override fun create(extras: CreationExtras): LoginViewModel {
+      return create(extras.createSavedStateHandle())
+    }
+
+    fun create(@Assisted savedStateHandle: SavedStateHandle): LoginViewModel
+  }
 }
 
 @Parcelize

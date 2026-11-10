@@ -1,6 +1,9 @@
 package ninja.bryansills.loudping.history.recorder
 
 import com.slack.eithernet.successOrNothing
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesBinding
+import dev.zacsweers.metro.Inject
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
@@ -20,6 +23,8 @@ import ninja.bryansills.loudping.network.model.recent.PlayHistoryItem
 import ninja.bryansills.loudping.network.model.recent.RecentTrimmingStrategy
 import ninja.bryansills.loudping.network.model.track.coverImageUrl
 
+@ContributesBinding(AppScope::class)
+@Inject
 class RealHistoryRecorder(
   private val getRecentlyPlayed: GetRecentlyPlayed,
   private val databaseService: DatabaseService,

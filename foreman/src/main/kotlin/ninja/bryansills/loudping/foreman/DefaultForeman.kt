@@ -4,12 +4,16 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesBinding
+import dev.zacsweers.metro.Inject
 import java.time.Duration
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class DefaultForeman @Inject constructor(workManager: WorkManager) : Foreman {
+@ContributesBinding(AppScope::class)
+@Inject
+class DefaultForeman(workManager: WorkManager) : Foreman {
   init {
     workManager.enqueueUniquePeriodicWork(
       ForemanJobs.TrackSyncing.workManagerId,
@@ -25,5 +29,5 @@ class DefaultForeman @Inject constructor(workManager: WorkManager) : Foreman {
 }
 
 enum class ForemanJobs(val workManagerId: String) {
-  TrackSyncing("loud-ping-track-syncing")
+  TrackSyncing("loud-ping-track-syncing"),
 }

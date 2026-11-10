@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="6" by="lint 9.4.1" type="baseline" client="gradle" dependencies="true" name="AGP (9.4.1)" variant="all" version="9.4.1">
+<issues format="6" by="lint 9.5.0" type="baseline" client="gradle" dependencies="true" name="AGP (9.5.0)" variant="all" version="9.5.0">
 
     <issue
         id="StopShip"
@@ -52,7 +52,7 @@
         errorLine2="        ~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/network/GetRecentlyPlayed.kt"
-            line="34"
+            line="40"
             column="9"/>
     </issue>
 
@@ -63,7 +63,7 @@
         errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/network/GetRecentlyPlayed.kt"
-            line="51"
+            line="57"
             column="45"/>
     </issue>
 
@@ -107,7 +107,7 @@
         errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
-            line="25"
+            line="32"
             column="34"/>
     </issue>
 
@@ -118,7 +118,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
-            line="28"
+            line="35"
             column="5"/>
     </issue>
 
@@ -129,7 +129,7 @@
         errorLine2="      ^">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
-            line="32"
+            line="39"
             column="7"/>
     </issue>
 
@@ -140,7 +140,7 @@
         errorLine2="                      ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/history/recorder/RealHistoryRecorder.kt"
-            line="44"
+            line="49"
             column="23"/>
     </issue>
 
@@ -151,7 +151,7 @@
         errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/history/recorder/RealHistoryRecorder.kt"
-            line="55"
+            line="60"
             column="27"/>
     </issue>
 
@@ -162,19 +162,19 @@
         errorLine2="                                                ~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/ui/settings/SettingsViewModel.kt"
-            line="25"
+            line="27"
             column="49"/>
     </issue>
 
     <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?"
-        errorLine1="    return customTabsIntent.intent.apply { setData(Uri.parse(stringUri)) }"
-        errorLine2="                                                   ~~~~~~~~~~~~~~~~~~~~">
+        id="ComposeReadOnlyComposable"
+        message="All composable functions and properties used by this declaration are marked @ReadOnlyComposable, so this declaration can be marked @ReadOnlyComposable too.&#xA;&#xA;See https://slackhq.github.io/compose-lints/rules/#remove-unnecessary-composable-annotations for more information."
+        errorLine1="@Composable"
+        errorLine2="~~~~~~~~~~~">
         <location
-            file="src/main/kotlin/ninja/bryansills/loudping/ui/login/LoginActivity.kt"
-            line="85"
-            column="52"/>
+            file="src/main/kotlin/ninja/bryansills/loudping/ui/playedtracks/PlayedTracksScreen.kt"
+            line="115"
+            column="1"/>
     </issue>
 
     <issue

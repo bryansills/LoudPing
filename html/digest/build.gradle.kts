@@ -16,7 +16,7 @@ dependencies {
   implementation(libs.retrofit)
   implementation(libs.jaxb3Api)
   implementation(libs.htmlunit)
-  implementation(libs.kotlinx.serialization.runtime.json)
+  implementation(libs.kotlinx.serialization.json)
   implementation(libs.kotlinx.html)
   implementation(libs.okio)
   implementation(libs.coroutines)

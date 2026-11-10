@@ -1,5 +1,6 @@
 plugins {
   alias(libs.plugins.loudping.jvm)
+  alias(libs.plugins.metro)
 }
 
 dependencies {
@@ -8,4 +9,5 @@ dependencies {
   implementation(projects.core.model)
   implementation(libs.eithernet.core)
   implementation(libs.coroutines)
+  implementation(libs.metro.runtime)
 }

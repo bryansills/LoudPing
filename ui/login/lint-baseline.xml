@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="6" by="lint 9.4.1" type="baseline" client="gradle" dependencies="true" name="AGP (9.4.1)" variant="all" version="9.4.1">
+<issues format="6" by="lint 9.5.0" type="baseline" client="gradle" dependencies="true" name="AGP (9.5.0)" variant="all" version="9.5.0">
 
     <issue
         id="SyntheticAccessor"
@@ -8,7 +8,7 @@
         errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
-            line="25"
+            line="32"
             column="34"/>
     </issue>
 
@@ -19,7 +19,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
-            line="28"
+            line="35"
             column="5"/>
     </issue>
 
@@ -30,19 +30,8 @@
         errorLine2="      ^">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/network/auth/RealAuthManager.kt"
-            line="32"
+            line="39"
             column="7"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?"
-        errorLine1="    return customTabsIntent.intent.apply { setData(Uri.parse(stringUri)) }"
-        errorLine2="                                                   ~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/kotlin/ninja/bryansills/loudping/ui/login/LoginActivity.kt"
-            line="85"
-            column="52"/>
     </issue>
 
     <issue

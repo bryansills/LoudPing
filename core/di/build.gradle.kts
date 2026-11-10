@@ -4,6 +4,7 @@ plugins {
 }
 
 dependencies {
-  api(libs.javax.inject)
+  implementation(libs.androidx.viewmodel.core)
   implementation(libs.metro.runtime)
+  implementation(libs.metro.viewmodel)
 }

@@ -1,16 +1,16 @@
 package ninja.bryansills.loudping.di
 
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.BindingContainer
+import dev.zacsweers.metro.ContributesTo
+import dev.zacsweers.metro.Provides
 import ninja.bryansills.loudping.BuildConfig
 import ninja.bryansills.loudping.sneak.network.NetworkSneak
 import ninja.bryansills.loudping.sneak.network.RealNetworkSneak
 import ninja.bryansills.sneak.Sneak
 
-@InstallIn(SingletonComponent::class)
-@Module
+@ContributesTo(AppScope::class)
+@BindingContainer
 object SneakModule {
 
   @Provides fun provideSneak(): Sneak = Sneak(BuildConfig.SneakSalt.toByteArray())

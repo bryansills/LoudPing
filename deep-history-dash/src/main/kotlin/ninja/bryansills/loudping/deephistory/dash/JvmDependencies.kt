@@ -1,7 +1,6 @@
 package ninja.bryansills.loudping.deephistory.dash
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.slack.eithernet.integration.retrofit.ApiResultCallAdapterFactory
 import com.slack.eithernet.integration.retrofit.ApiResultConverterFactory
 import java.io.File
@@ -36,6 +35,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 
 @OptIn(ExperimentalStdlibApi::class)
@@ -67,7 +67,7 @@ suspend fun initializeDependencies(): JvmDependencies {
   val authOkHttpClient =
     OkHttpClient.Builder()
       .addInterceptor(
-        HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY }
+        HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY },
       )
       .addInterceptor(authorizationHeaderInterceptor)
       .build()
@@ -100,7 +100,7 @@ suspend fun initializeDependencies(): JvmDependencies {
           sleeper = Sleeper.Default,
           permitsPerWindow = 5,
           windowSize = 1.seconds,
-        )
+        ),
     )
 
   val mainOkHttpClient =

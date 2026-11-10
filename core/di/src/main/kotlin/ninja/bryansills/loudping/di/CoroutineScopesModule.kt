@@ -1,18 +1,18 @@
 package ninja.bryansills.loudping.di
 
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.BindingContainer
+import dev.zacsweers.metro.ContributesTo
+import dev.zacsweers.metro.Provides
+import dev.zacsweers.metro.SingleIn
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 
-@Module
-@InstallIn(SingletonComponent::class)
-internal object CoroutineScopesModule {
+@ContributesTo(AppScope::class)
+@BindingContainer
+object CoroutineScopesModule {
 
   @Provides
   @Dispatcher(LoudPingDispatcher.Io)
@@ -23,7 +23,7 @@ internal object CoroutineScopesModule {
   fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
   @Provides
-  @Singleton
+  @SingleIn(AppScope::class)
   @ApplicationScope
   fun providesCoroutineScope(
     @Dispatcher(LoudPingDispatcher.Default) dispatcher: CoroutineDispatcher

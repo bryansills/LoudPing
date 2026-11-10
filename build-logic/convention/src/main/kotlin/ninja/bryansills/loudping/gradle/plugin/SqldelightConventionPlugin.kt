@@ -13,6 +13,6 @@ class SqldelightConventionPlugin : Plugin<Project> {
     with(target) {
       plugins { alias(libs.plugins.sqldelight) }
       configureKotlinMultiplatform()
-      configureLint()
+      configureLint(isCompose = false)
     }
 }

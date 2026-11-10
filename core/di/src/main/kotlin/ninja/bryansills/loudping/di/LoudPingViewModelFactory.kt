@@ -1,4 +1,4 @@
-package ninja.bryansills.loudping
+package ninja.bryansills.loudping.di
 
 import androidx.lifecycle.ViewModel
 import dev.zacsweers.metro.AppScope

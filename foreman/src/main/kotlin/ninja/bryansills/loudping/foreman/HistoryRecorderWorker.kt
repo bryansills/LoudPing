@@ -2,12 +2,17 @@ package ninja.bryansills.loudping.foreman
 
 import android.content.Context
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.Assisted
+import dev.zacsweers.metro.AssistedFactory
+import dev.zacsweers.metro.AssistedInject
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metro.sample.android.MetroWorkerFactory
+import dev.zacsweers.metro.sample.android.WorkerKey
 import kotlin.time.Instant
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -18,17 +23,15 @@ import ninja.bryansills.loudping.storage.SimpleEntry
 import ninja.bryansills.loudping.storage.SimpleStorage
 import ninja.bryansills.loudping.time.TimeProvider
 
-@HiltWorker
-class HistoryRecorderWorker
 @AssistedInject
-constructor(
-  @Assisted appContext: Context,
-  @Assisted workerParams: WorkerParameters,
+class HistoryRecorderWorker(
+  appContext: Context,
+  @Assisted params: WorkerParameters,
   private val historyRecorder: HistoryRecorder,
   private val simpleStorage: SimpleStorage,
   private val timeProvider: TimeProvider,
   private val logger: Logger,
-) : CoroutineWorker(appContext, workerParams) {
+) : CoroutineWorker(appContext, params) {
   override suspend fun doWork(): Result =
     try {
       val currentTime = timeProvider.now
@@ -41,6 +44,14 @@ constructor(
       logger.e(ex)
       Result.failure(workDataOf("CAUSE" to ex.localizedMessage))
     }
+
+  @WorkerKey(HistoryRecorderWorker::class)
+  @ContributesIntoMap(
+    AppScope::class,
+    binding = binding<MetroWorkerFactory.WorkerInstanceFactory<*>>(),
+  )
+  @AssistedFactory
+  abstract class Factory : MetroWorkerFactory.WorkerInstanceFactory<HistoryRecorderWorker>
 }
 
 private val SyncedUpTo =

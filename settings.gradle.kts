@@ -59,6 +59,7 @@ include(
   ":core:model",
   ":core:model-test",
   ":data:foreman-metro",
+  ":data:network-di",
   ":database:android",
   ":database:core",
   ":database:jvm",
