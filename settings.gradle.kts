@@ -33,7 +33,7 @@ plugins {
   id("com.dropbox.dependency-guard") version "0.5.0" apply false
   id("com.github.gmazzo.buildconfig") version "6.1.2" apply false
   id("app.cash.sqldelight") version "2.4.1" apply false
-  id("com.bugsnag.gradle") version "1.2.0" apply false
+  id("com.bugsnag.gradle") version "1.2.1" apply false
   id("app.cash.burst") version "2.14.0" apply false
 }
 
