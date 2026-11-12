@@ -29,7 +29,7 @@ plugins {
   id("org.jetbrains.kotlin.plugin.parcelize") version "2.4.21" apply false
   id("com.google.dagger.hilt.android") version "2.60.1" apply false
   id("com.google.devtools.ksp") version "2.3.13" apply false
-  id("dev.zacsweers.metro") version "1.5.1" apply false
+  id("dev.zacsweers.metro") version "1.5.2" apply false
   id("com.dropbox.dependency-guard") version "0.5.0" apply false
   id("com.github.gmazzo.buildconfig") version "6.1.2" apply false
   id("app.cash.sqldelight") version "2.4.1" apply false
