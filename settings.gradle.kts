@@ -7,13 +7,6 @@ pluginManagement {
   }
 }
 
-buildscript {
-  dependencies {
-    // TODO: delete this whole `buildscript` block once Dagger and DAGP update their Kotlin stuff
-    classpath("org.jetbrains.kotlin:kotlin-metadata-jvm:2.4.21")
-  }
-}
-
 plugins {
   id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
   id("com.autonomousapps.build-health") version "3.20.2"
