@@ -1,5 +1,6 @@
 package ninja.bryansills.loudping.ui.settings
 
+import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
-@Serializable object Settings
+@Serializable object Settings : NavKey

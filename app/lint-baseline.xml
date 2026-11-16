@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="6" by="lint 9.5.0" type="baseline" client="gradle" dependencies="true" name="AGP (9.5.0)" variant="all" version="9.5.0">
+<issues format="6" by="lint 9.5.1" type="baseline" client="gradle" dependencies="true" name="AGP (9.5.1)" variant="all" version="9.5.1">
 
     <issue
         id="StopShip"
@@ -52,7 +52,7 @@
         errorLine2="        ~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/network/GetRecentlyPlayed.kt"
-            line="40"
+            line="39"
             column="9"/>
     </issue>
 
@@ -63,7 +63,7 @@
         errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/network/GetRecentlyPlayed.kt"
-            line="57"
+            line="56"
             column="45"/>
     </issue>
 
@@ -162,8 +162,74 @@
         errorLine2="                                                ~~~~~~~~~~~~~~~">
         <location
             file="src/main/kotlin/ninja/bryansills/loudping/ui/settings/SettingsViewModel.kt"
-            line="27"
+            line="28"
             column="49"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `safeHexToByteArray` of class `SneakModuleKt` requires synthetic accessor"
+        errorLine1="      obfuscatedClientId = BuildConfig.SneakClientId.safeHexToByteArray(),"
+        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/ninja/bryansills/loudping/di/SneakModule.kt"
+            line="23"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `safeHexToByteArray` of class `SneakModuleKt` requires synthetic accessor"
+        errorLine1="      obfuscatedClientSecret = BuildConfig.SneakClientSecret.safeHexToByteArray(),"
+        errorLine2="                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/ninja/bryansills/loudping/di/SneakModule.kt"
+            line="24"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `safeHexToByteArray` of class `SneakModuleKt` requires synthetic accessor"
+        errorLine1="      obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.safeHexToByteArray(),"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/ninja/bryansills/loudping/di/SneakModule.kt"
+            line="25"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `safeHexToByteArray` of class `SneakModuleKt` requires synthetic accessor"
+        errorLine1="      obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.safeHexToByteArray(),"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/ninja/bryansills/loudping/di/SneakModule.kt"
+            line="26"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `safeHexToByteArray` of class `SneakModuleKt` requires synthetic accessor"
+        errorLine1="      obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.safeHexToByteArray(),"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/ninja/bryansills/loudping/di/SneakModule.kt"
+            line="27"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="SyntheticAccessor"
+        message="Access to `private` method `safeHexToByteArray` of class `SneakModuleKt` requires synthetic accessor"
+        errorLine1="      obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.safeHexToByteArray(),"
+        errorLine2="                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/ninja/bryansills/loudping/di/SneakModule.kt"
+            line="28"
+            column="32"/>
     </issue>
 
     <issue
