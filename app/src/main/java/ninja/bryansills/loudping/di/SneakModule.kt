@@ -20,11 +20,19 @@ object SneakModule {
   fun provideNetworkSneak(sneak: Sneak): NetworkSneak =
     RealNetworkSneak(
       sneak = sneak,
-      obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
-      obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
-      obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
-      obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
-      obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
-      obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
+      obfuscatedClientId = BuildConfig.SneakClientId.safeHexToByteArray(),
+      obfuscatedClientSecret = BuildConfig.SneakClientSecret.safeHexToByteArray(),
+      obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.safeHexToByteArray(),
+      obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.safeHexToByteArray(),
+      obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.safeHexToByteArray(),
+      obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.safeHexToByteArray(),
     )
+}
+
+private fun String.safeHexToByteArray(): ByteArray {
+  return try {
+    this.hexToByteArray()
+  } catch (_: NumberFormatException) {
+    "DEADBEEF".hexToByteArray()
+  }
 }

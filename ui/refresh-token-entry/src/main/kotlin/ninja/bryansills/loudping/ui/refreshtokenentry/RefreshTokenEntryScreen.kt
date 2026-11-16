@@ -12,12 +12,17 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.dialog
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.scene.DialogSceneStrategy
 import dev.zacsweers.metrox.viewmodel.metroViewModel
 
-fun NavGraphBuilder.refreshTokenEntry(onDismiss: () -> Unit) {
-  dialog<RefreshTokenEntry> { RefreshTokenEntryScreen(onDismiss = onDismiss) }
+fun EntryProviderScope<NavKey>.refreshTokenEntry(onDismiss: () -> Unit) {
+  entry<RefreshTokenEntry>(
+    metadata = DialogSceneStrategy.dialog(),
+  ) {
+    RefreshTokenEntryScreen(onDismiss = onDismiss)
+  }
 }
 
 @Composable
