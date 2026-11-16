@@ -3,6 +3,7 @@ package ninja.bryansills.loudping.gradle.plugin
 import com.autonomousapps.DependencyAnalysisExtension
 import com.google.samples.apps.nowinandroid.configureGraphTasks
 import javax.inject.Inject
+import ninja.bryansills.loudping.gradle.util.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.configuration.BuildFeatures
@@ -46,6 +47,13 @@ private fun Project.configureDagp() {
       project(":core:di") {
         onUnusedDependencies { severity("ignore") }
         onUsedTransitiveDependencies { severity("ignore") }
+      }
+
+      // All the "-ktx" libs confuse DAGP. Ignore the issues for now.
+      project(":ui:login") {
+        onUnusedDependencies {
+          exclude(libs.androidx.coreKtx)
+        }
       }
     }
   }
