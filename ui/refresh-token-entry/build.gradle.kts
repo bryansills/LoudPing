@@ -5,6 +5,7 @@ plugins {
 dependencies {
   api(projects.networkAuth)
   api(projects.core.di)
+  api(libs.androidx.nav3.runtime)
   api(libs.androidx.viewmodel.core)
   api(libs.compose.foundation.layout)
   api(libs.compose.runtime)
@@ -16,7 +17,6 @@ dependencies {
   implementation(projects.ui.destinations)
   implementation(libs.androidx.lifecycle.common)
   implementation(libs.androidx.lifecycle.runtime.compose)
-  implementation(libs.androidx.nav3.runtime)
   implementation(libs.androidx.nav3.ui)
   implementation(libs.androidx.viewmodel.compose)
   implementation(libs.compose.foundation)

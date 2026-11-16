@@ -5,5 +5,5 @@ plugins {
 
 dependencies {
   api(libs.kotlinx.serialization.runtime.core)
-  implementation(libs.androidx.nav3.runtime)
+  api(libs.androidx.nav3.runtime)
 }
