@@ -30,7 +30,6 @@ dependencies {
   implementation(libs.androidx.annotation)
   implementation(libs.androidx.browser)
   implementation(libs.androidx.core)
-  implementation(libs.androidx.coreKtx)
   implementation(libs.androidx.lifecycle.common)
   implementation(libs.androidx.lifecycle.runtime)
   implementation(libs.material)
