@@ -9,8 +9,8 @@ runs:
 
     - uses: actions/setup-java@v6
       with:
-        distribution: 'jetbrains'
-        java-version: 21
+        distribution: 'zulu'
+        java-version-file: .github/.java-version
 
     - uses: gradle/actions/setup-gradle@v5
       with:
