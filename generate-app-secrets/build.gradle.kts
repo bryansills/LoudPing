@@ -1,34 +1,34 @@
 plugins {
-    alias(libs.plugins.loudping.jvm)
-    application
-    alias(libs.plugins.buildconfig)
+  alias(libs.plugins.loudping.jvm)
+  application
+  alias(libs.plugins.buildconfig)
 }
 
 application {
-    mainClass = "ninja.bryansills.loudping.generateappsecrets.MainKt"
+  mainClass = "ninja.bryansills.loudping.generateappsecrets.MainKt"
 }
 
 dependencies {
-    implementation(projects.sneak)
-    implementation(libs.okio)
+  implementation(projects.core.sneak)
+  implementation(libs.okio)
 }
 
 buildConfig {
-    packageName("ninja.bryansills.loudping")
-    useKotlinOutput { internalVisibility = true }
+  packageName("ninja.bryansills.loudping")
+  useKotlinOutput { internalVisibility = true }
 
-//    loadSecrets()
+  //    loadSecrets()
 
-    buildConfigField("Salt", """"saltString"""")
-    buildConfigField("ClientId", """"clientId"""")
-    buildConfigField("ClientSecret", """"clientSecret"""")
-    buildConfigField("RedirectUrl", """"redirectUrl"""")
-    buildConfigField("BaseApiUrl", """"baseApiUrl"""")
-    buildConfigField("BaseAuthApiUrl", """"baseAuthApiUrl"""")
-    buildConfigField("AuthorizeUrl", """"authorizeUrl"""")
+  buildConfigField("Salt", """"saltString"""")
+  buildConfigField("ClientId", """"clientId"""")
+  buildConfigField("ClientSecret", """"clientSecret"""")
+  buildConfigField("RedirectUrl", """"redirectUrl"""")
+  buildConfigField("BaseApiUrl", """"baseApiUrl"""")
+  buildConfigField("BaseAuthApiUrl", """"baseAuthApiUrl"""")
+  buildConfigField("AuthorizeUrl", """"authorizeUrl"""")
 }
 
-//fun BuildConfigExtension.loadSecrets() {
+// fun BuildConfigExtension.loadSecrets() {
 //    val properties = rootProject.rootProperties("local.properties")
 //
 //    val saltString = properties.getSecret("raw.sneak.salt")
@@ -51,4 +51,4 @@ buildConfig {
 //
 //    val authorizeUrl = properties.getSecret("raw.authorizeurl")
 //    buildConfigField("String", "AuthorizeUrl", """"$authorizeUrl"""")
-//}
+// }

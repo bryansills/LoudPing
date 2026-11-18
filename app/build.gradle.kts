@@ -146,6 +146,7 @@ android {
 dependencies {
   implementation(projects.appRoot)
   implementation(projects.core.di)
+  implementation(projects.core.sneak)
   implementation(projects.data.foremanMetro)
   implementation(projects.data.networkDi)
   implementation(projects.database.android)
@@ -156,8 +157,6 @@ dependencies {
   implementation(projects.network)
   implementation(projects.networkAuth)
   implementation(projects.session)
-  implementation(projects.sneak)
-  implementation(projects.sneakNetwork)
   implementation(projects.storage)
   implementation(projects.time)
   implementation(projects.ui.home)

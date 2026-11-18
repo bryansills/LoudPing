@@ -10,14 +10,13 @@ application {
 }
 
 dependencies {
+  implementation(projects.core.sneak)
   implementation(projects.deepHistory)
   implementation(projects.database.core)
   implementation(projects.database.jvm)
   implementation(projects.network)
   implementation(projects.networkAuth)
   implementation(projects.session)
-  implementation(projects.sneak)
-  implementation(projects.sneakNetwork)
   implementation(projects.storage)
   implementation(projects.time)
   implementation(projects.trackRepo)

@@ -5,9 +5,9 @@ plugins {
 }
 
 dependencies {
+  api(projects.core.sneak)
   api(projects.network)
   api(projects.networkAuth)
-  api(projects.sneakNetwork)
   api(libs.kotlinx.serialization.json)
   api(libs.metro.runtime)
   api(libs.okhttp)
