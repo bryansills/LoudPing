@@ -18,7 +18,6 @@ buildconfig = "6.1.2"
 burst = "2.14.0"
 coil = "2.7.0"
 compose-bom = "2026.09.00"
-compose-multiplatform = "1.12.2"
 coroutines = "1.11.0"
 datastore = "1.3.0"
 datetime = "0.8.0-0.6.x-compat"
@@ -144,26 +143,26 @@ dependencyGuard-gradlePlugin = { module = "com.dropbox.dependency-guard:com.drop
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
-android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
-android-lint = { id = "com.android.lint", version.ref = "androidGradlePlugin" }
-android-multiplatformlibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidGradlePlugin" }
-bugsnag = { id = "com.bugsnag.gradle", version = "1.2.1" }
-buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }
-burst-plugin = { id = "app.cash.burst", version.ref = "burst" }
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
-dependency-analysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependency-analysis" }
-dependency-guard = { id = "com.dropbox.dependency-guard", version.ref = "dependency-guard" }
+android-application = { id = "com.android.application" }
+android-library = { id = "com.android.library" }
+android-lint = { id = "com.android.lint" }
+android-multiplatformlibrary = { id = "com.android.kotlin.multiplatform.library" }
+bugsnag = { id = "com.bugsnag.gradle" }
+buildconfig = { id = "com.github.gmazzo.buildconfig" }
+burst-plugin = { id = "app.cash.burst" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose" }
+compose-multiplatform = { id = "org.jetbrains.compose" }
+dependency-analysis = { id = "com.autonomousapps.dependency-analysis" }
+dependency-guard = { id = "com.dropbox.dependency-guard" }
 gradle-application = { id = "org.gradle.application" }
-kotlin-assignment = { id = "org.jetbrains.kotlin.plugin.assignment", version.ref = "kotlin" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-samWithReceiver = { id = "org.jetbrains.kotlin.plugin.sam.with.receiver", version.ref = "kotlin" }
-kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-metro = { id = "dev.zacsweers.metro", version.ref = "metro" }
-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+kotlin-assignment = { id = "org.jetbrains.kotlin.plugin.assignment" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform" }
+kotlin-samWithReceiver = { id = "org.jetbrains.kotlin.plugin.sam.with.receiver" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization" }
+metro = { id = "dev.zacsweers.metro" }
+parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize" }
+sqldelight = { id = "app.cash.sqldelight" }
 
 # Convention Plugins
 loudping-android-application = { id = "loudping.android.application" }
