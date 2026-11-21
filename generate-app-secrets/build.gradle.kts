@@ -1,3 +1,7 @@
+import ninja.bryansills.loudping.gradle.util.addString
+import ninja.bryansills.loudping.gradle.util.getSecret
+import ninja.bryansills.loudping.gradle.util.loadProperties
+
 plugins {
   alias(libs.plugins.loudping.jvm)
   application
@@ -14,41 +18,15 @@ dependencies {
 }
 
 buildConfig {
-  packageName("ninja.bryansills.loudping")
-  useKotlinOutput { internalVisibility = true }
+  packageName("ninja.bryansills.loudping.raw")
 
-  //    loadSecrets()
+  val secrets = loadProperties("secrets.properties")
 
-  buildConfigField("Salt", """"saltString"""")
-  buildConfigField("ClientId", """"clientId"""")
-  buildConfigField("ClientSecret", """"clientSecret"""")
-  buildConfigField("RedirectUrl", """"redirectUrl"""")
-  buildConfigField("BaseApiUrl", """"baseApiUrl"""")
-  buildConfigField("BaseAuthApiUrl", """"baseAuthApiUrl"""")
-  buildConfigField("AuthorizeUrl", """"authorizeUrl"""")
+  addString("Salt", secrets.getSecret("raw.salt"))
+  addString("RawClientId", secrets.getSecret("raw.clientId"))
+  addString("RawClientSecret", secrets.getSecret("raw.clientSecret"))
+  addString("RawRedirectUrl", secrets.getSecret("raw.redirectUrl"))
+  addString("RawBaseApiUrl", secrets.getSecret("raw.baseApiUrl"))
+  addString("RawBaseAuthApiUrl", secrets.getSecret("raw.baseAuthApiUrl"))
+  addString("RawAuthorizeUrl", secrets.getSecret("raw.authorizeUrl"))
 }
-
-// fun BuildConfigExtension.loadSecrets() {
-//    val properties = rootProject.rootProperties("local.properties")
-//
-//    val saltString = properties.getSecret("raw.sneak.salt")
-//    buildConfigField("String", "Salt", """"$saltString"""")
-//
-//    val clientId = properties.getSecret("raw.clientid")
-//    buildConfigField("String", "ClientId", """"$clientId"""")
-//
-//    val clientSecret = properties.getSecret("raw.clientsecret")
-//    buildConfigField("String", "ClientSecret", """"$clientSecret"""")
-//
-//    val redirectUrl = properties.getSecret("raw.redirecturl")
-//    buildConfigField("String", "RedirectUrl", """"$redirectUrl"""")
-//
-//    val baseApiUrl = properties.getSecret("raw.baseapiurl")
-//    buildConfigField("String", "BaseApiUrl", """"$baseApiUrl"""")
-//
-//    val baseAuthApiUrl = properties.getSecret("raw.baseauthapiurl")
-//    buildConfigField("String", "BaseAuthApiUrl", """"$baseAuthApiUrl"""")
-//
-//    val authorizeUrl = properties.getSecret("raw.authorizeurl")
-//    buildConfigField("String", "AuthorizeUrl", """"$authorizeUrl"""")
-// }

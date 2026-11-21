@@ -44,12 +44,12 @@ dependencies {
 
   compileOnly(libs.android.gradlePlugin)
   compileOnly(libs.android.gradlePluginApi)
-  compileOnly(libs.android.tools.common)
   compileOnly(libs.kotlin.gradlePlugin)
   compileOnly(gradleKotlinDsl())
   compileOnly(libs.compose.gradlePlugin)
   compileOnly(libs.dependencyGuard.gradlePlugin)
   compileOnly(libs.dependencyAnalysis.gradlePlugin)
+  compileOnly(libs.buildconfig.gradlePlugin)
   lintChecks(libs.androidx.lint.gradle)
 }
 

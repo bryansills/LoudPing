@@ -1,5 +1,3 @@
-import ninja.bryansills.loudping.gradle.buildConfigString
-
 plugins {
   alias(libs.plugins.loudping.android.application)
   alias(libs.plugins.loudping.publishing)
@@ -30,67 +28,7 @@ android {
     versionCode = 69
     versionName = "0.0.69"
 
-    //      val rootSecrets = rootProject.rootProperties("secrets.properties")
-    //      buildConfigString(
-    //        "SneakSalt",
-    //        rootSecrets.getSecret("sneak.salt"),
-    //      )
-    //      buildConfigString(
-    //        "SneakClientId",
-    //        rootSecrets.getSecret("sneak.clientid"),
-    //      )
-    //      buildConfigString(
-    //        "SneakClientSecret",
-    //        rootSecrets.getSecret("sneak.clientsecret"),
-    //      )
-    //      buildConfigString(
-    //        "SneakRedirectUrl",
-    //        rootSecrets.getSecret("sneak.redirecturl"),
-    //      )
-    //      buildConfigString(
-    //        "SneakBaseApiUrl",
-    //        rootSecrets.getSecret("sneak.baseapiurl"),
-    //      )
-    //      buildConfigString(
-    //        "SneakBaseAuthApiUrl",
-    //        rootSecrets.getSecret("sneak.baseauthapiurl"),
-    //      )
-    //      buildConfigString(
-    //        "SneakAuthorizeUrl",
-    //        rootSecrets.getSecret("sneak.authorizeurl"),
-    //      )
-    //
     //      manifestPlaceholders["BUGSNAG_API_KEY"] = rootSecrets.getSecret("bugsnag.api.key")
-
-    buildConfigString(
-      "SneakSalt",
-      "sneak.salt",
-    )
-    buildConfigString(
-      "SneakClientId",
-      "sneak.clientid",
-    )
-    buildConfigString(
-      "SneakClientSecret",
-      "sneak.clientsecret",
-    )
-    buildConfigString(
-      "SneakRedirectUrl",
-      "sneak.redirecturl",
-    )
-    buildConfigString(
-      "SneakBaseApiUrl",
-      "sneak.baseapiurl",
-    )
-    buildConfigString(
-      "SneakBaseAuthApiUrl",
-      "sneak.baseauthapiurl",
-    )
-    buildConfigString(
-      "SneakAuthorizeUrl",
-      "sneak.authorizeurl",
-    )
-
     manifestPlaceholders["BUGSNAG_API_KEY"] = "bugsnag.api.key"
   }
 
@@ -136,10 +74,6 @@ android {
         packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")
       }
     }
-  }
-
-  buildFeatures {
-    buildConfig = true
   }
 }
 
