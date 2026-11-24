@@ -8,7 +8,7 @@
 .externalNativeBuild
 .cxx
 local.properties
-secrets.properties
+core/sneak/secrets.properties
 *.preferences_pb
 .kotlin
 deep-history.db
