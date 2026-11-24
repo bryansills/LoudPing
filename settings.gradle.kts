@@ -29,7 +29,7 @@ plugins {
   id("org.jetbrains.kotlin.plugin.serialization") version kotlinGradlePluginVersion apply false
   id("org.jetbrains.kotlin.plugin.compose") version kotlinGradlePluginVersion apply false
   id("org.jetbrains.kotlin.plugin.parcelize") version kotlinGradlePluginVersion apply false
-  id("dev.zacsweers.metro") version "1.5.2" apply false
+  id("dev.zacsweers.metro") version "1.6.0" apply false
   id("com.dropbox.dependency-guard") version "0.5.0" apply false
   id("com.github.gmazzo.buildconfig") version "6.1.2" apply false
   id("app.cash.sqldelight") version "2.4.1" apply false
