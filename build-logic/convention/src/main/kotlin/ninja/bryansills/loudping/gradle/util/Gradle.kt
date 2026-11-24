@@ -1,5 +1,9 @@
 package ninja.bryansills.loudping.gradle.util
 
+import java.io.FileInputStream
+import java.io.InputStreamReader
+import java.util.Properties
+import org.gradle.api.Project
 import org.gradle.api.artifacts.ExternalDependency
 import org.gradle.api.plugins.PluginAware
 import org.gradle.api.plugins.PluginContainer
@@ -45,4 +49,26 @@ internal fun <T : ExternalDependency> DependencyHandlerScope.ksp(lib: Provider<T
 
 internal fun <T : ExternalDependency> DependencyHandlerScope.lintChecks(lib: Provider<T>) {
   "lintChecks"(lib)
+}
+
+fun Project.loadProperties(propertiesPath: String): Properties {
+  val result = Properties()
+  val propertiesFile = this.file(propertiesPath)
+  if (propertiesFile.isFile) {
+    InputStreamReader(FileInputStream(propertiesFile), Charsets.UTF_8).use { reader ->
+      result.load(reader)
+    }
+  }
+  return result
+}
+
+fun Properties.getSecret(
+  propertyName: String,
+  environmentName: String = propertyName.replace(".", "_").uppercase(),
+  fallback: String = "INVALID $propertyName",
+): String {
+  val propertyValue: String? = this.getProperty(propertyName)
+  val environmentValue: String? = System.getenv(environmentName)
+
+  return propertyValue ?: environmentValue ?: fallback
 }

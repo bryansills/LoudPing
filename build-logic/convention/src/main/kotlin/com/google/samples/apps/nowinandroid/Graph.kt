@@ -16,7 +16,6 @@
 
 package com.google.samples.apps.nowinandroid
 
-import com.android.utils.associateWithNotNull
 import kotlin.text.RegexOption.DOT_MATCHES_ALL
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
@@ -139,7 +138,11 @@ internal enum class PluginType(val id: String, val ref: String, val style: Strin
     ref = "multiplatform-library",
     style = "fill:#BD5FFF,stroke:#000,stroke-width:2px,color:#000",
   ),
-  Unknown(id = "?", ref = "unknown", style = "fill:#FFADAD,stroke:#000,stroke-width:2px,color:#000"),
+  Unknown(
+    id = "?",
+    ref = "unknown",
+    style = "fill:#FFADAD,stroke:#000,stroke-width:2px,color:#000",
+  ),
 }
 
 internal fun Project.configureGraphTasks() {
@@ -199,7 +202,7 @@ private abstract class GraphDumpTask : DefaultTask() {
           nodePlacementStrategy: NETWORK_SIMPLEX
       ---
       """
-        .trimIndent()
+        .trimIndent(),
     )
     // Graph declaration
     appendLine("graph TB")
@@ -235,7 +238,7 @@ private abstract class GraphDumpTask : DefaultTask() {
                 .count()
             },
             { -it.value.size },
-          )
+          ),
         )
         .forEach { (group, projects) ->
           val indent = if (outerGroup.isNotEmpty()) 4 else 2
@@ -308,7 +311,7 @@ private abstract class GraphDumpTask : DefaultTask() {
         "api" -> "-->"
         "implementation" -> "-.->"
         else -> "-.->|$configuration|"
-      }
+      },
     )
     append(" ").append(dependency)
   }
@@ -343,7 +346,7 @@ private abstract class GraphUpdateTask : DefaultTask() {
                 <!--region graph--> <!--endregion-->
 
                 """
-            .trimIndent()
+            .trimIndent(),
         )
       }
       val mermaid = input.get().asFile.readText().trimTrailingNewLines()
@@ -375,3 +378,9 @@ private abstract class GraphUpdateTask : DefaultTask() {
   private fun String.trimTrailingNewLines() =
     lines().dropLastWhile(String::isBlank).joinToString(System.lineSeparator())
 }
+
+private inline fun <K, V> Iterable<K>.associateWithNotNull(valueSelector: (K) -> V?): Map<K, V> =
+  mapNotNull { key ->
+    valueSelector(key)?.let { key to it }
+  }
+  .toMap()

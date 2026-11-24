@@ -1,21 +1,18 @@
-package ninja.bryansills.loudping.di
+package ninja.bryansills.loudping.sneak.network
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
+import dev.zacsweers.metro.Named
 import dev.zacsweers.metro.Provides
-import ninja.bryansills.loudping.BuildConfig
-import ninja.bryansills.loudping.sneak.network.NetworkSneak
-import ninja.bryansills.loudping.sneak.network.RealNetworkSneak
+import ninja.bryansills.loudping.sneak.BuildConfig
 import ninja.bryansills.sneak.Sneak
 
 @ContributesTo(AppScope::class)
 @BindingContainer
-object SneakModule {
+object SneakBindingContainer {
+  @Provides fun provideSneak(): Sneak = Sneak(BuildConfig.Salt.toByteArray())
 
-  @Provides fun provideSneak(): Sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
-
-  @OptIn(ExperimentalStdlibApi::class)
   @Provides
   fun provideNetworkSneak(sneak: Sneak): NetworkSneak =
     RealNetworkSneak(
@@ -27,9 +24,13 @@ object SneakModule {
       obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.safeHexToByteArray(),
       obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.safeHexToByteArray(),
     )
+
+  @Provides
+  @Named("jvm-refresh-token")
+  fun provideJvmRefreshToken(): String = BuildConfig.JvmRefreshToken
 }
 
-private fun String.safeHexToByteArray(): ByteArray {
+internal fun String.safeHexToByteArray(): ByteArray {
   return try {
     this.hexToByteArray()
   } catch (_: NumberFormatException) {

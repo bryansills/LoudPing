@@ -13,7 +13,6 @@ import ninja.bryansills.loudping.database.jvm.JvmSqlDriver
 import ninja.bryansills.loudping.deephistory.DeepHistoryDataProvider
 import ninja.bryansills.loudping.deephistory.DeepHistoryRunner
 import ninja.bryansills.loudping.deephistory.DefaultDeepHistoryRunner
-import ninja.bryansills.loudping.jvm.network.runner.BuildConfig
 import ninja.bryansills.loudping.network.NetworkService
 import ninja.bryansills.loudping.network.RealNetworkService
 import ninja.bryansills.loudping.network.SpotifyService
@@ -27,10 +26,9 @@ import ninja.bryansills.loudping.network.rate.Sleeper
 import ninja.bryansills.loudping.repository.track.RealTrackRepository
 import ninja.bryansills.loudping.repository.track.TrackRepository
 import ninja.bryansills.loudping.session.Stored
-import ninja.bryansills.loudping.sneak.network.RealNetworkSneak
+import ninja.bryansills.loudping.sneak.network.SneakBindingContainer
 import ninja.bryansills.loudping.storage.RealSimpleStorage
 import ninja.bryansills.loudping.time.RealTimeProvider
-import ninja.bryansills.sneak.Sneak
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,22 +38,15 @@ import retrofit2.create
 
 @OptIn(ExperimentalStdlibApi::class)
 suspend fun initializeDependencies(): JvmDependencies {
-  val sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
-  val networkSneak =
-    RealNetworkSneak(
-      sneak = sneak,
-      obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
-      obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
-      obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
-      obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
-      obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
-      obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
-    )
+  val sneak = SneakBindingContainer.provideSneak()
+  val networkSneak = SneakBindingContainer.provideNetworkSneak(sneak = sneak)
 
   val dataStore = PreferenceDataStoreFactory.create { File("deep-history-jvm.preferences_pb") }
   val simpleStorage = RealSimpleStorage(dataStore)
   // preload SimpleStorage with the bundled refresh token
-  simpleStorage.edit { it[Stored.RefreshToken.key] = BuildConfig.JvmRefreshToken }
+  simpleStorage.edit {
+    it[Stored.RefreshToken.key] = SneakBindingContainer.provideJvmRefreshToken()
+  }
 
   val timeProvider = RealTimeProvider()
 

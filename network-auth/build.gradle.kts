@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-  api(projects.sneakNetwork)
+  api(projects.core.sneak)
   api(projects.storage)
   api(projects.time)
   api(libs.coroutines)
