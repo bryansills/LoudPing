@@ -10,7 +10,6 @@ application {
 dependencies {
   implementation(projects.core.coroutinesExt)
   implementation(projects.core.model)
-  implementation(projects.core.sneak)
   implementation(projects.deepHistoryDash)
   implementation(projects.deepHistory)
   implementation(projects.database.core)
