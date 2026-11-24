@@ -20,7 +20,7 @@ dependencies {
 buildConfig {
   packageName("ninja.bryansills.loudping.raw")
 
-  val secrets = loadProperties("secrets.properties")
+  val secrets = loadProperties("rawsecrets.properties")
 
   addString("Salt", secrets.getSecret("raw.salt"))
   addString("RawClientId", secrets.getSecret("raw.clientId"))
