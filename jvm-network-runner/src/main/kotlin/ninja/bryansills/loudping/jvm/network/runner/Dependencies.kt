@@ -12,10 +12,9 @@ import ninja.bryansills.loudping.network.auth.AuthorizationHeaderInterceptor
 import ninja.bryansills.loudping.network.auth.RealAuthManager
 import ninja.bryansills.loudping.network.auth.SpotifyAuthService
 import ninja.bryansills.loudping.session.Stored
-import ninja.bryansills.loudping.sneak.network.RealNetworkSneak
+import ninja.bryansills.loudping.sneak.network.SneakBindingContainer
 import ninja.bryansills.loudping.storage.RealSimpleStorage
 import ninja.bryansills.loudping.time.RealTimeProvider
-import ninja.bryansills.sneak.Sneak
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -24,23 +23,18 @@ import retrofit2.create
 
 @OptIn(ExperimentalStdlibApi::class)
 internal fun initializeDependencies(): SpotifyService {
-  val sneak = Sneak(BuildConfig.SneakSalt.toByteArray())
-  val networkSneak =
-    RealNetworkSneak(
-      sneak = sneak,
-      obfuscatedClientId = BuildConfig.SneakClientId.hexToByteArray(),
-      obfuscatedClientSecret = BuildConfig.SneakClientSecret.hexToByteArray(),
-      obfuscatedRedirectUrl = BuildConfig.SneakRedirectUrl.hexToByteArray(),
-      obfuscatedBaseApiUrl = BuildConfig.SneakBaseApiUrl.hexToByteArray(),
-      obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.hexToByteArray(),
-      obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.hexToByteArray(),
-    )
+  val sneak = SneakBindingContainer.provideSneak()
+  val networkSneak = SneakBindingContainer.provideNetworkSneak(sneak = sneak)
 
   val dataStore = PreferenceDataStoreFactory.create { File("fake-jvm-storage.preferences_pb") }
   val simpleStorage = RealSimpleStorage(dataStore)
 
   // preload SimpleStorage with the bundled refresh token
-  runBlocking { simpleStorage.edit { it[Stored.RefreshToken.key] = BuildConfig.JvmRefreshToken } }
+  runBlocking {
+    simpleStorage.edit {
+      it[Stored.RefreshToken.key] = SneakBindingContainer.provideJvmRefreshToken()
+    }
+  }
 
   val timeProvider = RealTimeProvider()
 

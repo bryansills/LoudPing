@@ -3,6 +3,7 @@ package ninja.bryansills.loudping.sneak.network
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.BindingContainer
 import dev.zacsweers.metro.ContributesTo
+import dev.zacsweers.metro.Named
 import dev.zacsweers.metro.Provides
 import ninja.bryansills.loudping.sneak.BuildConfig
 import ninja.bryansills.sneak.Sneak
@@ -23,9 +24,13 @@ object SneakBindingContainer {
       obfuscatedBaseAuthApiUrl = BuildConfig.SneakBaseAuthApiUrl.safeHexToByteArray(),
       obfuscatedAuthorizeUrl = BuildConfig.SneakAuthorizeUrl.safeHexToByteArray(),
     )
+
+  @Provides
+  @Named("jvm-refresh-token")
+  fun provideJvmRefreshToken(): String = BuildConfig.JvmRefreshToken
 }
 
-private fun String.safeHexToByteArray(): ByteArray {
+internal fun String.safeHexToByteArray(): ByteArray {
   return try {
     this.hexToByteArray()
   } catch (_: NumberFormatException) {
