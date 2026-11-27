@@ -7,7 +7,7 @@ pluginManagement {
 }
 
 plugins {
-  val androidGradlePluginVersion = "9.5.1"
+  val androidGradlePluginVersion = "9.5.2"
   val kotlinGradlePluginVersion = "2.4.21"
 
   id("com.android.lint") version androidGradlePluginVersion apply false
